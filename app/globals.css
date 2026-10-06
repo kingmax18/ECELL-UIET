@@ -1,0 +1,315 @@
+/* ============================================================
+   UIET E-Cell — Global Stylesheet (single source of truth)
+   Awake design language · Tailwind v4 · design tokens below
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=Sora:wght@400;500;600;700;800&display=swap');
+@import 'tailwindcss';
+
+@theme {
+  /* Master Palette: Purple #863DFF · Dark Blue #070A26 · Green #CBFF2E · White #FFFFFF · Light Blue #DDE0FF */
+  --color-brand-purple: #863DFF;
+  --color-brand-dark: #070A26;
+  --color-brand-green: #CBFF2E;
+  --color-brand-white: #FFFFFF;
+  --color-brand-lightblue: #DDE0FF;
+
+  /* Surface layers */
+  --color-brand-surface: #0B0F33;
+  --color-brand-surface-elevated: #101648;
+  --color-brand-border: #1F2766;
+
+  /* Tuckii / Neo tokens mapped to palette */
+  --color-tuckii-bg: #070A26;
+  --color-tuckii-yellow: #CBFF2E;
+  --color-tuckii-yellow-dark: #b8ec1b;
+  --color-tuckii-black: #070A26;
+  --color-tuckii-mint: #CBFF2E;
+  --color-tuckii-blue: #DDE0FF;
+  --color-tuckii-pink: #863DFF;
+  --color-tuckii-cream: #0B0F33;
+  --color-tuckii-coral: #863DFF;
+
+  /* Ink system */
+  --color-ink: #FFFFFF;
+  --color-secondary: #DDE0FF;
+  --color-muted: rgba(221, 224, 255, 0.65);
+  --color-soft: rgba(134, 61, 255, 0.15);
+  --color-softhover: rgba(134, 61, 255, 0.28);
+  --color-border: #1F2766;
+  --color-bordersubtle: rgba(221, 224, 255, 0.18);
+  --color-borderstrong: #863DFF;
+
+  /* Brand */
+  --color-violet: #863DFF;
+  --color-violethover: #7229e6;
+
+  /* Signature */
+  --color-sun: #CBFF2E;
+
+  /* Accent tints */
+  --color-porange: #CBFF2E;
+  --color-pblue: #DDE0FF;
+  --color-ppink: #863DFF;
+  --color-pgreen: #CBFF2E;
+  --color-plilac: #863DFF;
+
+  /* Pastel tints */
+  --color-porangebg: rgba(203, 255, 46, 0.16);
+  --color-pbluebg: rgba(221, 224, 255, 0.14);
+  --color-ppinkbg: rgba(134, 61, 255, 0.2);
+  --color-pgreenbg: rgba(203, 255, 46, 0.16);
+  --color-plilacbg: rgba(134, 61, 255, 0.22);
+
+  /* Deep pastel text */
+  --color-porangedeep: #CBFF2E;
+  --color-pbluedeep: #DDE0FF;
+  --color-ppinkdeep: #DDE0FF;
+  --color-pgreendeep: #CBFF2E;
+  --color-plilacdeep: #DDE0FF;
+
+  /* Typography */
+  --font-sans: 'Sora', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-serif: 'Instrument Serif', Georgia, serif;
+  --font-hand: 'Caveat', cursive, sans-serif;
+
+  /* Radius scale */
+  --radius-sm2: 8px;
+  --radius-card: 16px;
+  --radius-panel: 24px;
+  --radius-cta: 30px;
+  --radius-pill: 9999px;
+}
+
+/* ── BASE ───────────────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: #070A26;
+  color: #FFFFFF;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: #CBFF2E;
+  color: #070A26;
+}
+
+/* ── NEO-BRUTALIST UTILITIES (THEMED) ─────────────────────────── */
+.font-hand {
+  font-family: 'Caveat', cursive, sans-serif;
+}
+
+.marker-yellow {
+  background-color: #CBFF2E;
+  color: #070A26;
+  padding: 0.1em 0.45em;
+  border-radius: 8px;
+  border: 2px solid #070A26;
+  box-shadow: 3px 3px 0px #863DFF;
+  display: inline-block;
+  font-weight: 800;
+}
+
+.marker-purple {
+  background-color: #863DFF;
+  color: #FFFFFF;
+  padding: 0.1em 0.45em;
+  border-radius: 8px;
+  border: 2px solid #DDE0FF;
+  box-shadow: 3px 3px 0px #CBFF2E;
+  display: inline-block;
+  font-weight: 800;
+}
+
+.neo-card {
+  background-color: #0B0F33;
+  border: 2px solid #1F2766;
+  border-radius: 20px;
+  box-shadow: 5px 5px 0px #030514;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  color: #FFFFFF;
+}
+
+.neo-card:hover {
+  transform: translate(-2px, -2px);
+  border-color: #863DFF;
+  box-shadow: 6px 6px 0px #CBFF2E;
+}
+
+.neo-card-flat {
+  background-color: #0B0F33;
+  border: 2px solid #1F2766;
+  border-radius: 20px;
+  box-shadow: 4px 4px 0px #030514;
+  color: #FFFFFF;
+}
+
+.neo-btn-primary {
+  background-color: #CBFF2E;
+  color: #070A26;
+  font-weight: 800;
+  border: 2px solid #070A26;
+  border-radius: 9999px;
+  padding: 0.75rem 1.6rem;
+  box-shadow: 3px 3px 0px #863DFF;
+  transition: all 0.15s ease-in-out;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  text-decoration: none;
+}
+
+.neo-btn-primary:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px #863DFF;
+  background-color: #d8ff4f;
+}
+
+.neo-btn-secondary {
+  background-color: #863DFF;
+  color: #FFFFFF;
+  font-weight: 800;
+  border: 2px solid #DDE0FF;
+  border-radius: 9999px;
+  padding: 0.75rem 1.6rem;
+  box-shadow: 3px 3px 0px #CBFF2E;
+  transition: all 0.15s ease-in-out;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  text-decoration: none;
+}
+
+.neo-btn-secondary:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px #CBFF2E;
+  background-color: #7429eb;
+}
+
+.neo-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background-color: #0B0F33;
+  border: 2px solid #863DFF;
+  border-radius: 9999px;
+  padding: 0.35rem 1rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #DDE0FF;
+  box-shadow: 2px 2px 0px #863DFF;
+}
+
+/* ── SCROLL REVEAL ──────────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── ROTATING SERIF WORD (Creativity → Innovation → Strategy) ── */
+@keyframes wordSlideIn {
+  from { opacity: 0; transform: translateY(55%); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes wordSlideOut {
+  from { opacity: 1; transform: translateY(0); }
+  to   { opacity: 0; transform: translateY(-55%); }
+}
+
+.word-in {
+  animation: wordSlideIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.word-out {
+  animation: wordSlideOut 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* ── MARQUEE ────────────────────────────────────────────────── */
+@keyframes marqueeScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marqueeScroll 30s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* ── PULSE (hero badge dot) ──────────────────────────────────── */
+@keyframes softPulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.3); opacity: 0.7; }
+}
+
+.animate-softpulse {
+  animation: softPulse 2s infinite ease-in-out;
+}
+
+/* ── TOASTS ─────────────────────────────────────────────────── */
+.ec-toast-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ec-toast {
+  background: var(--color-ink);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 14px 20px;
+  border-radius: 100px;
+  box-shadow: 0 4px 16px rgba(27, 29, 30, 0.18);
+  max-width: 360px;
+  animation: toastIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.ec-toast-success { background: var(--color-pgreendeep); }
+.ec-toast-error { background: #c0392b; }
+
+@keyframes toastIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 480px) {
+  .ec-toast-container {
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+  }
+
+  .ec-toast {
+    max-width: 100%;
+  }
+}

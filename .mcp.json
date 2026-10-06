@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "jetro": {
+      "type": "stdio",
+      "command": "C:\\Users\\laksh\\.jetro\\runtime\\node-win32-x64.exe",
+      "args": [
+        "C:\\Users\\laksh\\.jetro\\mcp-server\\index.js"
+      ],
+      "env": {
+        "JET_WORKSPACE": "c:\\Users\\laksh\\OneDrive\\Documents\\Ecell website",
+        "JET_API_URL": "https://api.jetro.ai",
+        "PATH": "C:\\Users\\laksh\\.jetro\\runtime;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\ProgramData\\chocolatey\\bin;C:\\Program Files\\nodejs\\;C:\\Program Files\\Git\\cmd;C:\\Users\\laksh\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\laksh\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\laksh\\AppData\\Local\\Programs\\Antigravity\\bin;C:\\Users\\laksh\\AppData\\Local\\Programs\\Antigravity IDE\\bin;C:\\Users\\laksh\\AppData\\Roaming\\npm"
+      }
+    }
+  }
+}

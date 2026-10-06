@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" fill="none">
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#111111"/>
+      <stop offset="100%" stop-color="#020202"/>
+    </linearGradient>
+    <radialGradient id="glow2" cx="70%" cy="40%" r="50%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#bg2)"/>
+  <rect width="800" height="500" fill="url(#glow2)"/>
+
+  <!-- Pitch Deck & Termsheet Mockup -->
+  <g transform="translate(140, 70)">
+    <!-- Main Slate -->
+    <rect x="0" y="0" width="520" height="340" rx="10" fill="#161616" stroke="#2c2c2c" stroke-width="1.5"/>
+    <!-- Pitch Deck Header -->
+    <rect x="25" y="25" width="220" height="12" rx="6" fill="#383838"/>
+    <rect x="25" y="45" width="120" height="8" rx="4" fill="#252525"/>
+    
+    <!-- Valuation & Cap Table graph -->
+    <path d="M 40 240 L 140 210 L 240 170 L 340 120 L 460 60" fill="none" stroke="#FFFFFF" stroke-width="2.5"/>
+    <circle cx="460" cy="60" r="6" fill="#FFFFFF"/>
+    
+    <!-- Investor Badges -->
+    <rect x="40" y="270" width="140" height="36" rx="18" fill="#222222" stroke="#333333"/>
+    <text x="110" y="293" text-anchor="middle" font-family="'Inter', sans-serif" font-size="11" font-weight="700" letter-spacing="0.12em" fill="#FFFFFF">₹5,00,000 POOL</text>
+
+    <rect x="200" y="270" width="140" height="36" rx="18" fill="#222222" stroke="#333333"/>
+    <text x="270" y="293" text-anchor="middle" font-family="'Inter', sans-serif" font-size="11" font-weight="700" letter-spacing="0.12em" fill="#FFFFFF">12 ANGEL VCS</text>
+
+    <text x="260" y="160" text-anchor="middle" font-family="'Inter', sans-serif" font-size="20" font-weight="800" letter-spacing="0.2em" fill="#FFFFFF">EUREKA PITCH ARENA</text>
+  </g>
+</svg>
