@@ -11,7 +11,7 @@ export default function FAQSection() {
       <div className="max-w-[1272px] mx-auto px-4 sm:px-6">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           {/* Left Panel: Themed FAQ Aside */}
-          <aside className="lg:col-span-4 bg-[#0047FF] border-2 border-[#0A0E1A] rounded-3xl p-7 shadow-[6px_6px_0px_#CBFF2E] flex flex-col justify-between gap-6 sticky top-24">
+          <aside className="lg:col-span-4 bg-[#0047FF] border-2 border-[#0A0E1A] rounded-3xl p-7 shadow-[6px_6px_0px_#CBFF2E] flex flex-col justify-between gap-6 static lg:sticky lg:top-24">
             <div>
               <div className="w-16 h-16 rounded-2xl bg-white border-2 border-[#CBFF2E] shadow-[3px_3px_0px_#0A0E1A] flex items-center justify-center font-black text-2xl mb-5">
                 💡
