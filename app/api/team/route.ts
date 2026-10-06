@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import { requireAdmin } from '@/lib/auth';
 
 // GET /api/team - Fetch active team members and founders
 export async function GET() {
@@ -23,8 +24,13 @@ export async function GET() {
   }
 }
 
-// POST /api/team - Add new team member
+// POST /api/team - Add new team member (ADMIN ONLY)
 export async function POST(request: Request) {
+  const auth = requireAdmin(request);
+  if (auth.response) {
+    return auth.response;
+  }
+
   try {
     const body = await request.json();
     const { name, role, department, year, linkedin, email, photo, order } = body;

@@ -1,11 +1,17 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import { requireAdmin } from '@/lib/auth';
 
-// PUT /api/sponsors/[id] - Update sponsor
+// PUT /api/sponsors/[id] - Update sponsor (ADMIN ONLY)
 export async function PUT(
   request: Request,
   { params }: { params: Promise<{ id: string }> }
 ) {
+  const auth = requireAdmin(request);
+  if (auth.response) {
+    return auth.response;
+  }
+
   try {
     const { id } = await params;
     const sponsorId = parseInt(id, 10);
@@ -37,11 +43,16 @@ export async function PUT(
   }
 }
 
-// DELETE /api/sponsors/[id] - Delete sponsor
+// DELETE /api/sponsors/[id] - Delete sponsor (ADMIN ONLY)
 export async function DELETE(
   request: Request,
   { params }: { params: Promise<{ id: string }> }
 ) {
+  const auth = requireAdmin(request);
+  if (auth.response) {
+    return auth.response;
+  }
+
   try {
     const { id } = await params;
     const sponsorId = parseInt(id, 10);

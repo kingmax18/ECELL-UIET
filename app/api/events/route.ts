@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import { requireAdmin } from '@/lib/auth';
 
 // GET /api/events - Retrieve events
 export async function GET(request: Request) {
@@ -33,8 +34,13 @@ export async function GET(request: Request) {
   }
 }
 
-// POST /api/events - Create new event
+// POST /api/events - Create new event (ADMIN ONLY)
 export async function POST(request: Request) {
+  const auth = requireAdmin(request);
+  if (auth.response) {
+    return auth.response;
+  }
+
   try {
     const body = await request.json();
 

@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import { requireAdmin } from '@/lib/auth';
 
 // GET /api/blogs/[slug] - Fetch single article
 export async function GET(
@@ -37,11 +38,16 @@ export async function GET(
   }
 }
 
-// PUT /api/blogs/[slug] - Update article
+// PUT /api/blogs/[slug] - Update article (ADMIN ONLY)
 export async function PUT(
   request: Request,
   { params }: { params: Promise<{ slug: string }> }
 ) {
+  const auth = requireAdmin(request);
+  if (auth.response) {
+    return auth.response;
+  }
+
   try {
     const { slug } = await params;
     const body = await request.json();
@@ -87,11 +93,16 @@ export async function PUT(
   }
 }
 
-// DELETE /api/blogs/[slug] - Delete article
+// DELETE /api/blogs/[slug] - Delete article (ADMIN ONLY)
 export async function DELETE(
   request: Request,
   { params }: { params: Promise<{ slug: string }> }
 ) {
+  const auth = requireAdmin(request);
+  if (auth.response) {
+    return auth.response;
+  }
+
   try {
     const { slug } = await params;
 

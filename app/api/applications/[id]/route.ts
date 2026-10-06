@@ -1,11 +1,17 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import { requireAdmin } from '@/lib/auth';
 
 // PATCH /api/applications/[id] - Update status or notes
 export async function PATCH(
   request: Request,
   { params }: { params: Promise<{ id: string }> }
 ) {
+  const auth = requireAdmin(request);
+  if (auth.response) {
+    return auth.response;
+  }
+
   try {
     const { id } = await params;
     const body = await request.json();
@@ -33,6 +39,11 @@ export async function DELETE(
   request: Request,
   { params }: { params: Promise<{ id: string }> }
 ) {
+  const auth = requireAdmin(request);
+  if (auth.response) {
+    return auth.response;
+  }
+
   try {
     const { id } = await params;
 

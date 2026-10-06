@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import { requireAdmin } from '@/lib/auth';
 
 // GET /api/gallery - Fetch all gallery items
 export async function GET() {
@@ -17,8 +18,13 @@ export async function GET() {
   }
 }
 
-// POST /api/gallery - Create gallery item
+// POST /api/gallery - Create gallery item (ADMIN ONLY)
 export async function POST(request: Request) {
+  const auth = requireAdmin(request);
+  if (auth.response) {
+    return auth.response;
+  }
+
   try {
     const body = await request.json();
     const { title, category, image, description } = body;

@@ -1,11 +1,17 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import { requireAdmin } from '@/lib/auth';
 
-// PUT /api/team/[id] - Update team member
+// PUT /api/team/[id] - Update team member (ADMIN ONLY)
 export async function PUT(
   request: Request,
   { params }: { params: Promise<{ id: string }> }
 ) {
+  const auth = requireAdmin(request);
+  if (auth.response) {
+    return auth.response;
+  }
+
   try {
     const { id } = await params;
     const memberId = parseInt(id, 10);
@@ -40,11 +46,16 @@ export async function PUT(
   }
 }
 
-// DELETE /api/team/[id] - Delete team member
+// DELETE /api/team/[id] - Delete team member (ADMIN ONLY)
 export async function DELETE(
   request: Request,
   { params }: { params: Promise<{ id: string }> }
 ) {
+  const auth = requireAdmin(request);
+  if (auth.response) {
+    return auth.response;
+  }
+
   try {
     const { id } = await params;
     const memberId = parseInt(id, 10);

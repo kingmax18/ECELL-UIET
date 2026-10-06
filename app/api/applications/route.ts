@@ -1,8 +1,29 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import { requireAdmin } from '@/lib/auth';
 
-// GET /api/applications - List recruitment applications with filtering
+// In-memory rate limiter for application submissions: Max 5 per 10 minutes per IP
+const rateLimitMap = new Map<string, number[]>();
+
+function isRateLimited(ip: string): boolean {
+  const now = Date.now();
+  const windowMs = 10 * 60 * 1000; // 10 minutes
+  const timestamps = (rateLimitMap.get(ip) || []).filter((t) => now - t < windowMs);
+  if (timestamps.length >= 5) {
+    return true;
+  }
+  timestamps.push(now);
+  rateLimitMap.set(ip, timestamps);
+  return false;
+}
+
+// GET /api/applications - List recruitment applications (ADMIN ONLY)
 export async function GET(request: Request) {
+  const auth = requireAdmin(request);
+  if (auth.response) {
+    return auth.response;
+  }
+
   try {
     const { searchParams } = new URL(request.url);
     const status = searchParams.get('status');
@@ -16,9 +37,9 @@ export async function GET(request: Request) {
 
     if (query) {
       where.OR = [
-        { name: { contains: query } },
-        { email: { contains: query } },
-        { enrollment: { contains: query } },
+        { name: { contains: query, mode: 'insensitive' } },
+        { email: { contains: query, mode: 'insensitive' } },
+        { enrollment: { contains: query, mode: 'insensitive' } },
       ];
     }
 
@@ -37,16 +58,32 @@ export async function GET(request: Request) {
   }
 }
 
-// POST /api/applications - Submit new student recruitment application
+// POST /api/applications - Submit new student recruitment application (Rate Limited)
 export async function POST(request: Request) {
   try {
-    const body = await request.json();
+    const ip = request.headers.get('x-forwarded-for')?.split(',')[0].trim() || 'local';
+    if (isRateLimited(ip)) {
+      return NextResponse.json(
+        { success: false, error: 'Too many submissions. Please wait a few minutes before trying again.' },
+        { status: 429 }
+      );
+    }
 
+    const body = await request.json();
     const { name, email, phone, enrollment, branchYear, deptInterest, whyJoin, linkedin } = body;
 
     if (!name || !email || !phone || !branchYear || !deptInterest || !whyJoin) {
       return NextResponse.json(
         { success: false, error: 'Please provide all required fields' },
+        { status: 400 }
+      );
+    }
+
+    // Basic email format check
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return NextResponse.json(
+        { success: false, error: 'Please provide a valid email address' },
         { status: 400 }
       );
     }

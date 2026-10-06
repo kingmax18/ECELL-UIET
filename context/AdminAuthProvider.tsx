@@ -91,6 +91,7 @@ export function AdminAuthProvider({ children }: { children: ReactNode }) {
     setUser(null);
     try {
       localStorage.removeItem('ECELL_ADMIN_SESSION');
+      fetch('/api/auth/logout', { method: 'POST' }).catch(() => {});
     } catch (e) {}
   };
 

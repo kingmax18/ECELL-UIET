@@ -1,11 +1,17 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import { requireAdmin } from '@/lib/auth';
 
-// DELETE /api/gallery/[id] - Remove gallery item
+// DELETE /api/gallery/[id] - Remove gallery item (ADMIN ONLY)
 export async function DELETE(
   request: Request,
   { params }: { params: Promise<{ id: string }> }
 ) {
+  const auth = requireAdmin(request);
+  if (auth.response) {
+    return auth.response;
+  }
+
   try {
     const { id } = await params;
     const itemId = parseInt(id, 10);

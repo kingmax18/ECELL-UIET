@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import { requireAdmin } from '@/lib/auth';
 
 // GET /api/sponsors - Fetch all sponsors & partners
 export async function GET() {
@@ -17,8 +18,13 @@ export async function GET() {
   }
 }
 
-// POST /api/sponsors - Add a new sponsor
+// POST /api/sponsors - Add a new sponsor (ADMIN ONLY)
 export async function POST(request: Request) {
+  const auth = requireAdmin(request);
+  if (auth.response) {
+    return auth.response;
+  }
+
   try {
     const body = await request.json();
     const { name, url, tier, initials, color } = body;

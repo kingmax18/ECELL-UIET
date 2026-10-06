@@ -7,7 +7,6 @@ import HeroSection from '@/components/home/HeroSection';
 import LogoStrip from '@/components/home/LogoStrip';
 import ProblemSection from '@/components/home/ProblemSection';
 import ServicesSection from '@/components/home/ServicesSection';
-import DarkFeatureSection from '@/components/home/DarkFeatureSection';
 import StatsSection from '@/components/home/StatsSection';
 import EventsPreview from '@/components/home/EventsPreview';
 import TeamPreview from '@/components/home/TeamPreview';
@@ -30,7 +29,6 @@ export default function HomePage() {
         <LogoStrip />
         <ProblemSection />
         <ServicesSection />
-        <DarkFeatureSection />
         <StatsSection stats={stats} />
         <EventsPreview />
         <TeamPreview />

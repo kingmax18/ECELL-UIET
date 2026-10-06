@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import { requireAdmin } from '@/lib/auth';
 
 // GET /api/settings - Fetch singleton site settings and stats
 export async function GET() {
@@ -39,8 +40,13 @@ export async function GET() {
   }
 }
 
-// PUT /api/settings - Update site settings or live stats
+// PUT /api/settings - Update site settings or live stats (ADMIN ONLY)
 export async function PUT(request: Request) {
+  const auth = requireAdmin(request);
+  if (auth.response) {
+    return auth.response;
+  }
+
   try {
     const body = await request.json();
 
