@@ -3,7 +3,6 @@
 import React, { useState } from 'react';
 import Button from '@/components/ui/Button';
 import { useToast } from '@/context/ToastProvider';
-import { supabase } from '@/lib/supabase';
 import { formatDate } from '@/lib/utils';
 import { PageHeader, Modal, StatusBadge, EmptyState, adminInput, adminLabel, adminCard, adminTd, adminTh } from './ui';
 import type { EventItem } from '@/lib/types';
@@ -46,14 +45,23 @@ export default function EventsManager({
     setModalOpen(true);
   };
 
-  const persist = async (row: EventItem, upsert: boolean) => {
-    if (!supabase) return;
+  const persist = async (row: EventItem, isUpdate: boolean) => {
     try {
-      const { id, ...fields } = row;
-      if (upsert) await supabase.from('events').upsert({ id, ...fields });
-      else await supabase.from('events').insert([fields]);
+      if (isUpdate) {
+        await fetch(`/api/events/${row.id}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(row),
+        });
+      } else {
+        await fetch('/api/events', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(row),
+        });
+      }
     } catch (e) {
-      console.warn('[Admin] Supabase events persist warning:', e);
+      console.warn('[Admin] Events API persist warning:', e);
     }
   };
 
@@ -89,10 +97,14 @@ export default function EventsManager({
     showToast(`Marked as ${newStatus}`, 'info');
   };
 
-  const handleDelete = (id: number) => {
+  const handleDelete = async (id: number) => {
     if (confirm('Are you sure you want to delete this event?')) {
       if (setEvents) setEvents(events.filter((e) => e.id !== id));
-      if (supabase) supabase.from('events').delete().eq('id', id).then(undefined, () => {});
+      try {
+        await fetch(`/api/events/${id}`, { method: 'DELETE' });
+      } catch (e) {
+        console.warn('[Admin] Events API delete warning:', e);
+      }
       showToast('Event deleted', 'info');
     }
   };

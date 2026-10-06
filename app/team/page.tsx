@@ -20,13 +20,13 @@ export default function TeamPage() {
       <Navbar />
       <main>
         {/* Page Hero */}
-        <section className="relative overflow-hidden bg-[#070A26] border-b-2 border-[#1F2766] py-16 sm:py-24">
+        <section className="relative overflow-hidden bg-white border-b-2 border-[#C0CCFF] py-16 sm:py-24">
           <div className="relative max-w-[1272px] mx-auto px-4 sm:px-6 text-center">
-            <h1 className="font-sans font-extrabold text-[clamp(36px,5.5vw,64px)] leading-[1.12] tracking-tight text-white mb-5 [text-wrap:balance]">
+            <h1 className="font-sans font-extrabold text-[clamp(36px,5.5vw,64px)] leading-[1.12] tracking-tight text-[#0A0E1A] mb-5 [text-wrap:balance]">
               The drivers behind{' '}
               <span className="marker-yellow">our ecosystem.</span>
             </h1>
-            <p className="text-[clamp(16px,1.8vw,19px)] font-medium leading-[1.6] text-[#DDE0FF]/80 max-w-[720px] mx-auto">
+            <p className="text-[clamp(16px,1.8vw,19px)] font-medium leading-[1.6] text-[#3A4A7A] max-w-[720px] mx-auto">
               Meet the student leaders, engineers, and department heads building UIET E-Cell at MDU Rohtak.
             </p>
           </div>

@@ -20,7 +20,7 @@ export interface EventData {
 
 export default function EventCard({ event }: { event: EventData }) {
   return (
-    <article className="reveal bg-[#0B0F33] border border-[#863DFF]/40 rounded-panel p-6 md:p-7 flex flex-col gap-3 transition-all duration-200 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:border-[#CBFF2E]">
+    <article className="reveal bg-[#F4F6FF] border border-[#0047FF]/40 rounded-panel p-6 md:p-7 flex flex-col gap-3 transition-all duration-200 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:border-[#CBFF2E]">
       <div className="flex items-center justify-between gap-3 flex-wrap">
         <CategoryBadge color={(event.category as 'orange') || 'orange'}>
           {event.mode || 'Offline'}

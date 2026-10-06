@@ -16,7 +16,7 @@ export default function CoreValues() {
           {CORE_VALUES.map((val, idx) => (
             <div
               key={idx}
-              className="reveal bg-[#0B0F33] border border-border rounded-card p-8 flex flex-col gap-4 transition-all duration-200 hover:-translate-y-1 hover:border-borderstrong"
+              className="reveal bg-[#F4F6FF] border border-border rounded-card p-8 flex flex-col gap-4 transition-all duration-200 hover:-translate-y-1 hover:border-borderstrong"
             >
               <div className="flex items-center justify-between">
                 <span className="font-sans font-medium text-xl tracking-[-0.02em] text-ink">{val.number}</span>

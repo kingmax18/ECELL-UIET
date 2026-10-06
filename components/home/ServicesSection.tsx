@@ -48,18 +48,18 @@ const pillars = [
 
 export default function ServicesSection() {
   return (
-    <section id="pillars" className="py-20 sm:py-28 bg-[#070A26] border-b-2 border-[#1F2766]">
+    <section id="pillars" className="py-20 sm:py-28 bg-white border-b-2 border-[#C0CCFF]">
       <div className="max-w-[1272px] mx-auto px-4 sm:px-6">
         {/* Section Heading */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 bg-[#863DFF] border-2 border-[#DDE0FF] rounded-full px-3.5 py-1 text-xs font-black uppercase tracking-wider text-white shadow-[2px_2px_0px_#CBFF2E] mb-4">
+          <div className="inline-flex items-center gap-2 bg-[#0047FF] border-2 border-[#0A0E1A] rounded-full px-3.5 py-1 text-xs font-black uppercase tracking-wider text-white shadow-[2px_2px_0px_#CBFF2E] mb-4">
             The E-Cell Framework
           </div>
-          <h2 className="font-sans font-extrabold text-[clamp(30px,4.5vw,52px)] leading-[1.12] tracking-tight text-white mb-4 [text-wrap:balance]">
+          <h2 className="font-sans font-extrabold text-[clamp(30px,4.5vw,52px)] leading-[1.12] tracking-tight text-[#0A0E1A] mb-4 [text-wrap:balance]">
             Meet UIET E-Cell.{' '}
             <span className="marker-yellow">One home for student founders.</span>
           </h2>
-          <p className="text-[clamp(15px,1.8vw,18px)] font-medium leading-[1.6] text-[#DDE0FF]/70">
+          <p className="text-[clamp(15px,1.8vw,18px)] font-medium leading-[1.6] text-[#3A4A7A]">
             From first brainstorm to official launch — an end-to-end founder incubator right here at MDU Rohtak.
           </p>
         </div>
@@ -67,31 +67,31 @@ export default function ServicesSection() {
         {/* 3 Step Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-14">
           {/* Card 01 */}
-          <div className="neo-card p-6 sm:p-7 flex flex-col justify-between bg-[#0B0F33] border-2 border-[#863DFF]">
+          <div className="neo-card p-6 sm:p-7 flex flex-col justify-between bg-[#F4F6FF] border-2 border-[#0047FF]">
             <div>
               <div className="flex items-center justify-between mb-4">
-                <span className="bg-[#CBFF2E] text-[#070A26] font-black text-sm px-3 py-1 rounded-lg border-2 border-[#070A26] shadow-[2px_2px_0px_#863DFF]">
+                <span className="bg-[#CBFF2E] text-[#0A0E1A] font-black text-sm px-3 py-1 rounded-lg border-2 border-[#0A0E1A] shadow-[2px_2px_0px_#0047FF]">
                   01
                 </span>
-                <span className="text-[11px] font-bold uppercase tracking-wider text-[#DDE0FF]/70">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-[#475569]">
                   Ideation & Validation
                 </span>
               </div>
-              <h3 className="font-sans font-black text-xl text-white mb-2.5">
+              <h3 className="font-sans font-black text-xl text-[#0A0E1A] mb-2.5">
                 Validate without the guesswork
               </h3>
-              <p className="text-xs sm:text-sm font-medium leading-[1.6] text-[#DDE0FF]/75 mb-6">
+              <p className="text-xs sm:text-sm font-medium leading-[1.6] text-[#3A4A7A] mb-6">
                 Turn dorm room discussions into defensible business models with design sprints, customer discovery, and rapid prototype validation.
               </p>
             </div>
 
             {/* Visual Box */}
-            <div className="bg-[#101648] border-2 border-[#1F2766] rounded-xl p-4 shadow-[2px_2px_0px_#040619]">
+            <div className="bg-white border-2 border-[#0047FF] rounded-xl p-4 shadow-[2px_2px_0px_#D0D8FF]">
               <div className="flex items-center gap-2 mb-2">
-                <span className="w-2.5 h-2.5 rounded-full bg-[#CBFF2E]" />
-                <span className="text-xs font-bold text-white">Weekly Founder Sprint</span>
+                <span className="w-2.5 h-2.5 rounded-full bg-[#0047FF]" />
+                <span className="text-xs font-bold text-[#0A0E1A]">Weekly Founder Sprint</span>
               </div>
-              <div className="bg-[#070A26] border border-[#1F2766] rounded-lg p-2 text-[11px] font-medium text-[#DDE0FF]/90">
+              <div className="bg-[#F4F6FF] border border-[#C0CCFF] rounded-lg p-2.5 text-[11px] font-semibold text-[#3A4A7A] leading-relaxed">
                 ✓ Problem-Solution Fit Matrix<br />
                 ✓ Competitor Breakdown<br />
                 ✓ Target User Interviews
@@ -100,64 +100,64 @@ export default function ServicesSection() {
           </div>
 
           {/* Card 02 */}
-          <div className="neo-card p-6 sm:p-7 flex flex-col justify-between bg-[#0B0F33] border-2 border-[#863DFF]">
+          <div className="neo-card p-6 sm:p-7 flex flex-col justify-between bg-[#F4F6FF] border-2 border-[#0047FF]">
             <div>
               <div className="flex items-center justify-between mb-4">
-                <span className="bg-[#863DFF] text-white font-black text-sm px-3 py-1 rounded-lg border-2 border-[#DDE0FF] shadow-[2px_2px_0px_#CBFF2E]">
+                <span className="bg-[#0047FF] text-white font-black text-sm px-3 py-1 rounded-lg border-2 border-[#0A0E1A] shadow-[2px_2px_0px_#CBFF2E]">
                   02
                 </span>
-                <span className="text-[11px] font-bold uppercase tracking-wider text-[#DDE0FF]/70">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-[#475569]">
                   Co-Founder Matching
                 </span>
               </div>
-              <h3 className="font-sans font-black text-xl text-white mb-2.5">
+              <h3 className="font-sans font-black text-xl text-[#0A0E1A] mb-2.5">
                 Find your complementary partner
               </h3>
-              <p className="text-xs sm:text-sm font-medium leading-[1.6] text-[#DDE0FF]/75 mb-6">
+              <p className="text-xs sm:text-sm font-medium leading-[1.6] text-[#3A4A7A] mb-6">
                 Developers get paired with strategists, UI designers, and marketers across all MDU departments — building complete teams.
               </p>
             </div>
 
             {/* Visual Box */}
-            <div className="bg-[#101648] border-2 border-[#1F2766] rounded-xl p-4 shadow-[2px_2px_0px_#040619]">
+            <div className="bg-white border-2 border-[#0047FF] rounded-xl p-4 shadow-[2px_2px_0px_#D0D8FF]">
               <div className="flex items-center justify-between mb-2">
-                <span className="text-xs font-bold text-white">Active Matchmaking</span>
-                <span className="text-[10px] font-extrabold bg-[#863DFF] text-white px-2 py-0.5 rounded border border-[#DDE0FF]">35+ Pairs</span>
+                <span className="text-xs font-bold text-[#0A0E1A]">Active Matchmaking</span>
+                <span className="text-[10px] font-extrabold bg-[#0047FF] text-white px-2 py-0.5 rounded border border-[#0A0E1A]">35+ Pairs</span>
               </div>
               <div className="flex items-center gap-2">
-                <span className="bg-[#070A26] border border-[#1F2766] text-[#DDE0FF] text-[10px] font-bold px-2 py-1 rounded">CSE Hacker</span>
-                <span className="font-black text-[#CBFF2E]">+</span>
-                <span className="bg-[#070A26] border border-[#1F2766] text-[#DDE0FF] text-[10px] font-bold px-2 py-1 rounded">MBA Hustler</span>
+                <span className="bg-[#F4F6FF] border border-[#0047FF] text-[#0A0E1A] text-[10px] font-bold px-2.5 py-1 rounded">CSE Hacker</span>
+                <span className="font-black text-[#0047FF]">+</span>
+                <span className="bg-[#CBFF2E] border border-[#0A0E1A] text-[#0A0E1A] text-[10px] font-bold px-2.5 py-1 rounded">MBA Hustler</span>
               </div>
             </div>
           </div>
 
           {/* Card 03 */}
-          <div className="neo-card p-6 sm:p-7 flex flex-col justify-between bg-[#0B0F33] border-2 border-[#863DFF]">
+          <div className="neo-card p-6 sm:p-7 flex flex-col justify-between bg-[#F4F6FF] border-2 border-[#0047FF]">
             <div>
               <div className="flex items-center justify-between mb-4">
-                <span className="bg-[#DDE0FF] text-[#070A26] font-black text-sm px-3 py-1 rounded-lg border-2 border-[#863DFF] shadow-[2px_2px_0px_#CBFF2E]">
+                <span className="bg-[#CBFF2E] text-[#0A0E1A] font-black text-sm px-3 py-1 rounded-lg border-2 border-[#0A0E1A] shadow-[2px_2px_0px_#0047FF]">
                   03
                 </span>
-                <span className="text-[11px] font-bold uppercase tracking-wider text-[#DDE0FF]/70">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-[#475569]">
                   Pitch & Seed Grants
                 </span>
               </div>
-              <h3 className="font-sans font-black text-xl text-white mb-2.5">
+              <h3 className="font-sans font-black text-xl text-[#0A0E1A] mb-2.5">
                 Pitch live, win capital
               </h3>
-              <p className="text-xs sm:text-sm font-medium leading-[1.6] text-[#DDE0FF]/75 mb-6">
+              <p className="text-xs sm:text-sm font-medium leading-[1.6] text-[#3A4A7A] mb-6">
                 Compete in flagship campus ideathons and pitch directly to angels and university panels for non-dilutive startup grants.
               </p>
             </div>
 
             {/* Visual Box */}
-            <div className="bg-[#101648] border-2 border-[#1F2766] rounded-xl p-4 shadow-[2px_2px_0px_#040619]">
+            <div className="bg-white border-2 border-[#0047FF] rounded-xl p-4 shadow-[2px_2px_0px_#D0D8FF]">
               <div className="flex items-center justify-between mb-1">
-                <span className="text-xs font-bold text-white">Venture Grant Pool</span>
-                <span className="font-black text-sm text-[#CBFF2E]">₹1,00,000</span>
+                <span className="text-xs font-bold text-[#0A0E1A]">Venture Grant Pool</span>
+                <span className="font-black text-sm text-[#0047FF]">₹1,00,000</span>
               </div>
-              <p className="text-[11px] text-[#DDE0FF]/70">
+              <p className="text-[11px] text-[#475569] font-medium">
                 100% non-dilutive university & sponsor seed capital for prototypes.
               </p>
             </div>
@@ -165,12 +165,12 @@ export default function ServicesSection() {
         </div>
 
         {/* Themed Mid Shell Card */}
-        <div className="bg-[#863DFF] border-2 border-[#DDE0FF] rounded-3xl p-6 sm:p-10 shadow-[6px_6px_0px_#CBFF2E] flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="bg-[#0047FF] border-2 border-[#0A0E1A] rounded-3xl p-6 sm:p-10 shadow-[6px_6px_0px_#CBFF2E] flex flex-col md:flex-row items-center justify-between gap-6">
           <div>
             <h3 className="font-sans font-black text-2xl sm:text-3xl text-white mb-1.5">
               Try it with the next idea you build.
             </h3>
-            <p className="text-sm sm:text-base font-semibold text-[#DDE0FF]/90">
+            <p className="text-sm sm:text-base font-semibold text-[#E0E8FF]">
               Takes 2 minutes to apply. Zero fees, no gatekeeping, open to all MDU students.
             </p>
           </div>
@@ -178,13 +178,13 @@ export default function ServicesSection() {
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 shrink-0 w-full md:w-auto">
             <Link
               href="/contact"
-              className="bg-[#CBFF2E] text-[#070A26] font-extrabold text-xs uppercase tracking-wider px-6 py-3.5 rounded-full border-2 border-[#070A26] shadow-[3px_3px_0px_#070A26] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition-all text-center no-underline"
+              className="bg-[#CBFF2E] text-[#0A0E1A] font-extrabold text-xs uppercase tracking-wider px-6 py-3.5 rounded-full border-2 border-[#0A0E1A] shadow-[3px_3px_0px_#0A0E1A] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition-all text-center no-underline"
             >
               <span>Join E-Cell Batch 2026-27 →</span>
             </Link>
             <Link
               href="/events"
-              className="bg-[#070A26] text-white font-bold text-xs uppercase tracking-wider px-5 py-3.5 rounded-full border-2 border-[#DDE0FF] shadow-[3px_3px_0px_#CBFF2E] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition-all text-center no-underline"
+              className="bg-white text-[#0047FF] font-extrabold text-xs uppercase tracking-wider px-5 py-3.5 rounded-full border-2 border-[#0A0E1A] shadow-[3px_3px_0px_#CBFF2E] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition-all text-center no-underline"
             >
               <span>View Summits</span>
             </Link>

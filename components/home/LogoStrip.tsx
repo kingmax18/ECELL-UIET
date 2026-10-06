@@ -21,7 +21,7 @@ const partners = [
 
 export default function LogoStrip() {
   return (
-    <div className="bg-[#0B0F33] border-b-2 border-[#1F2766] py-5 overflow-hidden select-none">
+    <div className="bg-[#F4F6FF] border-b-2 border-[#C0CCFF] py-5 overflow-hidden select-none">
       <div className="flex items-center">
         <div className="flex items-center gap-12 pr-12 animate-marquee whitespace-nowrap">
           {[...partners, ...partners].map((p, idx) => {
@@ -29,9 +29,9 @@ export default function LogoStrip() {
             return (
               <div
                 key={idx}
-                className="inline-flex items-center gap-2.5 text-[#DDE0FF]/80 font-bold text-sm uppercase tracking-wider hover:text-[#CBFF2E] transition-colors"
+                className="inline-flex items-center gap-2.5 text-[#0A0E1A] font-bold text-sm uppercase tracking-wider hover:text-[#0047FF] transition-colors"
               >
-                <div className="w-8 h-8 rounded-lg bg-[#863DFF] border border-[#DDE0FF] flex items-center justify-center shrink-0 shadow-[1.5px_1.5px_0px_#CBFF2E]">
+                <div className="w-8 h-8 rounded-lg bg-[#0047FF] border border-[#0A0E1A] flex items-center justify-center shrink-0 shadow-[1.5px_1.5px_0px_#CBFF2E]">
                   <Icon size={18} className="text-white" />
                 </div>
                 <span>{p.name}</span>

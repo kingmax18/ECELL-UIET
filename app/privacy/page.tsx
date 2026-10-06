@@ -54,7 +54,7 @@ export default function PrivacyPage() {
             <section>
               <h2 className={sectionClass}>4. Data Security &amp; Storage</h2>
               <p className={textClass}>
-                Student data is stored securely using encrypted cloud databases (Supabase). Access is
+                Student data is stored securely using encrypted cloud databases (PostgreSQL / Neon). Access is
                 restricted strictly to authorized members of the E-Cell Executive Board and Faculty Advisors.
               </p>
             </section>

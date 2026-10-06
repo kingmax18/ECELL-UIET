@@ -217,7 +217,7 @@ export default function SettingsManager({
                 Restore data from a previously downloaded .json backup file.
               </p>
             </div>
-            <label className="w-full py-2 px-3 text-xs font-bold text-white bg-[#070A26] border border-[#863DFF]/50 rounded-full hover:border-[#CBFF2E] hover:text-[#CBFF2E] text-center transition-colors cursor-pointer">
+            <label className="w-full py-2 px-3 text-xs font-bold text-[#0047FF] bg-white border-2 border-[#0047FF] rounded-full hover:bg-[#0047FF] hover:text-white text-center transition-colors cursor-pointer">
               <span>Choose Backup File</span>
               <input
                 type="file"
@@ -250,10 +250,10 @@ export default function SettingsManager({
           </div>
 
           {/* Reset to Defaults */}
-          <div className="bg-[#070A26] border border-[#ff4d6d]/30 rounded-card p-5 flex flex-col justify-between gap-4">
+          <div className="bg-white border border-[#ff4d6d]/30 rounded-card p-5 flex flex-col justify-between gap-4">
             <div>
               <div className="font-bold text-sm text-[#ff4d6d] mb-1">Reset to Defaults</div>
-              <p className="text-xs text-[#DDE0FF]/70 leading-relaxed">
+              <p className="text-xs text-[#3A4A7A] leading-relaxed">
                 Clear all custom edits and restore the official seed content for all pages.
               </p>
             </div>
@@ -277,7 +277,7 @@ export default function SettingsManager({
                   setTimeout(() => window.location.reload(), 800);
                 }
               }}
-              className="w-full py-2 px-3 text-xs font-bold text-[#ff4d6d] bg-[#0B0F33] border border-[#ff4d6d]/40 rounded-full hover:bg-[#ff4d6d]/20 transition-colors cursor-pointer"
+              className="w-full py-2 px-3 text-xs font-bold text-[#ff4d6d] bg-[#F4F6FF] border border-[#ff4d6d]/40 rounded-full hover:bg-[#ff4d6d]/20 transition-colors cursor-pointer"
             >
               Reset All to Defaults
             </button>

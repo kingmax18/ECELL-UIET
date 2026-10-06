@@ -3,7 +3,6 @@
 import React, { useState } from 'react';
 import Button from '@/components/ui/Button';
 import { useToast } from '@/context/ToastProvider';
-import { supabase } from '@/lib/supabase';
 import { PageHeader, Modal, EmptyState, adminInput, adminLabel, adminCard, adminTd, adminTh } from './ui';
 
 export interface GalleryItem {
@@ -28,7 +27,7 @@ export default function GalleryManager({
   const [modalOpen, setModalOpen] = useState(false);
   const [form, setForm] = useState<Omit<GalleryItem, 'id'>>(BLANK);
 
-  const handleAdd = (e: React.FormEvent) => {
+  const handleAdd = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!form.title || !form.image) {
       showToast('Title and image URL are required', 'error');
@@ -39,11 +38,14 @@ export default function GalleryManager({
     const next = [created, ...gallery];
     if (setGallery) setGallery(next);
 
-    if (supabase) {
-      supabase
-        .from('gallery')
-        .insert([created])
-        .then(undefined, (err: unknown) => console.warn('[Admin] Supabase gallery persist warning:', err));
+    try {
+      await fetch('/api/gallery', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      });
+    } catch (err) {
+      console.warn('[Admin] Gallery API persist warning:', err);
     }
 
     setModalOpen(false);
@@ -51,10 +53,14 @@ export default function GalleryManager({
     showToast('Photo added to gallery!', 'success');
   };
 
-  const handleDelete = (id: number) => {
+  const handleDelete = async (id: number) => {
     if (confirm('Remove this photo from the gallery?')) {
       if (setGallery) setGallery(gallery.filter((g) => g.id !== id));
-      if (supabase) supabase.from('gallery').delete().eq('id', id).then(undefined, () => {});
+      try {
+        await fetch(`/api/gallery/${id}`, { method: 'DELETE' });
+      } catch (err) {
+        console.warn('[Admin] Gallery API delete warning:', err);
+      }
       showToast('Photo removed', 'info');
     }
   };

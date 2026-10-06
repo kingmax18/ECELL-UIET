@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import { RiSearchLine } from 'react-icons/ri';
 import Button from '@/components/ui/Button';
 import { useToast } from '@/context/ToastProvider';
-import { supabase } from '@/lib/supabase';
 import { PageHeader, StatusBadge, EmptyState, FilterPills, adminCard, adminTd, adminTh } from './ui';
 import type { Application } from '@/lib/types';
 import type { Dispatch, SetStateAction } from 'react';
@@ -41,12 +40,14 @@ export default function ApplicationsManager({
     const updated = applications.map((a) => (a.id === appId ? { ...a, status: newStatus } : a));
     if (setApplications) setApplications(updated);
 
-    if (supabase) {
-      try {
-        await supabase.from('applications').update({ status: newStatus }).eq('id', appId);
-      } catch (e) {
-        console.warn('[Admin] Supabase update warning:', e);
-      }
+    try {
+      await fetch(`/api/applications/${appId}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status: newStatus }),
+      });
+    } catch (e) {
+      console.warn('[Admin] API status update warning:', e);
     }
 
     showToast(`Application marked as "${newStatus}"`, 'success');
@@ -94,7 +95,7 @@ export default function ApplicationsManager({
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search name, email, enrollment…"
-            className="w-64 lg:w-72 pl-9 pr-3.5 py-1.5 bg-[#070A26] border border-[#863DFF]/40 rounded-full text-[13px] text-white placeholder:text-[#DDE0FF]/50 outline-none focus:border-[#CBFF2E] transition-colors"
+            className="w-64 lg:w-72 pl-9 pr-3.5 py-1.5 bg-white border border-[#0047FF]/40 rounded-full text-[13px] text-[#0A0E1A] placeholder:text-[#475569]/60 outline-none focus:border-[#0047FF] transition-colors"
           />
         </div>
       </div>
@@ -118,13 +119,13 @@ export default function ApplicationsManager({
                     <tr
                       key={app.id}
                       onClick={() => setSelectedId(app.id)}
-                      className={`cursor-pointer transition-colors duration-150 hover:bg-[#101648] ${
-                        selectedId === app.id ? 'bg-[#101648] border-l-4 border-l-[#CBFF2E]' : ''
+                      className={`cursor-pointer transition-colors duration-150 hover:bg-[#EEF2FF] ${
+                        selectedId === app.id ? 'bg-[#EEF2FF] border-l-4 border-l-[#CBFF2E]' : ''
                       }`}
                     >
                       <td className={adminTd}>
-                        <div className="font-bold text-white">{app.name}</div>
-                        <div className="text-xs text-[#DDE0FF]/70">{app.email}</div>
+                        <div className="font-bold text-[#0A0E1A]">{app.name}</div>
+                        <div className="text-xs text-[#475569]">{app.email}</div>
                       </td>
                       <td className={adminTd}>{app.deptInterest || app.deptinterest}</td>
                       <td className={adminTd}>{app.branchYear || app.branchyear}</td>
@@ -146,7 +147,7 @@ export default function ApplicationsManager({
         {/* Detail panel */}
         <div className="xl:col-span-2">
           {selectedApp ? (
-            <div className="bg-[#0B0F33] border-2 border-[#1F2766] rounded-panel p-5 xl:sticky xl:top-6 shadow-[4px_4px_0px_#070A26]">
+            <div className="bg-[#F4F6FF] border-2 border-[#C0CCFF] rounded-panel p-5 xl:sticky xl:top-6 shadow-[4px_4px_0px_#0A0E1A]">
               <div className="flex items-start justify-between gap-3 mb-5">
                 <div>
                   <h2 className="font-sans font-medium text-lg tracking-[-0.015em] text-ink">

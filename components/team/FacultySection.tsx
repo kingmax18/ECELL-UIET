@@ -9,8 +9,8 @@ export default function FacultySection({ faculty }: { faculty: Faculty }) {
   return (
     <section className="py-[clamp(56px,7vw,80px)]">
       <div className="max-w-[1272px] mx-auto px-6">
-        <div className="reveal bg-[#0B0F33] border border-[#863DFF]/40 rounded-panel p-8 md:p-10 flex flex-col md:flex-row items-center md:items-start gap-8">
-          <div className="w-40 h-40 rounded-panel overflow-hidden shrink-0 bg-[#070A26]">
+        <div className="reveal bg-[#F4F6FF] border border-[#0047FF]/40 rounded-panel p-8 md:p-10 flex flex-col md:flex-row items-center md:items-start gap-8">
+          <div className="w-40 h-40 rounded-panel overflow-hidden shrink-0 bg-white">
             <Image
               src={faculty.photo || '/gallery/page_28.jpg'}
               alt={faculty.name}

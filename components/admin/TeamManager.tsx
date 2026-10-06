@@ -3,7 +3,6 @@
 import React, { useState } from 'react';
 import Button from '@/components/ui/Button';
 import { useToast } from '@/context/ToastProvider';
-import { supabase } from '@/lib/supabase';
 import { departments } from '@/data/team';
 import { PageHeader, Modal, EmptyState, FilterPills, adminInput, adminLabel, adminCard, adminTd, adminTh } from './ui';
 
@@ -55,14 +54,23 @@ export default function TeamManager({
     setModalOpen(true);
   };
 
-  const persist = async (row: AdminMember, upsert: boolean) => {
-    if (!supabase) return;
+  const persist = async (row: AdminMember, isUpdate: boolean) => {
     try {
-      const { id, ...fields } = row;
-      if (upsert) await supabase.from('team').upsert({ id, ...fields });
-      else await supabase.from('team').insert([fields]);
+      if (isUpdate) {
+        await fetch(`/api/team/${row.id}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(row),
+        });
+      } else {
+        await fetch('/api/team', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(row),
+        });
+      }
     } catch (e) {
-      console.warn('[Admin] Supabase team persist warning:', e);
+      console.warn('[Admin] Team API persist warning:', e);
     }
   };
 
@@ -86,10 +94,14 @@ export default function TeamManager({
     setModalOpen(false);
   };
 
-  const handleDelete = (id: number) => {
+  const handleDelete = async (id: number) => {
     if (confirm('Remove this team member?')) {
       if (setTeam) setTeam(team.filter((m) => m.id !== id));
-      if (supabase) supabase.from('team').delete().eq('id', id).then(undefined, () => {});
+      try {
+        await fetch(`/api/team/${id}`, { method: 'DELETE' });
+      } catch (err) {
+        console.warn('[Admin] Team API delete warning:', err);
+      }
       showToast('Member removed', 'info');
     }
   };

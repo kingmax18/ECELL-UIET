@@ -22,30 +22,30 @@ interface ButtonProps {
 
 const VARIANT_CLASSES: Record<ButtonVariant, { base: string; icon: string }> = {
   primary: {
-    base: 'bg-[#CBFF2E] text-[#070A26] border-[#070A26] hover:bg-[#d8ff4f] hover:border-[#070A26] font-bold shadow-[2px_2px_0px_#863DFF]',
-    icon: 'bg-[#070A26] text-[#CBFF2E]',
+    base: 'bg-[#CBFF2E] text-[#0A0E1A] border-[#0A0E1A] hover:bg-[#d8ff4f] hover:border-[#0A0E1A] font-bold shadow-[2px_2px_0px_#0047FF]',
+    icon: 'bg-white text-[#CBFF2E]',
   },
   blue: {
-    base: 'bg-[#863DFF] text-white border-[#863DFF] hover:bg-[#7429eb] hover:border-[#DDE0FF] font-bold shadow-[2px_2px_0px_#CBFF2E]',
-    icon: 'bg-white text-[#863DFF] group-hover:bg-[#CBFF2E] group-hover:text-[#070A26]',
+    base: 'bg-[#0047FF] text-white border-[#0047FF] hover:bg-[#003acc] hover:border-[#C8D8FF] font-bold shadow-[2px_2px_0px_#CBFF2E]',
+    icon: 'bg-white text-[#0047FF] group-hover:bg-[#CBFF2E] group-hover:text-[#0A0E1A]',
   },
   outline: {
-    base: 'bg-transparent text-[#DDE0FF] border-[#863DFF] hover:bg-[#863DFF] hover:text-white hover:border-[#863DFF]',
-    icon: 'bg-[#863DFF]/20 text-[#DDE0FF] group-hover:bg-white group-hover:text-[#863DFF]',
+    base: 'bg-transparent text-[#0047FF] border-[#0047FF] hover:bg-[#0047FF] hover:text-white hover:border-[#0047FF]',
+    icon: 'bg-[#0047FF]/10 text-[#0047FF] group-hover:bg-white group-hover:text-[#0047FF]',
   },
   white: {
-    base: 'bg-white text-[#070A26] border-[#DDE0FF] hover:bg-[#DDE0FF] hover:border-white font-bold',
-    icon: 'bg-[#070A26] text-white',
+    base: 'bg-white text-[#0A0E1A] border-[#0A0E1A] hover:bg-[#F4F6FF] hover:border-[#0A0E1A] font-bold shadow-[2px_2px_0px_#0047FF]',
+    icon: 'bg-[#0047FF] text-white',
   },
   ghost: {
-    base: 'bg-transparent text-[#DDE0FF] border-transparent hover:text-white hover:bg-[#863DFF]/20',
-    icon: 'bg-[#863DFF]/20 text-[#DDE0FF] group-hover:bg-[#863DFF] group-hover:text-white',
+    base: 'bg-transparent text-[#0A0E1A] border-transparent hover:text-[#0047FF] hover:bg-[#0047FF]/10',
+    icon: 'bg-[#0047FF]/10 text-[#0047FF] group-hover:bg-[#0047FF] group-hover:text-white',
   },
 };
 
 const OUTLINE_ON_DARK = {
-  base: 'bg-transparent text-[#DDE0FF] border-[#863DFF] hover:bg-[#863DFF] hover:text-white hover:border-[#863DFF]',
-  icon: 'bg-[#863DFF]/20 text-[#DDE0FF] group-hover:bg-white group-hover:text-[#863DFF]',
+  base: 'bg-transparent text-white border-white hover:bg-white hover:text-[#0A0E1A] hover:border-white',
+  icon: 'bg-white/20 text-white group-hover:bg-[#0A0E1A] group-hover:text-white',
 };
 
 /* Reference padding: rest = roomy label side / tight circle side;

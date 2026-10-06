@@ -24,13 +24,24 @@ export const viewport: Viewport = {
   viewportFit: 'cover',
 };
 
+import { ThemeProvider } from '@/context/ThemeProvider';
+
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem('ecell_theme');if(t==='dark'){document.documentElement.classList.add('dark');}else{document.documentElement.classList.remove('dark');}}catch(e){}})();`,
+          }}
+        />
+      </head>
       <body>
-        <DataProvider>
-          <ToastProvider>{children}</ToastProvider>
-        </DataProvider>
+        <ThemeProvider>
+          <DataProvider>
+            <ToastProvider>{children}</ToastProvider>
+          </DataProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

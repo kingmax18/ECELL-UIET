@@ -1,0 +1,148 @@
+// Prisma schema for UIET E-Cell
+// Using SQLite for seamless local execution and zero-configuration development
+// (Can be easily switched to postgresql by changing provider to "postgresql")
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model Application {
+  id           String   @id @default(cuid())
+  name         String
+  email        String
+  phone        String
+  enrollment   String?
+  branchYear   String
+  deptInterest String
+  whyJoin      String
+  linkedin     String?
+  status       String   @default("Pending") // Pending, Shortlisted, Accepted, Rejected
+  notes        String?
+  submittedAt  DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([status])
+  @@index([email])
+}
+
+model Event {
+  id              Int      @id @default(autoincrement())
+  title           String
+  tagline         String?
+  description     String?
+  date            String
+  time            String?
+  venue           String?
+  mode            String?  @default("Offline")
+  status          String   @default("upcoming") // upcoming, past
+  tags            String?  // comma-separated tags
+  registrationUrl String?
+  accentColor     String?  @default("#0047FF")
+  category        String?  @default("General")
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([status])
+}
+
+model Blog {
+  id           Int      @id @default(autoincrement())
+  slug         String   @unique
+  title        String
+  excerpt      String
+  content      String
+  authorName   String
+  authorRole   String   @default("UIET Team")
+  authorAvatar String?
+  category     String
+  publishedAt  String
+  readTime     String   @default("5 min read")
+  coverImage   String
+  featured     Boolean  @default(false)
+  tags         String?  // comma-separated tags
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([slug])
+  @@index([featured])
+  @@index([category])
+}
+
+model TeamMember {
+  id         Int      @id @default(autoincrement())
+  name       String
+  role       String
+  department String
+  year       String?
+  linkedin   String?
+  email      String?
+  photo      String?
+  order      Int      @default(0)
+  createdAt  DateTime @default(now())
+}
+
+model Founder {
+  id           Int      @id @default(autoincrement())
+  name         String
+  role         String
+  batch        String?
+  contribution String?
+  linkedin     String?
+  photo        String?
+  badge        String?
+  createdAt    DateTime @default(now())
+}
+
+model Sponsor {
+  id        Int      @id @default(autoincrement())
+  name      String
+  url       String?
+  tier      String?  @default("Partner")
+  initials  String?
+  color     String?
+  createdAt DateTime @default(now())
+}
+
+model GalleryItem {
+  id          Int      @id @default(autoincrement())
+  title       String
+  category    String
+  image       String
+  description String?
+  createdAt   DateTime @default(now())
+}
+
+model SiteSetting {
+  id             Int      @id @default(1)
+  bannerEnabled  Boolean  @default(false)
+  bannerText     String?  @default("")
+  bannerLinkText String?  @default("")
+  bannerLinkUrl  String?  @default("")
+  email          String?  @default("ecelluietfs@gmail.com")
+  phone          String?  @default("+91 99999 99999")
+  address        String?  @default("UIET, Maharshi Dayanand University, Rohtak, Haryana 124001")
+  instagram      String?  @default("https://instagram.com/ecell_uiet_mdu")
+  linkedin       String?  @default("https://linkedin.com/company/ecell-uiet-mdu")
+  twitter        String?  @default("")
+  youtube        String?  @default("")
+  statMembers    Int      @default(30)
+  statEvents     Int      @default(12)
+  statStartups   Int      @default(5)
+  statYears      Int      @default(3)
+  updatedAt      DateTime @updatedAt
+}
+
+model AdminUser {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  name         String
+  role         String   @default("Admin")
+  createdAt    DateTime @default(now())
+}

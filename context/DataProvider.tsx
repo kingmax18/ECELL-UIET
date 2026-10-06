@@ -9,7 +9,6 @@ import { gallery as defaultGallery } from '@/data/gallery';
 import { faculty as defaultFaculty } from '@/data/faculty';
 import { settings as defaultSettings } from '@/data/settings';
 import { blogs as defaultBlogs } from '@/data/blogs';
-import { supabase } from '@/lib/supabase';
 import type {
   EventItem,
   TeamMember,
@@ -93,7 +92,7 @@ export function DataProvider({ children }: { children: ReactNode }) {
   const [isLoading, setIsLoading] = useState(false);
   const [initialized, setInitialized] = useState(false);
 
-  // 1. Initial load: Load from localStorage first, then sync with Supabase if available
+  // 1. Initial load: Load from localStorage first, then sync with Neon database via API
   useEffect(() => {
     try {
       const savedEvents = localStorage.getItem('ECELL_EVENTS');
@@ -171,72 +170,75 @@ export function DataProvider({ children }: { children: ReactNode }) {
     }
   }, [events, team, founders, sponsors, stats, gallery, faculty, settings, applications, blogs, initialized]);
 
-  const fetchLiveSupabase = async () => {
-    if (!supabase) return;
+  const fetchLiveAPI = async () => {
     try {
       setIsLoading(true);
 
-      const { data: teamData, error: teamErr } = await supabase
-        .from('team')
-        .select('*')
-        .order('order', { ascending: true });
-      if (!teamErr && teamData && teamData.length > 0) {
-        setTeam(teamData);
-      }
+      const [eventsRes, blogsRes, teamRes, sponsorsRes, galleryRes, settingsRes, appsRes] = await Promise.allSettled([
+        fetch('/api/events').then((r) => r.json()),
+        fetch('/api/blogs').then((r) => r.json()),
+        fetch('/api/team').then((r) => r.json()),
+        fetch('/api/sponsors').then((r) => r.json()),
+        fetch('/api/gallery').then((r) => r.json()),
+        fetch('/api/settings').then((r) => r.json()),
+        fetch('/api/applications').then((r) => r.json()),
+      ]);
 
-      const { data: eventsData, error: eventsErr } = await supabase
-        .from('events')
-        .select('*')
-        .order('date', { ascending: false });
-      if (!eventsErr && eventsData && eventsData.length > 0) {
-        setEvents(eventsData);
+      if (eventsRes.status === 'fulfilled' && eventsRes.value?.success && eventsRes.value.data?.length > 0) {
+        setEvents(eventsRes.value.data);
       }
-
-      const { data: sponsorsData, error: sponsorsErr } = await supabase
-        .from('sponsors')
-        .select('*');
-      if (!sponsorsErr && sponsorsData && sponsorsData.length > 0) {
-        setSponsors(sponsorsData);
+      if (blogsRes.status === 'fulfilled' && blogsRes.value?.success && blogsRes.value.data?.length > 0) {
+        setBlogs(blogsRes.value.data);
       }
-
-      const { data: statsData, error: statsErr } = await supabase
-        .from('stats')
-        .select('*')
-        .limit(1)
-        .single();
-      if (!statsErr && statsData) {
+      if (teamRes.status === 'fulfilled' && teamRes.value?.success) {
+        if (teamRes.value.data?.team?.length > 0) setTeam(teamRes.value.data.team);
+        if (teamRes.value.data?.founders?.length > 0) setFounders(teamRes.value.data.founders);
+      }
+      if (sponsorsRes.status === 'fulfilled' && sponsorsRes.value?.success && sponsorsRes.value.data?.length > 0) {
+        setSponsors(sponsorsRes.value.data);
+      }
+      if (galleryRes.status === 'fulfilled' && galleryRes.value?.success && galleryRes.value.data?.length > 0) {
+        setGallery(galleryRes.value.data);
+      }
+      if (settingsRes.status === 'fulfilled' && settingsRes.value?.success && settingsRes.value.data) {
+        const s = settingsRes.value.data;
+        setSettings((prev) => ({
+          ...prev,
+          announcementBanner: {
+            enabled: s.bannerEnabled ?? prev.announcementBanner.enabled,
+            text: s.bannerText ?? prev.announcementBanner.text,
+            linkText: s.bannerLinkText ?? prev.announcementBanner.linkText,
+            linkUrl: s.bannerLinkUrl ?? prev.announcementBanner.linkUrl,
+          },
+          siteInfo: {
+            email: s.email ?? prev.siteInfo.email,
+            phone: s.phone ?? prev.siteInfo.phone,
+            address: s.address ?? prev.siteInfo.address,
+            instagram: s.instagram ?? prev.siteInfo.instagram,
+            linkedin: s.linkedin ?? prev.siteInfo.linkedin,
+            twitter: s.twitter ?? prev.siteInfo.twitter,
+            youtube: s.youtube ?? prev.siteInfo.youtube,
+          },
+        }));
         setStats({
-          members: { value: statsData.members || 15, label: 'Active Student Members', suffix: '+' },
-          events: { value: statsData.events || 5, label: 'Events & Workshops', suffix: '+' },
-          startups: { value: statsData.startups || 2, label: 'Student Startups', suffix: '+' },
-          years: { value: statsData.years || 2, label: 'Years of Activity', suffix: '+' },
+          members: { value: s.statMembers ?? 30, label: 'Active Student Members', suffix: '+' },
+          events: { value: s.statEvents ?? 12, label: 'Events & Workshops', suffix: '+' },
+          startups: { value: s.statStartups ?? 5, label: 'Student Startups', suffix: '+' },
+          years: { value: s.statYears ?? 3, label: 'Years of Activity', suffix: '+' },
         });
       }
-
-      const { data: appsData, error: appsErr } = await supabase
-        .from('applications')
-        .select('*')
-        .order('id', { ascending: false });
-      if (!appsErr && appsData) {
-        setApplications(appsData);
-      }
-
-      const { data: blogsData, error: blogsErr } = await supabase
-        .from('blogs')
-        .select('*')
-        .order('id', { ascending: false });
-      if (!blogsErr && blogsData && blogsData.length > 0) {
-        setBlogs(blogsData);
+      if (appsRes.status === 'fulfilled' && appsRes.value?.success && appsRes.value.data) {
+        setApplications(appsRes.value.data);
       }
     } catch (err) {
-      console.warn('[DataProvider] Supabase fetch fallback to static:', err);
+      console.warn('[DataProvider] Neon API fetch note:', err);
     } finally {
       setIsLoading(false);
     }
   };
 
   useEffect(() => {
-    fetchLiveSupabase();
+    fetchLiveAPI();
   }, []);
 
   const resetToDefaults = () => {
@@ -331,7 +333,7 @@ export function DataProvider({ children }: { children: ReactNode }) {
         blogs,
         setBlogs,
         isLoading,
-        refreshData: fetchLiveSupabase,
+        refreshData: fetchLiveAPI,
         resetToDefaults,
         exportDataJson,
         importDataJson,

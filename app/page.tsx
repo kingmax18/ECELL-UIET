@@ -25,7 +25,7 @@ export default function HomePage() {
   return (
     <>
       <Navbar />
-      <main className="bg-[#070A26] min-h-screen">
+      <main className="bg-white min-h-screen">
         <HeroSection />
         <LogoStrip />
         <ProblemSection />

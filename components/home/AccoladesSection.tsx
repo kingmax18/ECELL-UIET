@@ -26,7 +26,7 @@ const awards = [
 
 export default function AccoladesSection() {
   return (
-    <section className="py-20 sm:py-28 bg-[#070A26] border-b-2 border-[#1F2766]" id="award">
+    <section className="py-20 sm:py-28 bg-white border-b-2 border-[#C0CCFF]" id="award">
       <div className="max-w-[1272px] mx-auto px-4 sm:px-6">
         <SectionHeader
           title="Accolades and achievements celebrating our"
@@ -38,21 +38,21 @@ export default function AccoladesSection() {
           {awards.map((a, idx) => (
             <div
               key={idx}
-              className="neo-card p-6 sm:p-7 flex flex-col justify-between gap-6 bg-[#0B0F33] border-2 border-[#863DFF] shadow-[5px_5px_0px_#040619]"
+              className="neo-card p-6 sm:p-7 flex flex-col justify-between gap-6 bg-[#F4F6FF] border-2 border-[#0047FF] shadow-[5px_5px_0px_#0A0E1A]"
             >
               <div className="flex items-center justify-between gap-3">
-                <span className="text-xs font-black text-[#070A26] bg-[#CBFF2E] border-2 border-[#070A26] py-1 px-3 rounded-full uppercase tracking-wider shadow-[1.5px_1.5px_0px_#863DFF]">
+                <span className="text-xs font-black text-[#0A0E1A] bg-[#CBFF2E] border-2 border-[#0A0E1A] py-1 px-3 rounded-full uppercase tracking-wider shadow-[1.5px_1.5px_0px_#0047FF]">
                   {a.badge}
                 </span>
-                <span className="text-xs font-black text-[#DDE0FF] bg-[#101648] border border-[#863DFF] px-2.5 py-0.5 rounded-md">
+                <span className="text-xs font-black text-[#0047FF] bg-white border border-[#0047FF] px-2.5 py-0.5 rounded-md">
                   {a.year}
                 </span>
               </div>
               <div className="flex flex-col gap-2">
-                <h3 className="font-sans font-extrabold text-xl leading-snug text-white">
+                <h3 className="font-sans font-extrabold text-xl leading-snug text-[#0A0E1A]">
                   {a.title}
                 </h3>
-                <p className="text-xs sm:text-sm font-medium leading-[1.6] text-[#DDE0FF]/75">
+                <p className="text-xs sm:text-sm font-medium leading-[1.6] text-[#3A4A7A]">
                   {a.desc}
                 </p>
               </div>

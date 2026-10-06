@@ -3,7 +3,6 @@
 import React, { useState } from 'react';
 import Button from '@/components/ui/Button';
 import { useToast } from '@/context/ToastProvider';
-import { supabase } from '@/lib/supabase';
 
 interface AppSettings {
   web3formsKey?: string;
@@ -22,9 +21,9 @@ interface FormData {
 }
 
 const inputClass =
-  'w-full bg-[#070A26] border border-[#863DFF]/40 rounded-card px-4 py-3 text-[15px] text-white placeholder:text-[#DDE0FF]/40 outline-none transition-all duration-200 focus:border-[#CBFF2E] focus:ring-1 focus:ring-[#CBFF2E]';
+  'w-full bg-white border-2 border-[#0047FF]/40 rounded-card px-4 py-3 text-[15px] text-[#0A0E1A] placeholder:text-[#475569]/50 outline-none transition-all duration-200 focus:border-[#0047FF] focus:ring-1 focus:ring-[#0047FF]';
 
-const labelClass = 'block text-sm font-medium text-[#DDE0FF] mb-2';
+const labelClass = 'block text-sm font-bold text-[#0A0E1A] mb-2';
 
 export default function ApplicationForm({ settings }: { settings?: AppSettings }) {
   const { showToast } = useToast();
@@ -99,13 +98,24 @@ export default function ApplicationForm({ settings }: { settings?: AppSettings }
         history: [{ status: 'Pending', by: 'System (Public Form)', date: submittedOn }],
       };
 
-      // 1. Supabase insert
-      if (supabase) {
-        try {
-          await supabase.from('applications').insert([newApp]);
-        } catch (dbErr) {
-          console.warn('[Application] Supabase insert warning:', dbErr);
-        }
+      // 1. Persist directly to Neon PostgreSQL via backend API
+      try {
+        await fetch('/api/applications', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: formData.fullName,
+            enrollment: formData.enrollment,
+            branchYear: branchYear,
+            deptInterest: formData.department,
+            email: formData.email,
+            phone: formData.phone,
+            whyJoin: formData.whyJoin,
+            linkedin: formData.linkedin || null,
+          }),
+        });
+      } catch (dbErr) {
+        console.warn('[Application] API submission warning:', dbErr);
       }
 
       // 2. Web3Forms email forwarding
@@ -175,11 +185,11 @@ export default function ApplicationForm({ settings }: { settings?: AppSettings }
   };
 
   return (
-    <div className="bg-[#0B0F33] border-2 border-[#863DFF]/40 rounded-panel p-6 md:p-10 max-w-[900px] mx-auto shadow-[0_12px_40px_rgba(7,10,38,0.7)]">
+    <div className="bg-[#F4F6FF] border-2 border-[#0047FF] rounded-panel p-6 md:p-10 max-w-[900px] mx-auto shadow-[6px_6px_0px_#0A0E1A]">
       {isSuccess && (
-        <div className="bg-[#CBFF2E]/10 border-2 border-[#CBFF2E] rounded-card p-6 mb-8 text-[#CBFF2E]">
-          <h3 className="font-sans font-bold text-lg text-white mb-1">Application Received!</h3>
-          <p className="text-[15px] leading-[1.6] text-[#DDE0FF]">
+        <div className="bg-[#CBFF2E]/20 border-2 border-[#0A0E1A] rounded-card p-6 mb-8 text-[#0A0E1A] shadow-[3px_3px_0px_#0047FF]">
+          <h3 className="font-sans font-bold text-lg text-[#0A0E1A] mb-1">Application Received!</h3>
+          <p className="text-[15px] leading-[1.6] text-[#3A4A7A]">
             Thank you for applying to UIET E-Cell. Our leadership board reviews applications on a rolling
             basis and will reach out to you via email within 5-7 days.
           </p>
@@ -191,7 +201,7 @@ export default function ApplicationForm({ settings }: { settings?: AppSettings }
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <label className={labelClass} htmlFor="fullName">
-              Full Name <span className="text-[#CBFF2E] font-bold">*</span>
+              Full Name <span className="text-[#0047FF] font-bold">*</span>
             </label>
             <input
               type="text"
@@ -207,7 +217,7 @@ export default function ApplicationForm({ settings }: { settings?: AppSettings }
 
           <div>
             <label className={labelClass} htmlFor="enrollment">
-              Enrollment Number <span className="text-[#CBFF2E] font-bold">*</span>
+              Enrollment Number <span className="text-[#0047FF] font-bold">*</span>
             </label>
             <input
               type="text"
@@ -226,7 +236,7 @@ export default function ApplicationForm({ settings }: { settings?: AppSettings }
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <label className={labelClass} htmlFor="email">
-              Email Address <span className="text-[#CBFF2E] font-bold">*</span>
+              Email Address <span className="text-[#0047FF] font-bold">*</span>
             </label>
             <input
               type="email"
@@ -242,7 +252,7 @@ export default function ApplicationForm({ settings }: { settings?: AppSettings }
 
           <div>
             <label className={labelClass} htmlFor="phone">
-              Phone Number <span className="text-[#CBFF2E] font-bold">*</span>
+              Phone Number <span className="text-[#0047FF] font-bold">*</span>
             </label>
             <input
               type="tel"
@@ -261,7 +271,7 @@ export default function ApplicationForm({ settings }: { settings?: AppSettings }
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <label className={labelClass} htmlFor="branch">
-              Branch &amp; Course <span className="text-[#CBFF2E] font-bold">*</span>
+              Branch &amp; Course <span className="text-[#0047FF] font-bold">*</span>
             </label>
             <input
               type="text"
@@ -277,21 +287,21 @@ export default function ApplicationForm({ settings }: { settings?: AppSettings }
 
           <div>
             <label className={labelClass} htmlFor="year">
-              Year of Study <span className="text-[#CBFF2E] font-bold">*</span>
+              Year of Study <span className="text-[#0047FF] font-bold">*</span>
             </label>
             <select
               id="year"
               name="year"
               value={formData.year}
               onChange={handleChange}
-              className={`${inputClass} ${!formData.year ? 'text-[#DDE0FF]/40' : ''}`}
+              className={`${inputClass} ${!formData.year ? 'text-[#475569]/60' : 'text-[#0A0E1A]'}`}
               required
             >
-              <option value="" disabled className="bg-[#070A26] text-[#DDE0FF]/60">Select Year</option>
-              <option value="1st Year" className="bg-[#070A26] text-white">1st Year</option>
-              <option value="2nd Year" className="bg-[#070A26] text-white">2nd Year</option>
-              <option value="3rd Year" className="bg-[#070A26] text-white">3rd Year</option>
-              <option value="4th Year" className="bg-[#070A26] text-white">4th Year</option>
+              <option value="" disabled className="bg-white text-[#475569]">Select Year</option>
+              <option value="1st Year" className="bg-white text-[#0A0E1A]">1st Year</option>
+              <option value="2nd Year" className="bg-white text-[#0A0E1A]">2nd Year</option>
+              <option value="3rd Year" className="bg-white text-[#0A0E1A]">3rd Year</option>
+              <option value="4th Year" className="bg-white text-[#0A0E1A]">4th Year</option>
             </select>
           </div>
         </div>
@@ -299,22 +309,22 @@ export default function ApplicationForm({ settings }: { settings?: AppSettings }
         {/* Row 4: Preferred Department */}
         <div>
           <label className={labelClass} htmlFor="department">
-            Preferred Department <span className="text-[#CBFF2E] font-bold">*</span>
+            Preferred Department <span className="text-[#0047FF] font-bold">*</span>
           </label>
           <select
             id="department"
             name="department"
             value={formData.department}
             onChange={handleChange}
-            className={`${inputClass} ${!formData.department ? 'text-[#DDE0FF]/40' : ''}`}
+            className={`${inputClass} ${!formData.department ? 'text-[#475569]/60' : 'text-[#0A0E1A]'}`}
             required
           >
-            <option value="" disabled className="bg-[#070A26] text-[#DDE0FF]/60">Select Department</option>
-            <option value="Social Media" className="bg-[#070A26] text-white">Social Media Team (Content, Reels, Posts, Brand)</option>
-            <option value="Design and Tech" className="bg-[#070A26] text-white">Design &amp; Tech Team (Web, UI/UX, Graphics)</option>
-            <option value="Research and Content" className="bg-[#070A26] text-white">Research &amp; Content Team (Startup Trends, Write-ups)</option>
-            <option value="Event Management" className="bg-[#070A26] text-white">Event Management Team (Planning, Logistics)</option>
-            <option value="Documentation" className="bg-[#070A26] text-white">Documentation Team (Photos, Videos, Reports)</option>
+            <option value="" disabled className="bg-white text-[#475569]">Select Department</option>
+            <option value="Social Media" className="bg-white text-[#0A0E1A]">Social Media Team (Content, Reels, Posts, Brand)</option>
+            <option value="Design and Tech" className="bg-white text-[#0A0E1A]">Design &amp; Tech Team (Web, UI/UX, Graphics)</option>
+            <option value="Research and Content" className="bg-white text-[#0A0E1A]">Research &amp; Content Team (Startup Trends, Write-ups)</option>
+            <option value="Event Management" className="bg-white text-[#0A0E1A]">Event Management Team (Planning, Logistics)</option>
+            <option value="Documentation" className="bg-white text-[#0A0E1A]">Documentation Team (Photos, Videos, Reports)</option>
           </select>
         </div>
 
@@ -337,7 +347,7 @@ export default function ApplicationForm({ settings }: { settings?: AppSettings }
         {/* Row 6: Statement of Purpose */}
         <div>
           <label className={labelClass} htmlFor="whyJoin">
-            Why do you want to join UIET E-Cell? <span className="text-[#CBFF2E] font-bold">*</span>
+            Why do you want to join UIET E-Cell? <span className="text-[#0047FF] font-bold">*</span>
           </label>
           <textarea
             id="whyJoin"
@@ -349,7 +359,7 @@ export default function ApplicationForm({ settings }: { settings?: AppSettings }
             className={`${inputClass} resize-none`}
             required
           />
-          <div className="text-right text-xs text-[#DDE0FF]/60 mt-1.5">
+          <div className="text-right text-xs text-[#475569] font-medium mt-1.5">
             {charCount} / {MAX_CHARS}
           </div>
         </div>

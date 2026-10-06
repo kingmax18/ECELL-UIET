@@ -87,17 +87,17 @@ interface StatsSectionProps {
 
 export default function StatsSection({ stats }: StatsSectionProps) {
   const statList = [
-    { value: stats?.members?.value || 30, label: 'Active Student Leaders', bg: 'bg-[#863DFF] text-white border-2 border-[#DDE0FF] shadow-[5px_5px_0px_#CBFF2E]', numColor: 'text-white', labelColor: 'text-[#DDE0FF]' },
-    { value: stats?.events?.value || 15, label: 'Flagship Summits & Ideathons', bg: 'bg-[#CBFF2E] text-[#070A26] border-2 border-[#070A26] shadow-[5px_5px_0px_#863DFF]', numColor: 'text-[#070A26]', labelColor: 'text-[#070A26]' },
-    { value: stats?.startups?.value || 12, label: 'Student Ventures Incubated', bg: 'bg-[#DDE0FF] text-[#070A26] border-2 border-[#863DFF] shadow-[5px_5px_0px_#CBFF2E]', numColor: 'text-[#070A26]', labelColor: 'text-[#070A26]' },
-    { value: stats?.years?.value || 3, label: 'Years Driving MDU Startups', bg: 'bg-[#0B0F33] text-white border-2 border-[#863DFF] shadow-[5px_5px_0px_#040619]', numColor: 'text-[#CBFF2E]', labelColor: 'text-[#DDE0FF]' },
+    { value: stats?.members?.value || 30, label: 'Active Student Leaders', bg: 'bg-[#0047FF] text-white border-2 border-[#0A0E1A] shadow-[5px_5px_0px_#CBFF2E]', numColor: 'text-white', labelColor: 'text-[#E0E8FF]' },
+    { value: stats?.events?.value || 15, label: 'Flagship Summits & Ideathons', bg: 'bg-[#CBFF2E] text-[#0A0E1A] border-2 border-[#0A0E1A] shadow-[5px_5px_0px_#0047FF]', numColor: 'text-[#0A0E1A]', labelColor: 'text-[#0A0E1A]' },
+    { value: stats?.startups?.value || 12, label: 'Student Ventures Incubated', bg: 'bg-white text-[#0A0E1A] border-2 border-[#0047FF] shadow-[5px_5px_0px_#CBFF2E]', numColor: 'text-[#0047FF]', labelColor: 'text-[#0A0E1A]' },
+    { value: stats?.years?.value || 3, label: 'Years Driving MDU Startups', bg: 'bg-[#F4F6FF] text-[#0A0E1A] border-2 border-[#0047FF] shadow-[5px_5px_0px_#0A0E1A]', numColor: 'text-[#0047FF]', labelColor: 'text-[#0A0E1A]' },
   ];
 
   return (
-    <section className="py-20 sm:py-24 bg-[#070A26] border-b-2 border-[#1F2766]">
+    <section className="py-20 sm:py-24 bg-white border-b-2 border-[#C0CCFF]">
       <div className="max-w-[1272px] mx-auto px-4 sm:px-6">
         {/* Heading */}
-        <h2 className="font-sans font-extrabold text-[clamp(24px,4vw,44px)] leading-[1.25] tracking-tight text-white text-center max-w-[960px] mx-auto mb-14 [text-wrap:balance]">
+        <h2 className="font-sans font-extrabold text-[clamp(24px,4vw,44px)] leading-[1.25] tracking-tight text-[#0A0E1A] text-center max-w-[960px] mx-auto mb-14 [text-wrap:balance]">
           Empowering the next generation of builders with
           <RotatingWord />
         </h2>

@@ -22,15 +22,15 @@ export default function EventsTabs({ events = [] }: { events?: EventData[] }) {
   return (
     <div>
       {/* Tabs pill */}
-      <div className="flex items-center gap-1 bg-[#0B0F33] border border-[#863DFF]/40 rounded-cta p-[5px] w-fit mx-auto mb-10">
+      <div className="flex items-center gap-1 bg-[#F4F6FF] border border-[#0047FF]/40 rounded-cta p-[5px] w-fit mx-auto mb-10">
         {tabs.map((tab) => (
           <button
             key={tab.key}
             type="button"
-            className={`py-2 px-4 md:px-[18px] text-[13px] md:text-sm font-medium rounded-cta whitespace-nowrap transition-all duration-200 ${
+            className={`py-2 px-4 md:px-[18px] text-[13px] md:text-sm font-bold rounded-cta whitespace-nowrap transition-all duration-200 ${
               activeTab === tab.key
-                ? 'bg-[#863DFF] text-white shadow-[0_2px_12px_rgba(134,61,255,0.4)]'
-                : 'text-[#DDE0FF] hover:text-[#CBFF2E] hover:bg-[#863DFF]/20'
+                ? 'bg-[#0047FF] text-white shadow-[0_2px_12px_rgba(0,71,255,0.35)]'
+                : 'text-[#0A0E1A] hover:text-[#0047FF] hover:bg-[#0047FF]/10'
             } ${tab.key === 'all' ? 'hidden sm:inline-flex' : ''}`}
             onClick={() => setActiveTab(tab.key)}
           >

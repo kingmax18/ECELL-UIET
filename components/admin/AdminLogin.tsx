@@ -32,12 +32,12 @@ export default function AdminLogin() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 bg-[#070A26] relative overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,#863DFF22,transparent_70%)] pointer-events-none" />
-      <div className="w-full max-w-md bg-[#0B0F33] border-2 border-[#863DFF]/50 rounded-panel p-8 shadow-[0_16px_50px_rgba(7,10,38,0.8)] relative z-1">
+    <div className="min-h-screen flex items-center justify-center px-4 bg-white relative overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,#0047FF22,transparent_70%)] pointer-events-none" />
+      <div className="w-full max-w-md bg-[#F4F6FF] border-2 border-[#0047FF]/50 rounded-panel p-8 shadow-[0_16px_50px_rgba(7,10,38,0.8)] relative z-1">
         <div className="flex flex-col items-center text-center mb-8">
           <Image src="/logo-full.png" alt="UIET E-Cell Logo" width={220} height={90} className="object-contain mb-2 brightness-110" unoptimized priority />
-          <p className="text-sm text-[#DDE0FF]/80 mt-1">Protected Management Board &amp; Application CMS</p>
+          <p className="text-sm text-[#3A4A7A] mt-1 font-medium">Protected Management Board &amp; Application CMS</p>
         </div>
 
         {error && (
@@ -82,7 +82,7 @@ export default function AdminLogin() {
           </Button>
         </form>
 
-        <p className="text-xs text-[#DDE0FF]/50 text-center mt-6">
+        <p className="text-xs text-[#475569] text-center mt-6">
           Access restricted to the E-Cell executive board · Unauthorized access is logged.
         </p>
       </div>

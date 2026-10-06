@@ -24,10 +24,10 @@ export default function GalleryGrid({ gallery = [] }: { gallery?: GalleryItem[] 
           {gallery.map((item) => (
             <div
               key={item.id}
-              className="reveal group bg-[#0B0F33] border border-border rounded-panel p-3 transition-all duration-200 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:border-borderstrong"
+              className="reveal group bg-[#F4F6FF] border border-border rounded-panel p-3 transition-all duration-200 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:border-borderstrong"
             >
               {/* Nested image frame */}
-              <div className="relative w-full h-[260px] overflow-hidden rounded-card bg-[#070A26]">
+              <div className="relative w-full h-[260px] overflow-hidden rounded-card bg-white">
                 <Image
                   src={item.image}
                   alt={item.title}
@@ -35,7 +35,7 @@ export default function GalleryGrid({ gallery = [] }: { gallery?: GalleryItem[] 
                   sizes="(max-width: 768px) 100vw, (max-width: 1272px) 50vw, 33vw"
                   className="object-cover object-center transition-transform duration-400 group-hover:scale-[1.05]"
                 />
-                <span className="absolute top-3 left-3 bg-[#863DFF] text-white text-[11px] font-bold py-1 px-3 rounded-pill border border-[#DDE0FF]/30">
+                <span className="absolute top-3 left-3 bg-[#0047FF] text-white text-[11px] font-bold py-1 px-3 rounded-pill border border-[#0A0E1A]">
                   {item.category}
                 </span>
               </div>

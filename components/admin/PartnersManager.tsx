@@ -3,7 +3,6 @@
 import React, { useState } from 'react';
 import Button from '@/components/ui/Button';
 import { useToast } from '@/context/ToastProvider';
-import { supabase } from '@/lib/supabase';
 import { PageHeader, Modal, EmptyState, adminInput, adminLabel, adminCard, adminTd, adminTh } from './ui';
 
 export interface Sponsor {
@@ -42,14 +41,23 @@ export default function PartnersManager({
     setModalOpen(true);
   };
 
-  const persist = async (row: Sponsor, upsert: boolean) => {
-    if (!supabase) return;
+  const persist = async (row: Sponsor, isUpdate: boolean) => {
     try {
-      const { id, ...fields } = row;
-      if (upsert) await supabase.from('sponsors').upsert({ id, ...fields });
-      else await supabase.from('sponsors').insert([fields]);
+      if (isUpdate) {
+        await fetch(`/api/sponsors/${row.id}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(row),
+        });
+      } else {
+        await fetch('/api/sponsors', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(row),
+        });
+      }
     } catch (e) {
-      console.warn('[Admin] Supabase sponsors persist warning:', e);
+      console.warn('[Admin] Sponsors API persist warning:', e);
     }
   };
 
@@ -78,10 +86,14 @@ export default function PartnersManager({
     setModalOpen(false);
   };
 
-  const handleDelete = (id: number) => {
+  const handleDelete = async (id: number) => {
     if (confirm('Remove this partner?')) {
       if (setSponsors) setSponsors(sponsors.filter((s) => s.id !== id));
-      if (supabase) supabase.from('sponsors').delete().eq('id', id).then(undefined, () => {});
+      try {
+        await fetch(`/api/sponsors/${id}`, { method: 'DELETE' });
+      } catch (err) {
+        console.warn('[Admin] Sponsors API delete warning:', err);
+      }
       showToast('Partner removed', 'info');
     }
   };

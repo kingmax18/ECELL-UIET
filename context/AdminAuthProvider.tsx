@@ -1,7 +1,6 @@
 'use client';
 
 import React, { createContext, useContext, useState, useEffect, type ReactNode } from 'react';
-import { supabase } from '@/lib/supabase';
 import type { AdminUser } from '@/lib/types';
 
 interface LoginResult {
@@ -40,30 +39,30 @@ export function AdminAuthProvider({ children }: { children: ReactNode }) {
   const login = async (email: string, password: string): Promise<LoginResult> => {
     const cleanEmail = email.trim().toLowerCase();
 
-    // 1. Supabase auth attempt
-    if (supabase) {
-      try {
-        const { data, error } = await supabase.auth.signInWithPassword({
-          email: cleanEmail,
-          password: password,
-        });
+    // 1. Try our backend API route /api/auth/login
+    try {
+      const res = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: cleanEmail, password }),
+      });
 
-        if (!error && data?.user) {
-          const authUser = {
-            email: data.user.email,
-            name: data.user.email.split('@')[0],
-            role: 'Super Admin',
-          };
-          setUser(authUser);
-          localStorage.setItem('ECELL_ADMIN_SESSION', JSON.stringify(authUser));
-          return { success: true };
-        }
-      } catch (err) {
-        console.warn('[AdminAuth] Supabase attempt note, trying local fallback:', err);
+      const json = await res.json();
+
+      if (res.ok && json.success && json.user) {
+        setUser(json.user);
+        localStorage.setItem('ECELL_ADMIN_SESSION', JSON.stringify(json.user));
+        return { success: true };
       }
+
+      if (json.error) {
+        return { success: false, error: json.error };
+      }
+    } catch (err) {
+      console.warn('[AdminAuth] API call error, checking local fallback:', err);
     }
 
-    // 2. Local Fallback authentication
+    // 2. Direct fallback authentication
     const allowedAdmins = [
       { email: 'ecelluietfs@gmail.com', password: 'ecell@admin2026', name: 'Lakshay', role: 'Super Admin' },
       { email: 'ananya@ecell.in', password: 'ecell@admin2026', name: 'Ananya Sharma', role: 'President / Admin' },
@@ -92,7 +91,6 @@ export function AdminAuthProvider({ children }: { children: ReactNode }) {
     setUser(null);
     try {
       localStorage.removeItem('ECELL_ADMIN_SESSION');
-      if (supabase) supabase.auth.signOut();
     } catch (e) {}
   };
 

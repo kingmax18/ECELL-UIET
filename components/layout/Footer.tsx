@@ -7,13 +7,13 @@ import { NAV_LINKS } from '@/lib/constants';
 
 export default function Footer() {
   return (
-    <footer className="bg-[#040619] text-[#DDE0FF] border-t-2 border-[#1F2766] pt-16 pb-12">
+    <footer className="bg-[#F4F6FF] text-[#0A0E1A] border-t-2 border-[#C0CCFF] pt-16 pb-12">
       <div className="max-w-[1272px] mx-auto px-4 sm:px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1.5fr] gap-10 lg:gap-14 mb-14">
           {/* Col 1: Brand */}
           <div className="flex flex-col gap-4">
             <Link href="/" className="flex items-center gap-3 no-underline group" aria-label="UIET E-Cell Home">
-              <div className="w-10 h-10 rounded-xl bg-[#863DFF] border-2 border-[#DDE0FF] p-1 shadow-[2px_2px_0px_#CBFF2E] flex items-center justify-center shrink-0">
+              <div className="w-10 h-10 rounded-xl bg-[#0047FF] border-2 border-[#0A0E1A] p-1 shadow-[2px_2px_0px_#CBFF2E] flex items-center justify-center shrink-0">
                 <Image
                   src="/logo-icon.png"
                   alt="UIET E-Cell"
@@ -24,16 +24,16 @@ export default function Footer() {
                 />
               </div>
               <div className="flex flex-col">
-                <span className="font-sans font-bold text-lg leading-tight tracking-tight text-white">
+                <span className="font-sans font-bold text-lg leading-tight tracking-tight text-[#0A0E1A]">
                   UIET E-Cell
                 </span>
-                <span className="text-[11px] font-semibold tracking-wider text-[#DDE0FF]/70 uppercase">
+                <span className="text-[11px] font-semibold tracking-wider text-[#475569] uppercase">
                   MDU Rohtak
                 </span>
               </div>
             </Link>
 
-            <p className="text-xs sm:text-sm leading-relaxed text-[#DDE0FF]/75 max-w-sm">
+            <p className="text-xs sm:text-sm leading-relaxed text-[#3A4A7A] max-w-sm">
               Empowering student innovators, incubating campus ventures, and fostering startup leadership at Maharshi Dayanand University, Rohtak.
             </p>
 
@@ -43,7 +43,7 @@ export default function Footer() {
                 href="https://linkedin.com/company/mdu-ecell"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full bg-[#863DFF] text-white border-2 border-[#DDE0FF] flex items-center justify-center shadow-[2px_2px_0px_#CBFF2E] hover:translate-x-0.5 hover:translate-y-0.5 hover:bg-[#CBFF2E] hover:text-[#070A26] transition-all"
+                className="w-9 h-9 rounded-full bg-[#0047FF] text-white border-2 border-[#0A0E1A] flex items-center justify-center shadow-[2px_2px_0px_#CBFF2E] hover:translate-x-0.5 hover:translate-y-0.5 hover:bg-[#CBFF2E] hover:text-[#0A0E1A] transition-all"
                 aria-label="LinkedIn"
               >
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
@@ -55,7 +55,7 @@ export default function Footer() {
                 href="https://instagram.com/ecell_mdu"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full bg-[#863DFF] text-white border-2 border-[#DDE0FF] flex items-center justify-center shadow-[2px_2px_0px_#CBFF2E] hover:translate-x-0.5 hover:translate-y-0.5 hover:bg-[#CBFF2E] hover:text-[#070A26] transition-all"
+                className="w-9 h-9 rounded-full bg-[#0047FF] text-white border-2 border-[#0A0E1A] flex items-center justify-center shadow-[2px_2px_0px_#CBFF2E] hover:translate-x-0.5 hover:translate-y-0.5 hover:bg-[#CBFF2E] hover:text-[#0A0E1A] transition-all"
                 aria-label="Instagram"
               >
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -67,7 +67,7 @@ export default function Footer() {
 
               <a
                 href="mailto:ecelluietfs@gmail.com"
-                className="w-9 h-9 rounded-full bg-[#863DFF] text-white border-2 border-[#DDE0FF] flex items-center justify-center shadow-[2px_2px_0px_#CBFF2E] hover:translate-x-0.5 hover:translate-y-0.5 hover:bg-[#CBFF2E] hover:text-[#070A26] transition-all"
+                className="w-9 h-9 rounded-full bg-[#0047FF] text-white border-2 border-[#0A0E1A] flex items-center justify-center shadow-[2px_2px_0px_#CBFF2E] hover:translate-x-0.5 hover:translate-y-0.5 hover:bg-[#CBFF2E] hover:text-[#0A0E1A] transition-all"
                 aria-label="Email"
               >
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -80,7 +80,7 @@ export default function Footer() {
 
           {/* Col 2: Navigation */}
           <div className="flex flex-col gap-3">
-            <h4 className="font-sans text-xs font-black uppercase tracking-wider text-[#CBFF2E]">
+            <h4 className="font-sans text-xs font-black uppercase tracking-wider text-[#0047FF]">
               Navigation
             </h4>
             <ul className="flex flex-col gap-2">
@@ -88,7 +88,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-xs sm:text-sm text-[#DDE0FF]/75 hover:text-[#CBFF2E] transition-colors no-underline font-medium"
+                    className="text-xs sm:text-sm text-[#0A0E1A] hover:text-[#0047FF] transition-colors no-underline font-semibold"
                   >
                     {link.label}
                   </Link>
@@ -99,7 +99,7 @@ export default function Footer() {
 
           {/* Col 3: Resources */}
           <div className="flex flex-col gap-3">
-            <h4 className="font-sans text-xs font-black uppercase tracking-wider text-[#CBFF2E]">
+            <h4 className="font-sans text-xs font-black uppercase tracking-wider text-[#0047FF]">
               Ecosystem
             </h4>
             <ul className="flex flex-col gap-2">
@@ -108,7 +108,7 @@ export default function Footer() {
                   href="https://mdu.ac.in"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-xs sm:text-sm text-[#DDE0FF]/75 hover:text-[#CBFF2E] transition-colors no-underline font-medium"
+                  className="text-xs sm:text-sm text-[#0A0E1A] hover:text-[#0047FF] transition-colors no-underline font-semibold"
                 >
                   MDU Rohtak Portal
                 </a>
@@ -118,7 +118,7 @@ export default function Footer() {
                   href="https://startupindia.gov.in"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-xs sm:text-sm text-[#DDE0FF]/75 hover:text-[#CBFF2E] transition-colors no-underline font-medium"
+                  className="text-xs sm:text-sm text-[#0A0E1A] hover:text-[#0047FF] transition-colors no-underline font-semibold"
                 >
                   Startup India
                 </a>
@@ -126,7 +126,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/privacy"
-                  className="text-xs sm:text-sm text-[#DDE0FF]/75 hover:text-[#CBFF2E] transition-colors no-underline font-medium"
+                  className="text-xs sm:text-sm text-[#0A0E1A] hover:text-[#0047FF] transition-colors no-underline font-semibold"
                 >
                   Privacy Policy
                 </Link>
@@ -134,7 +134,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/terms"
-                  className="text-xs sm:text-sm text-[#DDE0FF]/75 hover:text-[#CBFF2E] transition-colors no-underline font-medium"
+                  className="text-xs sm:text-sm text-[#0A0E1A] hover:text-[#0047FF] transition-colors no-underline font-semibold"
                 >
                   Terms &amp; Code of Conduct
                 </Link>
@@ -142,7 +142,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/admin"
-                  className="text-xs sm:text-sm text-[#DDE0FF]/75 hover:text-[#CBFF2E] transition-colors no-underline font-medium"
+                  className="text-xs sm:text-sm text-[#0A0E1A] hover:text-[#0047FF] transition-colors no-underline font-semibold"
                 >
                   Admin Portal
                 </Link>
@@ -152,16 +152,16 @@ export default function Footer() {
 
           {/* Col 4: Quick Recruitment Action */}
           <div className="flex flex-col gap-3">
-            <h4 className="font-sans text-xs font-black uppercase tracking-wider text-[#CBFF2E]">
+            <h4 className="font-sans text-xs font-black uppercase tracking-wider text-[#0047FF]">
               Join the Movement
             </h4>
-            <p className="text-xs text-[#DDE0FF]/70 leading-relaxed">
+            <p className="text-xs text-[#3A4A7A] font-medium leading-relaxed">
               Open to students from all departments. Build ventures, lead event operations, and gain real experience.
             </p>
             <div className="mt-2">
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 bg-[#CBFF2E] text-[#070A26] font-extrabold text-xs uppercase tracking-wider py-2.5 px-4 rounded-xl border-2 border-[#070A26] shadow-[2px_2px_0px_#863DFF] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition-all no-underline"
+                className="inline-flex items-center gap-2 bg-[#CBFF2E] text-[#0A0E1A] font-extrabold text-xs uppercase tracking-wider py-2.5 px-4 rounded-xl border-2 border-[#0A0E1A] shadow-[2px_2px_0px_#0047FF] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition-all no-underline"
               >
                 <span>Recruitment 2026-27</span>
                 <span>→</span>
@@ -171,11 +171,11 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-[#1F2766] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-semibold text-[#DDE0FF]/60">
+        <div className="pt-8 border-t border-[#C0CCFF] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-semibold text-[#475569]">
           <p>© {new Date().getFullYear()} UIET E-Cell, Maharshi Dayanand University. 100% Student-Run.</p>
           <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-[#CBFF2E] shadow-[0_0_8px_#CBFF2E]" />
-            <span className="text-white">Batch 2026-27 Active</span>
+            <span className="w-2 h-2 rounded-full bg-[#0047FF]" />
+            <span className="text-[#0A0E1A] font-bold">Batch 2026-27 Active</span>
           </div>
         </div>
       </div>

@@ -3,7 +3,6 @@
 import React, { useState } from 'react';
 import Button from '@/components/ui/Button';
 import { useToast } from '@/context/ToastProvider';
-import { supabase } from '@/lib/supabase';
 import { PageHeader, adminInput, adminLabel, adminCard } from './ui';
 import type { SiteStats } from '@/lib/types';
 import type { Dispatch, SetStateAction } from 'react';
@@ -36,7 +35,7 @@ export default function StatsManager({
     years: stats?.years?.value ?? 2,
   });
 
-  const handleSave = (e: React.FormEvent) => {
+  const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
 
     const next = {
@@ -48,11 +47,19 @@ export default function StatsManager({
 
     if (setStats) setStats(next);
 
-    if (supabase) {
-      supabase
-        .from('stats')
-        .upsert({ id: 1, members: next.members.value, events: next.events.value, startups: next.startups.value, years: next.years.value })
-        .then(undefined, (err: unknown) => console.warn('[Admin] Supabase stats persist warning:', err));
+    try {
+      await fetch('/api/settings', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          statMembers: next.members.value,
+          statEvents: next.events.value,
+          statStartups: next.startups.value,
+          statYears: next.years.value,
+        }),
+      });
+    } catch (err) {
+      console.warn('[Admin] Stats API persist warning:', err);
     }
 
     showToast('Homepage counters updated!', 'success');

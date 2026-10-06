@@ -6,7 +6,7 @@ export default function VisionMission() {
       <div className="max-w-[1272px] mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Vision Card */}
-          <div className="reveal bg-[#0B0F33] border border-border rounded-panel p-8 md:p-10 transition-all duration-200 hover:-translate-y-1 hover:border-borderstrong">
+          <div className="reveal bg-[#F4F6FF] border border-border rounded-panel p-8 md:p-10 transition-all duration-200 hover:-translate-y-1 hover:border-borderstrong">
             <span className="text-[13px] font-medium text-secondary uppercase tracking-[0.06em]">
               Vision Statement
             </span>
@@ -31,7 +31,7 @@ export default function VisionMission() {
           </div>
 
           {/* Mission Card */}
-          <div className="reveal bg-[#0B0F33] border border-border rounded-panel p-8 md:p-10 transition-all duration-200 hover:-translate-y-1 hover:border-borderstrong">
+          <div className="reveal bg-[#F4F6FF] border border-border rounded-panel p-8 md:p-10 transition-all duration-200 hover:-translate-y-1 hover:border-borderstrong">
             <span className="text-[13px] font-medium text-secondary uppercase tracking-[0.06em]">
               Mission Statement
             </span>
