@@ -4,22 +4,11 @@ import { useEffect } from 'react';
 
 export function useScrollReveal() {
   useEffect(() => {
-    const handleScrollReveal = () => {
-      const elements = document.querySelectorAll('.reveal:not(.visible)');
-      const windowHeight = window.innerHeight;
+    if (typeof window === 'undefined' || !('IntersectionObserver' in window)) {
+      document.querySelectorAll('.reveal').forEach((el) => el.classList.add('visible'));
+      return;
+    }
 
-      elements.forEach((el) => {
-        const rect = el.getBoundingClientRect();
-        if (rect.top <= windowHeight * 0.88) {
-          el.classList.add('visible');
-        }
-      });
-    };
-
-    // Trigger on mount
-    handleScrollReveal();
-
-    // IntersectionObserver for high performance
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -30,19 +19,16 @@ export function useScrollReveal() {
         });
       },
       {
-        rootMargin: '0px 0px -60px 0px',
-        threshold: 0.1,
+        rootMargin: '0px 0px -40px 0px',
+        threshold: 0.05,
       }
     );
 
     const elements = document.querySelectorAll('.reveal');
     elements.forEach((el) => observer.observe(el));
 
-    window.addEventListener('scroll', handleScrollReveal, { passive: true });
-
     return () => {
       elements.forEach((el) => observer.unobserve(el));
-      window.removeEventListener('scroll', handleScrollReveal);
     };
   }, []);
 }
