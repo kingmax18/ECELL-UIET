@@ -68,7 +68,7 @@ export default function AdminSidebar({
       {/* Brand & Mobile Close */}
       <div className="px-5 pt-6 pb-5 border-b border-[#C0CCFF] md:border-b-0 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <div className="w-11 h-11 rounded-card bg-white border-2 border-[#0047FF] flex items-center justify-center shrink-0 shadow-[2px_2px_0px_#CBFF2E]">
+          <div className="w-11 h-11 rounded-card bg-white border border-[#C0CCFF] flex items-center justify-center shrink-0 shadow-sm">
             <Image src="/logo.png" alt="UIET E-Cell" width={28} height={28} className="rounded-md" />
           </div>
           <div className="leading-tight min-w-0">

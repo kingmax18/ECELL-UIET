@@ -38,13 +38,13 @@ export default function Navbar() {
         >
           {/* Brand */}
           <Link href="/" className="flex items-center gap-3 no-underline group" aria-label="UIET E-Cell Home">
-            <div className="w-10 h-10 rounded-xl bg-[#0047FF] border-2 border-[#C8D8FF] p-1 shadow-[2px_2px_0px_#CBFF2E] flex items-center justify-center shrink-0 group-hover:translate-x-0.5 group-hover:translate-y-0.5 group-hover:shadow-none transition-all">
+            <div className="w-10 h-10 rounded-xl bg-white border border-[#C0CCFF] p-1.5 shadow-sm flex items-center justify-center shrink-0 group-hover:border-[#0047FF] group-hover:shadow-md transition-all">
               <Image
                 src="/logo-icon.png"
                 alt="UIET E-Cell"
                 width={32}
                 height={32}
-                className="w-full h-full object-contain brightness-110"
+                className="w-full h-full object-contain"
                 unoptimized
                 priority
               />
