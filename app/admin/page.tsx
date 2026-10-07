@@ -15,6 +15,7 @@ import StatsManager from '@/components/admin/StatsManager';
 import PartnersManager from '@/components/admin/PartnersManager';
 import SettingsManager from '@/components/admin/SettingsManager';
 import BlogsManager from '@/components/admin/BlogsManager';
+import { adminFetch } from '@/lib/adminApi';
 
 export default function AdminPage() {
   const { isAuthenticated } = useAdminAuth();
@@ -62,9 +63,8 @@ export default function AdminPage() {
 
       // 2. Persist settings and site stats directly to Neon PostgreSQL
       if (settings || stats) {
-        await fetch('/api/settings', {
+        await adminFetch('/api/settings', {
           method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             ...(settings || {}),
             statMembers: stats?.members?.value ?? 30,

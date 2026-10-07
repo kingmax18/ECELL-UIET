@@ -6,6 +6,7 @@ import Image from 'next/image';
 import Button from '@/components/ui/Button';
 import { useToast } from '@/context/ToastProvider';
 import { PageHeader, Modal, adminInput, adminLabel, adminCard, adminTd, adminTh, EmptyState } from './ui';
+import { adminFetch } from '@/lib/adminApi';
 import type { BlogPost } from '@/lib/types';
 import type { Dispatch, SetStateAction } from 'react';
 import {
@@ -119,13 +120,12 @@ export default function BlogsManager({
 
   const persistArticle = async (post: BlogPost) => {
     try {
-      await fetch('/api/blogs', {
+      await adminFetch('/api/blogs', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(post),
       });
     } catch (err) {
-      console.warn('[BlogsManager] Local storage active:', err);
+      console.warn('[BlogsManager] Save warning:', err);
     }
   };
 
@@ -176,7 +176,7 @@ export default function BlogsManager({
       const updated = blogs.filter((b) => b.id !== id);
       if (setBlogs) setBlogs(updated);
       try {
-        await fetch(`/api/blogs/${postToDelete.slug}`, { method: 'DELETE' });
+        await adminFetch(`/api/blogs/${postToDelete.slug}`, { method: 'DELETE' });
       } catch (e) {}
       showToast('Blog article deleted', 'info');
     }

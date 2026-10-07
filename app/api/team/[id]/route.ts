@@ -22,9 +22,9 @@ export async function PUT(
     const body = await request.json();
     const { name, role, department, year, linkedin, email, photo, order } = body;
 
-    const updated = await prisma.teamMember.update({
+    const updated = await prisma.teamMember.upsert({
       where: { id: memberId },
-      data: {
+      update: {
         ...(name && { name: name.trim() }),
         ...(role && { role: role.trim() }),
         ...(department && { department: department.trim() }),
@@ -32,7 +32,18 @@ export async function PUT(
         ...(linkedin !== undefined && { linkedin }),
         ...(email !== undefined && { email }),
         ...(photo !== undefined && { photo }),
-        ...(order !== undefined && { order }),
+        ...(order !== undefined && { order: typeof order === 'number' ? order : 0 }),
+      },
+      create: {
+        id: memberId,
+        name: (name || 'Team Member').trim(),
+        role: (role || 'Member').trim(),
+        department: (department || 'General').trim(),
+        year: year || null,
+        linkedin: linkedin || null,
+        email: email || null,
+        photo: photo || null,
+        order: typeof order === 'number' ? order : 0,
       },
     });
 
@@ -63,7 +74,7 @@ export async function DELETE(
       return NextResponse.json({ success: false, error: 'Invalid ID' }, { status: 400 });
     }
 
-    await prisma.teamMember.delete({
+    await prisma.teamMember.deleteMany({
       where: { id: memberId },
     });
 

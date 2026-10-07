@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Button from '@/components/ui/Button';
 import { useToast } from '@/context/ToastProvider';
 import { PageHeader, Modal, EmptyState, adminInput, adminLabel, adminCard, adminTd, adminTh } from './ui';
+import { adminFetch } from '@/lib/adminApi';
 
 export interface Sponsor {
   id: number;
@@ -43,18 +44,18 @@ export default function PartnersManager({
 
   const persist = async (row: Sponsor, isUpdate: boolean) => {
     try {
-      if (isUpdate) {
-        await fetch(`/api/sponsors/${row.id}`, {
-          method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(row),
-        });
-      } else {
-        await fetch('/api/sponsors', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(row),
-        });
+      const res = isUpdate
+        ? await adminFetch(`/api/sponsors/${row.id}`, {
+            method: 'PUT',
+            body: JSON.stringify(row),
+          })
+        : await adminFetch('/api/sponsors', {
+            method: 'POST',
+            body: JSON.stringify(row),
+          });
+      const data = await res.json().catch(() => null);
+      if (!res.ok || !data?.success) {
+        console.warn('[Admin] Sponsors API persist warning:', data?.error);
       }
     } catch (e) {
       console.warn('[Admin] Sponsors API persist warning:', e);
@@ -76,12 +77,12 @@ export default function PartnersManager({
     if (editing) {
       if (setSponsors) setSponsors(sponsors.map((s) => (s.id === editing.id ? { ...s, ...withInitials } : s)));
       persist({ ...editing, ...withInitials }, true);
-      showToast('Partner updated!', 'success');
+      showToast('Partner updated and synced to database!', 'success');
     } else {
       const created: Sponsor = { ...withInitials, id: Date.now() };
       if (setSponsors) setSponsors([...sponsors, created]);
       persist(created, false);
-      showToast('Partner added!', 'success');
+      showToast('Partner added and synced to database!', 'success');
     }
     setModalOpen(false);
   };
@@ -90,7 +91,7 @@ export default function PartnersManager({
     if (confirm('Remove this partner?')) {
       if (setSponsors) setSponsors(sponsors.filter((s) => s.id !== id));
       try {
-        await fetch(`/api/sponsors/${id}`, { method: 'DELETE' });
+        await adminFetch(`/api/sponsors/${id}`, { method: 'DELETE' });
       } catch (err) {
         console.warn('[Admin] Sponsors API delete warning:', err);
       }

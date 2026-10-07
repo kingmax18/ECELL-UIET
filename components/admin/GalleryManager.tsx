@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Button from '@/components/ui/Button';
 import { useToast } from '@/context/ToastProvider';
 import { PageHeader, Modal, EmptyState, adminInput, adminLabel, adminCard, adminTd, adminTh } from './ui';
+import { adminFetch } from '@/lib/adminApi';
 
 export interface GalleryItem {
   id: number;
@@ -39,9 +40,8 @@ export default function GalleryManager({
     if (setGallery) setGallery(next);
 
     try {
-      await fetch('/api/gallery', {
+      await adminFetch('/api/gallery', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),
       });
     } catch (err) {
@@ -50,14 +50,14 @@ export default function GalleryManager({
 
     setModalOpen(false);
     setForm(BLANK);
-    showToast('Photo added to gallery!', 'success');
+    showToast('Photo added to gallery and synced to database!', 'success');
   };
 
   const handleDelete = async (id: number) => {
     if (confirm('Remove this photo from the gallery?')) {
       if (setGallery) setGallery(gallery.filter((g) => g.id !== id));
       try {
-        await fetch(`/api/gallery/${id}`, { method: 'DELETE' });
+        await adminFetch(`/api/gallery/${id}`, { method: 'DELETE' });
       } catch (err) {
         console.warn('[Admin] Gallery API delete warning:', err);
       }

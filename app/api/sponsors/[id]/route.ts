@@ -22,14 +22,22 @@ export async function PUT(
     const body = await request.json();
     const { name, url, tier, initials, color } = body;
 
-    const updated = await prisma.sponsor.update({
+    const updated = await prisma.sponsor.upsert({
       where: { id: sponsorId },
-      data: {
+      update: {
         ...(name && { name: name.trim() }),
         ...(url !== undefined && { url }),
         ...(tier !== undefined && { tier }),
         ...(initials !== undefined && { initials }),
         ...(color !== undefined && { color }),
+      },
+      create: {
+        id: sponsorId,
+        name: (name || 'New Sponsor').trim(),
+        url: url || null,
+        tier: tier || 'Partner',
+        initials: initials || null,
+        color: color || '#ff8709',
       },
     });
 
@@ -60,7 +68,7 @@ export async function DELETE(
       return NextResponse.json({ success: false, error: 'Invalid ID' }, { status: 400 });
     }
 
-    await prisma.sponsor.delete({
+    await prisma.sponsor.deleteMany({
       where: { id: sponsorId },
     });
 

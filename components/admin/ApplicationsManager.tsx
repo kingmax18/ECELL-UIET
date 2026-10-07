@@ -5,6 +5,7 @@ import { RiSearchLine } from 'react-icons/ri';
 import Button from '@/components/ui/Button';
 import { useToast } from '@/context/ToastProvider';
 import { PageHeader, StatusBadge, EmptyState, FilterPills, adminCard, adminTd, adminTh } from './ui';
+import { adminFetch } from '@/lib/adminApi';
 import type { Application } from '@/lib/types';
 import type { Dispatch, SetStateAction } from 'react';
 
@@ -41,9 +42,8 @@ export default function ApplicationsManager({
     if (setApplications) setApplications(updated);
 
     try {
-      await fetch(`/api/applications/${appId}`, {
+      await adminFetch(`/api/applications/${appId}`, {
         method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ status: newStatus }),
       });
     } catch (e) {

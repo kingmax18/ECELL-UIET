@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Button from '@/components/ui/Button';
 import { useToast } from '@/context/ToastProvider';
 import { PageHeader, adminInput, adminLabel, adminCard } from './ui';
+import { adminFetch } from '@/lib/adminApi';
 import type { SiteStats } from '@/lib/types';
 import type { Dispatch, SetStateAction } from 'react';
 
@@ -48,9 +49,8 @@ export default function StatsManager({
     if (setStats) setStats(next);
 
     try {
-      await fetch('/api/settings', {
+      await adminFetch('/api/settings', {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           statMembers: next.members.value,
           statEvents: next.events.value,

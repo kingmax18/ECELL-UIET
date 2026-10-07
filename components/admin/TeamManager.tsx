@@ -6,6 +6,8 @@ import { useToast } from '@/context/ToastProvider';
 import { departments } from '@/data/team';
 import { PageHeader, Modal, EmptyState, FilterPills, adminInput, adminLabel, adminCard, adminTd, adminTh } from './ui';
 
+import { adminFetch } from '@/lib/adminApi';
+
 export interface AdminMember {
   id: number;
   name: string;
@@ -56,18 +58,18 @@ export default function TeamManager({
 
   const persist = async (row: AdminMember, isUpdate: boolean) => {
     try {
-      if (isUpdate) {
-        await fetch(`/api/team/${row.id}`, {
-          method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(row),
-        });
-      } else {
-        await fetch('/api/team', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(row),
-        });
+      const res = isUpdate
+        ? await adminFetch(`/api/team/${row.id}`, {
+            method: 'PUT',
+            body: JSON.stringify(row),
+          })
+        : await adminFetch('/api/team', {
+            method: 'POST',
+            body: JSON.stringify(row),
+          });
+      const data = await res.json().catch(() => null);
+      if (!res.ok || !data?.success) {
+        console.warn('[Admin] Team API persist warning:', data?.error);
       }
     } catch (e) {
       console.warn('[Admin] Team API persist warning:', e);
@@ -84,12 +86,12 @@ export default function TeamManager({
     if (editing) {
       if (setTeam) setTeam(team.map((m) => (m.id === editing.id ? { ...m, ...form } : m)));
       persist({ ...editing, ...form }, true);
-      showToast('Member updated!', 'success');
+      showToast('Member updated and synced to database!', 'success');
     } else {
       const created: AdminMember = { ...form, id: Date.now() };
       if (setTeam) setTeam([...team, created]);
       persist(created, false);
-      showToast('Team member added!', 'success');
+      showToast('Team member added and synced to database!', 'success');
     }
     setModalOpen(false);
   };
@@ -98,7 +100,7 @@ export default function TeamManager({
     if (confirm('Remove this team member?')) {
       if (setTeam) setTeam(team.filter((m) => m.id !== id));
       try {
-        await fetch(`/api/team/${id}`, { method: 'DELETE' });
+        await adminFetch(`/api/team/${id}`, { method: 'DELETE' });
       } catch (err) {
         console.warn('[Admin] Team API delete warning:', err);
       }

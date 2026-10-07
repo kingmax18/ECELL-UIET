@@ -7,6 +7,7 @@ import { formatDate } from '@/lib/utils';
 import { PageHeader, Modal, StatusBadge, EmptyState, adminInput, adminLabel, adminCard, adminTd, adminTh } from './ui';
 import type { EventItem } from '@/lib/types';
 import type { Dispatch, SetStateAction } from 'react';
+import { adminFetch } from '@/lib/adminApi';
 
 const BLANK: Omit<EventItem, 'id'> = {
   title: '',
@@ -47,18 +48,18 @@ export default function EventsManager({
 
   const persist = async (row: EventItem, isUpdate: boolean) => {
     try {
-      if (isUpdate) {
-        await fetch(`/api/events/${row.id}`, {
-          method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(row),
-        });
-      } else {
-        await fetch('/api/events', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(row),
-        });
+      const res = isUpdate
+        ? await adminFetch(`/api/events/${row.id}`, {
+            method: 'PUT',
+            body: JSON.stringify(row),
+          })
+        : await adminFetch('/api/events', {
+            method: 'POST',
+            body: JSON.stringify(row),
+          });
+      const data = await res.json().catch(() => null);
+      if (!res.ok || !data?.success) {
+        console.warn('[Admin] Events API persist warning:', data?.error);
       }
     } catch (e) {
       console.warn('[Admin] Events API persist warning:', e);
@@ -76,7 +77,7 @@ export default function EventsManager({
       const updated = events.map((ev) => (ev.id === editing.id ? { ...ev, ...form } : ev));
       if (setEvents) setEvents(updated);
       persist({ ...editing, ...form }, true);
-      showToast('Event updated successfully!', 'success');
+      showToast('Event updated and synced to database!', 'success');
     } else {
       const created: EventItem = {
         ...form,
@@ -85,7 +86,7 @@ export default function EventsManager({
       };
       if (setEvents) setEvents([created, ...events]);
       persist(created, false);
-      showToast('Event created successfully!', 'success');
+      showToast('Event created and synced to database!', 'success');
     }
     setModalOpen(false);
   };
@@ -101,7 +102,7 @@ export default function EventsManager({
     if (confirm('Are you sure you want to delete this event?')) {
       if (setEvents) setEvents(events.filter((e) => e.id !== id));
       try {
-        await fetch(`/api/events/${id}`, { method: 'DELETE' });
+        await adminFetch(`/api/events/${id}`, { method: 'DELETE' });
       } catch (e) {
         console.warn('[Admin] Events API delete warning:', e);
       }

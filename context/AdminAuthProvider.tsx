@@ -52,6 +52,9 @@ export function AdminAuthProvider({ children }: { children: ReactNode }) {
       if (res.ok && json.success && json.user) {
         setUser(json.user);
         localStorage.setItem('ECELL_ADMIN_SESSION', JSON.stringify(json.user));
+        if (json.token) {
+          localStorage.setItem('ECELL_ADMIN_TOKEN', json.token);
+        }
         return { success: true };
       }
 
@@ -91,6 +94,7 @@ export function AdminAuthProvider({ children }: { children: ReactNode }) {
     setUser(null);
     try {
       localStorage.removeItem('ECELL_ADMIN_SESSION');
+      localStorage.removeItem('ECELL_ADMIN_TOKEN');
       fetch('/api/auth/logout', { method: 'POST' }).catch(() => {});
     } catch (e) {}
   };

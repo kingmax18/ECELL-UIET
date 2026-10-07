@@ -36,9 +36,9 @@ export async function PUT(
       category,
     } = body;
 
-    const updated = await prisma.event.update({
+    const updated = await prisma.event.upsert({
       where: { id: eventId },
-      data: {
+      update: {
         ...(title && { title: title.trim() }),
         ...(tagline !== undefined && { tagline }),
         ...(description !== undefined && { description }),
@@ -51,6 +51,21 @@ export async function PUT(
         ...(registrationUrl !== undefined && { registrationUrl }),
         ...(accentColor !== undefined && { accentColor }),
         ...(category !== undefined && { category }),
+      },
+      create: {
+        id: eventId,
+        title: (title || 'New Event').trim(),
+        tagline: tagline || null,
+        description: description || null,
+        date: date || new Date().toISOString().split('T')[0],
+        time: time || null,
+        venue: venue || null,
+        mode: mode || 'Offline',
+        status: status || 'upcoming',
+        tags: Array.isArray(tags) ? tags.join(', ') : tags || null,
+        registrationUrl: registrationUrl || null,
+        accentColor: accentColor || '#0047FF',
+        category: category || 'General',
       },
     });
 
@@ -78,7 +93,7 @@ export async function DELETE(
     const { id } = await params;
     const eventId = parseInt(id, 10);
 
-    await prisma.event.delete({
+    await prisma.event.deleteMany({
       where: { id: eventId },
     });
 
