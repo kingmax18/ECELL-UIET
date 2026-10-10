@@ -5,7 +5,6 @@ import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import TeamCard from '@/components/team/TeamCard';
 import FacultySection from '@/components/team/FacultySection';
-import SectionHeader from '@/components/ui/SectionHeader';
 import CTABanner from '@/components/home/CTABanner';
 import { useData } from '@/context/DataProvider';
 import { departments } from '@/data/team';
@@ -18,29 +17,27 @@ export default function TeamPage() {
   return (
     <>
       <Navbar />
-      <main>
-        {/* Page Hero */}
-        <section className="relative overflow-hidden bg-white border-b-2 border-[#C0CCFF] py-16 sm:py-24">
-          <div className="relative max-w-[1272px] mx-auto px-4 sm:px-6 text-center">
-            <h1 className="font-sans font-extrabold text-[clamp(36px,5.5vw,64px)] leading-[1.12] tracking-tight text-[#0A0E1A] mb-5 [text-wrap:balance]">
-              The drivers behind{' '}
-              <span className="marker-yellow">our ecosystem.</span>
-            </h1>
-            <p className="text-[clamp(16px,1.8vw,19px)] font-medium leading-[1.6] text-[#3A4A7A] max-w-[720px] mx-auto">
-              Meet the student leaders, engineers, and department heads building UIET E-Cell at MDU Rohtak.
-            </p>
+      <main className="bg-white dark:bg-[#0B0C0E] min-h-screen text-zinc-900 dark:text-zinc-100">
+        {/* Page Hero - YC Editorial Style */}
+        <section className="relative overflow-hidden bg-[#FAFAF8] dark:bg-[#0E1015] border-b border-zinc-200 dark:border-zinc-800 py-16 sm:py-22">
+          <div className="relative max-w-[1280px] mx-auto px-4 sm:px-6">
+            <div className="max-w-3xl">
+              <div className="text-[11px] font-mono uppercase tracking-widest text-[#FF6600] font-bold mb-2">
+                PEOPLE &amp; LEADERSHIP
+              </div>
+              <h1 className="font-serif font-normal text-3xl sm:text-5xl text-zinc-950 dark:text-white mb-4 [text-wrap:balance]">
+                The operators behind the ecosystem.
+              </h1>
+              <p className="text-zinc-600 dark:text-zinc-400 text-sm sm:text-base leading-relaxed">
+                Meet the executive directors, department heads, and engineering builders who run cohort admissions, mentor office hours, and university venture relationships.
+              </p>
+            </div>
           </div>
         </section>
 
         {/* Core Team by Department */}
-        <section className="py-[clamp(56px,7vw,80px)]">
-          <div className="max-w-[1272px] mx-auto px-6">
-            <SectionHeader
-              title="Active student leadership by"
-              italicTitle="department"
-              subtitle="Organized across 6 core functional areas to deliver campus-wide impact."
-            />
-
+        <section className="py-16 sm:py-22">
+          <div className="max-w-[1280px] mx-auto px-4 sm:px-6">
             {departments.map((dept) => {
               const deptMembers = team
                 .filter((m) => m.department === dept)
@@ -49,12 +46,17 @@ export default function TeamPage() {
               if (deptMembers.length === 0) return null;
 
               return (
-                <div key={dept} className="mb-12 last:mb-0">
-                  <div className="flex items-center gap-3 mb-6">
-                    <span className="h-[7px] w-[7px] rounded-full bg-[#CBFF2E]" />
-                    <h3 className="font-sans font-medium text-[clamp(19px,2.2vw,24px)] tracking-[-0.02em] text-ink">
-                      {dept}
-                    </h3>
+                <div key={dept} className="mb-16 last:mb-0">
+                  <div className="flex items-center justify-between pb-3 border-b border-zinc-200 dark:border-zinc-800 mb-8">
+                    <div className="flex items-center gap-2.5">
+                      <span className="w-2 h-2 rounded-full bg-[#FF6600]" />
+                      <h2 className="font-serif font-normal text-2xl text-zinc-900 dark:text-white">
+                        {dept}
+                      </h2>
+                    </div>
+                    <span className="text-xs font-mono text-zinc-400">
+                      {deptMembers.length} {deptMembers.length === 1 ? 'MEMBER' : 'MEMBERS'}
+                    </span>
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">

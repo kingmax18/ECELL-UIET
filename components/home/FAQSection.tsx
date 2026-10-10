@@ -7,53 +7,40 @@ import { FAQ_ITEMS } from '@/lib/constants';
 
 export default function FAQSection() {
   return (
-    <section id="faq" className="py-20 sm:py-28 bg-white border-b-2 border-[#C0CCFF]">
-      <div className="max-w-[1272px] mx-auto px-4 sm:px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-          {/* Left Panel: Themed FAQ Aside */}
-          <aside className="lg:col-span-4 bg-[#0047FF] border-2 border-[#0A0E1A] rounded-3xl p-7 shadow-[6px_6px_0px_#CBFF2E] flex flex-col justify-between gap-6 static lg:sticky lg:top-24">
-            <div>
-              <div className="w-16 h-16 rounded-2xl bg-white border-2 border-[#CBFF2E] shadow-[3px_3px_0px_#0A0E1A] flex items-center justify-center font-black text-2xl mb-5">
-                💡
-              </div>
-              <h3 className="font-sans font-black text-2xl text-white mb-2 leading-tight">
-                Still curious?
-              </h3>
-              <p className="text-xs sm:text-sm font-medium leading-[1.6] text-white/90 mb-6">
-                Short answers on the right. In-depth founder guides, playbooks, and advice clinics on our blog.
-              </p>
+    <section id="faq" className="py-20 sm:py-26 bg-[#FAFAF8] dark:bg-[#0D0E12] border-b border-zinc-200 dark:border-zinc-800">
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-6">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+          {/* Left Panel */}
+          <div className="lg:col-span-4 static lg:sticky lg:top-24">
+            <div className="text-[11px] font-mono uppercase tracking-widest text-[#FF6600] font-bold mb-2">
+              FOUNDER FAQS
             </div>
+            <h2 className="font-serif font-normal text-3xl sm:text-4xl text-zinc-900 dark:text-white mb-4">
+              Frequently asked questions.
+            </h2>
+            <p className="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed mb-6">
+              Everything you need to know about the cohort timeline, grant eligibility, student IP ownership, and recruitment.
+            </p>
 
-            <div className="flex flex-col gap-2.5 pt-4 border-t-2 border-white/20">
-              <Link
-                href="/blog"
-                className="bg-[#CBFF2E] text-[#0A0E1A] font-extrabold text-xs uppercase tracking-wider py-3 px-4 rounded-xl border-2 border-[#0A0E1A] shadow-[2px_2px_0px_#0A0E1A] flex items-center justify-between no-underline hover:bg-[#d8ff4f]"
-              >
-                <span>Read Founder Playbooks</span>
-                <span>→</span>
-              </Link>
+            <div className="p-5 bg-white dark:bg-[#14161C] border border-zinc-200 dark:border-zinc-800 rounded-lg space-y-3">
+              <span className="text-xs font-mono uppercase tracking-wider text-zinc-400 block font-semibold">
+                STILL HAVE QUESTIONS?
+              </span>
+              <p className="text-xs text-zinc-600 dark:text-zinc-400">
+                Reach out to the executive director or drop by the incubator room at the UIET building.
+              </p>
               <Link
                 href="/contact"
-                className="bg-white text-[#0047FF] font-bold text-xs uppercase tracking-wider py-3 px-4 rounded-xl border-2 border-[#0A0E1A] shadow-[2px_2px_0px_#CBFF2E] flex items-center justify-between no-underline hover:bg-[#EEF2FF]"
+                className="yc-btn-primary w-full text-xs justify-center py-2 font-semibold"
               >
-                <span>Ask Leadership Team</span>
-                <span>→</span>
+                Contact Admissions Team →
               </Link>
             </div>
-          </aside>
+          </div>
 
           {/* Right Content: FAQ Questions Accordion */}
-          <div className="lg:col-span-8">
-            <div className="mb-8">
-              <h2 className="font-sans font-extrabold text-[clamp(28px,4vw,44px)] leading-tight text-[#0A0E1A] mb-2">
-                Questions before you join?
-              </h2>
-              <p className="text-xs sm:text-sm font-medium text-[#3A4A7A]">
-                Everything to know about applying, departments, pitch competitions, and funding.
-              </p>
-            </div>
-
-            <div className="w-full">
+          <div className="lg:col-span-8 bg-white dark:bg-[#14161C] border border-zinc-200 dark:border-zinc-800 rounded-lg p-6 sm:p-8 shadow-2xs">
+            <div className="divide-y divide-zinc-200 dark:divide-zinc-800">
               {FAQ_ITEMS.map((item, idx) => (
                 <AccordionItem
                   key={idx}

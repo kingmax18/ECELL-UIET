@@ -2,132 +2,216 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { NAV_LINKS, SITE } from '@/lib/constants';
-import Button from '@/components/ui/Button';
 import { ThemeToggle } from '@/components/ui/ThemeToggle';
 import MobileMenu from './MobileMenu';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const pathname = usePathname();
 
-  // Transparent over hero → floating white pill after slight scroll
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 24);
+      setIsScrolled(window.scrollY > 10);
     };
     handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close mobile menu on route change
   useEffect(() => {
     setIsMobileOpen(false);
+    setActiveDropdown(null);
   }, [pathname]);
 
   return (
     <>
-      <header className="sticky top-0 left-0 right-0 z-[1000] w-full bg-white/95 backdrop-blur-md border-b-2 border-[#C0CCFF] transition-all">
+      <header
+        className={`sticky top-0 left-0 right-0 z-50 w-full transition-all duration-200 bg-[#FDFCF7] dark:bg-[#0B0C0E] ${
+          isScrolled
+            ? 'border-b border-[#16140f]/10 dark:border-zinc-800 shadow-2xs backdrop-blur-md bg-[#FDFCF7]/95 dark:bg-[#0B0C0E]/95'
+            : 'border-b border-transparent'
+        }`}
+      >
+        {/* Mobile Header (< 1200px) */}
         <nav
-          aria-label="Main Navigation"
-          className="max-w-[1272px] mx-auto h-[72px] px-4 sm:px-6 flex items-center justify-between"
+          aria-label="Mobile Navigation"
+          className="relative flex min-[1200px]:hidden items-center justify-between px-4 py-3"
         >
-          {/* Brand */}
-          <Link href="/" className="flex items-center gap-3 no-underline group" aria-label="UIET E-Cell Home">
-            <div className="w-10 h-10 rounded-xl bg-white border border-[#C0CCFF] p-1.5 shadow-sm flex items-center justify-center shrink-0 group-hover:border-[#0047FF] group-hover:shadow-md transition-all">
-              <Image
-                src="/logo-icon.png"
-                alt="UIET E-Cell"
-                width={32}
-                height={32}
-                className="w-full h-full object-contain"
-                unoptimized
-                priority
-              />
+          <Link
+            href="/"
+            title="UIET E-Cell"
+            className="flex items-center gap-2.5 no-underline"
+          >
+            <div className="w-10 h-10 bg-[#FF6600] flex items-center justify-center rounded-xs shrink-0">
+              <svg width="22" height="22" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M13.9012 11.7843H17.6595L22.4961 21.5325C23.203 22.9836 23.7984 24.3976 23.7984 24.3976C23.7984 24.3976 24.4313 23.021 25.175 21.5325L30.0868 11.7843H33.5843L25.2865 27.3746V37.309H22.1244V27.1884L13.9012 11.7843Z" fill="white" />
+              </svg>
             </div>
-            <div className="flex flex-col">
-              <span className="font-sans font-bold text-lg leading-tight tracking-tight text-[#0A0E1A]">
-                UIET E-Cell
-              </span>
-              <span className="text-[11px] font-semibold tracking-wider text-[#475569] uppercase">
-                MDU Rohtak
-              </span>
-            </div>
+            <span className="font-['Outfit',sans-serif] font-bold text-base text-[#16140f] dark:text-white">
+              UIET E-Cell
+            </span>
           </Link>
 
-          {/* Desktop Nav Links */}
-          <div className="hidden lg:flex items-center gap-1 bg-[#F4F6FF] border-2 border-[#C0CCFF] rounded-full p-1 shadow-[2px_2px_0px_#0A0E1A]">
-            {NAV_LINKS.map((link) => {
-              const isActive = pathname === link.href;
-              return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={`py-1.5 px-4 text-xs font-bold rounded-full no-underline whitespace-nowrap transition-all ${isActive
-                      ? 'bg-[#0047FF] text-white shadow-xs'
-                      : 'text-[#0A0E1A] hover:bg-[#CBFF2E] hover:text-[#0A0E1A]'
-                    }`}
-                >
-                  {link.label}
-                </Link>
-              );
-            })}
-          </div>
-
-          {/* Actions */}
-          <div className="flex items-center gap-2 sm:gap-3">
-            {/* Dark / Light Theme Toggle */}
+          <div className="flex items-center gap-3">
             <ThemeToggle />
-
             <Link
-              href="/admin"
-              className="hidden sm:inline-flex items-center gap-1.5 bg-[#F4F6FF] text-[#0047FF] font-extrabold text-xs uppercase tracking-wider px-3.5 py-2.5 rounded-full border-2 border-[#0047FF] shadow-[2px_2px_0px_#0A0E1A] hover:bg-[#CBFF2E] hover:text-[#0A0E1A] hover:border-[#0A0E1A] hover:translate-x-0.5 hover:translate-y-0.5 transition-all no-underline"
-              title="Admin Dashboard"
+              href="/apply"
+              className="flex h-8 items-center justify-center rounded-full bg-black dark:bg-white px-3.5 pb-[1px] font-['Source_Serif_4',serif] text-xs font-normal italic tracking-[0.015rem] text-white dark:text-black transition-opacity hover:opacity-80"
             >
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
-                <path d="M7 11V7a5 5 0 0 1 10 0v4" />
-              </svg>
-              <span>Admin</span>
+              Apply
             </Link>
-
-            <Link
-              href="/contact"
-              className="hidden sm:inline-flex items-center gap-2 bg-[#CBFF2E] text-[#0A0E1A] font-extrabold text-xs uppercase tracking-wider px-5 py-2.5 rounded-full border-2 border-[#0A0E1A] shadow-[3px_3px_0px_#0047FF] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[1px_1px_0px_#0047FF] transition-all no-underline"
-            >
-              <span>Join E-Cell</span>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="M5 12h14" />
-                <path d="m12 5 7 7-7 7" />
-              </svg>
-            </Link>
-
-            {/* Mobile Hamburger */}
             <button
-              type="button"
-              className="lg:hidden flex flex-col items-center justify-center gap-1 w-10 h-10 rounded-xl bg-[#F4F6FF] border-2 border-[#0047FF] shadow-[2px_2px_0px_#0A0E1A] cursor-pointer shrink-0 active:translate-x-0.5 active:translate-y-0.5 active:shadow-none"
               onClick={() => setIsMobileOpen(!isMobileOpen)}
-              aria-label="Toggle menu"
+              className="inline-flex items-center justify-center rounded-md p-1.5 text-[#16140f] dark:text-zinc-200 focus:outline-hidden"
+              type="button"
+              aria-label="Open navigation menu"
               aria-expanded={isMobileOpen}
             >
-              <span className={`block w-5 h-0.5 bg-[#0A0E1A] rounded-full transition-all duration-200 ${isMobileOpen ? 'translate-y-[6px] rotate-45' : ''}`} />
-              <span className={`block w-5 h-0.5 bg-[#0A0E1A] rounded-full transition-all duration-200 ${isMobileOpen ? 'opacity-0' : ''}`} />
-              <span className={`block w-5 h-0.5 bg-[#0A0E1A] rounded-full transition-all duration-200 ${isMobileOpen ? '-translate-y-[6px] -rotate-45' : ''}`} />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="2"
+                stroke="currentColor"
+                className="h-6 w-6"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4 8h16M4 16h16" />
+              </svg>
             </button>
+          </div>
+        </nav>
+
+        {/* Desktop Header (>= 1200px) — Identical layout to Y Combinator */}
+        <nav
+          aria-label="Desktop Navigation"
+          className="relative hidden min-[1200px]:flex items-center justify-center px-5 py-[12px] bg-[#FDFCF7] dark:bg-[#0B0C0E]"
+        >
+          <div className="flex w-full max-w-[1400px] items-center gap-6 min-[1400px]:gap-10">
+            {/* Left Column Links */}
+            <div className="flex flex-1 items-center justify-end gap-5 min-[1400px]:gap-8 font-['Source_Serif_4',serif] text-[15px] text-[#16140f] dark:text-zinc-200">
+              {/* About Dropdown */}
+              <div
+                className="relative inline-block"
+                onMouseEnter={() => setActiveDropdown('about')}
+                onMouseLeave={() => setActiveDropdown(null)}
+              >
+                <Link
+                  href="/about"
+                  className="inline-flex items-center gap-1 cursor-pointer transition-opacity hover:opacity-60 py-1"
+                >
+                  About
+                  <svg className="h-3 w-3 translate-y-[0.5px]" viewBox="0 0 20 20" fill="none" stroke="currentColor">
+                    <path d="M6 8L10 12L14 8" strokeWidth="2" strokeLinecap="square" strokeLinejoin="miter" />
+                  </svg>
+                </Link>
+
+                {activeDropdown === 'about' && (
+                  <div className="absolute left-0 top-full pt-1 z-50">
+                    <div className="min-w-[200px] bg-white dark:bg-[#16181F] border border-zinc-200 dark:border-zinc-800 rounded-lg shadow-lg py-2 flex flex-col font-['Outfit',sans-serif] text-sm text-[#16140f] dark:text-zinc-200">
+                      <Link href="/about" className="px-4 py-2 hover:bg-[#F4F2EC] dark:hover:bg-zinc-800 transition-colors">
+                        What Happens at UIET E-Cell?
+                      </Link>
+                      <Link href="/apply" className="px-4 py-2 hover:bg-[#F4F2EC] dark:hover:bg-zinc-800 transition-colors">
+                        Apply to Cohort
+                      </Link>
+                      <Link href="/faq" className="px-4 py-2 hover:bg-[#F4F2EC] dark:hover:bg-zinc-800 transition-colors">
+                        FAQ & Interview Guide
+                      </Link>
+                      <Link href="/team" className="px-4 py-2 hover:bg-[#F4F2EC] dark:hover:bg-zinc-800 transition-colors">
+                        People & Mentors
+                      </Link>
+                      <Link href="/blog" className="px-4 py-2 hover:bg-[#F4F2EC] dark:hover:bg-zinc-800 transition-colors">
+                        E-Cell Blog & Essays
+                      </Link>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Events */}
+              <Link
+                href="/events"
+                className="inline-flex items-center gap-1 cursor-pointer transition-opacity hover:opacity-60 py-1"
+              >
+                Events
+              </Link>
+
+              {/* Library */}
+              <Link
+                href="/blog"
+                className="inline-flex items-center gap-1 cursor-pointer transition-opacity hover:opacity-60 py-1"
+              >
+                Library
+              </Link>
+            </div>
+
+            {/* Center: Iconic Orange Square Monogram */}
+            <div className="flex shrink-0 items-center justify-center">
+              <Link
+                href="/"
+                title="UIET E-Cell"
+                className="inline-block h-[40px] w-[40px] transition-transform hover:scale-105"
+              >
+                <div className="w-[40px] h-[40px] bg-[#FF6600] flex items-center justify-center rounded-xs shadow-2xs">
+                  <svg width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13.9012 11.7843H17.6595L22.4961 21.5325C23.203 22.9836 23.7984 24.3976 23.7984 24.3976C23.7984 24.3976 24.4313 23.021 25.175 21.5325L30.0868 11.7843H33.5843L25.2865 27.3746V37.309H22.1244V27.1884L13.9012 11.7843Z" fill="white" />
+                  </svg>
+                </div>
+              </Link>
+            </div>
+
+            {/* Right Column Links */}
+            <div className="flex flex-1 items-center justify-start gap-5 min-[1400px]:gap-8 font-['Source_Serif_4',serif] text-[15px] text-[#16140f] dark:text-zinc-200">
+              {/* Team */}
+              <Link
+                href="/team"
+                className="inline-flex items-center gap-1 cursor-pointer transition-opacity hover:opacity-60 py-1"
+              >
+                Team
+              </Link>
+
+              {/* FAQ */}
+              <Link
+                href="/faq"
+                className="inline-flex items-center gap-1 cursor-pointer transition-opacity hover:opacity-60 py-1"
+              >
+                FAQ
+              </Link>
+
+              {/* Join Us */}
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-1 cursor-pointer transition-opacity hover:opacity-60 py-1"
+              >
+                Join Us
+              </Link>
+            </div>
+          </div>
+
+          {/* Far Right Action Buttons */}
+          <div className="absolute right-5 flex items-center gap-4">
+            <ThemeToggle />
+            <Link
+              href="/admin"
+              className="font-['Outfit',sans-serif] text-sm tracking-[0.3px] text-[#16140f] dark:text-zinc-300 transition-opacity hover:opacity-60"
+            >
+              Log in
+            </Link>
+            <Link
+              href="/apply"
+              className="flex h-10 items-center justify-center rounded-full bg-black dark:bg-white px-5 pb-[2px] font-['Source_Serif_4',serif] text-sm font-normal italic tracking-[0.015rem] text-white dark:text-black transition-opacity hover:opacity-80 shadow-2xs"
+            >
+              Apply
+            </Link>
           </div>
         </nav>
       </header>
 
-      <MobileMenu
-        isOpen={isMobileOpen}
-        onClose={() => setIsMobileOpen(false)}
-        links={NAV_LINKS}
-        currentPath={pathname}
-      />
+      {/* Mobile Drawer */}
+      <MobileMenu isOpen={isMobileOpen} onClose={() => setIsMobileOpen(false)} />
     </>
   );
 }

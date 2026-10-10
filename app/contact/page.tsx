@@ -14,25 +14,28 @@ export default function ContactPage() {
   return (
     <>
       <Navbar />
-      <main>
-        {/* Page Hero */}
-        <section className="relative overflow-hidden bg-white border-b border-[#C0CCFF] py-16 sm:py-24">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,#0047FF18,transparent_70%)] pointer-events-none" />
-          <div className="relative max-w-[1272px] mx-auto px-4 sm:px-6 text-center">
-            <h1 className="font-sans font-extrabold text-[clamp(36px,5.5vw,64px)] leading-[1.12] tracking-tight text-[#0A0E1A] mb-5 [text-wrap:balance]">
-              Love to have you with us —{' '}
-              <span className="marker-yellow">join UIET E-Cell.</span>
-            </h1>
-            <p className="text-[clamp(16px,1.8vw,19px)] font-medium leading-[1.6] text-[#3A4A7A] max-w-[720px] mx-auto">
-              Fill out your details below. Join 6 active departments and help build the premier student
-              entrepreneurial ecosystem at MDU Rohtak.
-            </p>
+      <main className="bg-white dark:bg-[#0B0C0E] min-h-screen text-zinc-900 dark:text-zinc-100">
+        {/* Page Hero - YC Editorial Style */}
+        <section className="relative overflow-hidden bg-[#FAFAF8] dark:bg-[#0E1015] border-b border-zinc-200 dark:border-zinc-800 py-16 sm:py-22">
+          <div className="relative max-w-[1280px] mx-auto px-4 sm:px-6">
+            <div className="max-w-3xl">
+              <div className="text-[11px] font-mono uppercase tracking-widest text-[#FF6600] font-bold mb-2">
+                COHORT ADMISSIONS &amp; RECRUITMENT
+              </div>
+              <h1 className="font-serif font-normal text-3xl sm:text-5xl text-zinc-950 dark:text-white mb-4 [text-wrap:balance]">
+                Apply to join{' '}
+                <span className="italic text-[#FF6600]">UIET E-Cell.</span>
+              </h1>
+              <p className="text-zinc-600 dark:text-zinc-400 text-sm sm:text-base leading-relaxed">
+                We accept ambitious student founders, engineers, researchers, and operators across all departments at Maharshi Dayanand University. Applications are reviewed on a rolling basis.
+              </p>
+            </div>
           </div>
         </section>
 
         {/* Application Form Section */}
-        <section className="py-[clamp(56px,7vw,80px)] bg-white">
-          <div className="max-w-[1272px] mx-auto px-6">
+        <section className="py-16 sm:py-22">
+          <div className="max-w-[1280px] mx-auto px-4 sm:px-6">
             <ApplicationForm settings={settings} />
           </div>
         </section>

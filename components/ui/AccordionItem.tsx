@@ -12,31 +12,28 @@ export default function AccordionItem({ question, answer, defaultOpen = false }:
   const [isOpen, setIsOpen] = useState(defaultOpen);
 
   return (
-    <div className="bg-[#F4F6FF] border-2 border-[#0047FF] rounded-2xl overflow-hidden mb-4 shadow-[4px_4px_0px_#0A0E1A] transition-all">
+    <div className="border-b border-zinc-200 dark:border-zinc-800 transition-colors">
       <button
         type="button"
-        className="w-full py-5 px-6 flex items-center justify-between text-left gap-4 bg-transparent border-none cursor-pointer"
+        className="w-full py-4 sm:py-5 flex items-center justify-between text-left gap-4 bg-transparent border-none cursor-pointer group"
         onClick={() => setIsOpen(!isOpen)}
         aria-expanded={isOpen}
       >
-        <span className="font-sans text-base sm:text-lg font-extrabold tracking-tight text-[#0A0E1A] leading-snug">
+        <span className="font-serif text-base sm:text-lg font-normal tracking-tight text-zinc-900 dark:text-white leading-snug group-hover:text-[#FF6600] transition-colors">
           {question}
         </span>
         <span
-          className={`flex items-center justify-center w-8 h-8 rounded-full shrink-0 font-black text-sm transition-all shadow-[1.5px_1.5px_0px_#0A0E1A] ${isOpen
-              ? 'bg-[#CBFF2E] text-[#0A0E1A] border-2 border-[#0A0E1A]'
-              : 'bg-white text-[#0047FF] border-2 border-[#0047FF]'
-            }`}
+          className="flex items-center justify-center w-6 h-6 rounded shrink-0 text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-white text-base font-mono transition-colors"
           aria-hidden="true"
         >
           {isOpen ? '−' : '+'}
         </span>
       </button>
       <div
-        className="overflow-hidden transition-[max-height] duration-300"
+        className="overflow-hidden transition-[max-height] duration-250 ease-out"
         style={{ maxHeight: isOpen ? '400px' : '0' }}
       >
-        <div className="px-6 pb-5 pt-1 text-xs sm:text-sm font-medium leading-[1.65] text-[#3A4A7A] border-t-2 border-[#C0CCFF]">
+        <div className="pb-5 pt-0 text-xs sm:text-sm font-normal leading-relaxed text-zinc-600 dark:text-zinc-400">
           {answer}
         </div>
       </div>

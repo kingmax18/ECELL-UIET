@@ -1,50 +1,95 @@
+'use client';
+
 import React from 'react';
+import { Mail } from 'lucide-react';
+import { RiLinkedinFill } from 'react-icons/ri';
 import { avatarUrl } from '@/lib/utils';
 import type { TeamMember } from '@/lib/types';
 
-export default function TeamCard({ member }: { member: TeamMember; bgColor?: string }) {
+export default function TeamCard({
+  member,
+}: {
+  member: TeamMember;
+  bgColor?: string;
+}) {
+  const photo = member.photo || avatarUrl(member.name);
+  const badgeText = member.year
+    ? `${member.department ? `${member.department} · ` : ''}${member.year}`
+    : member.department;
+
   return (
-    <div className="reveal group bg-[#F4F6FF] border border-[#0047FF]/40 rounded-panel overflow-hidden transition-all duration-200 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:border-[#CBFF2E]">
-      <div className="relative w-full h-[300px] overflow-hidden bg-white">
-        <img
-          src={member.photo || avatarUrl(member.name)}
-          alt={member.name}
-          loading="lazy"
-          className="w-full h-full object-cover object-[center_20%] transition-transform duration-400 group-hover:scale-[1.05]"
-        />
-      </div>
+    <div className="reveal w-full">
+      <div className="yc-card p-5 flex flex-col justify-between h-full group hover:border-zinc-400 dark:hover:border-zinc-600">
+        <div>
+          {/* Avatar / Portrait */}
+          <div className="relative w-full aspect-[4/4.5] rounded-md overflow-hidden bg-zinc-100 dark:bg-zinc-800 mb-4 border border-zinc-200 dark:border-zinc-800">
+            <img
+              src={photo}
+              alt={member.name}
+              className="w-full h-full object-cover object-[center_20%] transition-transform duration-300 group-hover:scale-102"
+              onError={(e) => {
+                e.currentTarget.onerror = null;
+                e.currentTarget.src = avatarUrl(member.name);
+              }}
+            />
+            {member.department && (
+              <span className="absolute top-2.5 right-2.5 bg-white/95 dark:bg-zinc-900/95 text-zinc-800 dark:text-zinc-200 text-[10px] font-mono font-medium py-0.5 px-2 rounded border border-zinc-200 dark:border-zinc-700">
+                {member.department}
+              </span>
+            )}
+          </div>
 
-      <div className="p-5 flex flex-col items-start gap-1">
-        <h3 className="font-sans font-bold text-lg tracking-[-0.015em] text-[#0A0E1A]">{member.name}</h3>
-        <p className="text-sm font-bold text-[#0047FF]">{member.role}</p>
-        {member.year && <p className="text-xs font-semibold text-[#475569]">{member.year}</p>}
+          {/* Name & Role */}
+          <h3 className="font-sans font-bold text-base text-zinc-950 dark:text-white mb-1 group-hover:text-[#FF6600] transition-colors">
+            {member.name}
+          </h3>
 
-        <div className="flex gap-2 mt-2">
-          {member.linkedin && member.linkedin !== '#' && (
-            <a
-              href={member.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center w-8 h-8 rounded-full border border-[#0A0E1A] text-[#0A0E1A] transition-all duration-200 hover:bg-[#0047FF] hover:border-[#0047FF] hover:text-white"
-              aria-label={`${member.name} LinkedIn`}
-            >
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.25a1.64 1.64 0 1 0 0 3.28 1.64 1.64 0 0 0 0-3.28z" />
-              </svg>
-            </a>
+          <div className="text-xs font-mono font-medium text-[#FF6600] mb-1.5">
+            {member.role}
+          </div>
+
+          {badgeText && (
+            <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed mb-3">
+              {badgeText}
+            </p>
           )}
-          {member.email && (
-            <a
-              href={`mailto:${member.email}`}
-              className="flex items-center justify-center w-8 h-8 rounded-full border border-[#0A0E1A] text-[#0A0E1A] transition-all duration-200 hover:bg-[#0047FF] hover:border-[#0047FF] hover:text-white"
-              aria-label={`Email ${member.name}`}
-            >
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                <polyline points="22,6 12,13 2,6" />
-              </svg>
-            </a>
+
+          {member.bio && (
+            <p className="text-xs text-zinc-600 dark:text-zinc-400 line-clamp-2 leading-relaxed mb-4">
+              {member.bio}
+            </p>
           )}
+        </div>
+
+        {/* Social / Connect bar */}
+        <div className="pt-3 border-t border-zinc-100 dark:border-zinc-800/80 flex items-center justify-between text-xs">
+          <div className="flex items-center gap-2">
+            {member.linkedin && member.linkedin !== '#' && (
+              <a
+                href={member.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-7 h-7 rounded flex items-center justify-center text-zinc-500 hover:text-white hover:bg-[#FF6600] bg-zinc-100 dark:bg-zinc-800 transition-colors"
+                aria-label={`${member.name} LinkedIn`}
+              >
+                <RiLinkedinFill size={14} />
+              </a>
+            )}
+
+            {member.email && (
+              <a
+                href={`mailto:${member.email}`}
+                className="w-7 h-7 rounded flex items-center justify-center text-zinc-500 hover:text-white hover:bg-[#FF6600] bg-zinc-100 dark:bg-zinc-800 transition-colors"
+                aria-label={`Email ${member.name}`}
+              >
+                <Mail size={13} />
+              </a>
+            )}
+          </div>
+
+          <span className="text-[10px] font-mono text-zinc-400 uppercase">
+            OPERATOR
+          </span>
         </div>
       </div>
     </div>

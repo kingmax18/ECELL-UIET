@@ -2,36 +2,6 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 
-const ROTATING_WORDS = ['Thoughtful Innovation.', 'Real Capital.', 'Actionable Execution.'];
-
-function RotatingWord() {
-  const [index, setIndex] = useState(0);
-  const [leaving, setLeaving] = useState(false);
-
-  useEffect(() => {
-    let timer: ReturnType<typeof setTimeout>;
-    const cycle = setInterval(() => {
-      setLeaving(true);
-      timer = setTimeout(() => {
-        setIndex((i) => (i + 1) % ROTATING_WORDS.length);
-        setLeaving(false);
-      }, 450);
-    }, 2800);
-    return () => {
-      clearInterval(cycle);
-      clearTimeout(timer);
-    };
-  }, []);
-
-  return (
-    <span className="inline-block relative whitespace-nowrap">
-      <span className={`inline-block marker-yellow text-[0.9em] ml-1.5 ${leaving ? 'word-out' : 'word-in'}`}>
-        {ROTATING_WORDS[index]}
-      </span>
-    </span>
-  );
-}
-
 function CountUp({ value }: { value: number }) {
   const ref = useRef<HTMLSpanElement>(null);
   const [display, setDisplay] = useState(0);
@@ -43,7 +13,7 @@ function CountUp({ value }: { value: number }) {
     let observer: IntersectionObserver;
 
     const animate = () => {
-      const duration = 1800;
+      const duration = 1600;
       const start = performance.now();
       const tick = (now: number) => {
         const p = Math.min((now - start) / duration, 1);
@@ -87,34 +57,73 @@ interface StatsSectionProps {
 
 export default function StatsSection({ stats }: StatsSectionProps) {
   const statList = [
-    { value: stats?.members?.value || 30, label: 'Active Student Leaders', bg: 'bg-[#0047FF] text-white border-2 border-[#0A0E1A] shadow-[5px_5px_0px_#CBFF2E]', numColor: 'text-white', labelColor: 'text-[#E0E8FF]' },
-    { value: stats?.events?.value || 15, label: 'Flagship Summits & Ideathons', bg: 'bg-[#CBFF2E] text-[#0A0E1A] border-2 border-[#0A0E1A] shadow-[5px_5px_0px_#0047FF]', numColor: 'text-[#0A0E1A]', labelColor: 'text-[#0A0E1A]' },
-    { value: stats?.startups?.value || 12, label: 'Student Ventures Incubated', bg: 'bg-white text-[#0A0E1A] border-2 border-[#0047FF] shadow-[5px_5px_0px_#CBFF2E]', numColor: 'text-[#0047FF]', labelColor: 'text-[#0A0E1A]' },
-    { value: stats?.years?.value || 3, label: 'Years Driving MDU Startups', bg: 'bg-[#F4F6FF] text-[#0A0E1A] border-2 border-[#0047FF] shadow-[5px_5px_0px_#0A0E1A]', numColor: 'text-[#0047FF]', labelColor: 'text-[#0A0E1A]' },
+    {
+      value: stats?.startups?.value || 50,
+      suffix: '+',
+      label: 'Startups Incubated & Mentored',
+      description: 'Campus ventures across AI, SaaS, deep-tech, and consumer.',
+    },
+    {
+      value: 25,
+      prefix: '₹',
+      suffix: 'L+',
+      label: 'Direct Seed Grants Deployed',
+      description: '100% non-dilutive university prototype funding.',
+    },
+    {
+      value: 12000,
+      suffix: '+',
+      label: 'Student Innovators Reached',
+      description: 'Participants across workshops, ideathons, and summits.',
+    },
+    {
+      value: 45,
+      suffix: '+',
+      label: 'Mentors & Angel Advisors',
+      description: 'Founders from unicorn companies and alumni investors.',
+    },
   ];
 
   return (
-    <section className="py-20 sm:py-24 bg-white border-b-2 border-[#C0CCFF]">
-      <div className="max-w-[1272px] mx-auto px-4 sm:px-6">
-        {/* Heading */}
-        <h2 className="font-sans font-extrabold text-[clamp(24px,4vw,44px)] leading-[1.25] tracking-tight text-[#0A0E1A] text-center max-w-[960px] mx-auto mb-14 [text-wrap:balance]">
-          Empowering the next generation of builders with
-          <RotatingWord />
-        </h2>
+    <section className="py-16 sm:py-20 bg-white dark:bg-[#0B0C0E] border-b border-zinc-200 dark:border-zinc-800">
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-6">
+        {/* Section Header - Understated, Authoritative */}
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12 pb-6 border-b border-zinc-200 dark:border-zinc-800">
+          <div>
+            <div className="text-[11px] font-mono uppercase tracking-widest text-[#FF6600] font-bold mb-2">
+              TRACK RECORD &amp; IMPACT
+            </div>
+            <h2 className="font-serif font-normal text-2xl sm:text-3xl text-zinc-900 dark:text-white">
+              The numbers behind the incubator.
+            </h2>
+          </div>
+          <p className="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 max-w-md">
+            We measure ourselves solely by the traction, survival rate, and capital raised by our student founders.
+          </p>
+        </div>
 
-        {/* 4 Neo-Brutalist Stat Cards */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+        {/* 4 Clean Columns Separated by Hairline Borders */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-0 lg:divide-x divide-zinc-200 dark:divide-zinc-800">
           {statList.map((stat, idx) => (
             <div
               key={idx}
-              className={`p-6 sm:p-7 text-center rounded-[20px] transition-all duration-200 hover:-translate-y-1 ${stat.bg} flex flex-col items-center justify-center`}
+              className={`flex flex-col justify-between ${
+                idx === 0 ? 'lg:pr-8' : idx === 3 ? 'lg:pl-8' : 'lg:px-8'
+              }`}
             >
-              <div className={`font-sans font-black text-[clamp(44px,6vw,72px)] leading-none mb-2 ${stat.numColor}`}>
-                +<CountUp value={stat.value} />
+              <div>
+                <div className="font-sans font-bold text-4xl sm:text-5xl text-zinc-950 dark:text-white tracking-tight mb-2">
+                  {stat.prefix}
+                  <CountUp value={stat.value} />
+                  {stat.suffix}
+                </div>
+                <div className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mb-1.5">
+                  {stat.label}
+                </div>
               </div>
-              <div className={`text-xs sm:text-sm font-extrabold uppercase tracking-wider ${stat.labelColor}`}>
-                {stat.label}
-              </div>
+              <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
+                {stat.description}
+              </p>
             </div>
           ))}
         </div>

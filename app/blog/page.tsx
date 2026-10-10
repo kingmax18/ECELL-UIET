@@ -55,58 +55,62 @@ export default function BlogPage() {
   return (
     <>
       <Navbar />
-      <main className="bg-white min-h-screen">
-        {/* Page Hero */}
-        <section className="relative overflow-hidden bg-white border-b border-[#C0CCFF] py-16 sm:py-24">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,#0047FF18,transparent_70%)] pointer-events-none" />
-          <div className="relative max-w-[1272px] mx-auto px-4 sm:px-6 text-center">
-            <h1 className="font-sans font-extrabold text-[clamp(34px,5vw,60px)] leading-[1.12] tracking-tight text-[#0A0E1A] mb-5 [text-wrap:balance]">
-              Insights, strategies &amp; founder playbooks from{' '}
-              <span className="marker-yellow">our campus.</span>
-            </h1>
-            <p className="text-[clamp(15px,1.7vw,18px)] font-medium leading-[1.6] text-[#3A4A7A] max-w-[700px] mx-auto mb-8">
-              Real-world execution guides, event retrospectives, and incubation strategies authored by student founders, mentors, and the UIET E-Cell team.
-            </p>
+      <main className="bg-white dark:bg-[#0B0C0E] min-h-screen text-zinc-900 dark:text-zinc-100">
+        {/* Page Hero - YC Library Style */}
+        <section className="relative overflow-hidden bg-[#FAFAF8] dark:bg-[#0E1015] border-b border-zinc-200 dark:border-zinc-800 py-16 sm:py-22">
+          <div className="relative max-w-[1280px] mx-auto px-4 sm:px-6">
+            <div className="max-w-3xl">
+              <div className="text-[11px] font-mono uppercase tracking-widest text-[#FF6600] font-bold mb-2">
+                FOUNDER PLAYBOOKS &amp; LIBRARY
+              </div>
+              <h1 className="font-serif font-normal text-3xl sm:text-5xl text-zinc-950 dark:text-white mb-4 [text-wrap:balance]">
+                Strategies, essays, and notes on{' '}
+                <span className="italic text-[#FF6600]">building startups.</span>
+              </h1>
+              <p className="text-zinc-600 dark:text-zinc-400 text-sm sm:text-base leading-relaxed mb-8">
+                Execution frameworks, product validation post-mortems, and venture tactics authored by student founders, mentors, and the UIET E-Cell leadership team.
+              </p>
 
-            {/* Search Input */}
-            <div className="max-w-[480px] mx-auto relative">
-              <input
-                type="text"
-                placeholder="Search articles by title, topic, or author…"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-[#F4F6FF] border-2 border-[#0047FF]/60 rounded-full py-3.5 pl-11 pr-5 text-sm font-semibold text-[#0A0E1A] placeholder:text-[#475569]/60 focus:outline-hidden focus:border-[#0047FF] shadow-[3px_3px_0px_#0047FF] transition-all"
-              />
-              <svg
-                className="w-4 h-4 text-[#0047FF] absolute left-4 top-1/2 -translate-y-1/2"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <circle cx="11" cy="11" r="8" />
-                <line x1="21" y1="21" x2="16.65" y2="16.65" />
-              </svg>
-              {searchQuery && (
-                <button
-                  type="button"
-                  onClick={() => setSearchQuery('')}
-                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-semibold text-[#475569] hover:text-[#0A0E1A] px-1.5 py-0.5 rounded-full"
+              {/* Search Input - Clean YC style */}
+              <div className="max-w-md relative">
+                <input
+                  type="text"
+                  placeholder="Search articles by title, topic, or author…"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full bg-white dark:bg-[#14161C] border border-zinc-200 dark:border-zinc-700 rounded-md py-2.5 pl-9 pr-4 text-xs sm:text-sm text-zinc-900 dark:text-white placeholder:text-zinc-400 focus:outline-none focus:border-[#FF6600] transition-colors"
+                />
+                <svg
+                  className="w-4 h-4 text-zinc-400 absolute left-3 top-1/2 -translate-y-1/2"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 >
-                  Clear
-                </button>
-              )}
+                  <circle cx="11" cy="11" r="8" />
+                  <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                </svg>
+                {searchQuery && (
+                  <button
+                    type="button"
+                    onClick={() => setSearchQuery('')}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-mono text-zinc-400 hover:text-zinc-900"
+                  >
+                    Clear
+                  </button>
+                )}
+              </div>
             </div>
           </div>
         </section>
 
         {/* Categories & Listing Section */}
-        <section className="py-[clamp(48px,6vw,72px)] bg-white">
-          <div className="max-w-[1272px] mx-auto px-4 sm:px-6">
+        <section className="py-14 sm:py-20">
+          <div className="max-w-[1280px] mx-auto px-4 sm:px-6">
             {/* Category Filter Pills */}
-            <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-8 sm:mb-10 no-scrollbar">
+            <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-10 no-scrollbar">
               {categories.map((category) => {
                 const isActive = selectedCategory.toLowerCase() === category.toLowerCase();
                 return (
@@ -114,10 +118,10 @@ export default function BlogPage() {
                     key={category}
                     type="button"
                     onClick={() => setSelectedCategory(category)}
-                    className={`py-2 px-4 rounded-pill text-[13px] sm:text-sm font-semibold whitespace-nowrap transition-all duration-200 cursor-pointer ${
+                    className={`py-1.5 px-3.5 rounded-full text-xs font-medium whitespace-nowrap transition-colors cursor-pointer ${
                       isActive
-                        ? 'bg-[#CBFF2E] text-[#0A0E1A] shadow-[2px_2px_0px_#0047FF]'
-                        : 'bg-[#F4F6FF] border border-[#C0CCFF] text-[#0A0E1A] hover:border-[#0047FF] hover:bg-[#EEF2FF]'
+                        ? 'bg-zinc-950 text-white dark:bg-white dark:text-zinc-950 font-semibold'
+                        : 'bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-700'
                     }`}
                   >
                     {category}
@@ -128,77 +132,37 @@ export default function BlogPage() {
 
             {/* If no articles match */}
             {filteredBlogs.length === 0 ? (
-              <div className="bg-[#F4F6FF] border-2 border-[#0047FF]/40 rounded-panel p-12 text-center max-w-lg mx-auto">
-                <div className="w-12 h-12 rounded-full bg-[#EEF2FF] text-[#0047FF] flex items-center justify-center mx-auto mb-3 text-lg font-bold">
-                  🔍
-                </div>
-                <h3 className="font-sans font-bold text-lg text-[#0A0E1A] mb-1">No articles found</h3>
-                <p className="text-sm text-[#3A4A7A] mb-5">
-                  We couldn&apos;t find any posts matching &ldquo;{searchQuery}&rdquo;. Try another term or reset filters.
+              <div className="bg-[#FAFAF8] dark:bg-[#14161C] border border-zinc-200 dark:border-zinc-800 rounded-lg p-12 text-center max-w-md mx-auto">
+                <h3 className="font-serif font-normal text-xl text-zinc-900 dark:text-white mb-2">No articles found</h3>
+                <p className="text-xs text-zinc-500 mb-4">
+                  No essays found matching &ldquo;{searchQuery}&rdquo;.
                 </p>
                 <button
                   type="button"
                   onClick={() => {
-                    setSearchQuery('');
                     setSelectedCategory('All');
+                    setSearchQuery('');
                   }}
-                  className="text-xs font-bold text-[#0A0E1A] bg-[#CBFF2E] py-2 px-4 rounded-pill hover:bg-white transition-colors"
+                  className="yc-btn-secondary text-xs"
                 >
                   Reset Filters
                 </button>
               </div>
             ) : (
               <>
-                {/* Featured Headline Post (when no search query is active) */}
+                {/* Featured Post (only when not actively searching) */}
                 {!searchQuery && selectedCategory === 'All' && featuredPost && (
                   <BlogFeatured post={featuredPost} />
                 )}
 
-                {/* Grid of articles */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
+                {/* Rest of Posts */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {(!searchQuery && selectedCategory === 'All' ? restPosts : filteredBlogs).map((post) => (
                     <BlogCard key={post.id} post={post} />
                   ))}
                 </div>
               </>
             )}
-
-            {/* Newsletter Dispatch Card */}
-            <div className="reveal mt-16 sm:mt-20 bg-[#F4F6FF] border-2 border-[#0047FF] text-[#0A0E1A] rounded-panel p-8 sm:p-12 relative overflow-hidden shadow-[4px_4px_0px_#0047FF]">
-              <div className="absolute -right-20 -bottom-20 w-80 h-80 rounded-full bg-[#0047FF]/10 blur-3xl pointer-events-none" />
-              <div className="relative z-1 max-w-[640px]">
-                <span className="text-[#0047FF] font-bold text-xs uppercase tracking-[0.08em] mb-3 block">
-                  Stay Informed · E-Cell Dispatch
-                </span>
-                <h2 className="font-sans font-bold text-[26px] sm:text-[34px] leading-[1.2] tracking-tight mb-3 text-[#0A0E1A]">
-                  Get semester playbooks and workshop invites in your inbox.
-                </h2>
-                <p className="text-[#3A4A7A] text-sm sm:text-base leading-[1.6] mb-6">
-                  Join 1,200+ MDU students, engineering peers, and startup enthusiasts who read our monthly innovation digest. Zero spam, unsubscribe anytime.
-                </p>
-
-                <form
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    alert('Thank you for subscribing to the UIET E-Cell Dispatch!');
-                  }}
-                  className="flex flex-col sm:flex-row gap-3 max-w-md"
-                >
-                  <input
-                    type="email"
-                    required
-                    placeholder="Enter your student or personal email…"
-                    className="flex-1 bg-white border-2 border-[#0047FF]/50 rounded-pill px-4 py-3 text-sm font-medium text-[#0A0E1A] placeholder:text-[#475569]/60 focus:outline-hidden focus:border-[#0047FF] transition-all"
-                  />
-                  <button
-                    type="submit"
-                    className="bg-[#CBFF2E] text-[#0A0E1A] hover:bg-[#0047FF] hover:text-white transition-colors font-bold text-sm py-3 px-6 rounded-pill shrink-0 cursor-pointer shadow-[2px_2px_0px_#0047FF]"
-                  >
-                    Subscribe
-                  </button>
-                </form>
-              </div>
-            </div>
           </div>
         </section>
 

@@ -16,8 +16,8 @@ export const NAV_LINKS: NavLink[] = [
   { href: '/about', label: 'About' },
   { href: '/events', label: 'Events' },
   { href: '/team', label: 'Team' },
-  { href: '/blog', label: 'Blog' },
-  { href: '/contact', label: 'Join Us' },
+  { href: '/faq', label: 'FAQ' },
+  { href: '/apply', label: 'Apply' },
 ];
 
 export const PILLARS: Pillar[] = [

@@ -18,23 +18,27 @@ export default function AboutPage() {
   return (
     <>
       <Navbar />
-      <main>
-        {/* Page Hero */}
-        <section className="relative overflow-hidden bg-white border-b-2 border-[#C0CCFF] py-16 sm:py-24">
-          <div className="relative max-w-[1272px] mx-auto px-4 sm:px-6 text-center">
-            <h1 className="font-sans font-extrabold text-[clamp(36px,5.5vw,64px)] leading-[1.12] tracking-tight text-[#0A0E1A] mb-5 [text-wrap:balance]">
-              Inspiring a generation of{' '}
-              <span className="marker-yellow">changemakers.</span>
-            </h1>
-            <p className="text-[clamp(16px,1.8vw,19px)] font-medium leading-[1.6] text-[#3A4A7A] max-w-[720px] mx-auto">
-              Learn. Collaborate. Showcase. The official Entrepreneurship Cell of UIET, Maharshi Dayanand
-              University, Rohtak — building a high-impact founder culture on campus.
-            </p>
+      <main className="bg-white dark:bg-[#0B0C0E] min-h-screen text-zinc-900 dark:text-zinc-100">
+        {/* Page Hero - YC Editorial Style */}
+        <section className="relative overflow-hidden bg-[#FAFAF8] dark:bg-[#0E1015] border-b border-zinc-200 dark:border-zinc-800 py-16 sm:py-22">
+          <div className="relative max-w-[1280px] mx-auto px-4 sm:px-6">
+            <div className="max-w-3xl">
+              <div className="text-[11px] font-mono uppercase tracking-widest text-[#FF6600] font-bold mb-2">
+                ABOUT THE INCUBATOR
+              </div>
+              <h1 className="font-serif font-normal text-3xl sm:text-5xl text-zinc-950 dark:text-white mb-4 [text-wrap:balance]">
+                Inspiring a generation of{' '}
+                <span className="italic text-[#FF6600]">campus changemakers.</span>
+              </h1>
+              <p className="text-zinc-600 dark:text-zinc-400 text-sm sm:text-base leading-relaxed">
+                Learn. Collaborate. Showcase. The official Entrepreneurship Cell of UIET, Maharshi Dayanand University, Rohtak — building a high-trust, high-velocity founder culture on university grounds.
+              </p>
+            </div>
           </div>
         </section>
 
-        <VisionMission />
         <OurStory />
+        <VisionMission />
         <CoreValues />
         <GalleryGrid gallery={gallery} />
         <CTABanner />

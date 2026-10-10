@@ -2,52 +2,50 @@
 
 import React from 'react';
 import Link from 'next/link';
+import { CTA_STRIP_IMAGES } from '@/data/ycHomepageData';
 
 export default function CTABanner() {
   return (
-    <section className="py-20 sm:py-28 bg-white">
-      <div className="max-w-[1272px] mx-auto px-4 sm:px-6">
-        <div className="bg-[#0047FF] border-2 border-[#C8D8FF] rounded-3xl p-8 sm:p-14 md:p-16 shadow-[8px_8px_0px_#CBFF2E] text-center relative overflow-hidden">
-          {/* Subtle Grid overlay */}
-          <div
-            className="absolute inset-0 pointer-events-none opacity-[0.08]"
-            style={{
-              backgroundImage:
-                'radial-gradient(#C8D8FF 1.5px, transparent 1.5px), radial-gradient(#C8D8FF 1.5px, #0047FF 1.5px)',
-              backgroundSize: '24px 24px',
-              backgroundPosition: '0 0, 12px 12px',
-            }}
-          />
+    <section className="relative w-full overflow-hidden px-4 sm:px-6 pt-16 md:pt-24 pb-8 bg-[#FDFCF7] dark:bg-[#0B0C0E] border-t border-zinc-200/60 dark:border-zinc-800/60 transition-colors">
+      <div className="mx-auto flex w-full max-w-[1400px] flex-col items-center justify-center text-center">
+        {/* Headline & Subhead */}
+        <div className="flex w-full flex-col items-center gap-3">
+          <h2 className="m-0 font-['Source_Serif_4',serif] text-4xl sm:text-5xl md:text-[3.75rem] font-normal italic leading-[1.1] text-[#16140f] dark:text-zinc-100">
+            It’s never too early to apply.
+          </h2>
+          <p className="m-0 max-w-xl text-center font-['Outfit',sans-serif] font-light text-base sm:text-lg leading-[1.4] text-[#16140f]/80 dark:text-zinc-300">
+            We back student builders with no revenue, working prototype, or fully baked business plan.
+          </p>
+        </div>
 
-          <div className="relative z-10 max-w-2xl mx-auto flex flex-col items-center">
-            <span className="inline-block bg-[#CBFF2E] text-[#0A0E1A] font-black text-xs px-3.5 py-1 rounded-full border-2 border-[#0A0E1A] uppercase tracking-wider shadow-[2px_2px_0px_#0A0E1A] mb-6">
-              Batch 2026-27 Applications Active
-            </span>
+        {/* Big Black Oval Pill Button */}
+        <div className="mt-8 flex w-full justify-center">
+          <Link
+            href="/apply"
+            className="inline-flex h-16 sm:h-20 items-center justify-center rounded-full bg-black dark:bg-white px-10 pb-1 font-['Source_Serif_4',serif] text-2xl sm:text-[1.75rem] font-normal italic tracking-[0.015rem] text-white dark:text-black no-underline transition-[opacity,transform] duration-300 ease-out hover:opacity-80 active:scale-95 shadow-lg"
+          >
+            Apply
+          </Link>
+        </div>
 
-            <h2 className="font-sans font-extrabold text-[clamp(32px,5.5vw,60px)] leading-[1.08] tracking-tight text-white mb-5 [text-wrap:balance]">
-              Your ideas deserve a real launchpad.
-            </h2>
-
-            <p className="text-[clamp(15px,1.8vw,18px)] font-medium leading-[1.6] text-white/90 max-w-xl mb-9">
-              Stop waiting for the &ldquo;right time&rdquo;. Join 6 functional departments, get paired with passionate builders, and turn your concepts into viable ventures at MDU Rohtak.
-            </p>
-
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
-              <Link
-                href="/contact"
-                className="bg-[#CBFF2E] text-[#0A0E1A] font-extrabold text-xs uppercase tracking-wider py-4 px-8 rounded-full border-2 border-[#0A0E1A] shadow-[4px_4px_0px_#0A0E1A] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[1px_1px_0px_#0A0E1A] transition-all no-underline text-center w-full sm:w-auto"
-              >
-                <span>Apply for Recruitment 2026-27 →</span>
-              </Link>
-
-              <Link
-                href="/blog"
-                className="bg-white text-[#0047FF] font-extrabold text-xs uppercase tracking-wider py-4 px-7 rounded-full border-2 border-[#0A0E1A] shadow-[4px_4px_0px_#CBFF2E] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[1px_1px_0px_#CBFF2E] transition-all no-underline text-center w-full sm:w-auto"
-              >
-                <span>Read Startup Playbooks</span>
-              </Link>
+        {/* Iconic Horizontal Campus Founder Portrait Strip (5 Photos) */}
+        <div className="mt-16 md:mt-20 flex w-full gap-2.5 sm:gap-3 overflow-hidden max-w-[1400px]">
+          {CTA_STRIP_IMAGES.map((imgSrc, i) => (
+            <div
+              key={i}
+              className={`aspect-square min-w-0 flex-1 overflow-hidden rounded-xl bg-zinc-200 dark:bg-zinc-800 shadow-xs ${
+                i >= 3 ? 'hidden sm:block' : ''
+              }`}
+            >
+              <img
+                src={imgSrc}
+                alt="UIET E-Cell student cohort"
+                referrerPolicy="no-referrer"
+                className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                loading="lazy"
+              />
             </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>

@@ -2,134 +2,130 @@
 
 import React from 'react';
 import Link from 'next/link';
-import SectionHeader from '@/components/ui/SectionHeader';
 
 const showcaseEvents = [
   {
     id: 1,
-    title: 'Eureka Pitching Competition 2026',
-    tagline: 'Present Your Idea. Pitch to Win.',
-    tags: ['Pitching', 'Competition', 'Startup'],
+    title: 'UIET Annual Demo Day 2026',
+    tagline: 'Cohort S26 pitches to 20+ angel investors and seed syndicates.',
+    category: 'Flagship Demo Day',
     date: '28 Oct 2026',
-    venue: 'UIET Auditorium',
-    image: '/gallery/page_3.jpg',
-    isUpcoming: true,
+    venue: 'Radhakrishnan Auditorium, MDU',
+    status: 'Applications Open',
+    isOpen: true,
   },
   {
     id: 2,
-    title: 'Design Thinking & Startup Masterclass',
-    tagline: 'Building products users actually love.',
-    tags: ['Workshop', 'Product', 'Design'],
+    title: 'Founder Office Hours: Product Architecture Teardown',
+    tagline: '1-on-1 private advisory clinics with visiting alumni founders.',
+    category: 'Founder Clinic',
     date: '15 Nov 2026',
-    venue: 'Seminar Hall 2',
-    image: '/gallery/page_43.jpg',
-    isUpcoming: true,
+    venue: 'UIET Computer Labs',
+    status: 'Registrations Open',
+    isOpen: true,
   },
   {
     id: 3,
-    title: 'Annual E-Summit & Keynote Conclave',
-    tagline: 'Connect. Innovate. Disrupt.',
-    tags: ['Summit', 'Conference', 'Networking'],
+    title: '24-Hour Campus Hackathon & Prototyping Sprint',
+    tagline: 'Build, deploy, and ship working code in 24 hours with ₹1L in prizes.',
+    category: 'Hackathon',
     date: '12 Dec 2026',
-    venue: 'Radhakrishnan Auditorium, MDU',
-    image: '/gallery/page_12.jpg',
-    isUpcoming: false,
+    venue: 'Seminar Hall & Central Labs',
+    status: 'Upcoming',
+    isOpen: true,
   },
   {
     id: 4,
-    title: '24-Hour Campus Ideathon Sprint',
-    tagline: 'Code, Design & Ship in 24 Hours.',
-    tags: ['Ideathon', 'Hackathon', 'Grants'],
+    title: 'National Entrepreneurship Summit & Investor Conclave',
+    tagline: 'Keynote speakers, VC panels, and state innovation policy leaders.',
+    category: 'Venture Summit',
     date: '05 Jan 2027',
-    venue: 'UIET Computer Center',
-    image: '/gallery/page_25.jpg',
-    isUpcoming: false,
+    venue: 'MDU University Campus',
+    status: 'Upcoming',
+    isOpen: false,
   },
 ];
 
 export default function EventsPreview() {
   return (
-    <section className="py-20 sm:py-28 bg-white border-b-2 border-[#C0CCFF]">
-      <div className="max-w-[1272px] mx-auto px-4 sm:px-6">
-        <SectionHeader
-          title="See our flagship work in"
-          italicTitle="campus action"
-          subtitle="From campus pitch competitions and 24-hour ideathons to interactive masterclasses and industry summits."
-        />
+    <section className="py-20 sm:py-26 bg-[#FAFAF8] dark:bg-[#0D0E12] border-b border-zinc-200 dark:border-zinc-800">
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-6">
+        {/* Header */}
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12 pb-6 border-b border-zinc-200 dark:border-zinc-800">
+          <div>
+            <div className="text-[11px] font-mono uppercase tracking-widest text-[#FF6600] font-bold mb-2">
+              UPCOMING GATHERINGS
+            </div>
+            <h2 className="font-serif font-normal text-3xl sm:text-4xl text-zinc-900 dark:text-white mb-2">
+              Demo Days, hackathons, and office hours.
+            </h2>
+            <p className="text-zinc-600 dark:text-zinc-400 text-sm max-w-xl">
+              We host high-signal gatherings where university builders meet investors and collaborators.
+            </p>
+          </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+          <Link
+            href="/events"
+            className="yc-btn-secondary text-xs self-start sm:self-auto"
+          >
+            View Full Calendar →
+          </Link>
+        </div>
+
+        {/* Schedule List Format - Clean YC Institutional Aesthetic */}
+        <div className="space-y-4">
           {showcaseEvents.map((item) => (
-            <article
+            <div
               key={item.id}
-              className="neo-card flex flex-col overflow-hidden bg-[#F4F6FF] border-2 border-[#0047FF] shadow-[6px_6px_0px_#0A0E1A]"
+              className="bg-white dark:bg-[#14161C] border border-zinc-200 dark:border-zinc-800 rounded-lg p-5 sm:p-6 flex flex-col md:flex-row md:items-center justify-between gap-6 hover:border-zinc-400 dark:hover:border-zinc-600 transition-all shadow-2xs group"
             >
-              <div className="relative w-full h-[260px] sm:h-[300px] overflow-hidden border-b-2 border-[#C0CCFF] bg-white">
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="w-full h-full object-cover object-center transition-transform duration-300 hover:scale-[1.03]"
-                />
-                {item.isUpcoming && (
-                  <span className="absolute top-4 right-4 bg-[#CBFF2E] text-[#0A0E1A] text-xs font-black py-1 px-3.5 rounded-full border-2 border-[#0A0E1A] uppercase tracking-wider shadow-[2px_2px_0px_#0047FF]">
-                    Upcoming
+              <div className="flex flex-col sm:flex-row sm:items-center gap-5">
+                {/* Date Box */}
+                <div className="w-24 h-16 rounded bg-zinc-50 dark:bg-zinc-800/60 border border-zinc-200 dark:border-zinc-700/60 flex flex-col items-center justify-center shrink-0">
+                  <span className="font-mono text-xs uppercase tracking-wider text-zinc-400">
+                    DATE
                   </span>
-                )}
-                <span className="absolute bottom-4 left-4 bg-white text-[#0A0E1A] text-xs font-bold py-1 px-3 rounded-lg border-2 border-[#0A0E1A] shadow-[2px_2px_0px_#0047FF]">
-                  {item.venue}
-                </span>
-              </div>
+                  <span className="font-semibold text-xs text-zinc-900 dark:text-white mt-0.5 text-center px-1">
+                    {item.date}
+                  </span>
+                </div>
 
-              <div className="p-6 sm:p-7 flex flex-col justify-between flex-1">
+                {/* Details */}
                 <div>
-                  <div className="flex items-center gap-2 text-xs font-bold text-[#475569] mb-2">
-                    <span>📅 {item.date}</span>
-                    <span>•</span>
-                    <span className="text-[#0047FF] font-extrabold">Registration Open</span>
+                  <div className="flex items-center gap-2 mb-1.5 flex-wrap">
+                    <span className="text-[11px] font-mono font-medium text-[#FF6600] bg-orange-50 dark:bg-orange-950/40 px-2 py-0.5 rounded border border-orange-200 dark:border-orange-900/60">
+                      {item.category}
+                    </span>
+                    <span className="text-xs text-zinc-400">·</span>
+                    <span className="text-xs text-zinc-500 dark:text-zinc-400">
+                      {item.venue}
+                    </span>
                   </div>
 
-                  <h3 className="font-sans font-extrabold text-xl sm:text-2xl text-[#0A0E1A] mb-2 leading-snug">
+                  <h3 className="font-serif font-normal text-xl text-zinc-900 dark:text-white group-hover:text-[#FF6600] transition-colors">
                     {item.title}
                   </h3>
 
-                  <p className="text-xs sm:text-sm font-medium leading-[1.6] text-[#3A4A7A] mb-4">
+                  <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-1">
                     {item.tagline}
                   </p>
-
-                  <div className="flex gap-2 flex-wrap mb-6">
-                    {item.tags.map((t, idx) => (
-                      <span
-                        key={idx}
-                        className="text-[11px] font-bold text-[#0A0E1A] bg-white border border-[#0047FF] py-0.5 px-2.5 rounded-md"
-                      >
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="pt-4 border-t-2 border-[#C0CCFF] flex items-center justify-between">
-                  <Link
-                    href={`/events#${item.id}`}
-                    className="text-xs font-extrabold text-[#0047FF] uppercase tracking-wider inline-flex items-center gap-1.5 hover:underline"
-                  >
-                    <span>View Event Details</span>
-                    <span>→</span>
-                  </Link>
-                  <span className="text-[11px] font-bold text-[#475569]">UIET Rohtak</span>
                 </div>
               </div>
-            </article>
-          ))}
-        </div>
 
-        <div className="text-center">
-          <Link
-            href="/events"
-            className="neo-btn-primary text-xs uppercase tracking-wider font-extrabold px-8 py-3.5"
-          >
-            <span>Explore All Events &amp; Summits</span>
-            <span>→</span>
-          </Link>
+              {/* Action & Status */}
+              <div className="flex items-center gap-3 shrink-0 self-start md:self-center">
+                <span className="text-xs font-mono font-medium text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40 px-2.5 py-1 rounded border border-emerald-200 dark:border-emerald-800/60">
+                  {item.status}
+                </span>
+                <Link
+                  href="/events"
+                  className="yc-btn-secondary text-xs py-1.5 px-3 rounded"
+                >
+                  Details →
+                </Link>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>

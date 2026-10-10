@@ -7,7 +7,6 @@ import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import CTABanner from '@/components/home/CTABanner';
 import BlogCard from '@/components/blog/BlogCard';
-import Button from '@/components/ui/Button';
 import { blogs as defaultBlogs } from '@/data/blogs';
 import { useData } from '@/context/DataProvider';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
@@ -38,83 +37,81 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
   return (
     <>
       <Navbar />
-      <main className="bg-white min-h-screen text-[#0A0E1A]">
+      <main className="bg-white dark:bg-[#0B0C0E] min-h-screen text-zinc-900 dark:text-zinc-100">
         {/* Article Header & Hero */}
-        <article className="pt-[140px] pb-16">
-          <div className="max-w-[840px] mx-auto px-4 sm:px-6">
+        <article className="pt-12 pb-16">
+          <div className="max-w-[760px] mx-auto px-4 sm:px-6">
             {/* Breadcrumbs */}
-            <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs font-semibold text-[#475569] mb-6">
-              <Link href="/" className="hover:text-[#0047FF] transition-colors no-underline">
+            <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs font-mono text-zinc-400 mb-6">
+              <Link href="/" className="hover:text-zinc-900 dark:hover:text-white transition-colors no-underline">
                 Home
               </Link>
               <span>/</span>
-              <Link href="/blog" className="hover:text-[#0047FF] transition-colors no-underline">
-                Blog
+              <Link href="/blog" className="hover:text-zinc-900 dark:hover:text-white transition-colors no-underline">
+                Library
               </Link>
               <span>/</span>
-              <span className="text-[#0A0E1A] font-bold truncate max-w-[200px]">{post.category}</span>
+              <span className="text-[#FF6600] truncate max-w-[200px]">{post.category}</span>
             </nav>
 
             {/* Category & Read Time */}
             <div className="flex flex-wrap items-center gap-2.5 mb-4">
-              <span className="bg-[#0047FF] text-white text-[12px] font-bold py-1 px-3 rounded-pill shadow-[2px_2px_0px_#0A0E1A]">
+              <span className="text-[11px] font-mono font-medium text-[#FF6600] bg-orange-50 dark:bg-orange-950/40 px-2 py-0.5 rounded border border-orange-200 dark:border-orange-900/60 uppercase">
                 {post.category}
               </span>
-              <span className="text-xs font-semibold text-[#475569]">
+              <span className="text-xs font-mono text-zinc-400">
                 {post.publishedAt} · {post.readTime}
               </span>
             </div>
 
             {/* Article Headline */}
-            <h1 className="font-sans font-extrabold text-[clamp(30px,4.5vw,52px)] leading-[1.12] tracking-tight text-[#0A0E1A] mb-6 [text-wrap:balance]">
+            <h1 className="font-serif font-normal text-[clamp(28px,4.5vw,48px)] leading-[1.15] tracking-tight text-zinc-950 dark:text-white mb-5 [text-wrap:balance]">
               {post.title}
             </h1>
 
             {/* Excerpt Lead */}
-            <p className="text-[clamp(17px,1.9vw,20px)] leading-[1.6] text-[#3A4A7A] font-medium mb-8">
+            <p className="text-[clamp(16px,1.8vw,19px)] leading-relaxed text-zinc-600 dark:text-zinc-350 font-normal mb-8">
               {post.excerpt}
             </p>
 
             {/* Author Byline */}
-            <div className="flex items-center justify-between py-4 border-y border-[#C0CCFF] gap-4 flex-wrap">
+            <div className="flex items-center justify-between py-4 border-y border-zinc-200 dark:border-zinc-800 gap-4 flex-wrap">
               <div className="flex items-center gap-3">
                 {post.author.avatar ? (
                   <img
                     src={post.author.avatar}
                     alt={post.author.name}
-                    className="w-11 h-11 rounded-full object-cover border border-[#0047FF]/40"
+                    className="w-10 h-10 rounded-full object-cover border border-zinc-200 dark:border-zinc-700"
                   />
                 ) : (
-                  <div className="w-11 h-11 rounded-full bg-[#EEF2FF] text-[#0047FF] font-bold flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-200 font-bold flex items-center justify-center text-sm">
                     {post.author.name.charAt(0)}
                   </div>
                 )}
                 <div>
-                  <div className="font-sans font-semibold text-base text-[#0A0E1A]">{post.author.name}</div>
-                  <div className="text-xs text-[#475569]">{post.author.role}</div>
+                  <div className="font-semibold text-sm text-zinc-900 dark:text-white">{post.author.name}</div>
+                  <div className="text-xs text-zinc-500 dark:text-zinc-400">{post.author.role}</div>
                 </div>
               </div>
 
               {/* Share Controls */}
-              <div className="flex items-center gap-2">
-                <button
-                  type="button"
-                  onClick={handleCopyLink}
-                  className="inline-flex items-center gap-1.5 py-1.5 px-3.5 rounded-pill bg-[#F4F6FF] border-2 border-[#0047FF]/50 hover:bg-[#EEF2FF] text-xs font-bold text-[#0A0E1A] transition-colors cursor-pointer"
-                >
-                  <svg className="w-3.5 h-3.5 text-[#0047FF]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
-                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
-                  </svg>
-                  <span>{copied ? 'Link Copied!' : 'Copy Link'}</span>
-                </button>
-              </div>
+              <button
+                type="button"
+                onClick={handleCopyLink}
+                className="inline-flex items-center gap-1.5 py-1.5 px-3 rounded-md border border-zinc-200 dark:border-zinc-700 hover:border-zinc-400 text-xs font-mono text-zinc-700 dark:text-zinc-300 transition-colors cursor-pointer"
+              >
+                <svg className="w-3.5 h-3.5 text-[#FF6600]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                </svg>
+                <span>{copied ? 'Link Copied' : 'Share'}</span>
+              </button>
             </div>
           </div>
 
           {/* Hero Cover Image */}
-          <div className="max-w-[1100px] mx-auto px-4 sm:px-6 my-10 sm:my-12">
-            <div className="relative w-full h-[320px] sm:h-[480px] rounded-panel overflow-hidden bg-white border-2 border-[#0047FF]/40 shadow-[0_12px_40px_rgba(7,10,38,0.7)]">
+          <div className="max-w-[960px] mx-auto px-4 sm:px-6 my-10">
+            <div className="relative w-full h-[300px] sm:h-[440px] rounded-lg overflow-hidden bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-800 shadow-sm">
               <img
                 src={post.coverImage}
                 alt={post.title}
@@ -125,7 +122,7 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
 
           {/* Article Body Content */}
           <div className="max-w-[760px] mx-auto px-4 sm:px-6">
-            <div className="prose prose-lg max-w-none text-[#3A4A7A] font-normal leading-[1.8] space-y-6 text-[16px] sm:text-[18px]">
+            <div className="prose prose-zinc dark:prose-invert max-w-none text-zinc-700 dark:text-zinc-300 font-normal leading-[1.8] space-y-6 text-[16px] sm:text-[17px]">
               {post.content.split('\n\n').map((paragraph, index) => {
                 const trimmed = paragraph.trim();
 
@@ -134,7 +131,7 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
                   return (
                     <h2
                       key={index}
-                      className="font-sans font-bold text-[24px] sm:text-[28px] leading-[1.25] tracking-tight text-[#0A0E1A] pt-6 pb-2 border-b border-[#C0CCFF]"
+                      className="font-serif font-normal text-2xl sm:text-3xl text-zinc-950 dark:text-white pt-6 pb-2 border-b border-zinc-200 dark:border-zinc-800"
                     >
                       {trimmed.replace('## ', '')}
                     </h2>
@@ -146,7 +143,7 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
                   return (
                     <h3
                       key={index}
-                      className="font-sans font-bold text-[20px] sm:text-[22px] tracking-tight text-[#0047FF] pt-3"
+                      className="font-sans font-bold text-lg sm:text-xl text-[#FF6600] pt-3"
                     >
                       {trimmed.replace('### ', '')}
                     </h3>
@@ -162,7 +159,7 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
                   return (
                     <blockquote
                       key={index}
-                      className="bg-[#F4F6FF] border-l-4 border-[#0047FF] py-4 px-6 rounded-r-card text-[17px] italic text-[#0A0E1A] my-6 shadow-[2px_2px_0px_#0047FF]"
+                      className="border-l-2 border-[#FF6600] py-3 pl-5 text-lg font-serif italic text-zinc-900 dark:text-zinc-100 my-6 bg-orange-50/30 dark:bg-orange-950/20 rounded-r"
                     >
                       {quoteLines}
                     </blockquote>
@@ -173,15 +170,15 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
                 if (trimmed.startsWith('- ') || trimmed.startsWith('1. ')) {
                   const items = trimmed.split('\n');
                   return (
-                    <ul key={index} className="space-y-2.5 my-4 pl-5 list-disc text-[#3A4A7A] marker:text-[#0047FF]">
+                    <ul key={index} className="space-y-2 my-4 pl-5 list-disc text-zinc-700 dark:text-zinc-300 marker:text-[#FF6600]">
                       {items.map((it, idx) => (
                         <li key={idx} className="leading-relaxed">
                           <span
                             dangerouslySetInnerHTML={{
                               __html: it
                                 .replace(/^(\d+\.|\-)\s*/, '')
-                                .replace(/\*\*(.*?)\*\*/g, '<strong class="text-[#0A0E1A] font-bold">$1</strong>')
-                                .replace(/\*(.*?)\*/g, '<em class="text-[#0047FF]">$1</em>'),
+                                .replace(/\*\*(.*?)\*\*/g, '<strong class="text-zinc-950 dark:text-white font-semibold">$1</strong>')
+                                .replace(/\*(.*?)\*/g, '<em class="text-[#FF6600]">$1</em>'),
                             }}
                           />
                         </li>
@@ -190,35 +187,20 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
                   );
                 }
 
-                // Checklist
-                if (trimmed.startsWith('- [ ]')) {
-                  const items = trimmed.split('\n');
-                  return (
-                    <div key={index} className="space-y-2 bg-[#F4F6FF] border-2 border-[#0047FF]/40 rounded-card p-5 my-4">
-                      {items.map((it, idx) => (
-                        <div key={idx} className="flex items-center gap-3 text-sm font-semibold text-[#0A0E1A]">
-                          <input type="checkbox" readOnly checked className="rounded-xs accent-[#0047FF]" />
-                          <span>{it.replace('- [ ] ', '')}</span>
-                        </div>
-                      ))}
-                    </div>
-                  );
-                }
-
                 // Horizontal Rule
                 if (trimmed === '---') {
-                  return <hr key={index} className="my-8 border-[#C0CCFF]" />;
+                  return <hr key={index} className="my-8 border-zinc-200 dark:border-zinc-800" />;
                 }
 
                 // Standard Paragraph
                 return (
                   <p
                     key={index}
-                    className="text-[#3A4A7A] leading-[1.8]"
+                    className="leading-relaxed text-zinc-700 dark:text-zinc-300"
                     dangerouslySetInnerHTML={{
                       __html: trimmed
-                        .replace(/\*\*(.*?)\*\*/g, '<strong class="text-[#0A0E1A] font-bold">$1</strong>')
-                        .replace(/\*(.*?)\*/g, '<em class="italic text-[#0047FF]">$1</em>'),
+                        .replace(/\*\*(.*?)\*\*/g, '<strong class="text-zinc-950 dark:text-white font-semibold">$1</strong>')
+                        .replace(/\*(.*?)\*/g, '<em class="italic text-[#FF6600]">$1</em>'),
                     }}
                   />
                 );
@@ -227,14 +209,14 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
 
             {/* Tags Strip */}
             {post.tags && post.tags.length > 0 && (
-              <div className="mt-12 pt-6 border-t border-[#C0CCFF] flex flex-wrap items-center gap-2">
-                <span className="text-xs font-bold text-[#475569] uppercase tracking-wider mr-2">
+              <div className="mt-12 pt-6 border-t border-zinc-200 dark:border-zinc-800 flex flex-wrap items-center gap-2">
+                <span className="text-xs font-mono text-zinc-400 uppercase mr-2">
                   Tagged in:
                 </span>
                 {post.tags.map((t) => (
                   <span
                     key={t}
-                    className="bg-[#F4F6FF] border border-[#C0CCFF] text-[#0A0E1A] hover:border-[#0047FF] hover:bg-[#EEF2FF] text-xs font-semibold py-1 px-3 rounded-pill transition-colors"
+                    className="bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 text-xs font-mono py-1 px-2.5 rounded border border-zinc-200 dark:border-zinc-700"
                   >
                     #{t}
                   </span>
@@ -243,54 +225,56 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
             )}
 
             {/* Author Box Bio Card */}
-            <div className="mt-10 bg-[#F4F6FF] border-2 border-[#0047FF] rounded-panel p-6 sm:p-8 flex flex-col sm:flex-row gap-5 items-start sm:items-center justify-between shadow-[4px_4px_0px_#0047FF]">
+            <div className="mt-10 bg-[#FAFAF8] dark:bg-[#14161C] border border-zinc-200 dark:border-zinc-800 rounded-lg p-6 flex flex-col sm:flex-row gap-5 items-start sm:items-center justify-between">
               <div className="flex items-center gap-4">
                 {post.author.avatar ? (
                   <img
                     src={post.author.avatar}
                     alt={post.author.name}
-                    className="w-14 h-14 rounded-full object-cover border border-[#0047FF]/40"
+                    className="w-12 h-12 rounded-full object-cover border border-zinc-200 dark:border-zinc-700 shrink-0"
                   />
                 ) : (
-                  <div className="w-14 h-14 rounded-full bg-[#EEF2FF] text-[#0047FF] font-bold text-lg flex items-center justify-center">
+                  <div className="w-12 h-12 rounded-full bg-zinc-200 dark:bg-zinc-700 text-zinc-700 dark:text-zinc-200 font-bold flex items-center justify-center shrink-0">
                     {post.author.name.charAt(0)}
                   </div>
                 )}
                 <div>
-                  <div className="font-sans font-bold text-lg text-[#0A0E1A]">{post.author.name}</div>
-                  <div className="text-sm text-[#0047FF] mb-1 font-semibold">{post.author.role}</div>
-                  <div className="text-xs text-[#3A4A7A]">
-                    Writing for the UIET E-Cell community at Maharshi Dayanand University.
+                  <div className="font-semibold text-sm text-zinc-950 dark:text-white">{post.author.name}</div>
+                  <div className="text-xs font-mono text-[#FF6600] mb-0.5">{post.author.role}</div>
+                  <div className="text-xs text-zinc-500">
+                    UIET E-Cell Incubator Network · Maharshi Dayanand University
                   </div>
                 </div>
               </div>
 
-              <Button href="/contact" variant="outline" size="sm" arrow>
-                Connect
-              </Button>
+              <Link
+                href="/contact"
+                className="yc-btn-secondary text-xs shrink-0 py-1.5 px-3"
+              >
+                Connect with Author
+              </Link>
             </div>
           </div>
         </article>
 
         {/* Related Articles Section */}
         {relatedPosts.length > 0 && (
-          <section className="py-16 bg-[#F4F6FF]/60 border-t border-[#C0CCFF]">
-            <div className="max-w-[1272px] mx-auto px-4 sm:px-6">
-              <div className="flex items-center justify-between mb-8">
+          <section className="py-16 bg-[#FAFAF8] dark:bg-[#0E1015] border-t border-zinc-200 dark:border-zinc-800">
+            <div className="max-w-[1280px] mx-auto px-4 sm:px-6">
+              <div className="flex items-center justify-between mb-8 pb-4 border-b border-zinc-200 dark:border-zinc-800">
                 <div>
-                  <span className="text-xs font-bold uppercase tracking-[0.06em] text-[#0047FF] block mb-1">
-                    Continue Reading
-                  </span>
-                  <h2 className="font-sans font-bold text-2xl tracking-tight text-[#0A0E1A]">
-                    More articles from UIET E-Cell
+                  <div className="text-[11px] font-mono uppercase tracking-widest text-[#FF6600] font-bold mb-1">
+                    MORE ESSAYS
+                  </div>
+                  <h2 className="font-serif font-normal text-2xl text-zinc-950 dark:text-white">
+                    Continue reading from the incubator.
                   </h2>
                 </div>
                 <Link
                   href="/blog"
-                  className="hidden sm:inline-flex text-sm font-bold text-[#0047FF] hover:text-[#0A0E1A] items-center gap-1 no-underline"
+                  className="yc-btn-secondary text-xs"
                 >
-                  <span>View all posts</span>
-                  <span>→</span>
+                  View All Essays →
                 </Link>
               </div>
 

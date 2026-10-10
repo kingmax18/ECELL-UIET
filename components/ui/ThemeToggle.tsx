@@ -13,15 +13,13 @@ export function ThemeToggle({ className = '', showLabel = false }: ThemeTogglePr
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(false);
     setMounted(true);
   }, []);
 
   if (!mounted) {
-    // Render skeleton/placeholder to prevent hydration layout shift
     return (
       <div
-        className={`w-10 h-10 rounded-full border-2 border-[#0047FF] bg-[#F4F6FF] opacity-50 ${className}`}
+        className={`w-8 h-8 rounded-md border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-800 opacity-50 ${className}`}
         aria-hidden="true"
       />
     );
@@ -33,22 +31,18 @@ export function ThemeToggle({ className = '', showLabel = false }: ThemeTogglePr
     <button
       type="button"
       onClick={toggleTheme}
-      className={`group relative inline-flex items-center justify-center gap-2 p-2 rounded-full border-2 transition-all cursor-pointer shadow-[2px_2px_0px_#0A0E1A] hover:translate-x-0.5 hover:translate-y-0.5 active:translate-x-1 active:translate-y-1 active:shadow-none ${
-        isDark
-          ? 'bg-[#141B4D] border-[#CBFF2E] text-[#CBFF2E] hover:bg-[#CBFF2E] hover:text-[#0A0E1A]'
-          : 'bg-[#F4F6FF] border-[#0047FF] text-[#0047FF] hover:bg-[#CBFF2E] hover:text-[#0A0E1A] hover:border-[#0A0E1A]'
-      } ${className}`}
+      className={`group inline-flex items-center justify-center gap-2 p-1.5 sm:p-2 rounded-md border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#14161C] text-zinc-600 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-white hover:border-zinc-300 dark:hover:border-zinc-700 transition-colors cursor-pointer ${className}`}
       title={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
       aria-label={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
     >
       {isDark ? (
         /* Sun Icon */
         <svg
-          className="w-4 h-4 transition-transform duration-300 group-hover:rotate-45"
+          className="w-4 h-4 transition-transform duration-300 group-hover:rotate-45 text-[#FF6600]"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
-          strokeWidth="2.5"
+          strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
         >
@@ -65,11 +59,11 @@ export function ThemeToggle({ className = '', showLabel = false }: ThemeTogglePr
       ) : (
         /* Moon Icon */
         <svg
-          className="w-4 h-4 transition-transform duration-300 group-hover:-rotate-12"
+          className="w-4 h-4 transition-transform duration-300 group-hover:-rotate-12 text-zinc-700"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
-          strokeWidth="2.5"
+          strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
         >
@@ -78,7 +72,7 @@ export function ThemeToggle({ className = '', showLabel = false }: ThemeTogglePr
       )}
 
       {showLabel && (
-        <span className="text-xs font-bold tracking-wider uppercase">
+        <span className="text-xs font-medium text-zinc-600 dark:text-zinc-300">
           {isDark ? 'Light' : 'Dark'}
         </span>
       )}

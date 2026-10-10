@@ -1,72 +1,71 @@
+'use client';
+
 import React from 'react';
 import Link from 'next/link';
 import type { BlogPost } from '@/lib/types';
 
 export default function BlogCard({ post }: { post: BlogPost }) {
   return (
-    <article className="reveal group flex flex-col bg-[#F4F6FF] border-2 border-[#0047FF]/40 rounded-panel overflow-hidden transition-all duration-300 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1.5 hover:border-[#CBFF2E] hover:shadow-[0_12px_36px_rgba(7,10,38,0.7)]">
+    <article className="yc-card overflow-hidden flex flex-col justify-between group hover:border-zinc-400 dark:hover:border-zinc-600">
       {/* Cover Image */}
-      <Link href={`/blog/${post.slug}`} className="relative block w-full h-[220px] sm:h-[240px] overflow-hidden bg-white">
+      <Link href={`/blog/${post.slug}`} className="relative block w-full h-[200px] overflow-hidden bg-zinc-100 dark:bg-zinc-800">
         <img
           src={post.coverImage}
           alt={post.title}
-          className="w-full h-full object-cover object-center transition-transform duration-500 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
+          className="w-full h-full object-cover object-center transition-transform duration-300 group-hover:scale-102"
           loading="lazy"
         />
-        <div className="absolute top-3.5 left-3.5">
-          <span className="bg-[#0047FF] text-white border border-[#CBFF2E]/40 text-[12px] font-bold tracking-wider py-1 px-3 rounded-pill shadow-[2px_2px_0px_#0A0E1A]">
+        <div className="absolute top-3 left-3">
+          <span className="text-[11px] font-mono font-medium text-[#FF6600] bg-white/95 dark:bg-zinc-900/95 py-0.5 px-2 rounded border border-zinc-200 dark:border-zinc-700 shadow-2xs">
             {post.category}
           </span>
         </div>
       </Link>
 
       {/* Body */}
-      <div className="flex-1 flex flex-col justify-between p-6 sm:p-7 gap-4">
-        <div className="flex flex-col gap-2.5">
-          <div className="flex items-center gap-2 text-xs font-semibold text-[#475569]">
+      <div className="p-5 flex-1 flex flex-col justify-between gap-4">
+        <div>
+          <div className="flex items-center gap-2 text-xs font-mono text-zinc-400 mb-2">
             <span>{post.publishedAt}</span>
             <span>·</span>
             <span>{post.readTime}</span>
           </div>
 
-          <h3 className="font-sans font-bold text-[20px] sm:text-[22px] leading-[1.3] tracking-tight text-[#0A0E1A] transition-colors duration-200 group-hover:text-[#0047FF]">
+          <h3 className="font-serif font-normal text-xl leading-snug text-zinc-950 dark:text-white transition-colors group-hover:text-[#FF6600] mb-2">
             <Link href={`/blog/${post.slug}`} className="no-underline text-inherit">
               {post.title}
             </Link>
           </h3>
 
-          <p className="text-[14px] sm:text-[15px] font-normal leading-[1.6] text-[#3A4A7A] line-clamp-3">
+          <p className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 line-clamp-3 leading-relaxed">
             {post.excerpt}
           </p>
         </div>
 
-        {/* Footer: Author & Read Link */}
-        <div className="pt-4 border-t border-[#C0CCFF] flex items-center justify-between gap-3">
-          <div className="flex items-center gap-2.5 min-w-0">
+        {/* Footer: Author & Read */}
+        <div className="pt-3 border-t border-zinc-100 dark:border-zinc-800/80 flex items-center justify-between text-xs">
+          <div className="flex items-center gap-2 min-w-0">
             {post.author.avatar ? (
               <img
                 src={post.author.avatar}
                 alt={post.author.name}
-                className="w-7 h-7 rounded-full object-cover shrink-0 border border-[#0047FF]/40"
+                className="w-6 h-6 rounded-full object-cover shrink-0 border border-zinc-200 dark:border-zinc-700"
               />
             ) : (
-              <div className="w-7 h-7 rounded-full bg-[#EEF2FF] text-[#0047FF] font-bold text-xs flex items-center justify-center shrink-0">
+              <div className="w-6 h-6 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 font-bold text-xs flex items-center justify-center shrink-0">
                 {post.author.name.charAt(0)}
               </div>
             )}
-            <div className="leading-tight min-w-0">
-              <div className="text-[13px] font-bold text-[#0A0E1A] truncate">{post.author.name}</div>
-              <div className="text-[11px] text-[#475569] font-medium truncate">{post.author.role}</div>
-            </div>
+            <span className="text-xs font-medium text-zinc-800 dark:text-zinc-200 truncate">
+              {post.author.name}
+            </span>
           </div>
 
           <Link
             href={`/blog/${post.slug}`}
-            className="text-xs font-extrabold text-[#0047FF] group-hover:text-[#0A0E1A] flex items-center gap-1 shrink-0 no-underline"
-            aria-label={`Read ${post.title}`}
+            className="text-xs font-medium text-[#FF6600] hover:underline"
           >
-            <span>Read</span>
-            <span className="transition-transform duration-200 group-hover:translate-x-1">→</span>
+            Read Essay →
           </Link>
         </div>
       </div>
