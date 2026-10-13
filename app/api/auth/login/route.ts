@@ -11,7 +11,7 @@ export async function POST(request: Request) {
     const ADMIN_CREDENTIALS = [
       {
         email: 'ecelluietfs@gmail.com',
-        password: process.env.ADMIN_PASSWORD || 'ecell@admin2026',
+        password: process.env.ADMIN_PASSWORD || 'LSSecelluiet@admin',
         name: 'Lakshay',
         role: 'Super Admin',
       },
