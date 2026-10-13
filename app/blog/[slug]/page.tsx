@@ -99,6 +99,18 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
                 <span>{copied ? 'Link Copied' : 'Share'}</span>
               </button>
             </div>
+
+            {/* Cover Image Banner (if available) */}
+            {post.coverImage && (
+              <div className="mt-8 rounded-xl overflow-hidden border border-zinc-200 dark:border-zinc-800 shadow-sm bg-zinc-100 dark:bg-zinc-900">
+                <img
+                  src={post.coverImage}
+                  alt={post.title}
+                  className="w-full h-auto max-h-[460px] object-cover"
+                  loading="lazy"
+                />
+              </div>
+            )}
           </div>
 
 

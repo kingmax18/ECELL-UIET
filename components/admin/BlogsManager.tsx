@@ -354,6 +354,7 @@ export default function BlogsManager({
                               alt={post.title}
                               fill
                               className="object-cover"
+                              unoptimized={post.coverImage.startsWith('http')}
                             />
                           ) : (
                             <div className="w-full h-full flex items-center justify-center text-xs text-[#475569]/60">
@@ -547,17 +548,19 @@ export default function BlogsManager({
           {/* Cover Image & Presets */}
           <div>
             <div className="flex items-center justify-between mb-1.5">
-              <label className={adminLabel}>Cover Image URL *</label>
-              <span className="text-[11px] text-[#0047FF] font-semibold">Pick from campus gallery below</span>
+              <label className={adminLabel}>Cover Image URL (Optional)</label>
+              <span className="text-[11px] text-[#0047FF] font-semibold">Any web URL or pick campus photo</span>
             </div>
             <input
               type="text"
               value={form.coverImage}
               onChange={(e) => setForm({ ...form, coverImage: e.target.value })}
-              placeholder="/gallery/page_3.jpg"
+              placeholder="e.g. https://images.unsplash.com/... or /gallery/page_3.jpg (leave blank for default)"
               className={adminInput}
-              required
             />
+            <p className="text-[11px] text-[#475569]/70 mt-1">
+              You can paste any web image URL (Unsplash, Pexels, Google Drive direct link, etc.), pick a preset below, or leave it blank for an automatic default.
+            </p>
             {/* Quick preset selector */}
             <div className="flex items-center gap-2 mt-2 overflow-x-auto pb-1 no-scrollbar">
               {PRESET_GALLERY_IMAGES.map((img) => (

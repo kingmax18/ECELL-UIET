@@ -73,9 +73,9 @@ export async function POST(request: Request) {
       tags,
     } = body;
 
-    if (!slug || !title || !excerpt || !content || !coverImage) {
+    if (!slug || !title || !excerpt || !content) {
       return NextResponse.json(
-        { success: false, error: 'Please provide all required article fields' },
+        { success: false, error: 'Please provide all required article fields (slug, title, excerpt, content)' },
         { status: 400 }
       );
     }
@@ -92,7 +92,7 @@ export async function POST(request: Request) {
         category: category || 'General',
         publishedAt: publishedAt || new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }),
         readTime: readTime || '5 min read',
-        coverImage: coverImage.trim(),
+        coverImage: (coverImage && coverImage.trim()) || '/gallery/page_3.jpg',
         featured: Boolean(featured),
         tags: Array.isArray(tags) ? tags.join(', ') : tags || null,
       },
