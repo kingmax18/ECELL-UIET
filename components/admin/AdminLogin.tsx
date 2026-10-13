@@ -56,7 +56,7 @@ export default function AdminLogin() {
               id="admin-email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="admin@ecell.in"
+              placeholder="ecelluietfs@gmail.com"
               className={adminInput}
               required
             />

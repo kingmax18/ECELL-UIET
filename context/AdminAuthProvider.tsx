@@ -99,8 +99,6 @@ export function AdminAuthProvider({ children }: { children: ReactNode }) {
     // 2. Direct fallback authentication
     const allowedAdmins = [
       { email: 'ecelluietfs@gmail.com', password: 'ecell@admin2026', name: 'Lakshay', role: 'Super Admin' },
-      { email: 'ananya@ecell.in', password: 'ecell@admin2026', name: 'Ananya Sharma', role: 'President / Admin' },
-      { email: 'admin@ecell.in', password: 'ecell@admin2026', name: 'Admin', role: 'Admin' },
     ];
 
     const match = allowedAdmins.find(

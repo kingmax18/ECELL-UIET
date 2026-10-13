@@ -7,25 +7,13 @@ export async function POST(request: Request) {
 
     const cleanEmail = email?.trim().toLowerCase();
 
-    // Default E-Cell administrative credentials
+    // Official E-Cell administrative credentials
     const ADMIN_CREDENTIALS = [
       {
         email: 'ecelluietfs@gmail.com',
         password: process.env.ADMIN_PASSWORD || 'ecell@admin2026',
         name: 'Lakshay',
         role: 'Super Admin',
-      },
-      {
-        email: 'ananya@ecell.in',
-        password: process.env.ADMIN_PASSWORD || 'ecell@admin2026',
-        name: 'Ananya Sharma',
-        role: 'President / Admin',
-      },
-      {
-        email: 'admin@ecell.in',
-        password: process.env.ADMIN_PASSWORD || 'ecell@admin2026',
-        name: 'Admin',
-        role: 'Admin',
       },
     ];
 
