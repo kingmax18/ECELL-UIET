@@ -53,13 +53,13 @@ const BLANK_POST: Omit<BlogPost, 'id'> = {
   category: 'Startup Stories',
   publishedAt: new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }),
   readTime: '5 min read',
-  coverImage: '/gallery/page_3.jpg',
+  coverImage: '',
   featured: false,
   tags: ['Startup', 'UIET'],
   author: {
-    name: 'Ananya Sharma',
-    role: 'President, E-Cell',
-    avatar: '/gallery/page_10.jpg',
+    name: 'UIET Team',
+    role: 'E-Cell UIET',
+    avatar: '',
   },
 };
 
@@ -548,33 +548,48 @@ export default function BlogsManager({
           {/* Cover Image & Presets */}
           <div>
             <div className="flex items-center justify-between mb-1.5">
-              <label className={adminLabel}>Cover Image URL (Optional)</label>
-              <span className="text-[11px] text-[#0047FF] font-semibold">Any web URL or pick campus photo</span>
+              <label className={adminLabel}>Cover Image (Optional)</label>
+              {form.coverImage ? (
+                <button
+                  type="button"
+                  onClick={() => setForm({ ...form, coverImage: '' })}
+                  className="text-[11px] text-red-600 hover:text-red-800 font-semibold cursor-pointer underline"
+                >
+                  ✕ Remove Photo (Publish with No Photo)
+                </button>
+              ) : (
+                <span className="text-[11px] text-[#475569] font-medium">No photo selected</span>
+              )}
             </div>
             <input
               type="text"
               value={form.coverImage}
               onChange={(e) => setForm({ ...form, coverImage: e.target.value })}
-              placeholder="e.g. https://images.unsplash.com/... or /gallery/page_3.jpg (leave blank for default)"
+              placeholder="Leave empty for NO PHOTO, or paste image URL..."
               className={adminInput}
             />
             <p className="text-[11px] text-[#475569]/70 mt-1">
-              You can paste any web image URL (Unsplash, Pexels, Google Drive direct link, etc.), pick a preset below, or leave it blank for an automatic default.
+              {form.coverImage
+                ? 'Photo is currently attached. Click "Remove Photo" above if you want this blog to have no photo.'
+                : 'No photo will be shown. The blog will appear as a clean essay without any image.'}
             </p>
             {/* Quick preset selector */}
-            <div className="flex items-center gap-2 mt-2 overflow-x-auto pb-1 no-scrollbar">
-              {PRESET_GALLERY_IMAGES.map((img) => (
-                <button
-                  key={img}
-                  type="button"
-                  onClick={() => setForm({ ...form, coverImage: img })}
-                  className={`relative w-12 h-9 rounded-md overflow-hidden shrink-0 border-2 transition-all cursor-pointer ${
-                    form.coverImage === img ? 'border-[#0047FF] scale-105' : 'border-[#C0CCFF] opacity-70 hover:opacity-100'
-                  }`}
-                >
-                  <Image src={img} alt="preset" fill className="object-cover" />
-                </button>
-              ))}
+            <div className="mt-2.5">
+              <div className="text-[11px] text-[#0047FF] font-medium mb-1">Optional: pick a campus photo preset or leave blank:</div>
+              <div className="flex items-center gap-2 overflow-x-auto pb-1 no-scrollbar">
+                {PRESET_GALLERY_IMAGES.map((img) => (
+                  <button
+                    key={img}
+                    type="button"
+                    onClick={() => setForm({ ...form, coverImage: img })}
+                    className={`relative w-12 h-9 rounded-md overflow-hidden shrink-0 border-2 transition-all cursor-pointer ${
+                      form.coverImage === img ? 'border-[#0047FF] scale-105 ring-2 ring-[#0047FF]/30' : 'border-[#C0CCFF] opacity-60 hover:opacity-100'
+                    }`}
+                  >
+                    <Image src={img} alt="preset" fill className="object-cover" unoptimized />
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
 

@@ -92,7 +92,7 @@ export async function POST(request: Request) {
         category: category || 'General',
         publishedAt: publishedAt || new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }),
         readTime: readTime || '5 min read',
-        coverImage: (coverImage && coverImage.trim()) || '/gallery/page_3.jpg',
+        coverImage: (coverImage && coverImage.trim()) || '',
         featured: Boolean(featured),
         tags: Array.isArray(tags) ? tags.join(', ') : tags || null,
       },

@@ -100,8 +100,8 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
               </button>
             </div>
 
-            {/* Cover Image Banner (if available) */}
-            {post.coverImage && (
+            {/* Cover Image Banner (only if image URL is provided) */}
+            {post.coverImage && post.coverImage.trim() !== '' && (
               <div className="mt-8 rounded-xl overflow-hidden border border-zinc-200 dark:border-zinc-800 shadow-sm bg-zinc-100 dark:bg-zinc-900">
                 <img
                   src={post.coverImage}

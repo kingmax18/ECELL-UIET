@@ -77,7 +77,7 @@ export async function PUT(
         ...(category && { category }),
         ...(publishedAt && { publishedAt }),
         ...(readTime && { readTime }),
-        ...(coverImage && { coverImage }),
+        ...(coverImage !== undefined && { coverImage: coverImage.trim() }),
         ...(featured !== undefined && { featured: Boolean(featured) }),
         ...(tags !== undefined && { tags: Array.isArray(tags) ? tags.join(', ') : tags }),
       },
