@@ -139,7 +139,7 @@ export interface AdminUser {
 }
 
 export interface Application {
-  id: number;
+  id: string | number;
   name: string;
   enrollment?: string;
   email?: string;

@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Button from '@/components/ui/Button';
 import { useToast } from '@/context/ToastProvider';
 import { PageHeader, adminInput, adminLabel, adminCard } from './ui';
+import { adminFetch } from '@/lib/adminApi';
 
 interface AdminSettings {
   web3formsKey?: string;
@@ -28,7 +29,7 @@ export default function SettingsManager({
     bannerEnabled: settings?.announcementBanner?.enabled ?? true,
   });
 
-  const handleSave = (e: React.FormEvent) => {
+  const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
     if (setSettings) {
       setSettings((prev: AdminSettings) => ({
@@ -47,7 +48,28 @@ export default function SettingsManager({
         },
       }));
     }
-    showToast('Settings saved successfully!', 'success');
+
+    try {
+      const res = await adminFetch('/api/settings', {
+        method: 'PUT',
+        body: JSON.stringify({
+          bannerEnabled: form.bannerEnabled,
+          bannerText: form.bannerText,
+          email: form.email,
+          phone: form.phone,
+          address: form.address,
+        }),
+      });
+      const data = await res.json().catch(() => null);
+      if (!res.ok || !data?.success) {
+        showToast(data?.error || 'Settings saved locally; sync pending', 'info');
+      } else {
+        showToast('Settings saved and synced to database!', 'success');
+      }
+    } catch (err) {
+      console.warn('[SettingsManager] Save warning:', err);
+      showToast('Settings saved locally', 'info');
+    }
   };
 
   return (

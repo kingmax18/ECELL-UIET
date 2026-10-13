@@ -3,6 +3,9 @@ import { prisma } from '@/lib/prisma';
 import { requireAdmin } from '@/lib/auth';
 import { gallery as defaultGallery } from '@/data/gallery';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 // GET /api/gallery - Fetch all gallery items
 export async function GET() {
   try {

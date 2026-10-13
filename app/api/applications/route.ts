@@ -2,6 +2,9 @@ import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { requireAdmin } from '@/lib/auth';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 // In-memory rate limiter for application submissions: Max 5 per 10 minutes per IP
 const rateLimitMap = new Map<string, number[]>();
 

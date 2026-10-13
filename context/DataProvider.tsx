@@ -175,13 +175,13 @@ export function DataProvider({ children }: { children: ReactNode }) {
       setIsLoading(true);
 
       const [eventsRes, blogsRes, teamRes, sponsorsRes, galleryRes, settingsRes, appsRes] = await Promise.allSettled([
-        fetch('/api/events').then((r) => r.json()),
-        fetch('/api/blogs').then((r) => r.json()),
-        fetch('/api/team').then((r) => r.json()),
-        fetch('/api/sponsors').then((r) => r.json()),
-        fetch('/api/gallery').then((r) => r.json()),
-        fetch('/api/settings').then((r) => r.json()),
-        fetch('/api/applications').then((r) => r.json()),
+        fetch('/api/events', { cache: 'no-store' }).then((r) => r.json()),
+        fetch('/api/blogs', { cache: 'no-store' }).then((r) => r.json()),
+        fetch('/api/team', { cache: 'no-store' }).then((r) => r.json()),
+        fetch('/api/sponsors', { cache: 'no-store' }).then((r) => r.json()),
+        fetch('/api/gallery', { cache: 'no-store' }).then((r) => r.json()),
+        fetch('/api/settings', { cache: 'no-store' }).then((r) => r.json()),
+        fetch('/api/applications', { cache: 'no-store' }).then((r) => r.json()),
       ]);
 
       if (eventsRes.status === 'fulfilled' && eventsRes.value?.success && eventsRes.value.data?.length > 0) {

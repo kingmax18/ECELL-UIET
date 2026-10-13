@@ -3,6 +3,9 @@ import { prisma } from '@/lib/prisma';
 import { requireAdmin } from '@/lib/auth';
 import { blogs as defaultBlogs } from '@/data/blogs';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 // GET /api/blogs/[slug] - Fetch single article
 export async function GET(
   request: Request,

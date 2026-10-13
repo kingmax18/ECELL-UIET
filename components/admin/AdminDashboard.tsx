@@ -11,7 +11,7 @@ import {
 import { StatusBadge, EmptyState, adminTd, adminTh } from './ui';
 
 interface AppRow {
-  id: number;
+  id: number | string;
   name: string;
   email?: string;
   deptInterest?: string;

@@ -42,7 +42,7 @@ export default function PartnersManager({
     setModalOpen(true);
   };
 
-  const persist = async (row: Sponsor, isUpdate: boolean) => {
+  const persist = async (row: Sponsor, isUpdate: boolean, tempId?: number) => {
     try {
       const res = isUpdate
         ? await adminFetch(`/api/sponsors/${row.id}`, {
@@ -56,6 +56,9 @@ export default function PartnersManager({
       const data = await res.json().catch(() => null);
       if (!res.ok || !data?.success) {
         console.warn('[Admin] Sponsors API persist warning:', data?.error);
+        showToast(data?.error || 'Database sync warning: saved locally', 'info');
+      } else if (!isUpdate && data?.data?.id && tempId && setSponsors) {
+        setSponsors(sponsors.map((s) => (s.id === tempId ? { ...s, id: data.data.id } : s)));
       }
     } catch (e) {
       console.warn('[Admin] Sponsors API persist warning:', e);
@@ -79,9 +82,10 @@ export default function PartnersManager({
       persist({ ...editing, ...withInitials }, true);
       showToast('Partner updated and synced to database!', 'success');
     } else {
-      const created: Sponsor = { ...withInitials, id: Date.now() };
+      const tempId = Date.now();
+      const created: Sponsor = { ...withInitials, id: tempId };
       if (setSponsors) setSponsors([...sponsors, created]);
-      persist(created, false);
+      persist(created, false, tempId);
       showToast('Partner added and synced to database!', 'success');
     }
     setModalOpen(false);

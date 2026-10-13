@@ -56,7 +56,7 @@ export default function TeamManager({
     setModalOpen(true);
   };
 
-  const persist = async (row: AdminMember, isUpdate: boolean) => {
+  const persist = async (row: AdminMember, isUpdate: boolean, tempId?: number) => {
     try {
       const res = isUpdate
         ? await adminFetch(`/api/team/${row.id}`, {
@@ -70,6 +70,9 @@ export default function TeamManager({
       const data = await res.json().catch(() => null);
       if (!res.ok || !data?.success) {
         console.warn('[Admin] Team API persist warning:', data?.error);
+        showToast(data?.error || 'Database sync warning: saved locally', 'info');
+      } else if (!isUpdate && data?.data?.id && tempId && setTeam) {
+        setTeam(team.map((m) => (m.id === tempId ? { ...m, id: data.data.id } : m)));
       }
     } catch (e) {
       console.warn('[Admin] Team API persist warning:', e);
@@ -88,9 +91,10 @@ export default function TeamManager({
       persist({ ...editing, ...form }, true);
       showToast('Member updated and synced to database!', 'success');
     } else {
-      const created: AdminMember = { ...form, id: Date.now() };
+      const tempId = Date.now();
+      const created: AdminMember = { ...form, id: tempId };
       if (setTeam) setTeam([...team, created]);
-      persist(created, false);
+      persist(created, false, tempId);
       showToast('Team member added and synced to database!', 'success');
     }
     setModalOpen(false);
@@ -181,15 +185,28 @@ export default function TeamManager({
             </div>
           </div>
 
-          <div>
-            <label className={adminLabel}>Photo URL (optional)</label>
-            <input
-              type="url"
-              value={form.photo}
-              onChange={(e) => setForm({ ...form, photo: e.target.value })}
-              placeholder="https://… or /gallery/photo.jpg"
-              className={adminInput}
-            />
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div>
+              <label className={adminLabel}>Photo URL (optional)</label>
+              <input
+                type="text"
+                value={form.photo || ''}
+                onChange={(e) => setForm({ ...form, photo: e.target.value })}
+                placeholder="https://… or /gallery/photo.jpg"
+                className={adminInput}
+              />
+            </div>
+            <div>
+              <label className={adminLabel}>Display Order (Priority, 1 = top)</label>
+              <input
+                type="number"
+                min={1}
+                max={99}
+                value={form.order ?? 99}
+                onChange={(e) => setForm({ ...form, order: parseInt(e.target.value, 10) || 99 })}
+                className={adminInput}
+              />
+            </div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">

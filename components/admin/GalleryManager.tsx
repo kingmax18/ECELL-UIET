@@ -35,15 +35,22 @@ export default function GalleryManager({
       return;
     }
 
-    const created: GalleryItem = { ...form, id: Date.now() };
+    const tempId = Date.now();
+    const created: GalleryItem = { ...form, id: tempId };
     const next = [created, ...gallery];
     if (setGallery) setGallery(next);
 
     try {
-      await adminFetch('/api/gallery', {
+      const res = await adminFetch('/api/gallery', {
         method: 'POST',
         body: JSON.stringify(form),
       });
+      const data = await res.json().catch(() => null);
+      if (!res.ok || !data?.success) {
+        showToast(data?.error || 'Database sync warning: saved locally', 'info');
+      } else if (data?.data?.id && setGallery) {
+        setGallery(next.map((g) => (g.id === tempId ? { ...g, id: data.data.id } : g)));
+      }
     } catch (err) {
       console.warn('[Admin] Gallery API persist warning:', err);
     }
@@ -94,7 +101,7 @@ export default function GalleryManager({
           <div>
             <label className={adminLabel}>Image URL *</label>
             <input
-              type="url"
+              type="text"
               value={form.image}
               onChange={(e) => setForm({ ...form, image: e.target.value })}
               placeholder="/gallery/photo.jpg or https://…"

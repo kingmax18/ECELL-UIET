@@ -46,7 +46,7 @@ export default function EventsManager({
     setModalOpen(true);
   };
 
-  const persist = async (row: EventItem, isUpdate: boolean) => {
+  const persist = async (row: EventItem, isUpdate: boolean, tempId?: number) => {
     try {
       const res = isUpdate
         ? await adminFetch(`/api/events/${row.id}`, {
@@ -60,6 +60,9 @@ export default function EventsManager({
       const data = await res.json().catch(() => null);
       if (!res.ok || !data?.success) {
         console.warn('[Admin] Events API persist warning:', data?.error);
+        showToast(data?.error || 'Database sync warning: saved locally', 'info');
+      } else if (!isUpdate && data?.data?.id && tempId && setEvents) {
+        setEvents((prev) => prev.map((ev) => (ev.id === tempId ? { ...ev, id: data.data.id } : ev)));
       }
     } catch (e) {
       console.warn('[Admin] Events API persist warning:', e);
@@ -79,13 +82,14 @@ export default function EventsManager({
       persist({ ...editing, ...form }, true);
       showToast('Event updated and synced to database!', 'success');
     } else {
+      const tempId = Date.now();
       const created: EventItem = {
         ...form,
-        id: Date.now(),
+        id: tempId,
         tags: form.tagline ? form.tagline.split(',').map((t) => t.trim()).filter(Boolean).slice(0, 3) : ['Event', 'UIET'],
       };
       if (setEvents) setEvents([created, ...events]);
-      persist(created, false);
+      persist(created, false, tempId);
       showToast('Event created and synced to database!', 'success');
     }
     setModalOpen(false);

@@ -3,6 +3,9 @@ import { prisma } from '@/lib/prisma';
 import { requireAdmin } from '@/lib/auth';
 import { events as defaultEvents } from '@/data/events';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 // GET /api/events - Retrieve events
 export async function GET(request: Request) {
   try {

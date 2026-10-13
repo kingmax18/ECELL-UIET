@@ -64,7 +64,7 @@ export default function AdminPage() {
 
       // 2. Persist settings and site stats directly to Neon PostgreSQL
       if (settings || stats) {
-        await adminFetch('/api/settings', {
+        const res = await adminFetch('/api/settings', {
           method: 'PUT',
           body: JSON.stringify({
             ...(settings || {}),
@@ -74,12 +74,18 @@ export default function AdminPage() {
             statYears: stats?.years?.value ?? 3,
           }),
         });
+
+        const data = await res.json().catch(() => null);
+        if (!res.ok || !data?.success) {
+          throw new Error(data?.error || 'Database rejected settings update');
+        }
       }
 
-      showToast('All changes saved and synced with Neon database!', 'success');
-    } catch (err) {
+      showToast('All changes saved and synced to database!', 'success');
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : 'Error syncing with cloud';
       console.error('[Admin Save]', err);
-      showToast('Changes saved locally. Syncing with cloud...', 'info');
+      showToast(`Warning: ${msg} (saved to local backup)`, 'info');
     } finally {
       setIsSaving(false);
     }

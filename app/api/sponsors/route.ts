@@ -3,6 +3,9 @@ import { prisma } from '@/lib/prisma';
 import { requireAdmin } from '@/lib/auth';
 import { sponsors as defaultSponsors } from '@/data/sponsors';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 // GET /api/sponsors - Fetch all sponsors & partners
 export async function GET() {
   try {

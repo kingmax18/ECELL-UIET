@@ -3,6 +3,9 @@ import { prisma } from '@/lib/prisma';
 import { requireAdmin } from '@/lib/auth';
 import { team as defaultTeam, founders as defaultFounders } from '@/data/team';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 // GET /api/team - Fetch active team members and founders
 export async function GET() {
   try {

@@ -83,9 +83,8 @@ export function AdminAuthProvider({ children }: { children: ReactNode }) {
         sessionStorage.setItem('ECELL_ADMIN_SESSION', JSON.stringify(json.user));
         if (json.token) {
           sessionStorage.setItem('ECELL_ADMIN_TOKEN', json.token);
+          localStorage.setItem('ECELL_ADMIN_TOKEN', json.token);
         }
-        localStorage.removeItem('ECELL_ADMIN_SESSION');
-        localStorage.removeItem('ECELL_ADMIN_TOKEN');
         return { success: true };
       }
 
@@ -98,6 +97,7 @@ export function AdminAuthProvider({ children }: { children: ReactNode }) {
 
     // 2. Direct fallback authentication
     const allowedAdmins = [
+      { email: 'ecelluietfs@gmail.com', password: 'LSSecelluiet@admin', name: 'Lakshay', role: 'Super Admin' },
       { email: 'ecelluietfs@gmail.com', password: 'ecell@admin2026', name: 'Lakshay', role: 'Super Admin' },
     ];
 
@@ -113,8 +113,6 @@ export function AdminAuthProvider({ children }: { children: ReactNode }) {
       };
       setUser(authUser);
       sessionStorage.setItem('ECELL_ADMIN_SESSION', JSON.stringify(authUser));
-      localStorage.removeItem('ECELL_ADMIN_SESSION');
-      localStorage.removeItem('ECELL_ADMIN_TOKEN');
       return { success: true };
     }
 

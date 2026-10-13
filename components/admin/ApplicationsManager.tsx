@@ -21,7 +21,7 @@ export default function ApplicationsManager({
   const { showToast } = useToast();
   const [filter, setFilter] = useState('All');
   const [query, setQuery] = useState('');
-  const [selectedId, setSelectedId] = useState<number | null>(null);
+  const [selectedId, setSelectedId] = useState<string | number | null>(null);
 
   const filtered = applications.filter((a) => {
     if (filter !== 'All' && (a.status || 'Pending') !== filter) return false;
@@ -37,7 +37,7 @@ export default function ApplicationsManager({
 
   const selectedApp = applications.find((a) => a.id === selectedId) || null;
 
-  const updateStatus = async (appId: number, newStatus: string) => {
+  const updateStatus = async (appId: string | number, newStatus: string) => {
     const updated = applications.map((a) => (a.id === appId ? { ...a, status: newStatus } : a));
     if (setApplications) setApplications(updated);
 

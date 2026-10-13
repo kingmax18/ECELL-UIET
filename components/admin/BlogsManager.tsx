@@ -118,14 +118,26 @@ export default function BlogsManager({
     }
   };
 
-  const persistArticle = async (post: BlogPost) => {
+  const persistArticle = async (post: BlogPost, isUpdate: boolean) => {
     try {
-      await adminFetch('/api/blogs', {
-        method: 'POST',
-        body: JSON.stringify(post),
-      });
+      const res = isUpdate
+        ? await adminFetch(`/api/blogs/${encodeURIComponent(post.slug)}`, {
+            method: 'PUT',
+            body: JSON.stringify(post),
+          })
+        : await adminFetch('/api/blogs', {
+            method: 'POST',
+            body: JSON.stringify(post),
+          });
+      const data = await res.json().catch(() => null);
+      if (!res.ok || !data?.success) {
+        console.warn('[BlogsManager] Save warning:', data?.error);
+        showToast(data?.error || 'Database save warning: saved to local backup', 'info');
+      } else if (!isUpdate && data?.data?.id && setBlogs) {
+        setBlogs((prev) => prev.map((b) => (b.slug === post.slug ? { ...b, id: data.data.id } : b)));
+      }
     } catch (err) {
-      console.warn('[BlogsManager] Save warning:', err);
+      console.warn('[BlogsManager] Save error:', err);
     }
   };
 
@@ -152,7 +164,7 @@ export default function BlogsManager({
       const updatedPost: BlogPost = { ...postPayload, id: editing.id };
       const updatedList = blogs.map((b) => (b.id === editing.id ? updatedPost : b));
       if (setBlogs) setBlogs(updatedList);
-      await persistArticle(updatedPost);
+      persistArticle(updatedPost, true);
       showToast('Blog article updated successfully!', 'success');
     } else {
       const newPost: BlogPost = {
@@ -161,7 +173,7 @@ export default function BlogsManager({
       };
       const updatedList = [newPost, ...blogs];
       if (setBlogs) setBlogs(updatedList);
-      await persistArticle(newPost);
+      persistArticle(newPost, false);
       showToast('Blog article published successfully!', 'success');
     }
 
@@ -187,7 +199,7 @@ export default function BlogsManager({
     const updatedPost = { ...post, featured: newFeatured };
     const updated = blogs.map((b) => (b.id === post.id ? updatedPost : b));
     if (setBlogs) setBlogs(updated);
-    await persistArticle(updatedPost);
+    await persistArticle(updatedPost, true);
     showToast(newFeatured ? 'Article set as Featured' : 'Removed from Featured', 'info');
   };
 
