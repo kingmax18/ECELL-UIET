@@ -15,10 +15,11 @@ import StatsManager from '@/components/admin/StatsManager';
 import PartnersManager from '@/components/admin/PartnersManager';
 import SettingsManager from '@/components/admin/SettingsManager';
 import BlogsManager from '@/components/admin/BlogsManager';
+import { RiLogoutBoxRLine } from 'react-icons/ri';
 import { adminFetch } from '@/lib/adminApi';
 
 export default function AdminPage() {
-  const { isAuthenticated } = useAdminAuth();
+  const { isAuthenticated, logout } = useAdminAuth();
   const { showToast } = useToast();
   const {
     events,
@@ -158,6 +159,17 @@ export default function AdminPage() {
                   <span>Save Changes</span>
                 </>
               )}
+            </button>
+
+            {/* Quick Logout Button in Header */}
+            <button
+              type="button"
+              onClick={logout}
+              className="inline-flex items-center gap-1.5 bg-white text-[#0A0E1A] hover:bg-red-50 hover:text-red-600 hover:border-red-400 font-bold text-xs px-3.5 py-2.5 rounded-full border border-[#C0CCFF] transition-all cursor-pointer shadow-xs"
+              title="End admin session and log out"
+            >
+              <RiLogoutBoxRLine size={15} />
+              <span className="hidden sm:inline">Logout</span>
             </button>
           </div>
         </header>

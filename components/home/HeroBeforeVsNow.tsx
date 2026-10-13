@@ -57,7 +57,7 @@ export default function HeroBeforeVsNow() {
       {/* Title & Footnote Quote */}
       <div className="mx-auto max-w-[1200px] px-4 text-center mb-10 md:mb-16">
         <h1 className="m-0 font-['Source_Serif_4',serif] text-[clamp(2.4rem,5.5vw,5.2rem)] font-normal leading-[1.1] text-[#16140f] dark:text-zinc-100 tracking-tight">
-          <span>UIET E-Cell turns students</span>
+          <span>E-Cell turns students</span>
           <br />
           <span className="align-baseline">into </span>
           <span className="relative italic font-serif">
@@ -95,16 +95,12 @@ export default function HeroBeforeVsNow() {
                 <span className="text-xs uppercase font-['Outfit',sans-serif] tracking-widest text-[#FF6600] font-semibold mb-4 text-center block">
                   UIET & State Ecosystem
                 </span>
-                <div className="grid grid-cols-4 gap-4 items-center">
-                  {YC_LOGOS.slice(0, 12).map((item) => (
-                    <div key={item.name} className="h-12 flex items-center justify-center p-1" title={item.name}>
-                      <img
-                        src={item.logo}
-                        alt={item.name}
-                        referrerPolicy="no-referrer"
-                        className="max-h-8 max-w-full object-contain grayscale dark:invert opacity-80 hover:opacity-100 hover:grayscale-0 transition-all"
-                        loading="lazy"
-                      />
+                <div className="grid grid-cols-3 gap-3 items-center">
+                  {YC_LOGOS.slice(0, 9).map((item) => (
+                    <div key={item.name} className="h-10 flex items-center justify-center p-2 rounded-md bg-zinc-50 dark:bg-zinc-800/60 border border-zinc-200/50 dark:border-zinc-700/50" title={item.name}>
+                      <span className="font-mono text-[11px] font-semibold text-zinc-800 dark:text-zinc-200 truncate">
+                        {item.name}
+                      </span>
                     </div>
                   ))}
                 </div>
@@ -114,15 +110,16 @@ export default function HeroBeforeVsNow() {
                 <div className="mb-2 text-center font-['Source_Serif_4',serif] text-xl font-normal italic text-[#16140f] dark:text-zinc-300">
                   Day 1 on Campus
                 </div>
-                <div className="relative aspect-square w-full overflow-hidden rounded-2xl shadow-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900">
-                  <img
-                    key={`young-${activeCompany.key}`}
-                    src={activeCompany.images[0]}
-                    alt={`${activeCompany.name} Day 1`}
-                    referrerPolicy="no-referrer"
-                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-                    loading="lazy"
-                  />
+                <div className="relative aspect-square w-full overflow-hidden rounded-2xl shadow-sm border border-zinc-200 dark:border-zinc-800 bg-orange-50/60 dark:bg-[#13151A] flex flex-col items-center justify-center p-6 text-center">
+                  <span className="font-mono text-xs uppercase tracking-wider text-[#FF6600] font-bold mb-2">
+                    {activeCompany.batch || 'Campus Inception'}
+                  </span>
+                  <span className="font-serif italic text-2xl font-bold text-zinc-950 dark:text-white">
+                    {activeCompany.name}
+                  </span>
+                  <span className="text-xs font-mono text-zinc-500 mt-2">
+                    Early In-Campus Prototype
+                  </span>
                 </div>
                 <p className="mt-3.5 text-center font-['Outfit',sans-serif] font-light text-sm leading-[1.5] text-[#16140f]/85 dark:text-zinc-300 min-h-[44px]">
                   {activeCompany.descriptions.young}
@@ -162,11 +159,11 @@ export default function HeroBeforeVsNow() {
                     : 'text-[#8a8575] dark:text-zinc-500 opacity-30 hover:opacity-85'
                 }`}
               >
-                <span className="block font-['Source_Serif_4',serif] text-[2.2rem] xl:text-[2.8rem] leading-none">
-                  ₹10 Lakhs+
+                <span className="block font-sans font-extrabold text-[2.2rem] xl:text-[2.8rem] leading-none">
+                  1,500+
                 </span>
-                <span className="block font-['Source_Serif_4',serif] text-sm xl:text-base italic tracking-normal mt-1 text-[#FF6600]">
-                  in student grants & impact
+                <span className="block font-sans text-sm xl:text-base font-semibold tracking-normal mt-1 text-[#FF6600]">
+                  students empowered
                 </span>
               </button>
             </div>
@@ -189,16 +186,12 @@ export default function HeroBeforeVsNow() {
                 <span className="text-xs uppercase font-['Outfit',sans-serif] tracking-widest text-[#FF6600] font-semibold mb-4 text-center block">
                   Campus-Incubated Ventures
                 </span>
-                <div className="grid grid-cols-4 gap-4 items-center">
-                  {YC_LOGOS.slice(12, 24).map((item) => (
-                    <div key={item.name} className="h-12 flex items-center justify-center p-1" title={item.name}>
-                      <img
-                        src={item.logo}
-                        alt={item.name}
-                        referrerPolicy="no-referrer"
-                        className="max-h-8 max-w-full object-contain grayscale dark:invert opacity-80 hover:opacity-100 hover:grayscale-0 transition-all"
-                        loading="lazy"
-                      />
+                <div className="grid grid-cols-3 gap-3 items-center">
+                  {YC_LOGOS.slice(9, 18).map((item) => (
+                    <div key={item.name} className="h-10 flex items-center justify-center p-2 rounded-md bg-zinc-50 dark:bg-zinc-800/60 border border-zinc-200/50 dark:border-zinc-700/50" title={item.name}>
+                      <span className="font-mono text-[11px] font-semibold text-zinc-800 dark:text-zinc-200 truncate">
+                        {item.name}
+                      </span>
                     </div>
                   ))}
                 </div>
@@ -208,15 +201,16 @@ export default function HeroBeforeVsNow() {
                 <div className="mb-2 text-center font-['Source_Serif_4',serif] text-xl font-normal italic text-[#16140f] dark:text-zinc-300">
                   Now / Scaled
                 </div>
-                <div className="relative aspect-square w-full overflow-hidden rounded-2xl shadow-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900">
-                  <img
-                    key={`now-${activeCompany.key}`}
-                    src={activeCompany.images[1]}
-                    alt={`${activeCompany.name} now`}
-                    referrerPolicy="no-referrer"
-                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-                    loading="lazy"
-                  />
+                <div className="relative aspect-square w-full overflow-hidden rounded-2xl shadow-sm border border-zinc-200 dark:border-zinc-800 bg-emerald-50/60 dark:bg-[#13151A] flex flex-col items-center justify-center p-6 text-center">
+                  <span className="font-mono text-xs uppercase tracking-wider text-emerald-600 dark:text-emerald-400 font-bold mb-2">
+                    Scale &amp; Valuation
+                  </span>
+                  <span className="font-serif italic text-2xl font-bold text-zinc-950 dark:text-white">
+                    {activeCompany.name}
+                  </span>
+                  <span className="text-sm font-mono font-bold text-emerald-600 dark:text-emerald-400 mt-2">
+                    {activeCompany.descriptions.valuation || 'Active Campus Project'}
+                  </span>
                 </div>
                 <p className="mt-3.5 text-center font-['Outfit',sans-serif] font-light text-sm leading-[1.5] text-[#16140f]/85 dark:text-zinc-300 min-h-[44px]">
                   {activeCompany.descriptions.now}
@@ -240,13 +234,8 @@ export default function HeroBeforeVsNow() {
                 onClick={() => toggleMobileCardState(idx)}
                 className="relative aspect-[4/5] w-[85vw] max-w-[340px] shrink-0 snap-center overflow-hidden rounded-2xl shadow-md border border-zinc-200 dark:border-zinc-800 cursor-pointer"
               >
-                {/* Background Image (smooth crossfade) */}
-                <div
-                  className="absolute inset-0 bg-cover bg-center transition-opacity duration-500"
-                  style={{
-                    backgroundImage: `url(${isNow ? company.images[1] : company.images[0]})`,
-                  }}
-                />
+                {/* Clean dark gradient card background without images */}
+                <div className="absolute inset-0 bg-gradient-to-br from-zinc-900 to-[#14161C]" />
 
                 {/* Dark gradient overlay for text readability */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
@@ -299,7 +288,7 @@ export default function HeroBeforeVsNow() {
                 600+ Students
               </h3>
               <p className="text-sm text-zinc-400 mt-2 font-['Outfit',sans-serif]">
-                Over ₹10 Lakhs in non-dilutive grants, prototyping kits, and venture mentorship across MDU Rohtak.
+                Hands-on 1-on-1 mentorship, prototyping resources, and founder guidance across MDU Rohtak.
               </p>
             </div>
             <Link

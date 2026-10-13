@@ -6,7 +6,8 @@ import EventCard, { type EventData } from './EventCard';
 type TabKey = 'upcoming' | 'past' | 'all';
 
 export default function EventsTabs({ events = [] }: { events?: EventData[] }) {
-  const [activeTab, setActiveTab] = useState<TabKey>('upcoming');
+  const hasUpcoming = events.some((e) => e.status === 'upcoming');
+  const [activeTab, setActiveTab] = useState<TabKey>(hasUpcoming ? 'upcoming' : 'past');
 
   const filteredEvents = events.filter((ev) => {
     if (activeTab === 'all') return true;

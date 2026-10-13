@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import Image from 'next/image';
 import type { Faculty } from '@/lib/types';
 
 export default function FacultySection({ faculty }: { faculty: Faculty }) {
@@ -11,14 +10,8 @@ export default function FacultySection({ faculty }: { faculty: Faculty }) {
     <section className="py-16 sm:py-20 bg-[#FAFAF8] dark:bg-[#0E1015] border-t border-b border-zinc-200 dark:border-zinc-800">
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6">
         <div className="bg-white dark:bg-[#14161C] border border-zinc-200 dark:border-zinc-800 rounded-lg p-8 sm:p-10 shadow-2xs flex flex-col md:flex-row items-center md:items-start gap-8">
-          <div className="w-36 h-36 rounded-md overflow-hidden shrink-0 bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700">
-            <Image
-              src={faculty.photo || '/gallery/page_28.jpg'}
-              alt={faculty.name}
-              width={160}
-              height={160}
-              className="w-full h-full object-cover object-center"
-            />
+          <div className="w-20 h-20 rounded-md overflow-hidden shrink-0 bg-orange-50 dark:bg-orange-950/40 border border-[#FF6600]/30 flex items-center justify-center font-mono font-bold text-2xl text-[#FF6600]">
+            RK
           </div>
 
           <div className="flex flex-col items-center md:items-start text-center md:text-left flex-1">

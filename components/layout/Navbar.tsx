@@ -2,19 +2,27 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { ThemeToggle } from '@/components/ui/ThemeToggle';
 import MobileMenu from './MobileMenu';
 
+export const NAV_ITEMS = [
+  { label: 'About', href: '/about' },
+  { label: 'Events', href: '/events' },
+  { label: 'Team', href: '/team' },
+  { label: 'Blog', href: '/blog' },
+  { label: 'Contact', href: '/contact' },
+];
+
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
+      setIsScrolled(window.scrollY > 8);
     };
     handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -23,51 +31,87 @@ export default function Navbar() {
 
   useEffect(() => {
     setIsMobileOpen(false);
-    setActiveDropdown(null);
   }, [pathname]);
 
   return (
     <>
       <header
-        className={`sticky top-0 left-0 right-0 z-50 w-full transition-all duration-200 bg-[#FDFCF7] dark:bg-[#0B0C0E] ${
+        className={`sticky top-0 left-0 right-0 z-50 w-full transition-all duration-200 bg-[#EBE9E3]/90 dark:bg-[#0B0C0E]/90 backdrop-blur-md ${
           isScrolled
-            ? 'border-b border-[#16140f]/10 dark:border-zinc-800 shadow-2xs backdrop-blur-md bg-[#FDFCF7]/95 dark:bg-[#0B0C0E]/95'
-            : 'border-b border-transparent'
+            ? 'border-b border-black/[0.06] dark:border-white/[0.06] shadow-[0_2px_12px_rgba(0,0,0,0.03)]'
+            : 'border-b border-black/[0.03] dark:border-white/[0.04]'
         }`}
       >
-        {/* Mobile Header (< 1200px) */}
-        <nav
-          aria-label="Mobile Navigation"
-          className="relative flex min-[1200px]:hidden items-center justify-between px-4 py-3"
-        >
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-3.5 flex items-center justify-between gap-4">
+          {/* Left: Brand Logo & Wordmark */}
           <Link
             href="/"
-            title="UIET E-Cell"
-            className="flex items-center gap-2.5 no-underline"
+            title="E-Cell UIET MDU"
+            className="flex items-center gap-2.5 sm:gap-3 group no-underline shrink-0"
           >
-            <div className="w-10 h-10 bg-[#FF6600] flex items-center justify-center rounded-xs shrink-0">
-              <svg width="22" height="22" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M13.9012 11.7843H17.6595L22.4961 21.5325C23.203 22.9836 23.7984 24.3976 23.7984 24.3976C23.7984 24.3976 24.4313 23.021 25.175 21.5325L30.0868 11.7843H33.5843L25.2865 27.3746V37.309H22.1244V27.1884L13.9012 11.7843Z" fill="white" />
-              </svg>
+            <div className="relative w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-105">
+              <Image
+                src="/logo.png"
+                alt="UIET E-Cell Logo"
+                width={36}
+                height={36}
+                priority
+                className="w-full h-full object-contain dark:brightness-110 drop-shadow-xs"
+              />
             </div>
-            <span className="font-['Outfit',sans-serif] font-bold text-base text-[#16140f] dark:text-white">
-              UIET E-Cell
-            </span>
+            <div className="flex flex-col leading-tight">
+              <span className="font-sans font-bold text-[18px] sm:text-[19px] tracking-tight text-black dark:text-white">
+                E-Cell
+              </span>
+              <span className="text-[9.5px] font-mono tracking-wider text-zinc-500 dark:text-zinc-400 font-semibold uppercase">
+                UIET MDU
+              </span>
+            </div>
           </Link>
 
-          <div className="flex items-center gap-3">
-            <ThemeToggle />
+          {/* Center: Modern Floating Pill Nav Container */}
+          <nav
+            aria-label="Main Navigation"
+            className="hidden lg:flex items-center gap-1 xl:gap-1.5 bg-white dark:bg-[#16181F] px-5 sm:px-6 py-2 rounded-full border border-black/[0.06] dark:border-white/[0.08] shadow-[0_2px_10px_rgba(0,0,0,0.03)]"
+          >
+            {NAV_ITEMS.map((item) => {
+              const isActive = pathname === item.href;
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={`px-3.5 py-1.5 rounded-full text-[13.5px] font-medium transition-colors duration-150 ${
+                    isActive
+                      ? 'text-black dark:text-white font-semibold'
+                      : 'text-zinc-600 dark:text-zinc-300 hover:text-black dark:hover:text-white hover:bg-black/[0.03] dark:hover:bg-white/[0.05]'
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
+          </nav>
+
+          {/* Right: CTA Pill Button + Controls */}
+          <div className="flex items-center gap-2.5 sm:gap-3 shrink-0">
+            {/* Subtle Theme Toggle */}
+            <ThemeToggle className="rounded-full! p-2! border-black/[0.06]! dark:border-white/[0.08]! bg-white! dark:bg-[#16181F]! shadow-[0_1px_4px_rgba(0,0,0,0.04)]" />
+
+            {/* Solid Black Pill CTA Button */}
             <Link
               href="/apply"
-              className="flex h-8 items-center justify-center rounded-full bg-black dark:bg-white px-3.5 pb-[1px] font-['Source_Serif_4',serif] text-xs font-normal italic tracking-[0.015rem] text-white dark:text-black transition-opacity hover:opacity-80"
+              className="inline-flex items-center justify-center rounded-full bg-black dark:bg-white px-5 sm:px-6 py-2.5 text-[13.5px] font-semibold text-white dark:text-black transition-all hover:opacity-90 shadow-xs whitespace-nowrap cursor-pointer"
             >
-              Apply
+              <span className="hidden sm:inline">Join E-Cell</span>
+              <span className="sm:hidden">Join</span>
             </Link>
+
+            {/* Mobile Hamburger Toggle Button */}
             <button
               onClick={() => setIsMobileOpen(!isMobileOpen)}
-              className="inline-flex items-center justify-center rounded-md p-1.5 text-[#16140f] dark:text-zinc-200 focus:outline-hidden"
+              className="lg:hidden inline-flex items-center justify-center p-2 rounded-full bg-white dark:bg-[#16181F] border border-black/[0.06] dark:border-white/[0.08] text-black dark:text-white shadow-xs focus:outline-hidden"
               type="button"
-              aria-label="Open navigation menu"
+              aria-label="Toggle navigation menu"
               aria-expanded={isMobileOpen}
             >
               <svg
@@ -76,142 +120,25 @@ export default function Navbar() {
                 viewBox="0 0 24 24"
                 strokeWidth="2"
                 stroke="currentColor"
-                className="h-6 w-6"
+                className="w-5 h-5"
               >
-                <path strokeLinecap="round" strokeLinejoin="round" d="M4 8h16M4 16h16" />
+                {isMobileOpen ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 7h16M4 17h16" />
+                )}
               </svg>
             </button>
           </div>
-        </nav>
-
-        {/* Desktop Header (>= 1200px) — Identical layout to Y Combinator */}
-        <nav
-          aria-label="Desktop Navigation"
-          className="relative hidden min-[1200px]:flex items-center justify-center px-5 py-[12px] bg-[#FDFCF7] dark:bg-[#0B0C0E]"
-        >
-          <div className="flex w-full max-w-[1400px] items-center gap-6 min-[1400px]:gap-10">
-            {/* Left Column Links */}
-            <div className="flex flex-1 items-center justify-end gap-5 min-[1400px]:gap-8 font-['Source_Serif_4',serif] text-[15px] text-[#16140f] dark:text-zinc-200">
-              {/* About Dropdown */}
-              <div
-                className="relative inline-block"
-                onMouseEnter={() => setActiveDropdown('about')}
-                onMouseLeave={() => setActiveDropdown(null)}
-              >
-                <Link
-                  href="/about"
-                  className="inline-flex items-center gap-1 cursor-pointer transition-opacity hover:opacity-60 py-1"
-                >
-                  About
-                  <svg className="h-3 w-3 translate-y-[0.5px]" viewBox="0 0 20 20" fill="none" stroke="currentColor">
-                    <path d="M6 8L10 12L14 8" strokeWidth="2" strokeLinecap="square" strokeLinejoin="miter" />
-                  </svg>
-                </Link>
-
-                {activeDropdown === 'about' && (
-                  <div className="absolute left-0 top-full pt-1 z-50">
-                    <div className="min-w-[200px] bg-white dark:bg-[#16181F] border border-zinc-200 dark:border-zinc-800 rounded-lg shadow-lg py-2 flex flex-col font-['Outfit',sans-serif] text-sm text-[#16140f] dark:text-zinc-200">
-                      <Link href="/about" className="px-4 py-2 hover:bg-[#F4F2EC] dark:hover:bg-zinc-800 transition-colors">
-                        What Happens at UIET E-Cell?
-                      </Link>
-                      <Link href="/apply" className="px-4 py-2 hover:bg-[#F4F2EC] dark:hover:bg-zinc-800 transition-colors">
-                        Apply to Cohort
-                      </Link>
-                      <Link href="/faq" className="px-4 py-2 hover:bg-[#F4F2EC] dark:hover:bg-zinc-800 transition-colors">
-                        FAQ & Interview Guide
-                      </Link>
-                      <Link href="/team" className="px-4 py-2 hover:bg-[#F4F2EC] dark:hover:bg-zinc-800 transition-colors">
-                        People & Mentors
-                      </Link>
-                      <Link href="/blog" className="px-4 py-2 hover:bg-[#F4F2EC] dark:hover:bg-zinc-800 transition-colors">
-                        E-Cell Blog & Essays
-                      </Link>
-                    </div>
-                  </div>
-                )}
-              </div>
-
-              {/* Events */}
-              <Link
-                href="/events"
-                className="inline-flex items-center gap-1 cursor-pointer transition-opacity hover:opacity-60 py-1"
-              >
-                Events
-              </Link>
-
-              {/* Library */}
-              <Link
-                href="/blog"
-                className="inline-flex items-center gap-1 cursor-pointer transition-opacity hover:opacity-60 py-1"
-              >
-                Library
-              </Link>
-            </div>
-
-            {/* Center: Iconic Orange Square Monogram */}
-            <div className="flex shrink-0 items-center justify-center">
-              <Link
-                href="/"
-                title="UIET E-Cell"
-                className="inline-block h-[40px] w-[40px] transition-transform hover:scale-105"
-              >
-                <div className="w-[40px] h-[40px] bg-[#FF6600] flex items-center justify-center rounded-xs shadow-2xs">
-                  <svg width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M13.9012 11.7843H17.6595L22.4961 21.5325C23.203 22.9836 23.7984 24.3976 23.7984 24.3976C23.7984 24.3976 24.4313 23.021 25.175 21.5325L30.0868 11.7843H33.5843L25.2865 27.3746V37.309H22.1244V27.1884L13.9012 11.7843Z" fill="white" />
-                  </svg>
-                </div>
-              </Link>
-            </div>
-
-            {/* Right Column Links */}
-            <div className="flex flex-1 items-center justify-start gap-5 min-[1400px]:gap-8 font-['Source_Serif_4',serif] text-[15px] text-[#16140f] dark:text-zinc-200">
-              {/* Team */}
-              <Link
-                href="/team"
-                className="inline-flex items-center gap-1 cursor-pointer transition-opacity hover:opacity-60 py-1"
-              >
-                Team
-              </Link>
-
-              {/* FAQ */}
-              <Link
-                href="/faq"
-                className="inline-flex items-center gap-1 cursor-pointer transition-opacity hover:opacity-60 py-1"
-              >
-                FAQ
-              </Link>
-
-              {/* Join Us */}
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-1 cursor-pointer transition-opacity hover:opacity-60 py-1"
-              >
-                Join Us
-              </Link>
-            </div>
-          </div>
-
-          {/* Far Right Action Buttons */}
-          <div className="absolute right-5 flex items-center gap-4">
-            <ThemeToggle />
-            <Link
-              href="/admin"
-              className="font-['Outfit',sans-serif] text-sm tracking-[0.3px] text-[#16140f] dark:text-zinc-300 transition-opacity hover:opacity-60"
-            >
-              Log in
-            </Link>
-            <Link
-              href="/apply"
-              className="flex h-10 items-center justify-center rounded-full bg-black dark:bg-white px-5 pb-[2px] font-['Source_Serif_4',serif] text-sm font-normal italic tracking-[0.015rem] text-white dark:text-black transition-opacity hover:opacity-80 shadow-2xs"
-            >
-              Apply
-            </Link>
-          </div>
-        </nav>
+        </div>
       </header>
 
       {/* Mobile Drawer */}
-      <MobileMenu isOpen={isMobileOpen} onClose={() => setIsMobileOpen(false)} />
+      <MobileMenu
+        isOpen={isMobileOpen}
+        onClose={() => setIsMobileOpen(false)}
+        links={NAV_ITEMS}
+      />
     </>
   );
 }

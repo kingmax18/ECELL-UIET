@@ -1,5 +1,5 @@
 export const SITE = {
-  name: 'UIET E-Cell',
+  name: 'E-Cell',
   fullName: 'Entrepreneurship Cell, UIET, Maharshi Dayanand University',
   tagline: 'Ideas Into Impact',
   vision: 'Inspiring a Generation of Changemakers',
@@ -16,7 +16,7 @@ export const NAV_LINKS: NavLink[] = [
   { href: '/about', label: 'About' },
   { href: '/events', label: 'Events' },
   { href: '/team', label: 'Team' },
-  { href: '/faq', label: 'FAQ' },
+  { href: '/blog', label: 'Blog' },
   { href: '/apply', label: 'Apply' },
 ];
 
@@ -54,10 +54,10 @@ export const CORE_VALUES: CoreValue[] = [
 ];
 
 export const FAQ_ITEMS: FAQItem[] = [
-  { question: 'What is UIET E-Cell?', answer: 'UIET E-Cell is the official Entrepreneurship Cell of UIET, Maharshi Dayanand University, Rohtak. We foster student startups, innovation workshops, ideathons, and mentorship programs.' },
-  { question: 'Who can join UIET E-Cell?', answer: 'Any student enrolled at MDU Rohtak across any department — engineering, management, commerce, science — can apply to join. We welcome diverse backgrounds.' },
+  { question: 'What is E-Cell?', answer: 'E-Cell is the official Entrepreneurship Cell of UIET, Maharshi Dayanand University, Rohtak. We foster student startups, innovation workshops, ideathons, and mentorship programs.' },
+  { question: 'Who can join E-Cell?', answer: 'Any student enrolled at MDU Rohtak across any department — engineering, management, commerce, science — can apply to join. We welcome diverse backgrounds.' },
   { question: 'How do I apply to become a member?', answer: 'Visit our Join Us page and fill out the membership application form. The E-Cell executive board reviews applications within 5-7 days.' },
   { question: 'What departments can I join?', answer: 'We have 5 core departments: Social Media, Design & Tech, Research & Content, Event Management, and Documentation. Choose the one that matches your skills and interests.' },
-  { question: 'Are there any fees to join?', answer: 'No, UIET E-Cell membership is completely free. We are a student-run initiative supported by the university.' },
+  { question: 'Are there any fees to join?', answer: 'No, E-Cell membership is completely free. We are a student-run initiative supported by the university.' },
   { question: 'How often do you organize events?', answer: 'We organize events and workshops throughout the academic year — typically 1-2 per month, plus our annual E-Summit flagship event.' },
 ];

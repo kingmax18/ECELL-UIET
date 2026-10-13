@@ -1,6 +1,8 @@
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
+import { Sparkles, Users, Calendar, Rocket, Layers } from 'lucide-react';
+import { useData } from '@/context/DataProvider';
 
 function CountUp({ value }: { value: number }) {
   const ref = useRef<HTMLSpanElement>(null);
@@ -55,77 +57,109 @@ interface StatsSectionProps {
   };
 }
 
-export default function StatsSection({ stats }: StatsSectionProps) {
-  const statList = [
+interface StatItem {
+  value: number;
+  prefix?: string;
+  suffix?: string;
+  label: string;
+  description: string;
+  icon: React.ComponentType<{ className?: string }>;
+}
+
+export default function StatsSection({ stats: propsStats }: StatsSectionProps) {
+  const { stats: ctxStats } = useData();
+  const currentStats = propsStats || ctxStats;
+
+  const statList: StatItem[] = [
     {
-      value: stats?.startups?.value || 50,
+      value: 1500,
       suffix: '+',
-      label: 'Startups Incubated & Mentored',
-      description: 'Campus ventures across AI, SaaS, deep-tech, and consumer.',
+      label: 'Students Reached',
+      description: 'Active participants across technical workshops, ideathons, and summits.',
+      icon: Users,
     },
     {
-      value: 25,
-      prefix: '₹',
-      suffix: 'L+',
-      label: 'Direct Seed Grants Deployed',
-      description: '100% non-dilutive university prototype funding.',
+      value: currentStats?.events?.value || 15,
+      suffix: '+',
+      label: 'Events & Workshops',
+      description: 'Hands-on bootcamps, guest lectures, and networking conclaves.',
+      icon: Calendar,
     },
     {
-      value: 12000,
+      value: currentStats?.startups?.value || 10,
       suffix: '+',
-      label: 'Student Innovators Reached',
-      description: 'Participants across workshops, ideathons, and summits.',
+      label: 'Student Startups',
+      description: 'Campus ventures and student-led projects nurtured from idea to prototype.',
+      icon: Rocket,
     },
     {
-      value: 45,
-      suffix: '+',
-      label: 'Mentors & Angel Advisors',
-      description: 'Founders from unicorn companies and alumni investors.',
+      value: 5,
+      suffix: '',
+      label: 'Core Departments',
+      description: 'Social Media, Design & Tech, Research & Content, Events, and Documentation.',
+      icon: Layers,
     },
   ];
 
   return (
-    <section className="py-16 sm:py-20 bg-white dark:bg-[#0B0C0E] border-b border-zinc-200 dark:border-zinc-800">
+    <section className="py-16 sm:py-24 bg-white dark:bg-[#0B0C0E] border-b border-zinc-200 dark:border-zinc-800">
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6">
-        {/* Section Header - Understated, Authoritative */}
+        {/* Section Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12 pb-6 border-b border-zinc-200 dark:border-zinc-800">
           <div>
-            <div className="text-[11px] font-mono uppercase tracking-widest text-[#FF6600] font-bold mb-2">
-              TRACK RECORD &amp; IMPACT
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-orange-500/10 dark:bg-orange-500/20 border border-orange-500/20 text-[#FF6600] text-xs font-bold uppercase tracking-wider mb-3">
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>Community Impact</span>
             </div>
-            <h2 className="font-serif font-normal text-2xl sm:text-3xl text-zinc-900 dark:text-white">
-              The numbers behind the incubator.
+            <h2 className="font-sans font-extrabold text-3xl sm:text-4xl text-zinc-950 dark:text-white tracking-tight">
+              E-Cell by the numbers<span className="text-[#FF6600]">.</span>
             </h2>
           </div>
-          <p className="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 max-w-md">
-            We measure ourselves solely by the traction, survival rate, and capital raised by our student founders.
+          <p className="text-sm sm:text-base text-zinc-600 dark:text-zinc-400 max-w-md leading-relaxed">
+            Connecting students across departments to learn practical skills, collaborate on ideas, and gain mentorship.
           </p>
         </div>
 
-        {/* 4 Clean Columns Separated by Hairline Borders */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-0 lg:divide-x divide-zinc-200 dark:divide-zinc-800">
-          {statList.map((stat, idx) => (
-            <div
-              key={idx}
-              className={`flex flex-col justify-between ${
-                idx === 0 ? 'lg:pr-8' : idx === 3 ? 'lg:pl-8' : 'lg:px-8'
-              }`}
-            >
-              <div>
-                <div className="font-sans font-bold text-4xl sm:text-5xl text-zinc-950 dark:text-white tracking-tight mb-2">
-                  {stat.prefix}
-                  <CountUp value={stat.value} />
-                  {stat.suffix}
+        {/* 4 Clean Metric Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+          {statList.map((stat, idx) => {
+            const Icon = stat.icon;
+            return (
+              <div
+                key={idx}
+                className="group relative overflow-hidden rounded-2xl bg-zinc-50/80 dark:bg-zinc-900/60 border border-zinc-200/80 dark:border-zinc-800/80 p-6 sm:p-7 hover:border-[#FF6600]/40 hover:bg-white dark:hover:bg-zinc-850 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
+              >
+                {/* Subtle ambient corner glow on hover */}
+                <div className="absolute -right-8 -top-8 w-24 h-24 rounded-full bg-[#FF6600]/10 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
+                <div className="flex items-center justify-between mb-5">
+                  <div className="w-11 h-11 rounded-xl bg-orange-500/10 dark:bg-orange-500/20 text-[#FF6600] flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <Icon className="w-5 h-5" />
+                  </div>
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-400 dark:text-zinc-500 font-sans">
+                    0{idx + 1}
+                  </span>
                 </div>
-                <div className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mb-1.5">
-                  {stat.label}
+
+                <div>
+                  <div className="font-sans font-black text-4xl sm:text-5xl text-zinc-950 dark:text-white tracking-tight group-hover:text-[#FF6600] transition-colors mb-2">
+                    {stat.prefix}
+                    <CountUp value={stat.value} />
+                    {stat.suffix}
+                  </div>
+                  <div className="text-sm sm:text-base font-bold text-zinc-900 dark:text-zinc-100 mb-1.5">
+                    {stat.label}
+                  </div>
+                  <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
+                    {stat.description}
+                  </p>
                 </div>
+
+                {/* Bottom decorative accent line */}
+                <div className="absolute inset-x-6 bottom-0 h-[2px] bg-gradient-to-r from-transparent via-[#FF6600] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full" />
               </div>
-              <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
-                {stat.description}
-              </p>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

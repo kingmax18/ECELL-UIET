@@ -12,7 +12,7 @@ export default function CoreValues() {
             OPERATING PRINCIPLES
           </div>
           <h2 className="font-serif font-normal text-3xl sm:text-4xl text-zinc-900 dark:text-white mb-2">
-            The core values that guide our cohort.
+            The core values that guide our student community.
           </h2>
           <p className="text-zinc-600 dark:text-zinc-400 text-sm">
             How our mentors, executive board, and campus founders hold each other accountable.

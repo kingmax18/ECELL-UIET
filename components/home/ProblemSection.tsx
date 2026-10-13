@@ -13,9 +13,9 @@ export default function ProblemSection() {
     },
     {
       step: '02',
-      title: 'The Zero-Capital Cold Start',
-      trap: 'Teams stall because paying for AWS cloud servers, GPU compute, or 3D sensor prototypes comes out of pocket.',
-      solution: 'Direct equity-free university seed grants and $25,000+ in cloud hosting infrastructure.',
+      title: 'The Prototyping Cold Start',
+      trap: 'Teams stall because turning an idea into a functional prototype without structured guidance feels overwhelming.',
+      solution: 'Access to campus labs, technical mentorship, and hands-on ideation sprints.',
     },
     {
       step: '03',

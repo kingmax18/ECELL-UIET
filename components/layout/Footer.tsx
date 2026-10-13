@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Footer() {
   return (
@@ -13,19 +14,31 @@ export default function Footer() {
         <div className="flex flex-col space-y-8 md:flex-row md:items-start md:justify-between md:space-y-0">
           {/* Logo & Slogan */}
           <div className="flex flex-col items-start md:max-w-xs md:shrink-0">
-            <div className="flex flex-row items-center gap-3.5">
-              <Link href="/" title="UIET E-Cell" className="block h-10 w-10 shrink-0">
-                <div className="w-10 h-10 bg-[#FF6600] flex items-center justify-center rounded-xs">
-                  <svg width="22" height="22" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M13.9012 11.7843H17.6595L22.4961 21.5325C23.203 22.9836 23.7984 24.3976 23.7984 24.3976C23.7984 24.3976 24.4313 23.021 25.175 21.5325L30.0868 11.7843H33.5843L25.2865 27.3746V37.309H22.1244V27.1884L13.9012 11.7843Z" fill="white" />
-                  </svg>
+            <div className="flex flex-row items-center gap-3">
+              <Link href="/" title="E-Cell UIET MDU" className="flex items-center gap-3 group shrink-0">
+                <div className="w-10 h-10 rounded-xl bg-white/10 border border-white/10 flex items-center justify-center p-1.5 transition-transform group-hover:scale-105 shadow-sm">
+                  <Image
+                    src="/logo.png"
+                    alt="UIET E-Cell Logo"
+                    width={32}
+                    height={32}
+                    className="w-full h-full object-contain brightness-110"
+                  />
+                </div>
+                <div className="flex flex-col leading-tight">
+                  <span className="font-sans font-bold text-lg text-white tracking-tight">
+                    E-Cell
+                  </span>
+                  <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-400 font-semibold">
+                    UIET MDU Rohtak
+                  </span>
                 </div>
               </Link>
-              <h3 className="font-['Outfit',sans-serif] font-light text-base text-[#FDFCF7]/90 tracking-wide">
-                Make something people want.
-              </h3>
             </div>
-            <p className="mt-3 text-xs text-zinc-500 font-['Outfit',sans-serif] font-light max-w-xs leading-relaxed">
+            <h3 className="font-['Outfit',sans-serif] font-light text-base text-[#FDFCF7]/90 tracking-wide mt-3">
+              Make something people want.
+            </h3>
+            <p className="mt-2 text-xs text-zinc-400 font-['Outfit',sans-serif] font-light max-w-xs leading-relaxed">
               Entrepreneurship Cell, UIET MDU Rohtak. Nurturing student founders, deep-tech research, and venture-backed companies.
             </p>
           </div>
@@ -40,7 +53,7 @@ export default function Footer() {
               <ul className="mt-3 space-y-2">
                 <li>
                   <Link href="/about" className="font-light text-sm text-[#FDFCF7]/70 hover:text-white transition-colors font-['Outfit',sans-serif]">
-                    Cohort Program
+                    Incubation &amp; Guidance
                   </Link>
                 </li>
                 <li>
@@ -55,7 +68,7 @@ export default function Footer() {
                 </li>
                 <li>
                   <Link href="/apply" className="font-light text-sm text-[#FDFCF7]/70 hover:text-white transition-colors font-['Outfit',sans-serif]">
-                    Cohort Admissions
+                    Join E-Cell / Register
                   </Link>
                 </li>
               </ul>
@@ -87,11 +100,6 @@ export default function Footer() {
                     Founder Library
                   </Link>
                 </li>
-                <li>
-                  <Link href="/faq" className="font-light text-sm text-[#FDFCF7]/70 hover:text-white transition-colors font-['Outfit',sans-serif]">
-                    FAQ & Guidelines
-                  </Link>
-                </li>
               </ul>
             </div>
 
@@ -117,11 +125,6 @@ export default function Footer() {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/faq" className="font-light text-sm text-[#FDFCF7]/70 hover:text-white transition-colors font-['Outfit',sans-serif]">
-                    FAQ
-                  </Link>
-                </li>
-                <li>
                   <Link href="/admin" className="font-light text-sm text-[#FDFCF7]/70 hover:text-white transition-colors font-['Outfit',sans-serif]">
                     Admin Portal
                   </Link>
@@ -134,7 +137,7 @@ export default function Footer() {
         {/* Bottom Socials & Copyright */}
         <div className="mt-12 border-t border-zinc-800/80 pt-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           <p className="font-['Outfit',sans-serif] font-light text-xs text-zinc-400">
-            © 2026 UIET E-Cell · Built with Y Combinator design language.
+            © 2026 E-Cell · Built with Y Combinator design language.
           </p>
           <div className="flex items-center space-x-6 text-zinc-400">
             <a

@@ -2,7 +2,7 @@ import { createHmac, timingSafeEqual } from 'crypto';
 import { NextResponse } from 'next/server';
 
 const SECRET = process.env.ADMIN_JWT_SECRET || process.env.ADMIN_PASSWORD || 'ecell-uiet-mdu-secret-salt-2026';
-const TOKEN_MAX_AGE_SECONDS = 7 * 24 * 60 * 60; // 7 days
+const TOKEN_MAX_AGE_SECONDS = 4 * 60 * 60; // 4 hours session limit
 
 export interface AdminPayload {
   email: string;

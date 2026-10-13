@@ -24,7 +24,7 @@ export default function TeamPreview() {
               Run by student builders, for student founders.
             </h2>
             <p className="text-zinc-600 dark:text-zinc-400 text-sm max-w-xl">
-              Our executive board manages cohort logistics, grant disbursements, mentor office hours, and university venture relationships.
+              Our executive board manages workshop logistics, ideathons, speaker sessions, and campus venture relationships.
             </p>
           </div>
 
@@ -43,13 +43,11 @@ export default function TeamPreview() {
               key={m.id}
               className="yc-card overflow-hidden flex flex-col group hover:border-zinc-400 dark:hover:border-zinc-600"
             >
-              <div className="relative w-full h-[260px] overflow-hidden bg-zinc-100 dark:bg-zinc-800">
-                <img
-                  src={m.image}
-                  alt={m.name}
-                  className="w-full h-full object-cover object-[center_20%] transition-transform duration-300 group-hover:scale-102"
-                />
-                <span className="absolute top-3 right-3 bg-white/95 dark:bg-zinc-900/95 text-zinc-800 dark:text-zinc-200 text-[10px] font-mono font-medium py-0.5 px-2 rounded border border-zinc-200 dark:border-zinc-700">
+              <div className="relative w-full py-8 flex flex-col items-center justify-center bg-zinc-50 dark:bg-zinc-800/50 border-b border-zinc-100 dark:border-zinc-800">
+                <div className="w-16 h-16 rounded-full bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 flex items-center justify-center text-xl font-serif text-[#FF6600] font-bold shadow-xs">
+                  {m.name.split(' ').map(n => n[0]).join('').slice(0, 2)}
+                </div>
+                <span className="mt-3 bg-white/95 dark:bg-zinc-900/95 text-zinc-800 dark:text-zinc-200 text-[10px] font-mono font-medium py-0.5 px-2 rounded border border-zinc-200 dark:border-zinc-700">
                   {m.tag}
                 </span>
               </div>

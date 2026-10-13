@@ -11,16 +11,16 @@ export default function TestimonialSection({ faculty }: { faculty?: FacultyMembe
   const testimonials = [
     {
       name: faculty?.name || 'Dr. Rajesh Kumar',
-      role: faculty?.designation || 'Faculty Advisor, UIET E-Cell',
+      role: faculty?.designation || 'Faculty Advisor, E-Cell',
       batch: 'Advisory Board',
       image: '/gallery/page_10.jpg',
       quote:
-        'UIET E-Cell has eliminated the disconnect between engineering coursework and real-world commercial execution. Students learn how to build defensible businesses before graduating.',
+        'E-Cell has eliminated the disconnect between engineering coursework and real-world commercial execution. Students learn how to build defensible businesses before graduating.',
     },
     {
       name: 'Ritik Rao',
       role: 'Co-Founder, BytePulse AI',
-      batch: 'Cohort S24',
+      batch: 'UIET Alumni (2024)',
       image: '/gallery/page_12.jpg',
       quote:
         'The weekly office hours forced us to confront our lack of user interviews. Instead of writing more backend code, we closed 15 enterprise pilots within two months.',
@@ -28,10 +28,10 @@ export default function TestimonialSection({ faculty }: { faculty?: FacultyMembe
     {
       name: 'Sneha Patel',
       role: 'Founder, CampuzFlow',
-      batch: 'Batch W24',
+      batch: 'UIET Student (2025)',
       image: '/gallery/page_20.jpg',
       quote:
-        'Having ₹1.5L in non-dilutive prototype capital and server credits gave us the runway to test without asking our parents for money. It was the catalyst for our seed round.',
+        'The hands-on technical guidance, pitch feedback, and community support gave us the clarity to validate our prototype with real campus users.',
     },
   ];
 
@@ -46,7 +46,7 @@ export default function TestimonialSection({ faculty }: { faculty?: FacultyMembe
             What builders say about the incubator.
           </h2>
           <p className="text-zinc-600 dark:text-zinc-400 text-sm">
-            Unvarnished reflections from founders who built products and raised capital through UIET E-Cell.
+            Unvarnished reflections from founders who built products and raised capital through E-Cell.
           </p>
         </div>
 
@@ -58,12 +58,8 @@ export default function TestimonialSection({ faculty }: { faculty?: FacultyMembe
             >
               <div>
                 <div className="flex items-center gap-3.5 mb-6">
-                  <div className="w-12 h-12 rounded-full overflow-hidden bg-zinc-100 dark:bg-zinc-800 shrink-0 border border-zinc-200 dark:border-zinc-700">
-                    <img
-                      src={t.image}
-                      alt={t.name}
-                      className="w-full h-full object-cover"
-                    />
+                  <div className="w-10 h-10 rounded-full overflow-hidden bg-orange-50 dark:bg-orange-950/40 shrink-0 border border-[#FF6600]/30 flex items-center justify-center font-mono font-bold text-xs text-[#FF6600]">
+                    {t.name.split(' ').map((n) => n[0]).slice(0, 2).join('')}
                   </div>
                   <div>
                     <h3 className="font-bold text-sm text-zinc-900 dark:text-white">
@@ -81,7 +77,7 @@ export default function TestimonialSection({ faculty }: { faculty?: FacultyMembe
               </div>
 
               <div className="pt-4 border-t border-zinc-100 dark:border-zinc-800/80 flex items-center justify-between text-xs">
-                <span className="text-zinc-400 font-mono text-[11px]">VERIFIED COHORT</span>
+                <span className="text-zinc-400 font-mono text-[11px]">STUDENT INNOVATOR</span>
                 <span className="font-mono text-[#FF6600] text-xs font-semibold bg-orange-50 dark:bg-orange-950/40 px-2 py-0.5 rounded border border-orange-200 dark:border-orange-900/60">
                   {t.batch}
                 </span>

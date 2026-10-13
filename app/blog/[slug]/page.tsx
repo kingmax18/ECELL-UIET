@@ -77,17 +77,9 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
             {/* Author Byline */}
             <div className="flex items-center justify-between py-4 border-y border-zinc-200 dark:border-zinc-800 gap-4 flex-wrap">
               <div className="flex items-center gap-3">
-                {post.author.avatar ? (
-                  <img
-                    src={post.author.avatar}
-                    alt={post.author.name}
-                    className="w-10 h-10 rounded-full object-cover border border-zinc-200 dark:border-zinc-700"
-                  />
-                ) : (
-                  <div className="w-10 h-10 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-200 font-bold flex items-center justify-center text-sm">
-                    {post.author.name.charAt(0)}
-                  </div>
-                )}
+                <div className="w-10 h-10 rounded-full bg-zinc-100 dark:bg-zinc-800 text-[#FF6600] border border-zinc-200 dark:border-zinc-700 font-bold flex items-center justify-center text-sm">
+                  {post.author.name.charAt(0)}
+                </div>
                 <div>
                   <div className="font-semibold text-sm text-zinc-900 dark:text-white">{post.author.name}</div>
                   <div className="text-xs text-zinc-500 dark:text-zinc-400">{post.author.role}</div>
@@ -109,16 +101,6 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
             </div>
           </div>
 
-          {/* Hero Cover Image */}
-          <div className="max-w-[960px] mx-auto px-4 sm:px-6 my-10">
-            <div className="relative w-full h-[300px] sm:h-[440px] rounded-lg overflow-hidden bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-800 shadow-sm">
-              <img
-                src={post.coverImage}
-                alt={post.title}
-                className="w-full h-full object-cover object-center"
-              />
-            </div>
-          </div>
 
           {/* Article Body Content */}
           <div className="max-w-[760px] mx-auto px-4 sm:px-6">
@@ -227,22 +209,14 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
             {/* Author Box Bio Card */}
             <div className="mt-10 bg-[#FAFAF8] dark:bg-[#14161C] border border-zinc-200 dark:border-zinc-800 rounded-lg p-6 flex flex-col sm:flex-row gap-5 items-start sm:items-center justify-between">
               <div className="flex items-center gap-4">
-                {post.author.avatar ? (
-                  <img
-                    src={post.author.avatar}
-                    alt={post.author.name}
-                    className="w-12 h-12 rounded-full object-cover border border-zinc-200 dark:border-zinc-700 shrink-0"
-                  />
-                ) : (
-                  <div className="w-12 h-12 rounded-full bg-zinc-200 dark:bg-zinc-700 text-zinc-700 dark:text-zinc-200 font-bold flex items-center justify-center shrink-0">
-                    {post.author.name.charAt(0)}
-                  </div>
-                )}
+                <div className="w-12 h-12 rounded-full bg-zinc-200 dark:bg-zinc-700 text-[#FF6600] font-bold flex items-center justify-center shrink-0 text-base">
+                  {post.author.name.charAt(0)}
+                </div>
                 <div>
                   <div className="font-semibold text-sm text-zinc-950 dark:text-white">{post.author.name}</div>
                   <div className="text-xs font-mono text-[#FF6600] mb-0.5">{post.author.role}</div>
                   <div className="text-xs text-zinc-500">
-                    UIET E-Cell Incubator Network · Maharshi Dayanand University
+                    E-Cell Incubator Network · UIET MDU
                   </div>
                 </div>
               </div>

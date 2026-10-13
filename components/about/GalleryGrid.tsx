@@ -1,5 +1,4 @@
 import React from 'react';
-import Image from 'next/image';
 import SectionHeader from '@/components/ui/SectionHeader';
 
 interface GalleryItem {
@@ -16,7 +15,7 @@ export default function GalleryGrid({ gallery = [] }: { gallery?: GalleryItem[] 
       <div className="max-w-[1272px] mx-auto px-6">
         <SectionHeader
           title="Life &amp; energy at"
-          italicTitle="UIET E-Cell"
+          italicTitle="E-Cell"
           subtitle="Glimpses of pitch competitions, workshops, lamp lighting ceremonies, and team circles."
         />
 
@@ -26,17 +25,13 @@ export default function GalleryGrid({ gallery = [] }: { gallery?: GalleryItem[] 
               key={item.id}
               className="reveal group bg-[#F4F6FF] border border-border rounded-panel p-3 transition-all duration-200 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:border-borderstrong"
             >
-              {/* Nested image frame */}
-              <div className="relative w-full h-[260px] overflow-hidden rounded-card bg-white">
-                <Image
-                  src={item.image}
-                  alt={item.title}
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1272px) 50vw, 33vw"
-                  className="object-cover object-center transition-transform duration-400 group-hover:scale-[1.05]"
-                />
-                <span className="absolute top-3 left-3 bg-[#0047FF] text-white text-[11px] font-bold py-1 px-3 rounded-pill border border-[#0A0E1A]">
-                  {item.category}
+              {/* Category & Icon header */}
+              <div className="flex items-center justify-between p-3 border-b border-border mb-2">
+                <span className="bg-[#0047FF]/10 text-[#0047FF] text-[11px] font-bold py-1 px-3 rounded-pill border border-[#0047FF]/20">
+                  {item.category || 'Initiative'}
+                </span>
+                <span className="text-xs font-mono text-secondary">
+                  #{item.id}
                 </span>
               </div>
               <div className="px-2 pt-4 pb-2 flex flex-col gap-1.5">

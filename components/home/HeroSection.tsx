@@ -2,163 +2,103 @@
 
 import React from 'react';
 import Link from 'next/link';
+import { Lightbulb, Compass, Globe, Rocket } from 'lucide-react';
 
 export default function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative w-full overflow-hidden bg-white dark:bg-[#0B0C0E] pt-12 pb-16 sm:pt-18 sm:pb-22 border-b border-zinc-200 dark:border-zinc-800"
+      className="relative w-full overflow-hidden bg-white dark:bg-[#0B0C0E] pt-16 pb-20 sm:pt-24 sm:pb-28 border-b border-zinc-200 dark:border-zinc-800"
     >
-      {/* Subtle institutional grid lines - understated like YC */}
-      <div
-        className="absolute inset-0 pointer-events-none opacity-[0.03] dark:opacity-[0.05]"
-        style={{
-          backgroundImage:
-            'linear-gradient(to right, #000 1px, transparent 1px), linear-gradient(to bottom, #000 1px, transparent 1px)',
-          backgroundSize: '48px 48px',
-        }}
-      />
+      <div className="relative z-10 max-w-[1100px] mx-auto px-4 sm:px-6 text-center">
+        {/* Display Headline */}
+        <h1 className="font-sans font-extrabold text-[clamp(36px,5.5vw,68px)] leading-[1.12] tracking-[-0.025em] text-[#0D0E12] dark:text-white mb-6 [text-wrap:balance]">
+          Empowering Student Innovators &amp;{' '}
+          <span className="italic text-[#FF6600]">Future Founders.</span>
+        </h1>
 
-      <div className="relative z-10 max-w-[1280px] mx-auto px-4 sm:px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-          {/* Left Column: Direct, Confident Editorial Copy */}
-          <div className="lg:col-span-7 flex flex-col items-start text-left">
-            {/* Eyebrow - Iconic YC Question Format */}
-            <div className="inline-flex items-center gap-2 mb-5">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#FF6600]" />
-              <span className="text-[12px] font-bold tracking-widest text-[#FF6600] uppercase font-mono">
-                WHY UIET E-CELL?
-              </span>
-            </div>
+        {/* Subtitle */}
+        <p className="text-[clamp(16px,1.6vw,19px)] font-normal leading-[1.65] text-zinc-600 dark:text-zinc-350 max-w-[720px] mx-auto mb-10 [text-wrap:balance]">
+          The official entrepreneurship hub of University Institute of Engineering &amp; Technology, Maharshi Dayanand University. Fostering campus innovation, hands-on mentorship, and student ventures from idea to execution.
+        </p>
 
-            {/* Editorial Serif Display Headline */}
-            <h1 className="font-serif font-normal text-[clamp(34px,5.2vw,66px)] leading-[1.1] tracking-[-0.02em] text-[#0D0E12] dark:text-white mb-6 [text-wrap:balance]">
-              We help student founders build the next generation of{' '}
-              <span className="italic text-[#FF6600] dark:text-[#FF8533]">
-                industry-defining companies.
-              </span>
-            </h1>
+        {/* Action Buttons */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 mb-14">
+          <Link
+            href="/apply"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-black dark:bg-white text-white dark:text-black px-7 py-3.5 text-sm font-semibold hover:opacity-90 transition-all shadow-sm"
+          >
+            <span>Apply to Join</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M5 12h14" />
+              <path d="m12 5 7 7-7 7" />
+            </svg>
+          </Link>
 
-            {/* Subtitle - Crisp, concise, professional */}
-            <p className="text-[clamp(16px,1.6vw,19px)] font-normal leading-[1.65] text-zinc-600 dark:text-zinc-350 max-w-[620px] mb-8">
-              UIET E-Cell is Maharshi Dayanand University&apos;s premier startup incubator and venture launchpad. We back campus builders with non-dilutive seed capital, 1-on-1 mentorship from exited operators, and direct access to India&apos;s top angel networks.
-            </p>
+          <Link
+            href="/events"
+            className="w-full sm:w-auto inline-flex items-center justify-center rounded-full border border-zinc-300 dark:border-zinc-700 bg-transparent text-zinc-800 dark:text-zinc-200 px-6 py-3.5 text-sm font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
+          >
+            <span>Explore Events</span>
+          </Link>
+        </div>
 
-            {/* Action Buttons - Clean YC Orange & Bordered secondary */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto mb-9">
-              <Link
-                href="/contact"
-                className="yc-btn-primary text-sm px-6 py-3 font-semibold rounded-md shadow-xs"
+        {/* Core Pillars Bar */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-10 border-t border-zinc-200/80 dark:border-zinc-800/80 text-left">
+          {[
+            {
+              step: '01',
+              title: 'Ideation',
+              heading: 'Campus Hackathons',
+              desc: 'Hands-on ideation sprints and pitch challenges.',
+              icon: Lightbulb,
+            },
+            {
+              step: '02',
+              title: 'Mentorship',
+              heading: 'Industry Guidance',
+              desc: 'Direct 1-on-1 advisory with alumni operators.',
+              icon: Compass,
+            },
+            {
+              step: '03',
+              title: 'Ecosystem',
+              heading: 'Annual E-Summit',
+              desc: 'Keynotes, panels, and networking conclaves.',
+              icon: Globe,
+            },
+            {
+              step: '04',
+              title: 'Incubation',
+              heading: 'Startup Support',
+              desc: 'Prototyping resources and institutional backing.',
+              icon: Rocket,
+            },
+          ].map((pillar) => {
+            const Icon = pillar.icon;
+            return (
+              <div
+                key={pillar.step}
+                className="group relative p-4.5 sm:p-5 rounded-2xl bg-zinc-50/70 dark:bg-zinc-900/60 hover:bg-white dark:hover:bg-zinc-850 border border-zinc-200/80 dark:border-zinc-800/80 hover:border-[#FF6600]/40 transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
               >
-                <span>Apply for Cohort 2026</span>
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M5 12h14" />
-                  <path d="m12 5 7 7-7 7" />
-                </svg>
-              </Link>
-
-              <Link
-                href="#startups"
-                className="yc-btn-secondary text-sm px-5 py-3 font-medium rounded-md"
-              >
-                <span>Explore Startup Directory</span>
-              </Link>
-            </div>
-
-            {/* Trust Marks - Understated, Institutional */}
-            <div className="flex flex-wrap items-center gap-y-2 gap-x-6 text-xs text-zinc-600 dark:text-zinc-400 font-medium pt-4 border-t border-zinc-200 dark:border-zinc-800/80 w-full">
-              <span className="inline-flex items-center gap-1.5">
-                <svg className="text-[#FF6600]" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M20 6 9 17l-5-5" />
-                </svg>
-                100% Equity-Free University Incubation
-              </span>
-              <span className="inline-flex items-center gap-1.5">
-                <svg className="text-[#FF6600]" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M20 6 9 17l-5-5" />
-                </svg>
-                ₹2.5L - ₹10L Prototyping Grants
-              </span>
-              <span className="inline-flex items-center gap-1.5">
-                <svg className="text-[#FF6600]" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M20 6 9 17l-5-5" />
-                </svg>
-                National Demo Day Access
-              </span>
-            </div>
-          </div>
-
-          {/* Right Column: YC-Style Live Batch Card & Terminal Snapshot */}
-          <div className="lg:col-span-5 relative flex justify-center mt-4 lg:mt-0">
-            <div className="w-full max-w-[460px] bg-white dark:bg-[#14161C] border border-zinc-200 dark:border-zinc-800 rounded-lg p-6 shadow-md transition-all">
-              {/* Header with Batch Status */}
-              <div className="flex items-center justify-between pb-4 border-b border-zinc-100 dark:border-zinc-800/80 mb-5">
-                <div className="flex items-center gap-2">
-                  <span className="w-2.5 h-2.5 rounded-full bg-[#FF6600] animate-pulse" />
-                  <span className="font-mono text-xs font-semibold text-zinc-900 dark:text-zinc-100 uppercase tracking-wider">
-                    BATCH S26 RECRUITMENT
+                <div className="flex items-center justify-between mb-3">
+                  <div className="w-9 h-9 rounded-xl bg-orange-500/10 dark:bg-orange-500/20 text-[#FF6600] flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <Icon className="w-4.5 h-4.5" />
+                  </div>
+                  <span className="text-[11px] font-bold font-sans text-zinc-500 dark:text-zinc-400 group-hover:text-[#FF6600] px-2 py-0.5 rounded-full bg-zinc-200/50 dark:bg-zinc-800 transition-colors">
+                    {pillar.step} · {pillar.title}
                   </span>
                 </div>
-                <span className="text-[11px] font-mono font-medium text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40 px-2 py-0.5 rounded border border-emerald-200 dark:border-emerald-800/60">
-                  Applications Open
-                </span>
-              </div>
-
-              {/* High-Value Information Specs */}
-              <div className="space-y-4 text-xs">
-                <div className="flex items-start justify-between py-1 border-b border-zinc-100 dark:border-zinc-800/50">
-                  <span className="text-zinc-500 dark:text-zinc-400 font-medium">Cohort Batch</span>
-                  <span className="font-semibold text-zinc-900 dark:text-zinc-100">Summer 2026 (12 Weeks)</span>
+                <div className="text-sm sm:text-base font-bold text-zinc-900 dark:text-white group-hover:text-[#FF6600] transition-colors">
+                  {pillar.heading}
                 </div>
-
-                <div className="flex items-start justify-between py-1 border-b border-zinc-100 dark:border-zinc-800/50">
-                  <span className="text-zinc-500 dark:text-zinc-400 font-medium">Application Deadline</span>
-                  <span className="font-semibold text-[#FF6600]">April 30, 2026 · 11:59 PM IST</span>
-                </div>
-
-                <div className="flex items-start justify-between py-1 border-b border-zinc-100 dark:border-zinc-800/50">
-                  <span className="text-zinc-500 dark:text-zinc-400 font-medium">Stage Accepted</span>
-                  <span className="font-semibold text-zinc-900 dark:text-zinc-100">Idea, MVP, or Early Traction</span>
-                </div>
-
-                <div className="flex items-start justify-between py-1 border-b border-zinc-100 dark:border-zinc-800/50">
-                  <span className="text-zinc-500 dark:text-zinc-400 font-medium">Grant Capital</span>
-                  <span className="font-semibold text-zinc-900 dark:text-zinc-100">₹2,50,000 Equity-Free Seed</span>
-                </div>
-
-                <div className="flex items-start justify-between py-1 border-b border-zinc-100 dark:border-zinc-800/50">
-                  <span className="text-zinc-500 dark:text-zinc-400 font-medium">Cloud Credits</span>
-                  <span className="font-semibold text-zinc-900 dark:text-zinc-100">$25,000 AWS &amp; Google Cloud</span>
-                </div>
-
-                <div className="flex items-start justify-between py-1">
-                  <span className="text-zinc-500 dark:text-zinc-400 font-medium">Culmination</span>
-                  <span className="font-semibold text-zinc-900 dark:text-zinc-100">Annual Demo Day (VC Arena)</span>
-                </div>
-              </div>
-
-              {/* Founder quote box */}
-              <div className="mt-5 p-3.5 bg-zinc-50 dark:bg-[#1A1D24] rounded-md border border-zinc-200 dark:border-zinc-800">
-                <p className="text-[12px] italic text-zinc-600 dark:text-zinc-300 leading-relaxed">
-                  &ldquo;We don&apos;t look for polished pitch decks. We look for obsessed builders who understand their users.&rdquo;
+                <p className="text-xs text-zinc-600 dark:text-zinc-400 mt-1 leading-relaxed">
+                  {pillar.desc}
                 </p>
-                <div className="mt-2 flex items-center justify-between text-[11px] text-zinc-500 dark:text-zinc-400">
-                  <span className="font-medium text-zinc-800 dark:text-zinc-200">— UIET Incubator Committee</span>
-                  <span className="font-mono text-[#FF6600]">Batch S25</span>
-                </div>
+                <div className="absolute inset-x-4 bottom-0 h-[2px] bg-gradient-to-r from-transparent via-[#FF6600] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full" />
               </div>
-
-              {/* Direct Card Action */}
-              <div className="mt-5">
-                <Link
-                  href="/contact"
-                  className="w-full yc-btn-primary justify-center text-xs py-2.5 font-semibold rounded"
-                >
-                  Start Your Founder Application →
-                </Link>
-              </div>
-            </div>
-          </div>
+            );
+          })}
         </div>
       </div>
     </section>

@@ -6,32 +6,23 @@ import type { BlogPost } from '@/lib/types';
 
 export default function BlogCard({ post }: { post: BlogPost }) {
   return (
-    <article className="yc-card overflow-hidden flex flex-col justify-between group hover:border-zinc-400 dark:hover:border-zinc-600">
-      {/* Cover Image */}
-      <Link href={`/blog/${post.slug}`} className="relative block w-full h-[200px] overflow-hidden bg-zinc-100 dark:bg-zinc-800">
-        <img
-          src={post.coverImage}
-          alt={post.title}
-          className="w-full h-full object-cover object-center transition-transform duration-300 group-hover:scale-102"
-          loading="lazy"
-        />
-        <div className="absolute top-3 left-3">
-          <span className="text-[11px] font-mono font-medium text-[#FF6600] bg-white/95 dark:bg-zinc-900/95 py-0.5 px-2 rounded border border-zinc-200 dark:border-zinc-700 shadow-2xs">
-            {post.category}
-          </span>
+    <article className="yc-card overflow-hidden flex flex-col justify-between group hover:border-[#FF6600]/40 dark:hover:border-[#FF6600]/40 transition-all">
+      {/* Category & Meta Header */}
+      <div className="p-5 pb-0 flex items-center justify-between gap-3">
+        <span className="text-[11px] font-mono font-medium text-[#FF6600] bg-[#FF6600]/10 py-1 px-2.5 rounded border border-[#FF6600]/20">
+          {post.category}
+        </span>
+        <div className="flex items-center gap-2 text-xs font-mono text-zinc-400">
+          <span>{post.publishedAt}</span>
+          <span>·</span>
+          <span>{post.readTime}</span>
         </div>
-      </Link>
+      </div>
 
       {/* Body */}
       <div className="p-5 flex-1 flex flex-col justify-between gap-4">
         <div>
-          <div className="flex items-center gap-2 text-xs font-mono text-zinc-400 mb-2">
-            <span>{post.publishedAt}</span>
-            <span>·</span>
-            <span>{post.readTime}</span>
-          </div>
-
-          <h3 className="font-serif font-normal text-xl leading-snug text-zinc-950 dark:text-white transition-colors group-hover:text-[#FF6600] mb-2">
+          <h3 className="font-serif font-normal text-xl leading-snug text-zinc-950 dark:text-white transition-colors group-hover:text-[#FF6600] mb-2.5">
             <Link href={`/blog/${post.slug}`} className="no-underline text-inherit">
               {post.title}
             </Link>
@@ -42,20 +33,12 @@ export default function BlogCard({ post }: { post: BlogPost }) {
           </p>
         </div>
 
-        {/* Footer: Author & Read */}
-        <div className="pt-3 border-t border-zinc-100 dark:border-zinc-800/80 flex items-center justify-between text-xs">
-          <div className="flex items-center gap-2 min-w-0">
-            {post.author.avatar ? (
-              <img
-                src={post.author.avatar}
-                alt={post.author.name}
-                className="w-6 h-6 rounded-full object-cover shrink-0 border border-zinc-200 dark:border-zinc-700"
-              />
-            ) : (
-              <div className="w-6 h-6 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 font-bold text-xs flex items-center justify-center shrink-0">
-                {post.author.name.charAt(0)}
-              </div>
-            )}
+        {/* Footer: Author Initials & Read CTA */}
+        <div className="pt-4 border-t border-zinc-100 dark:border-zinc-800/80 flex items-center justify-between text-xs">
+          <div className="flex items-center gap-2.5 min-w-0">
+            <div className="w-7 h-7 rounded-full bg-zinc-100 dark:bg-zinc-800 text-[#FF6600] border border-zinc-200 dark:border-zinc-700 font-bold text-xs flex items-center justify-center shrink-0">
+              {post.author.name.charAt(0)}
+            </div>
             <span className="text-xs font-medium text-zinc-800 dark:text-zinc-200 truncate">
               {post.author.name}
             </span>
@@ -63,7 +46,7 @@ export default function BlogCard({ post }: { post: BlogPost }) {
 
           <Link
             href={`/blog/${post.slug}`}
-            className="text-xs font-medium text-[#FF6600] hover:underline"
+            className="text-xs font-semibold text-[#FF6600] hover:underline"
           >
             Read Essay →
           </Link>

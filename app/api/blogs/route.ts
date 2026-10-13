@@ -87,7 +87,7 @@ export async function POST(request: Request) {
         excerpt: excerpt.trim(),
         content: content.trim(),
         authorName: author?.name || 'UIET Team',
-        authorRole: author?.role || 'President, UIET E-Cell',
+        authorRole: author?.role || 'President, E-Cell',
         authorAvatar: author?.avatar || null,
         category: category || 'General',
         publishedAt: publishedAt || new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }),

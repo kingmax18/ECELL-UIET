@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import {
   RiBuilding2Line,
   RiGovernmentLine,
@@ -13,7 +14,7 @@ import {
 const partners = [
   { icon: RiRocketLine, name: 'Startup India', tag: 'DPIIT Recognised' },
   { icon: RiGovernmentLine, name: 'Startup Haryana', tag: 'State Ecosystem' },
-  { icon: RiBuilding2Line, name: 'UIET MDU Rohtak', tag: 'Host Institution' },
+  { icon: RiBuilding2Line, name: 'UIET MDU Rohtak', tag: 'Host Institution', image: '/logo.png' },
   { icon: RiAtomLine, name: 'MDU Innovation Hub', tag: 'R&D Center' },
   { icon: RiLightbulbLine, name: 'IIT Bombay E-Cell Network', tag: 'National Partner' },
   { icon: RiGlobalLine, name: 'NASSCOM 10,000 Startups', tag: 'Industry Ally' },
@@ -37,8 +38,12 @@ export default function LogoStrip() {
                 key={idx}
                 className="inline-flex items-center gap-3 text-zinc-700 dark:text-zinc-300 font-medium text-xs sm:text-sm hover:text-zinc-950 dark:hover:text-white transition-colors"
               >
-                <div className="w-7 h-7 rounded bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 flex items-center justify-center shrink-0 text-[#FF6600]">
-                  <Icon size={16} />
+                <div className="w-7 h-7 rounded bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 flex items-center justify-center shrink-0 text-[#FF6600] overflow-hidden p-1">
+                  {p.image ? (
+                    <Image src={p.image} alt={p.name} width={20} height={20} className="w-full h-full object-contain" />
+                  ) : (
+                    <Icon size={16} />
+                  )}
                 </div>
                 <div className="flex flex-col text-left">
                   <span className="font-semibold text-zinc-900 dark:text-zinc-100">{p.name}</span>

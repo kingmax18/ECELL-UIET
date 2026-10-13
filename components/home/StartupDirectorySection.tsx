@@ -16,16 +16,16 @@ interface Startup {
 const STARTUPS: Startup[] = [
   {
     name: 'BytePulse AI',
-    batch: 'Cohort S24',
+    batch: 'Class of 2024',
     category: 'AI & DevTools',
     description: 'Autonomous synthetic data generation and fine-tuning pipelines for enterprise vision models.',
-    status: 'Raised ₹45L Seed',
+    status: 'Active Campus MVP',
     founders: 'Aman Sharma & Ritik Rao (CSE 2024)',
     accent: '#FF6600',
   },
   {
     name: 'CampuzFlow',
-    batch: 'Batch W24',
+    batch: 'Class of 2024',
     category: 'SaaS & Productivity',
     description: 'Unified administrative, fee remittance, and student document workflow engine adopted by 6 universities.',
     status: '12,000+ Active Users',
@@ -34,7 +34,7 @@ const STARTUPS: Startup[] = [
   },
   {
     name: 'AeroLink Drones',
-    batch: 'Cohort S23',
+    batch: 'Class of 2023',
     category: 'Hardware & Robotics',
     description: 'Autonomous crop-monitoring and thermal inspection drones built specifically for Indian agricultural belts.',
     status: '2 Utility Patents Filed',
@@ -43,7 +43,7 @@ const STARTUPS: Startup[] = [
   },
   {
     name: 'PayNest',
-    batch: 'Batch W25',
+    batch: 'Class of 2025',
     category: 'FinTech & Commerce',
     description: 'Micro-escrow and instant settlement SDK for student freelance talent and university club sponsorships.',
     status: 'Processed ₹18L Volume',
@@ -52,16 +52,16 @@ const STARTUPS: Startup[] = [
   },
   {
     name: 'SkillForge XR',
-    batch: 'Cohort S25',
+    batch: 'Class of 2025',
     category: 'EdTech & Career',
     description: 'WebXR simulations and spatial CAD modules for vocational engineering and mechanical lab training.',
-    status: 'MDU Innovation Grant',
+    status: 'Innovation Finalist',
     founders: 'Ananya Gupta & Rohit S. (IT 2026)',
     accent: '#DB2777',
   },
   {
     name: 'EcoGrid Dynamics',
-    batch: 'Batch W24',
+    batch: 'Class of 2024',
     category: 'CleanTech & Energy',
     description: 'Smart campus energy auditing sensors reducing institutional electricity waste by 22%.',
     status: 'Campus Pilot Active',
@@ -97,18 +97,18 @@ export default function StartupDirectorySection() {
               PORTFOLIO DIRECTORY
             </div>
             <h2 className="font-serif font-normal text-3xl sm:text-4xl text-zinc-900 dark:text-white mb-2">
-              Startups built at UIET E-Cell.
+              Startups built at E-Cell.
             </h2>
             <p className="text-zinc-600 dark:text-zinc-400 text-sm max-w-xl">
-              Meet our cohort graduates. Companies solving hard technical and commercial problems from university labs.
+              Meet student ventures and projects from UIET MDU. Teams solving real technical and campus challenges.
             </p>
           </div>
 
           <Link
-            href="/contact"
+            href="/apply"
             className="yc-btn-secondary text-xs self-start md:self-auto"
           >
-            Submit Your Startup →
+            Submit Your Project →
           </Link>
         </div>
 

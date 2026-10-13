@@ -5,7 +5,7 @@ import React from 'react';
 const awards = [
   {
     title: 'E-Summit Innovation Excellence Award',
-    desc: 'Awarded by university leadership for pioneering 100% student-run founder incubation, seed grants, and pitch forums.',
+    desc: 'Awarded by university leadership for pioneering 100% student-run founder incubation, mentorship, and pitch forums.',
     year: '2026',
     badge: 'MDU Innovation',
   },

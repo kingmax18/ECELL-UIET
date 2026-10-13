@@ -43,7 +43,7 @@ export default function TermsPage() {
             <section>
               <h2 className={sectionClass}>3. Event Participation &amp; Certificates</h2>
               <p className={textClass}>
-                Certificates of participation, merit awards, and seed grants are awarded based on attendance
+                Certificates of participation, merit awards, and competition prizes are awarded based on attendance
                 and faculty jury evaluations. The decisions of the judging panel and executive board are final.
               </p>
             </section>

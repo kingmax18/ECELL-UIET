@@ -29,7 +29,7 @@ export default function TeamPage() {
                 The operators behind the ecosystem.
               </h1>
               <p className="text-zinc-600 dark:text-zinc-400 text-sm sm:text-base leading-relaxed">
-                Meet the executive directors, department heads, and engineering builders who run cohort admissions, mentor office hours, and university venture relationships.
+                Meet the executive directors, department heads, and student leaders who organize campus events, workshops, ideathons, and mentorship programs.
               </p>
             </div>
           </div>

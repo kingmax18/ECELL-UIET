@@ -2,9 +2,11 @@ export interface BeforeVsNowCompany {
   name: string;
   key: string;
   images: [string, string]; // [young/batch, now]
+  batch?: string;
   descriptions: {
     young: string;
     now: string;
+    valuation?: string;
   };
 }
 
@@ -46,7 +48,7 @@ export const YC_COMPANIES: BeforeVsNowCompany[] = [
     images: ['/gallery/page_20.jpg', '/gallery/page_3.jpg'],
     descriptions: {
       young: 'Started as a 3rd year CSE project exploring soil nitrogen sensor telemetry for Haryana wheat farmers.',
-      now: 'Awarded 1st prize at Eureka Pitch 2025 and secured ₹1.5L non-dilutive prototyping grant from university incubation.',
+      now: 'Awarded 1st prize at Eureka Pitch 2025 and selected for incubation mentorship at the university innovation centre.',
     },
   },
   {
@@ -73,7 +75,7 @@ export const YC_COMPANIES: BeforeVsNowCompany[] = [
     images: ['/gallery/page_1.jpg', '/gallery/page_4.jpg'],
     descriptions: {
       young: 'Pioneered by interdisciplinary Biotech and CSE students analyzing early diagnostic scan telemetry.',
-      now: 'Presented at national healthcare innovation symposiums, receiving faculty citation and seed mentorship.',
+      now: 'Presented at national healthcare innovation symposiums, receiving faculty citation and dedicated project mentorship.',
     },
   },
   {
@@ -162,21 +164,21 @@ export const YC_LOGOS = [
 export const IN_THE_ROOM: InTheRoomItem[] = [
   {
     name: 'Dr. Rajesh Kumar',
-    title: 'Faculty Advisor, UIET E-Cell',
+    title: 'Faculty Advisor, E-Cell',
     video: 'https://bookface-static.ycombinator.com/assets/ycdc/intheroomwith/brian-chesky-video-compressed-7ea6a6ca9593fabb400850744540405287fe91ae08ddfbf4824ab95d5f632875.mp4',
     poster: '/gallery/page_28.jpg',
     startTime: 0,
   },
   {
     name: 'Ananya Sharma',
-    title: 'President, UIET E-Cell',
+    title: 'President, E-Cell',
     video: 'https://bookface-static.ycombinator.com/assets/ycdc/intheroomwith/sam-altman-video-compressed-6e99f4927d081ecef3e4430e36b6ec23ac595e8da186216f30b7d7dc5129dc4a.mp4',
     poster: '/gallery/page_10.jpg',
     startTime: 0,
   },
   {
     name: 'Rohan Mehta',
-    title: 'Vice President, UIET E-Cell',
+    title: 'Vice President, E-Cell',
     video: 'https://bookface-static.ycombinator.com/assets/ycdc/intheroomwith/greg-brockman-video-compressed-cb96007824e30f1ad95d2f0baa819b9ca35a8df56d38373c15f0e9e24c23e4b1.mp4',
     poster: '/gallery/page_12.jpg',
     startTime: 0,
@@ -190,35 +192,35 @@ export const IN_THE_ROOM: InTheRoomItem[] = [
   },
   {
     name: 'Nitigya',
-    title: 'Founding Member, UIET E-Cell',
+    title: 'Founding Member, E-Cell',
     video: 'https://bookface-static.ycombinator.com/assets/ycdc/intheroomwith/paul-graham-video-compressed-147746c0944f23ac3ba13f41a213a63fe773fb3e1b261ea824d0784e0c0242e4.mp4',
     poster: '/gallery/page_3.jpg',
     startTime: 0,
   },
   {
     name: 'Shashwat Thakur',
-    title: 'Founding Member, UIET E-Cell',
+    title: 'Founding Member, E-Cell',
     video: 'https://bookface-static.ycombinator.com/assets/ycdc/intheroomwith/guillermo-rauch-video-compressed-66c9a0d2ddcc5eb02e84b0714c70b1332f37ffff031ad759cc4dbb2d0f78991d.mp4',
     poster: '/gallery/page_6.jpg',
     startTime: 0,
   },
   {
     name: 'Priya Verma',
-    title: 'Secretary, UIET E-Cell',
+    title: 'Secretary, E-Cell',
     video: 'https://bookface-static.ycombinator.com/assets/ycdc/intheroomwith/dylan-field-video-compressed-7541fe3e6c730507b8b8789c18f6139465733285eeff9330423158d5cd315b38.mp4',
     poster: '/gallery/page_25.jpg',
     startTime: 0,
   },
   {
     name: 'Deepanshu',
-    title: 'Founding Member, UIET E-Cell',
+    title: 'Founding Member, E-Cell',
     video: 'https://bookface-static.ycombinator.com/assets/ycdc/intheroomwith/emmett-shear-video-compressed-e639d24c15750fb7ac160f77b63504bafef74929c23f8bb4b82112a84900bb97.mp4',
     poster: '/gallery/page_4.jpg',
     startTime: 0,
   },
   {
     name: 'Karan Malik',
-    title: 'Events Head, UIET E-Cell',
+    title: 'Events Head, E-Cell',
     video: 'https://bookface-static.ycombinator.com/assets/ycdc/intheroomwith/tony-xu-video-compressed-cfaffb21fca0c9e88fb50f8057d669c84b98d71695c3c943f86b2cc2b6d33d8d.mp4',
     poster: '/gallery/page_43.jpg',
     startTime: 0,
@@ -233,7 +235,7 @@ export const YC_PARTNERS: PartnerItem[] = [
     batchTitle: 'Associate Professor, Management Studies',
     photo: '/gallery/page_28.jpg',
     batchPhoto: '/gallery/page_4.jpg',
-    bio: 'Provides academic stewardship and institutional support to UIET E-Cell. Mentors student ventures in business model validation and grant applications.',
+    bio: 'Provides academic stewardship and institutional support to E-Cell. Mentors student ventures in business model validation and prototype development.',
   },
   {
     name: 'Ananya Sharma',
@@ -260,7 +262,7 @@ export const YC_PARTNERS: PartnerItem[] = [
     batchTitle: 'Founding Member, UIET MDU',
     photo: '/gallery/page_3.jpg',
     batchPhoto: '/gallery/page_6.jpg',
-    bio: 'Co-founded UIET E-Cell, establishing the core organizational framework, student constitution, and inaugural campus ideathons.',
+    bio: 'Co-founded E-Cell, establishing the core organizational framework, student constitution, and inaugural campus ideathons.',
   },
   {
     name: 'Lakshay',
@@ -269,7 +271,7 @@ export const YC_PARTNERS: PartnerItem[] = [
     batchTitle: '3rd Year, B.Tech CSE',
     photo: '/gallery/page_20.jpg',
     batchPhoto: '/gallery/page_12.jpg',
-    bio: 'Full-stack builder architecting the digital infrastructure of UIET E-Cell. Guides student teams on zero-cost MVP validation and tech roadmaps.',
+    bio: 'Full-stack builder architecting the digital infrastructure of E-Cell. Guides student teams on zero-cost MVP validation and tech roadmaps.',
   },
   {
     name: 'Shashwat Thakur',
@@ -278,7 +280,7 @@ export const YC_PARTNERS: PartnerItem[] = [
     batchTitle: 'Founding Member, UIET MDU',
     photo: '/gallery/page_6.jpg',
     batchPhoto: '/gallery/page_10.jpg',
-    bio: 'Co-founded UIET E-Cell, driving strategic execution, speaker invitations, and national delegation representations.',
+    bio: 'Co-founded E-Cell, driving strategic execution, speaker invitations, and national delegation representations.',
   },
   {
     name: 'Priya Verma',
@@ -296,7 +298,7 @@ export const YC_PARTNERS: PartnerItem[] = [
     batchTitle: 'Founding Member, UIET MDU',
     photo: '/gallery/page_4.jpg',
     batchPhoto: '/gallery/page_28.jpg',
-    bio: 'Co-founded UIET E-Cell, building grassroots student community networks and establishing ties with university alumni.',
+    bio: 'Co-founded E-Cell, building grassroots student community networks and establishing ties with university alumni.',
   },
   {
     name: 'Karan Malik',
@@ -314,7 +316,7 @@ export const YC_PARTNERS: PartnerItem[] = [
     batchTitle: '3rd Year, MBA',
     photo: '/gallery/page_14.jpg',
     batchPhoto: '/gallery/page_20.jpg',
-    bio: 'Heads digital storytelling, campaign design, and community engagement, growing UIET E-Cell’s footprint across student channels.',
+    bio: 'Heads digital storytelling, campaign design, and community engagement, growing E-Cell’s footprint across student channels.',
   },
   {
     name: 'Tushar Garg',
@@ -323,7 +325,7 @@ export const YC_PARTNERS: PartnerItem[] = [
     batchTitle: '4th Year, B.Com (Hons)',
     photo: '/gallery/page_11.jpg',
     batchPhoto: '/gallery/page_12.jpg',
-    bio: 'Analyzes government grant schemes, state incubator policies, and venture trends to guide student founders toward seed funding.',
+    bio: 'Researches student innovation frameworks, ecosystem policies, and university initiatives to guide campus builders through early discovery.',
   },
   {
     name: 'Azriel',
@@ -332,13 +334,13 @@ export const YC_PARTNERS: PartnerItem[] = [
     batchTitle: 'Founding Member, UIET MDU',
     photo: '/gallery/page_2.jpg',
     batchPhoto: '/gallery/page_3.jpg',
-    bio: 'Co-founded UIET E-Cell, pioneering event operations and setting the high-conviction culture that defines the organization today.',
+    bio: 'Co-founded E-Cell, pioneering event operations and setting the high-conviction culture that defines the organization today.',
   },
 ];
 
 export const FOUNDER_WORDS = [
   {
-    quote: 'UIET E-Cell compresses months of hesitation into days of pure execution.',
+    quote: 'E-Cell compresses months of hesitation into days of pure execution.',
     author: 'Ananya Sharma',
     company: 'President',
     batch: '2026',
@@ -390,9 +392,9 @@ export const EDITORIAL_STRIP_IMAGES = [
 ];
 
 export const FEATURED_QUOTE = {
-  text: 'The best founders don’t wait for graduation to start building. UIET E-Cell is where campus innovators turn raw ambition into viable enterprises and solve real-world problems.',
+  text: 'The best founders don’t wait for graduation to start building. E-Cell is where campus innovators turn raw ambition into viable enterprises and solve real-world problems.',
   author: 'Dr. Rajesh Kumar',
-  role: 'Faculty Advisor, UIET E-Cell & Associate Professor, MDU Rohtak',
+  role: 'Faculty Advisor, E-Cell & Associate Professor, MDU Rohtak',
   avatar: '/gallery/page_28.jpg',
 };
 
@@ -425,12 +427,12 @@ export const KNOWLEDGE_MAIN_FEATURE = {
   image: '/gallery/page_3.jpg',
   tag: 'Flagship Showcase',
   title: "How We Built UIET's Largest Student Pitch Showcase: Behind the Scenes of Eureka",
-  description: 'A transparent look at the operations, prototype demonstrations, and non-dilutive grants that brought together 35+ campus innovators, mentors, and jury members under one roof.',
+  description: 'A transparent look at the operations, prototype demonstrations, and collaborative workshops that brought together 35+ campus innovators, mentors, and jury members under one roof.',
 };
 
 export const STARTUP_NEWS: NewsItem[] = [
   {
-    title: 'Eureka Pitch 2026 Announces ₹1.5 Lakhs in Prototyping Grants for Student Finalists',
+    title: 'Eureka Pitch 2026 Celebrates Campus Finalists with Merit Recognition and Incubation Mentorship',
     href: '/blog/how-we-built-largest-student-pitch-showcase-eureka-2026',
   },
   {

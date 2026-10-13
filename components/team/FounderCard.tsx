@@ -1,28 +1,32 @@
 import React from 'react';
-import { avatarUrl } from '@/lib/utils';
 import type { Founder } from '@/lib/types';
 
 export default function FounderCard({ founder }: { founder: Founder }) {
+  const initials = founder.name
+    .split(' ')
+    .map((n) => n[0])
+    .slice(0, 2)
+    .join('');
+
   return (
-    <div className="reveal group bg-white border border-border rounded-panel overflow-hidden transition-all duration-200 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:border-borderstrong">
-      <div className="relative w-full h-[300px] overflow-hidden bg-[#f8fafc]">
-        <img
-          src={founder.photo || avatarUrl(founder.name)}
-          alt={founder.name}
-          loading="lazy"
-          className="w-full h-full object-cover object-[center_20%] transition-transform duration-400 group-hover:scale-[1.05]"
-        />
-        <span className="absolute top-3 left-3 bg-white/90 [backdrop-filter:blur(8px)] text-ink text-[11px] font-medium py-1 px-3 rounded-pill whitespace-nowrap">
+    <div className="reveal group bg-white dark:bg-[#14161C] border border-zinc-200 dark:border-zinc-800 rounded-lg p-5 transition-all duration-200 hover:-translate-y-1 hover:border-[#FF6600]">
+      <div className="flex items-center justify-between mb-4">
+        <div className="w-11 h-11 rounded-md bg-orange-50 dark:bg-orange-950/40 border border-[#FF6600]/30 flex items-center justify-center font-mono font-bold text-sm text-[#FF6600]">
+          {initials}
+        </div>
+        <span className="text-[10px] font-mono font-medium text-zinc-600 dark:text-zinc-300 bg-zinc-100 dark:bg-zinc-800 px-2 py-0.5 rounded border border-zinc-200 dark:border-zinc-700">
           {founder.badge || 'Founding Pioneer'}
         </span>
       </div>
 
-      <div className="p-5 flex flex-col items-start gap-1">
-        <h3 className="font-sans font-medium text-lg tracking-[-0.015em] text-ink">{founder.name}</h3>
-        <p className="text-sm text-secondary">{founder.role}</p>
-        {founder.batch && <p className="text-xs text-muted">{founder.batch}</p>}
+      <div className="flex flex-col items-start gap-1">
+        <h3 className="font-serif font-bold text-base text-zinc-950 dark:text-white group-hover:text-[#FF6600] transition-colors">
+          {founder.name}
+        </h3>
+        <p className="text-xs font-mono font-medium text-[#FF6600]">{founder.role}</p>
+        {founder.batch && <p className="text-xs text-zinc-500">{founder.batch}</p>}
         {founder.contribution && (
-          <p className="text-[13px] leading-[1.5] text-secondary mt-1">{founder.contribution}</p>
+          <p className="text-xs text-zinc-600 dark:text-zinc-400 mt-2 leading-relaxed">{founder.contribution}</p>
         )}
       </div>
     </div>

@@ -102,7 +102,7 @@ export default function ApplicationForm({ settings }: { settings?: AppSettings }
         const web3Key = settings?.web3formsKey || process.env.NEXT_PUBLIC_WEB3FORMS_KEY || 'ca0b970d-2396-4be4-96d0-f4f2697acddc';
         const web3Body = new FormData();
         web3Body.append('access_key', web3Key);
-        web3Body.append('subject', `New UIET E-Cell Application: ${formData.fullName} (${formData.department})`);
+        web3Body.append('subject', `New E-Cell Application: ${formData.fullName} (${formData.department})`);
         web3Body.append('name', formData.fullName);
         web3Body.append('email', formData.email);
         web3Body.append('phone', formData.phone);
@@ -149,7 +149,7 @@ export default function ApplicationForm({ settings }: { settings?: AppSettings }
         <div className="bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800/60 rounded-md p-5 mb-8 text-emerald-900 dark:text-emerald-100">
           <h3 className="font-sans font-bold text-base mb-1">Application Received</h3>
           <p className="text-xs sm:text-sm text-emerald-800 dark:text-emerald-200 leading-relaxed">
-            Thank you for applying to UIET E-Cell. Applications are reviewed on a rolling basis. Our executive board will reach out via email within 5-7 business days.
+            Thank you for applying to E-Cell. Applications are reviewed on a rolling basis. Our executive board will reach out via email within 5-7 business days.
           </p>
         </div>
       )}
@@ -314,7 +314,7 @@ export default function ApplicationForm({ settings }: { settings?: AppSettings }
         {/* Row 6: Statement of Purpose */}
         <div>
           <label className={labelClass} htmlFor="whyJoin">
-            Why do you want to build with UIET E-Cell? <span className="text-[#FF6600]">*</span>
+            Why do you want to build with E-Cell? <span className="text-[#FF6600]">*</span>
           </label>
           <textarea
             id="whyJoin"

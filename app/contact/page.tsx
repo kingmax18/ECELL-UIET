@@ -20,14 +20,14 @@ export default function ContactPage() {
           <div className="relative max-w-[1280px] mx-auto px-4 sm:px-6">
             <div className="max-w-3xl">
               <div className="text-[11px] font-mono uppercase tracking-widest text-[#FF6600] font-bold mb-2">
-                COHORT ADMISSIONS &amp; RECRUITMENT
+                STUDENT INITIATIVES &amp; RECRUITMENT
               </div>
               <h1 className="font-serif font-normal text-3xl sm:text-5xl text-zinc-950 dark:text-white mb-4 [text-wrap:balance]">
-                Apply to join{' '}
-                <span className="italic text-[#FF6600]">UIET E-Cell.</span>
+                Connect with{' '}
+                <span className="italic text-[#FF6600]">E-Cell.</span>
               </h1>
               <p className="text-zinc-600 dark:text-zinc-400 text-sm sm:text-base leading-relaxed">
-                We accept ambitious student founders, engineers, researchers, and operators across all departments at Maharshi Dayanand University. Applications are reviewed on a rolling basis.
+                We welcome ambitious students, engineers, designers, and aspiring innovators across all departments at Maharshi Dayanand University.
               </p>
             </div>
           </div>

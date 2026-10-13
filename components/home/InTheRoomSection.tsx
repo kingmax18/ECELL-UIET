@@ -16,32 +16,35 @@ export default function InTheRoomSection() {
 
         {/* 3x3 Grid on Desktop / Scrollable Snap Strip on Mobile */}
         <div className="group/grid scrollbar-none flex w-full snap-x snap-mandatory flex-row gap-4 overflow-x-auto pb-4 sm:grid sm:grid-cols-2 lg:grid-cols-3 sm:gap-6 lg:gap-8 sm:overflow-visible sm:pb-0">
-          {IN_THE_ROOM.map((person) => (
-            <div
-              key={person.name}
-              className="group relative z-[1] h-[240px] sm:h-[260px] md:h-[300px] w-[85vw] max-w-[340px] sm:w-full sm:max-w-none shrink-0 snap-center rounded-2xl overflow-hidden bg-black/10 dark:bg-black/40 border border-zinc-200/50 dark:border-zinc-800 transition-all duration-300 hover:z-10 hover:shadow-xl cursor-pointer"
-            >
-              <img
-                src={person.poster}
-                alt={person.name}
-                className="h-full w-full object-cover transition-all duration-500 group-hover:scale-105 group-hover:filter-none lg:filter lg:grayscale group-hover:grayscale-0"
-                loading="lazy"
-              />
+          {IN_THE_ROOM.map((person) => {
+            const initials = person.name
+              .split(' ')
+              .map((n) => n[0])
+              .slice(0, 2)
+              .join('');
 
-              {/* Gradient Bottom Overlay */}
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[130px] bg-gradient-to-t from-black/90 via-black/50 to-transparent transition-opacity duration-300" />
-
-              {/* Label */}
-              <div className="pointer-events-none absolute bottom-5 left-5 right-5 z-10 flex flex-col items-start gap-0.5 text-left text-white">
-                <span className="font-['Outfit',sans-serif] text-lg sm:text-xl font-medium leading-tight text-white drop-shadow-md">
-                  {person.name}
-                </span>
-                <span className="font-['Outfit',sans-serif] text-xs sm:text-sm font-light text-white/80 drop-shadow-sm">
-                  {person.title}
-                </span>
+            return (
+              <div
+                key={person.name}
+                className="group relative z-[1] p-6 rounded-2xl bg-white dark:bg-[#13151A] border border-zinc-200/60 dark:border-zinc-800 transition-all duration-300 hover:border-[#FF6600] flex flex-col justify-between min-h-[160px]"
+              >
+                <div className="flex items-center justify-between mb-4">
+                  <div className="w-11 h-11 rounded-lg bg-orange-50 dark:bg-orange-950/40 border border-[#FF6600]/30 flex items-center justify-center font-mono font-bold text-sm text-[#FF6600]">
+                    {initials}
+                  </div>
+                  <span className="text-[10px] font-mono uppercase text-zinc-400">Mentor</span>
+                </div>
+                <div>
+                  <h3 className="font-['Outfit',sans-serif] text-lg font-medium leading-tight text-zinc-950 dark:text-white mb-1">
+                    {person.name}
+                  </h3>
+                  <p className="font-['Outfit',sans-serif] text-xs font-mono text-[#FF6600]">
+                    {person.title}
+                  </p>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

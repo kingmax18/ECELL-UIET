@@ -62,7 +62,7 @@ export const gallery: GalleryItem[] = [
     title: 'Campus Orientation & Induction Session',
     category: 'Events',
     image: '/gallery/page_1.jpg',
-    description: 'Welcoming new engineering and management cohorts into the entrepreneurship community.',
+    description: 'Welcoming new engineering and management students into the entrepreneurship community.',
   },
   {
     id: 10,

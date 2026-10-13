@@ -19,20 +19,20 @@ export const settings: SiteSettings = {
   },
   emailTemplates: {
     received: {
-      subject: 'Application Received — UIET E-Cell Batch 2026-27',
-      body: 'Dear {{applicant_name}},\n\nThank you for applying to join UIET E-Cell ({{department}} Department). We have received your application and our leadership team is currently reviewing it.\n\nWe will update you shortly.\n\nBest regards,\nUIET E-Cell Team\n{{ecell_email}}',
+      subject: 'Application Received — E-Cell Batch 2026-27',
+      body: 'Dear {{applicant_name}},\n\nThank you for applying to join E-Cell ({{department}} Department). We have received your application and our leadership team is currently reviewing it.\n\nWe will update you shortly.\n\nBest regards,\nE-Cell Team\n{{ecell_email}}',
     },
     shortlisted: {
-      subject: 'Interview Call — Shortlisted for UIET E-Cell ({{department}})',
-      body: 'Dear {{applicant_name}},\n\nCongratulations! Your application for the {{department}} Department at UIET E-Cell has been SHORTLISTED FOR AN INTERVIEW!\n\nPlease reply to this email or contact us if you need to reschedule.\n\nBest of luck!\nUIET E-Cell Recruitment Team\n{{ecell_email}}',
+      subject: 'Interview Call — Shortlisted for E-Cell ({{department}})',
+      body: 'Dear {{applicant_name}},\n\nCongratulations! Your application for the {{department}} Department at E-Cell has been SHORTLISTED FOR AN INTERVIEW!\n\nPlease reply to this email or contact us if you need to reschedule.\n\nBest of luck!\nE-Cell Recruitment Team\n{{ecell_email}}',
     },
     accepted: {
-      subject: 'Congratulations! Welcome to UIET E-Cell Batch 2026-27 🎉',
-      body: 'Dear {{applicant_name}},\n\nWe are thrilled to inform you that your application for the {{department}} Department at UIET E-Cell has been ACCEPTED!\n\nPlease join our onboarding session this Saturday at 4:00 PM.\n\nWelcome aboard!\nUIET E-Cell Leadership',
+      subject: 'Congratulations! Welcome to E-Cell Batch 2026-27 🎉',
+      body: 'Dear {{applicant_name}},\n\nWe are thrilled to inform you that your application for the {{department}} Department at E-Cell has been ACCEPTED!\n\nPlease join our onboarding session this Saturday at 4:00 PM.\n\nWelcome aboard!\nE-Cell Leadership',
     },
     rejected: {
-      subject: 'Update regarding your UIET E-Cell Application',
-      body: 'Dear {{applicant_name}},\n\nThank you for taking the time to apply for UIET E-Cell. While we were impressed by your background, we are unable to offer you a position in the {{department}} Department for this batch.\n\nWe encourage you to participate in our upcoming workshops and reapply next batch!\n\nWarm regards,\nUIET E-Cell Team',
+      subject: 'Update regarding your E-Cell Application',
+      body: 'Dear {{applicant_name}},\n\nThank you for taking the time to apply for E-Cell. While we were impressed by your background, we are unable to offer you a position in the {{department}} Department for this batch.\n\nWe encourage you to participate in our upcoming workshops and reapply next batch!\n\nWarm regards,\nE-Cell Team',
     },
   },
 };

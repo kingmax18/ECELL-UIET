@@ -23,7 +23,7 @@ export default function VisionMission() {
                 </li>
                 <li className="flex items-start gap-2.5">
                   <span className="font-mono text-[#FF6600] font-bold text-xs mt-0.5">02</span>
-                  <span><strong className="text-zinc-900 dark:text-white font-semibold">Empower Builders:</strong> Providing technical masterclasses, grant capital, and founder office hours.</span>
+                  <span><strong className="text-zinc-900 dark:text-white font-semibold">Empower Builders:</strong> Providing technical masterclasses, practical toolkits, and founder office hours.</span>
                 </li>
                 <li className="flex items-start gap-2.5">
                   <span className="font-mono text-[#FF6600] font-bold text-xs mt-0.5">03</span>
@@ -53,7 +53,7 @@ export default function VisionMission() {
                 </li>
                 <li className="flex items-start gap-2.5">
                   <span className="font-mono text-emerald-600 font-bold text-xs mt-0.5">03</span>
-                  <span><strong className="text-zinc-900 dark:text-white font-semibold">Venture Access:</strong> Sponsoring demo day slots with angel syndicates and state incubation grants.</span>
+                  <span><strong className="text-zinc-900 dark:text-white font-semibold">Venture Access:</strong> Connecting student innovators with alumni mentors, startup founders, and incubation networks.</span>
                 </li>
               </ul>
             </div>

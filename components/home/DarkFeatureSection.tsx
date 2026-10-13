@@ -34,7 +34,7 @@ export default function DarkFeatureSection() {
             </h2>
 
             <p className="text-[clamp(15px,1.8vw,18px)] font-medium leading-[1.6] text-[#3A4A7A] mb-8 max-w-xl">
-              UIET E-Cell organizes state-recognized entrepreneurship summits, 24-hour ideathons, and investor pitching competitions across Maharshi Dayanand University.
+              E-Cell organizes state-recognized entrepreneurship summits, 24-hour ideathons, and investor pitching competitions across Maharshi Dayanand University.
             </p>
 
             <ul className="flex flex-col gap-4 w-full mb-8">
@@ -110,8 +110,8 @@ export default function DarkFeatureSection() {
               <div className="bg-[#F4F6FF] border-2 border-[#0047FF] rounded-2xl p-5 mb-5 shadow-[2px_2px_0px_#D0D8FF]">
                 <div className="flex items-center justify-between mb-3">
                   <span className="text-xs font-bold text-[#475569]">Pitch Challenge · UIET MDU</span>
-                  <span className="bg-[#CBFF2E] text-[#0A0E1A] font-extrabold text-[10px] uppercase px-2 py-0.5 rounded-full border border-[#0A0E1A]">
-                    Upcoming Event
+                  <span className="bg-[#E2E8F0] text-[#0A0E1A] font-extrabold text-[10px] uppercase px-2 py-0.5 rounded-full border border-[#0A0E1A]">
+                    Concluded Event
                   </span>
                 </div>
 
@@ -120,13 +120,13 @@ export default function DarkFeatureSection() {
                 </h3>
 
                 <p className="text-xs text-[#3A4A7A] leading-relaxed mb-4 font-medium">
-                  Present your startup concept or prototype to fellow students, mentors, and faculty judges. Receive constructive feedback, certificates, and cash prizes.
+                  Present your startup concept or prototype to fellow students, mentors, and faculty judges. Receive constructive feedback, certificates, and recognition.
                 </p>
 
                 <div className="flex items-center gap-3 pt-3 border-t border-[#C0CCFF] text-xs">
                   <span className="text-[#0047FF] font-bold">UIET Main Auditorium</span>
                   <span className="text-[#475569]">•</span>
-                  <span className="text-[#475569] font-medium">Cash Prizes &amp; Grants</span>
+                  <span className="text-[#475569] font-medium">Certificates &amp; Recognition</span>
                 </div>
               </div>
 
@@ -137,8 +137,8 @@ export default function DarkFeatureSection() {
                     🏆
                   </div>
                   <div>
-                    <strong className="block text-xs font-black text-[#0A0E1A]">Official Registrations Open</strong>
-                    <span className="text-[11px] text-[#0A0E1A]/80 font-medium">Pitch your project at UIET Auditorium.</span>
+                    <strong className="block text-xs font-black text-[#0A0E1A]">Event Successfully Concluded</strong>
+                    <span className="text-[11px] text-[#0A0E1A]/80 font-medium">35+ campus innovators presented functional prototypes.</span>
                   </div>
                 </div>
                 <Link

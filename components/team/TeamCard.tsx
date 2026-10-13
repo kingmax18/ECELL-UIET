@@ -3,7 +3,6 @@
 import React from 'react';
 import { Mail } from 'lucide-react';
 import { RiLinkedinFill } from 'react-icons/ri';
-import { avatarUrl } from '@/lib/utils';
 import type { TeamMember } from '@/lib/types';
 
 export default function TeamCard({
@@ -12,28 +11,28 @@ export default function TeamCard({
   member: TeamMember;
   bgColor?: string;
 }) {
-  const photo = member.photo || avatarUrl(member.name);
   const badgeText = member.year
     ? `${member.department ? `${member.department} · ` : ''}${member.year}`
     : member.department;
+
+  const initials = (member.name || '')
+    .split(' ')
+    .filter(Boolean)
+    .map((n) => n[0])
+    .slice(0, 2)
+    .join('') || 'EC';
 
   return (
     <div className="reveal w-full">
       <div className="yc-card p-5 flex flex-col justify-between h-full group hover:border-zinc-400 dark:hover:border-zinc-600">
         <div>
-          {/* Avatar / Portrait */}
-          <div className="relative w-full aspect-[4/4.5] rounded-md overflow-hidden bg-zinc-100 dark:bg-zinc-800 mb-4 border border-zinc-200 dark:border-zinc-800">
-            <img
-              src={photo}
-              alt={member.name}
-              className="w-full h-full object-cover object-[center_20%] transition-transform duration-300 group-hover:scale-102"
-              onError={(e) => {
-                e.currentTarget.onerror = null;
-                e.currentTarget.src = avatarUrl(member.name);
-              }}
-            />
+          {/* Header Monogram & Department Badge */}
+          <div className="flex items-center justify-between mb-4">
+            <div className="w-11 h-11 rounded-md bg-orange-50 dark:bg-orange-950/40 border border-[#FF6600]/30 flex items-center justify-center font-mono font-bold text-sm text-[#FF6600] group-hover:bg-[#FF6600] group-hover:text-white transition-colors">
+              {initials}
+            </div>
             {member.department && (
-              <span className="absolute top-2.5 right-2.5 bg-white/95 dark:bg-zinc-900/95 text-zinc-800 dark:text-zinc-200 text-[10px] font-mono font-medium py-0.5 px-2 rounded border border-zinc-200 dark:border-zinc-700">
+              <span className="bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 text-[10px] font-mono font-medium py-0.5 px-2 rounded border border-zinc-200 dark:border-zinc-700">
                 {member.department}
               </span>
             )}

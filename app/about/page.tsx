@@ -6,13 +6,10 @@ import Footer from '@/components/layout/Footer';
 import VisionMission from '@/components/about/VisionMission';
 import OurStory from '@/components/about/OurStory';
 import CoreValues from '@/components/about/CoreValues';
-import GalleryGrid from '@/components/about/GalleryGrid';
 import CTABanner from '@/components/home/CTABanner';
-import { useData } from '@/context/DataProvider';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 
 export default function AboutPage() {
-  const { gallery } = useData();
   useScrollReveal();
 
   return (
@@ -40,7 +37,6 @@ export default function AboutPage() {
         <OurStory />
         <VisionMission />
         <CoreValues />
-        <GalleryGrid gallery={gallery} />
         <CTABanner />
       </main>
       <Footer />

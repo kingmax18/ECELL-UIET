@@ -27,24 +27,17 @@ export default function KnowledgeNewsSection() {
               <article key={idx} className="group flex flex-col gap-2">
                 <Link
                   href={item.href}
-                  className="block text-inherit no-underline"
+                  className="block text-inherit no-underline p-4 rounded-xl bg-white dark:bg-[#13151A] border border-zinc-200/80 dark:border-zinc-800 hover:border-[#FF6600] transition-colors"
                 >
-                  <div className="relative aspect-video w-full overflow-hidden rounded-xl bg-black/10 dark:bg-zinc-800 border border-zinc-200/50 dark:border-zinc-800">
-                    <img
-                      src={item.image}
-                      alt={item.title}
-                      referrerPolicy="no-referrer"
-                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                      loading="lazy"
-                    />
-                    {/* Read overlay */}
-                    <div className="absolute inset-0 bg-black/25 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-xs font-semibold uppercase tracking-wider font-['Outfit',sans-serif]">
-                      {item.linkText}
-                    </div>
-                  </div>
-                  <h3 className="mt-2.5 font-['Outfit',sans-serif] font-normal text-sm sm:text-base leading-snug text-[#16140f] dark:text-zinc-200 group-hover:text-[#FF6600] transition-colors">
+                  <span className="text-[10px] font-mono uppercase tracking-widest text-[#FF6600] font-bold block mb-1">
+                    Playbook 0{idx + 1}
+                  </span>
+                  <h3 className="font-['Outfit',sans-serif] font-medium text-sm sm:text-base leading-snug text-[#16140f] dark:text-zinc-200 group-hover:text-[#FF6600] transition-colors">
                     {item.title}
                   </h3>
+                  <span className="text-xs text-zinc-400 mt-2 block font-mono">
+                    {item.linkText} →
+                  </span>
                 </Link>
               </article>
             ))}
@@ -57,22 +50,13 @@ export default function KnowledgeNewsSection() {
             <article className="group">
               <Link
                 href={KNOWLEDGE_MAIN_FEATURE.href}
-                className="block text-inherit no-underline"
+                className="block text-inherit no-underline p-6 sm:p-8 rounded-2xl bg-white dark:bg-[#13151A] border border-zinc-200/80 dark:border-zinc-800 hover:border-[#FF6600] shadow-sm transition-all"
               >
-                <div className="relative aspect-video w-full overflow-hidden rounded-2xl bg-black/10 dark:bg-zinc-800 border border-zinc-200/50 dark:border-zinc-800 shadow-md">
-                  <img
-                    src={KNOWLEDGE_MAIN_FEATURE.image}
-                    alt={KNOWLEDGE_MAIN_FEATURE.title}
-                    referrerPolicy="no-referrer"
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    loading="lazy"
-                  />
-                  {/* Big Read Feature Overlay */}
-                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors flex items-center justify-center">
-                    <div className="rounded-full bg-white/90 dark:bg-[#13151A]/90 text-black dark:text-white px-5 py-2.5 text-xs font-semibold uppercase tracking-wider shadow-lg group-hover:scale-105 transition-transform font-['Outfit',sans-serif]">
-                      Featured Story ›
-                    </div>
-                  </div>
+                <div className="inline-flex items-center gap-2 mb-3">
+                  <span className="w-2 h-2 rounded-full bg-[#FF6600]" />
+                  <span className="text-[11px] font-mono uppercase tracking-widest text-[#FF6600] font-bold">
+                    FEATURED ESSAY
+                  </span>
                 </div>
 
                 <div className="mt-4">

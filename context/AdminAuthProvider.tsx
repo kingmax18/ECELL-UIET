@@ -27,14 +27,43 @@ export function AdminAuthProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     try {
-      const saved = localStorage.getItem('ECELL_ADMIN_SESSION');
+      // 1. Purge legacy persistent localStorage session to avoid perpetual auto-login
+      if (typeof window !== 'undefined') {
+        localStorage.removeItem('ECELL_ADMIN_SESSION');
+        localStorage.removeItem('ECELL_ADMIN_TOKEN');
+      }
+
+      // 2. Only read from sessionStorage (cleared when browser/tab closes)
+      const saved = sessionStorage.getItem('ECELL_ADMIN_SESSION');
       if (saved) {
         setUser(JSON.parse(saved));
       }
     } catch (e) {
-      console.warn('[AdminAuth] LocalStorage parse note:', e);
+      console.warn('[AdminAuth] SessionStorage parse note:', e);
     }
   }, []);
+
+  // Auto-logout after 20 minutes of inactivity for security
+  useEffect(() => {
+    if (!user) return;
+    let timeoutId: NodeJS.Timeout;
+
+    const resetTimer = () => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        logout();
+      }, 20 * 60 * 1000);
+    };
+
+    resetTimer();
+    const activityEvents = ['mousedown', 'keydown', 'scroll', 'touchstart'];
+    activityEvents.forEach((evt) => window.addEventListener(evt, resetTimer, { passive: true }));
+
+    return () => {
+      clearTimeout(timeoutId);
+      activityEvents.forEach((evt) => window.removeEventListener(evt, resetTimer));
+    };
+  }, [user]);
 
   const login = async (email: string, password: string): Promise<LoginResult> => {
     const cleanEmail = email.trim().toLowerCase();
@@ -51,10 +80,12 @@ export function AdminAuthProvider({ children }: { children: ReactNode }) {
 
       if (res.ok && json.success && json.user) {
         setUser(json.user);
-        localStorage.setItem('ECELL_ADMIN_SESSION', JSON.stringify(json.user));
+        sessionStorage.setItem('ECELL_ADMIN_SESSION', JSON.stringify(json.user));
         if (json.token) {
-          localStorage.setItem('ECELL_ADMIN_TOKEN', json.token);
+          sessionStorage.setItem('ECELL_ADMIN_TOKEN', json.token);
         }
+        localStorage.removeItem('ECELL_ADMIN_SESSION');
+        localStorage.removeItem('ECELL_ADMIN_TOKEN');
         return { success: true };
       }
 
@@ -83,7 +114,9 @@ export function AdminAuthProvider({ children }: { children: ReactNode }) {
         role: match.role,
       };
       setUser(authUser);
-      localStorage.setItem('ECELL_ADMIN_SESSION', JSON.stringify(authUser));
+      sessionStorage.setItem('ECELL_ADMIN_SESSION', JSON.stringify(authUser));
+      localStorage.removeItem('ECELL_ADMIN_SESSION');
+      localStorage.removeItem('ECELL_ADMIN_TOKEN');
       return { success: true };
     }
 
@@ -93,6 +126,8 @@ export function AdminAuthProvider({ children }: { children: ReactNode }) {
   const logout = () => {
     setUser(null);
     try {
+      sessionStorage.removeItem('ECELL_ADMIN_SESSION');
+      sessionStorage.removeItem('ECELL_ADMIN_TOKEN');
       localStorage.removeItem('ECELL_ADMIN_SESSION');
       localStorage.removeItem('ECELL_ADMIN_TOKEN');
       fetch('/api/auth/logout', { method: 'POST' }).catch(() => {});

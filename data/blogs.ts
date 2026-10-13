@@ -23,7 +23,7 @@ export const blogs: BlogPost[] = [
     tags: ['Eureka Pitch', 'E-Summit', 'Student Startups', 'Campus Leadership'],
     author: {
       name: 'Ananya Sharma',
-      role: 'President, UIET E-Cell',
+      role: 'President, E-Cell',
       avatar: '/gallery/page_10.jpg',
     },
     content: `
@@ -41,18 +41,18 @@ Eureka 2026 was architected from the ground up to dismantle these barriers.
 
 ---
 
-## 35 Teams, 12 Finalists, Real Funding Commitments
+## 35 Teams, 12 Finalists, Real Project Validation
 
 Unlike conventional theoretical business plan competitions, Eureka mandated a **Demonstration First** policy. Teams had to show working code, physical prototypes, or customer waitlists before taking the stage in front of the jury.
 
-> "A prototype proves conviction far more than any fifty-slide deck ever will. At UIET E-Cell, we celebrate builders who ship."
+> "A prototype proves conviction far more than any fifty-slide deck ever will. At E-Cell, we celebrate builders who ship."
 > — *Dr. Rajesh Kumar, Faculty Advisor*
 
-The jury comprised seed-stage founders from Gurugram, university alumni running venture-backed SaaS companies, and technology leaders across Haryana's startup circuit.
+The jury comprised experienced founders from Gurugram, university alumni running active SaaS companies, and technology leaders across Haryana's startup circuit.
 
 ### Key Milestones from the Showcase:
 - **350+ Student Attendees** across 6 university departments (CSE, Mechanical, Biotechnology, MBA, Commerce, and Applied Sciences).
-- **₹1.5 Lakhs in Non-Dilutive Prototyping Grants** distributed to the top three podium teams.
+- **Merit Awards & Incubation Support** provided to the top three podium teams.
 - **Direct Incubation Fast-Track:** 4 projects selected for university incubation lab workspace with complimentary cloud credits.
 
 ---
@@ -67,9 +67,9 @@ Reviewing the judging scorecards revealed a distinct pattern among the top finis
 
 ---
 
-## What Comes Next for UIET E-Cell
+## What Comes Next for E-Cell
 
-Eureka is not a one-day spectacle; it is the kick-off engine for our semester-long incubator cohort. All twelve finalists are now paired with alumni mentors for weekly check-ins, prototyping sprints, and legal incorporation guidance.
+Eureka is not a one-day spectacle; it is the launchpad for continuous campus innovation. Finalists are paired with faculty and alumni mentors for project check-ins, prototyping guidance, and customer validation.
 
 If you have a project or an unproven hypothesis you want to build, don't wait for the next annual summit. Reach out to our team, join our weekly open office hours, and let's turn your idea into impact.
     `.trim(),
@@ -97,7 +97,7 @@ As engineering students, our default instinct when an exciting business idea str
 
 By the time the auth system is wired up, we realize we haven't spoken to a single human being who actually experiences the problem we claim to solve.
 
-This is the developer's trap. In this playbook, we break down the exact lightweight framework we teach in our UIET E-Cell product workshops to validate business concepts before writing a single line of backend logic.
+This is the developer's trap. In this playbook, we break down the exact lightweight framework we teach in our E-Cell product workshops to validate business concepts before writing a single line of backend logic.
 
 ---
 
@@ -157,7 +157,7 @@ If they haven't actively tried to solve the problem in the last 30 days, it is s
     tags: ['Startup India', 'Grants', 'Government Schemes', 'Haryana Innovation'],
     author: {
       name: 'Rohan Mehta',
-      role: 'Vice President, UIET E-Cell',
+      role: 'Vice President, E-Cell',
       avatar: '/gallery/page_12.jpg',
     },
     content: `
@@ -190,7 +190,7 @@ The Government of Haryana has built one of the most proactive state startup ecos
 2. **Missing In-Campus Proof-of-Concept:** Projects supported by formal E-Cell or department recommendation letters score significantly higher on credibility metrics.
 3. **Improper Entity Structuring:** Ensure founder agreements and equity splits are documented cleanly before filing grant requests.
 
-UIET E-Cell holds quarterly grant advisory clinics to guide student founders through paperwork, documentation, and mock evaluation interviews.
+E-Cell holds quarterly grant advisory clinics to guide student founders through paperwork, documentation, and mock evaluation interviews.
     `.trim(),
   },
   {
@@ -206,7 +206,7 @@ UIET E-Cell holds quarterly grant advisory clinics to guide student founders thr
     tags: ['Pitch Deck', 'Fundraising', 'Angel Investors', 'Venture Capital'],
     author: {
       name: 'Priya Verma',
-      role: 'Secretary, UIET E-Cell',
+      role: 'Secretary, E-Cell',
       avatar: '/gallery/page_6.jpg',
     },
     content: `
@@ -259,7 +259,7 @@ Do not hide the fact that you are students — turn it into your advantage! Stud
 
 Walk into any typical college hackathon, and you'll see hundreds of computer science students grouped together. The resulting submissions are usually technically impressive APIs or scripts that solve problems nobody actually has, presented on unstyled terminal windows.
 
-At UIET E-Cell, we systematically match programmers with students from management, applied arts, biotechnology, and commerce. The results speak for themselves.
+At E-Cell, we systematically match programmers with students from management, applied arts, biotechnology, and commerce. The results speak for themselves.
 
 ---
 

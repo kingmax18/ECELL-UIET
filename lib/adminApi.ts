@@ -6,7 +6,7 @@ export async function adminFetch(input: RequestInfo | URL, init: RequestInit = {
   const headers = new Headers(init.headers);
 
   if (typeof window !== 'undefined') {
-    const token = localStorage.getItem('ECELL_ADMIN_TOKEN');
+    const token = sessionStorage.getItem('ECELL_ADMIN_TOKEN') || localStorage.getItem('ECELL_ADMIN_TOKEN');
     if (token && !headers.has('Authorization')) {
       headers.set('Authorization', `Bearer ${token}`);
     }

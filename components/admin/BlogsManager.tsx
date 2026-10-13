@@ -58,7 +58,7 @@ const BLANK_POST: Omit<BlogPost, 'id'> = {
   tags: ['Startup', 'UIET'],
   author: {
     name: 'Ananya Sharma',
-    role: 'President, UIET E-Cell',
+    role: 'President, E-Cell',
     avatar: '/gallery/page_10.jpg',
   },
 };
@@ -632,7 +632,7 @@ export default function BlogsManager({
                       author: { ...form.author, role: e.target.value },
                     })
                   }
-                  placeholder="e.g. President, UIET E-Cell"
+                  placeholder="e.g. President, E-Cell"
                   className={adminInput}
                 />
               </div>

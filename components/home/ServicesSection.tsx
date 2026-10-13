@@ -39,27 +39,27 @@ const pillars = [
   {
     icon: RiMoneyDollarCircleLine,
     phase: '03',
-    title: 'Non-Dilutive Seed Grants & Credits',
-    subtitle: 'Zero Equity Taken',
+    title: 'Prototyping Labs & Campus Resources',
+    subtitle: 'Zero Fees · 100% Student-Run',
     description:
-      'Up to ₹2,50,000 in immediate prototype disbursements, plus $25,000+ in cloud infrastructure credits from AWS, Google Cloud, and GitHub Enterprise.',
+      'Access university lab facilities, compute stations, and collaborative student workspaces to build and iterate on your MVP.',
     bulletPoints: [
-      'Server compute & LLM token credits',
-      'Hardware fabrication lab access',
-      '100% university founder ownership',
+      'UIET lab & technical workspace access',
+      'Hardware prototyping facilities',
+      '100% student founder ownership',
     ],
   },
   {
     icon: RiPresentationLine,
     phase: '04',
-    title: 'Flagship Demo Day & Angel Access',
-    subtitle: 'Present to 25+ Early-Stage Investors',
+    title: 'Flagship Demo Day & Showcase',
+    subtitle: 'Present to Mentors, Alumni & Faculty',
     description:
-      'The batch culminates in Demo Day at the university auditorium, attended by leading angel syndicates, micro-VCs, and state innovation seed funds.',
+      'The program culminates in Demo Day at the university auditorium, attended by industry mentors, alumni entrepreneurs, and faculty advisors.',
     bulletPoints: [
-      'Direct partner introduction calls',
-      'SAFE & convertible note guidance',
-      'National media & syndicate visibility',
+      'Direct mentor feedback & office hours',
+      'Pitch deck & storytelling clinics',
+      'Campus-wide innovation recognition',
     ],
   },
 ];
@@ -71,13 +71,13 @@ export default function ServicesSection() {
         {/* Header */}
         <div className="max-w-3xl mb-14">
           <div className="text-[11px] font-mono uppercase tracking-widest text-[#FF6600] font-bold mb-2">
-            THE INCUBATION PROGRAM
+            STUDENT INNOVATION FRAMEWORK
           </div>
           <h2 className="font-serif font-normal text-3xl sm:text-4xl text-zinc-900 dark:text-white mb-4 [text-wrap:balance]">
-            What happens during the 12-week batch.
+            From raw campus idea to validated prototype.
           </h2>
           <p className="text-zinc-600 dark:text-zinc-400 text-sm sm:text-base leading-relaxed">
-            Our program is engineered to compress two years of trial and error into three intense, focused months of product execution.
+            Our framework is engineered to support student builders from initial concept validation to functional prototypes and campus demo day showcases.
           </p>
         </div>
 
@@ -135,17 +135,17 @@ export default function ServicesSection() {
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-6 bg-[#FAFAF8] dark:bg-[#14161C] border border-zinc-200 dark:border-zinc-800 rounded-lg">
           <div>
             <h4 className="font-semibold text-sm text-zinc-900 dark:text-white">
-              Recruitment is open for Cohort Summer 2026
+              Student registrations are open for Session 2025–26
             </h4>
             <p className="text-xs text-zinc-500 dark:text-zinc-400">
-              Solo founders and pre-incorporation student teams are fully eligible to apply.
+              Student innovators, developers, and aspiring founders from any year or branch are welcome.
             </p>
           </div>
           <Link
-            href="/contact"
+            href="/apply"
             className="yc-btn-primary text-xs py-2.5 px-5 font-semibold shrink-0"
           >
-            Apply for Summer 2026 Batch →
+            Connect with E-Cell / Register →
           </Link>
         </div>
       </div>

@@ -20,13 +20,36 @@ export default function ApplyPage() {
     whyYou: '',
   });
 
+  const [submitting, setSubmitting] = useState(false);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setSubmitting(true);
+    try {
+      await fetch('/api/applications', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formData.founderName,
+          email: formData.email,
+          phone: formData.phone,
+          enrollment: null,
+          branchYear: formData.stage,
+          deptInterest: formData.companyName || 'Campus Project',
+          whyJoin: `${formData.description || 'Project Submission'}\n\nProject Link: ${formData.website || 'N/A'}\nInsight: ${formData.whyYou || 'N/A'}`,
+          linkedin: formData.website || null,
+        }),
+      });
+    } catch (err) {
+      console.warn('Submission network notice:', err);
+    } finally {
+      setSubmitting(false);
+      setSubmitted(true);
+    }
   };
 
   return (
@@ -38,32 +61,32 @@ export default function ApplyPage() {
           {/* Header */}
           <div className="text-center mb-12">
             <span className="inline-block font-['Outfit',sans-serif] text-xs uppercase tracking-widest font-semibold text-[#FF6600] mb-3">
-              Cohort Admissions
+              STUDENT INITIATIVES
             </span>
             <h1 className="font-['Source_Serif_4',serif] text-4xl sm:text-5xl md:text-6xl font-normal tracking-tight text-[#16140f] dark:text-white leading-[1.15]">
-              Apply to UIET E-Cell
+              Connect With E-Cell
             </h1>
             <p className="mt-4 font-['Outfit',sans-serif] font-light text-base sm:text-lg text-[#16140f]/80 dark:text-zinc-300 max-w-xl mx-auto leading-relaxed">
-              We back builders at the earliest stage. No revenue or finished product needed—just ambition and relentless drive.
+              Get mentorship for your idea or prototype, find collaborators, or join the student entrepreneurship community.
             </p>
           </div>
 
           {/* Key Batch Stats / Deadlines Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-12">
             <div className="p-5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#13151A] shadow-xs">
-              <span className="text-xs uppercase tracking-wider text-zinc-500 font-['Outfit',sans-serif]">Upcoming Batch</span>
-              <p className="text-xl font-semibold mt-1 font-['Outfit',sans-serif] text-[#16140f] dark:text-white">Summer 2026</p>
-              <p className="text-xs text-zinc-500 mt-1">June – August 2026</p>
+              <span className="text-xs uppercase tracking-wider text-zinc-500 font-['Outfit',sans-serif]">Academic Session</span>
+              <p className="text-xl font-semibold mt-1 font-['Outfit',sans-serif] text-[#16140f] dark:text-white">2025–2026</p>
+              <p className="text-xs text-zinc-500 mt-1">UIET MDU Rohtak</p>
             </div>
             <div className="p-5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#13151A] shadow-xs">
-              <span className="text-xs uppercase tracking-wider text-zinc-500 font-['Outfit',sans-serif]">Deadline</span>
-              <p className="text-xl font-semibold mt-1 font-['Outfit',sans-serif] text-[#FF6600]">April 30, 2026</p>
-              <p className="text-xs text-zinc-500 mt-1">8:00 PM IST</p>
+              <span className="text-xs uppercase tracking-wider text-zinc-500 font-['Outfit',sans-serif]">Eligibility</span>
+              <p className="text-xl font-semibold mt-1 font-['Outfit',sans-serif] text-[#FF6600]">All Students</p>
+              <p className="text-xs text-zinc-500 mt-1">Open across all branches</p>
             </div>
             <div className="p-5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#13151A] shadow-xs">
-              <span className="text-xs uppercase tracking-wider text-zinc-500 font-['Outfit',sans-serif]">Seed Support</span>
-              <p className="text-xl font-semibold mt-1 font-['Outfit',sans-serif] text-[#16140f] dark:text-white">₹10 Lakhs Grants</p>
-              <p className="text-xs text-zinc-500 mt-1">+ Mentorship & Demo Day</p>
+              <span className="text-xs uppercase tracking-wider text-zinc-500 font-['Outfit',sans-serif]">Founder Support</span>
+              <p className="text-xl font-semibold mt-1 font-['Outfit',sans-serif] text-[#16140f] dark:text-white">1-on-1 Mentorship</p>
+              <p className="text-xs text-zinc-500 mt-1">Workshops, Labs &amp; Community</p>
             </div>
           </div>
 
@@ -75,10 +98,10 @@ export default function ApplyPage() {
                   ✓
                 </div>
                 <h3 className="font-['Source_Serif_4',serif] text-3xl font-normal text-[#16140f] dark:text-white">
-                  Application Received!
+                  Submission Received!
                 </h3>
                 <p className="mt-3 font-['Outfit',sans-serif] text-base text-zinc-600 dark:text-zinc-400 max-w-md mx-auto">
-                  Thank you for applying, {formData.founderName}. Our admissions committee reviews applications on a rolling basis. You will hear back within 10 days.
+                  Thank you for reaching out, {formData.founderName}. Our student coordinators and faculty mentors review submissions regularly and will get in touch with you shortly.
                 </p>
                 <div className="mt-8 flex justify-center gap-4">
                   <Link
@@ -229,9 +252,10 @@ export default function ApplyPage() {
                   </p>
                   <button
                     type="submit"
-                    className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3 rounded-full bg-black dark:bg-white text-white dark:text-black font-['Source_Serif_4',serif] text-base italic font-normal hover:opacity-85 active:scale-98 transition-all shadow-md cursor-pointer"
+                    disabled={submitting}
+                    className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3 rounded-full bg-black dark:bg-white text-white dark:text-black font-['Source_Serif_4',serif] text-base italic font-normal hover:opacity-85 active:scale-98 transition-all shadow-md cursor-pointer disabled:opacity-50"
                   >
-                    Submit Application
+                    {submitting ? 'Submitting...' : 'Submit Application'}
                   </button>
                 </div>
               </form>

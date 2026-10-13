@@ -11,14 +11,14 @@ export default function OurStory() {
             ORIGIN &amp; PURPOSE
           </div>
           <h2 className="font-serif font-normal text-2xl sm:text-4xl text-zinc-950 dark:text-white mb-6">
-            Why we built UIET E-Cell.
+            Why we built E-Cell.
           </h2>
           <div className="space-y-4 text-sm sm:text-base leading-relaxed text-zinc-600 dark:text-zinc-400 max-w-3xl">
             <p>
               It started with a simple belief on our campus — that UIET MDU has no shortage of brilliant, driven students, but needed a dedicated student-run ecosystem to turn technical curiosity into enduring, scalable ventures.
             </p>
             <p>
-              Established in 2024, UIET E-Cell has rapidly grown into an institutional powerhouse. We organize hands-on product sprints, 24-hour campus ideathons, 1-on-1 advisory clinics with exited founders, and angel pitch delegations that bridge university researchers with the broader Indian venture ecosystem.
+              Established in 2024 at UIET, E-Cell has rapidly grown into an institutional powerhouse. We organize hands-on product sprints, 24-hour campus ideathons, 1-on-1 advisory clinics with exited founders, and angel pitch delegations that bridge university researchers with the broader Indian venture ecosystem.
             </p>
           </div>
         </div>

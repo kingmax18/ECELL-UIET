@@ -19,7 +19,7 @@ export default function FAQSection() {
               Frequently asked questions.
             </h2>
             <p className="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed mb-6">
-              Everything you need to know about the cohort timeline, grant eligibility, student IP ownership, and recruitment.
+              Everything you need to know about student mentorship, campus workshops, student IP ownership, and recruitment.
             </p>
 
             <div className="p-5 bg-white dark:bg-[#14161C] border border-zinc-200 dark:border-zinc-800 rounded-lg space-y-3">

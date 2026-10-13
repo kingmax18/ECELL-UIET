@@ -19,13 +19,13 @@ export default function TopBanner() {
             Recruiting
           </span>
           <span className="text-zinc-300 font-normal">
-            Applications for the <strong className="text-white font-medium">UIET E-Cell Cohort 2026</strong> are now open.
+            Registrations for <strong className="text-white font-medium">UIET E-Cell Mentorship &amp; Member Initiatives</strong> are now open.
           </span>
           <Link
             href="/apply"
             className="text-[#FF8533] hover:text-[#FF994D] font-medium inline-flex items-center gap-1 underline underline-offset-4 transition-colors"
           >
-            Apply by April 30 →
+            Join E-Cell →
           </Link>
         </div>
 

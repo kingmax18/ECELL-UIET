@@ -13,45 +13,45 @@ interface FAQItem {
 
 const FAQS: { category: string; items: FAQItem[] }[] = [
   {
-    category: 'Applying & Eligibility',
+    category: 'Joining & Eligibility',
     items: [
       {
-        q: 'Do I need a business plan, revenue, or a working product to apply?',
-        a: 'No. Most companies apply to YC and UIET E-Cell when they are just an idea or a bare-bones prototype. What matters most is the founders: are you smart, determined, and technical enough to build what you envision?',
+        q: 'Do I need a business plan, revenue, or a working product to connect with E-Cell?',
+        a: 'No. Most students join E-Cell or pitch projects when they are just an idea or an early concept. What matters most is curiosity, consistency, and the drive to build.',
       },
       {
-        q: 'Can solo founders apply?',
-        a: 'Yes, solo founders can and do get accepted. However, starting a company is extremely tough, so we also provide a Co-Founder Matching program if you are looking for complementary technical or business partners.',
+        q: 'Can solo student builders register?',
+        a: 'Yes! You can join as an individual builder or find collaborators and teammates through E-Cell workshops and ideathons.',
       },
       {
-        q: 'Are these cohorts only open to college students?',
-        a: 'While UIET E-Cell is anchored in MDU Rohtak, our cohorts welcome university students, recent alumni, dropouts, and external technical teams across India.',
+        q: 'Who can participate in E-Cell initiatives?',
+        a: 'All students across UIET and Maharshi Dayanand University (engineering, management, commerce, science, and arts) are eligible to participate in our events, workshops, and mentorship initiatives.',
       },
     ],
   },
   {
-    category: 'The Cohort Experience',
+    category: 'Mentorship & Campus Incubation',
     items: [
       {
-        q: 'What actually happens during the 3-month cohort?',
-        a: 'Founders focus on just two things: talking to users and writing code. Every week you meet with Group Partners for 1-on-1 office hours, attend Tuesday dinners with world-class guest founders, and test your product with peer founders in the batch.',
+        q: 'How does E-Cell support student projects and founders?',
+        a: 'We provide 1-on-1 guidance from faculty advisors and experienced alumni, access to campus labs and compute resources, peer collaboration, pitch feedback sessions, and opportunities to showcase projects at events like Eureka.',
       },
       {
-        q: 'What is Demo Day?',
-        a: 'Demo Day is the culmination of the program where founders pitch to an invite-only audience of top angel investors, VCs, and sovereign fund managers to raise their seed and Series A rounds.',
+        q: 'What is the Campus Showcase / Demo Day?',
+        a: 'Demo Day is a campus exhibition where student innovators present functional prototypes and projects to mentors, faculty evaluators, and alumni entrepreneurs.',
       },
     ],
   },
   {
-    category: 'Funding & Grants',
+    category: 'Mentorship & Support',
     items: [
       {
-        q: 'How does seed funding and grant capital work?',
-        a: 'Selected cohort startups receive seed micro-grants up to ₹10 Lakhs, cloud credits (AWS, Google Cloud, Azure totaling over $100k), zero-cost incubation space at UIET, legal support, and standard SAFE note assistance.',
+        q: 'Does E-Cell provide seed funding or grants?',
+        a: 'No, E-Cell is a student-run entrepreneurship cell and does not provide financial grants or seed funding. We provide intensive mentorship, hands-on workshops, ideathons, campus prototyping resources, and peer community support.',
       },
       {
-        q: 'Does UIET E-Cell take equity?',
-        a: 'For university grant tracks, funding is 100% non-dilutive grant capital. For venture-backed incubation tracks, we use standardized open-source SAFE notes aligned with international founder-friendly terms.',
+        q: 'Does E-Cell take equity in student ventures?',
+        a: 'No. E-Cell never takes equity or charges fees. 100% of your project, IP, and venture ownership remains entirely with student founders.',
       },
     ],
   },
@@ -82,7 +82,7 @@ export default function FAQPage() {
               Frequently Asked Questions
             </h1>
             <p className="mt-4 font-['Outfit',sans-serif] font-light text-base sm:text-lg text-[#16140f]/80 dark:text-zinc-300 max-w-xl mx-auto leading-relaxed">
-              Everything you need to know about the admissions cycle, cohort mentorship, funding, and Demo Day.
+              Everything you need to know about joining E-Cell, student projects, mentorship, and campus events.
             </p>
           </div>
 

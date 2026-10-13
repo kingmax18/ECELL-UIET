@@ -50,17 +50,9 @@ export default function GlassmorphismProfileCard({
 
       {/* Clean card surface with hairline border */}
       <div className="relative flex flex-col items-center p-6 sm:p-7 rounded-xl border transition-all duration-300 bg-white dark:bg-[#14161C] border-zinc-200 dark:border-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-700 shadow-sm hover:-translate-y-1">
-        {/* Avatar */}
-        <div className="w-24 h-24 mb-4 rounded-full p-1 border border-zinc-200 dark:border-zinc-700 overflow-hidden bg-zinc-50 dark:bg-zinc-800 transition-transform duration-300 group-hover:scale-105">
-          <img
-            src={avatarUrl || fallbackAvatar}
-            alt={`${name}'s Avatar`}
-            className="w-full h-full rounded-full object-cover object-[center_20%]"
-            onError={(e) => {
-              e.currentTarget.onerror = null;
-              e.currentTarget.src = fallbackAvatar;
-            }}
-          />
+        {/* Monogram Badge */}
+        <div className="w-20 h-20 mb-4 rounded-full border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800 flex items-center justify-center text-2xl font-serif text-[#FF6600] font-bold shadow-xs">
+          {name.split(' ').map(n => n[0]).join('').slice(0, 2)}
         </div>
 
         {/* Name & Title */}

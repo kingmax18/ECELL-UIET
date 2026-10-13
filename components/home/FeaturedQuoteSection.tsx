@@ -11,13 +11,9 @@ export default function FeaturedQuoteSection() {
           “{FEATURED_QUOTE.text}”
         </blockquote>
         <figcaption className="flex items-center justify-center gap-3.5 font-['Outfit',sans-serif] text-sm sm:text-base font-normal leading-tight text-[#16140F] dark:text-zinc-300">
-          <img
-            src={FEATURED_QUOTE.avatar}
-            alt={FEATURED_QUOTE.author}
-            referrerPolicy="no-referrer"
-            className="w-10 h-10 shrink-0 rounded-full object-cover ring-2 ring-[#FF6600]/30"
-            loading="lazy"
-          />
+          <div className="w-10 h-10 shrink-0 rounded-full bg-orange-50 dark:bg-orange-950/40 border border-[#FF6600]/30 flex items-center justify-center font-mono font-bold text-sm text-[#FF6600]">
+            RK
+          </div>
           <span>
             <strong className="font-semibold text-zinc-900 dark:text-white">{FEATURED_QUOTE.author}</strong>
             , {FEATURED_QUOTE.role}
