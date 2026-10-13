@@ -32,11 +32,26 @@ export async function GET() {
 
     return NextResponse.json({ success: true, data: settings });
   } catch (error) {
-    console.error('[API /settings GET]', error);
-    return NextResponse.json(
-      { success: false, error: 'Failed to retrieve settings' },
-      { status: 500 }
-    );
+    console.warn('[API /settings GET] Database cold-start or unavailable, serving fallback');
+    return NextResponse.json({
+      success: true,
+      data: {
+        id: 1,
+        bannerEnabled: false,
+        bannerText: '',
+        bannerLinkText: '',
+        bannerLinkUrl: '',
+        email: 'ecelluietfs@gmail.com',
+        phone: '+91 99999 99999',
+        address: 'UIET, Maharshi Dayanand University, Rohtak, Haryana 124001',
+        instagram: 'https://instagram.com/ecell_uiet_mdu',
+        linkedin: 'https://linkedin.com/company/ecell-uiet-mdu',
+        statMembers: 30,
+        statEvents: 12,
+        statStartups: 5,
+        statYears: 3,
+      },
+    });
   }
 }
 

@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { requireAdmin } from '@/lib/auth';
+import { team as defaultTeam, founders as defaultFounders } from '@/data/team';
 
 // GET /api/team - Fetch active team members and founders
 export async function GET() {
@@ -16,11 +17,8 @@ export async function GET() {
 
     return NextResponse.json({ success: true, data: { team, founders } });
   } catch (error) {
-    console.error('[API /team GET]', error);
-    return NextResponse.json(
-      { success: false, error: 'Failed to retrieve team' },
-      { status: 500 }
-    );
+    console.warn('[API /team GET] Database cold-start or unavailable, serving fallback');
+    return NextResponse.json({ success: true, data: { team: defaultTeam, founders: defaultFounders } });
   }
 }
 

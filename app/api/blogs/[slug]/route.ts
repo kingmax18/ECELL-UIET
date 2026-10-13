@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { requireAdmin } from '@/lib/auth';
+import { blogs as defaultBlogs } from '@/data/blogs';
 
 // GET /api/blogs/[slug] - Fetch single article
 export async function GET(
@@ -15,6 +16,10 @@ export async function GET(
     });
 
     if (!blog) {
+      const fallback = defaultBlogs.find((b) => b.slug === slug);
+      if (fallback) {
+        return NextResponse.json({ success: true, data: fallback });
+      }
       return NextResponse.json({ success: false, error: 'Article not found' }, { status: 404 });
     }
 
@@ -30,7 +35,12 @@ export async function GET(
 
     return NextResponse.json({ success: true, data: formatted });
   } catch (error) {
-    console.error('[API /blogs/[slug] GET]', error);
+    console.warn('[API /blogs/[slug] GET] Database cold-start or unavailable, serving fallback');
+    const { slug } = await params;
+    const fallback = defaultBlogs.find((b) => b.slug === slug);
+    if (fallback) {
+      return NextResponse.json({ success: true, data: fallback });
+    }
     return NextResponse.json(
       { success: false, error: 'Failed to retrieve article' },
       { status: 500 }
