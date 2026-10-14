@@ -68,8 +68,8 @@ export default function StatsManager({
   return (
     <div>
       <PageHeader
-        title="Site Stats"
-        subtitle="Edit the animated counters displayed on the homepage."
+        title="Homepage Counters & Statistics"
+        subtitle="Configure the high-impact proof metrics featured on the homepage hero section."
       />
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -87,7 +87,7 @@ export default function StatsManager({
                 onChange={(e) => setForm({ ...form, [f.key]: Number(e.target.value) })}
                 className={`${adminInput} max-w-[160px] [font-variant-numeric:tabular-nums]`}
               />
-              <p className="text-xs text-muted mt-1.5">{f.hint}</p>
+              <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-1.5">{f.hint}</p>
             </div>
           ))}
 
@@ -98,14 +98,19 @@ export default function StatsManager({
 
         {/* Live preview */}
         <div className={`${adminCard} p-6 md:p-8`}>
-          <h2 className="font-sans font-medium text-base tracking-[-0.015em] text-ink mb-6">Live Preview</h2>
-          <div className="grid grid-cols-2 gap-6">
+          <h2 className="font-sans font-bold text-base text-zinc-950 dark:text-white tracking-tight mb-6">
+            Live Homepage Counter Preview
+          </h2>
+          <div className="grid grid-cols-2 gap-4">
             {FIELDS.map((f) => (
-              <div key={f.key} className="text-center bg-soft rounded-card py-6 px-3">
-                <div className="font-sans font-medium text-[clamp(32px,4vw,48px)] leading-none tracking-[-0.04em] text-ink [font-variant-numeric:tabular-nums]">
+              <div
+                key={f.key}
+                className="text-center bg-zinc-50 dark:bg-zinc-900/60 border border-zinc-200/80 dark:border-zinc-800 rounded-xl py-6 px-3"
+              >
+                <div className="font-sans font-bold text-3xl sm:text-4xl leading-none tracking-tight text-zinc-950 dark:text-white [font-variant-numeric:tabular-nums]">
                   +{form[f.key]}
                 </div>
-                <div className="text-[13px] text-secondary mt-2">{f.label}</div>
+                <div className="text-xs font-medium text-zinc-500 dark:text-zinc-400 mt-2">{f.label}</div>
               </div>
             ))}
           </div>

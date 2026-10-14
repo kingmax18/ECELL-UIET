@@ -5,10 +5,13 @@ import {
   RiFileList3Line,
   RiTimeLine,
   RiTeamLine,
-  RiCalendarEventLine,
   RiArticleLine,
+  RiArrowRightLine,
+  RiCalendarEventLine,
+  RiCheckDoubleLine,
+  RiPieChartLine,
 } from 'react-icons/ri';
-import { StatusBadge, EmptyState, adminTd, adminTh } from './ui';
+import { StatusBadge, EmptyState, adminTd, adminTh, adminCard } from './ui';
 
 interface AppRow {
   id: number | string;
@@ -22,7 +25,7 @@ interface AppRow {
 }
 
 interface Props {
-  events?: Array<{ id: number; title: string; date: string; status?: string }>;
+  events?: Array<{ id: number; title: string; date: string; status?: string; mode?: string }>;
   team?: Array<{ id: number }>;
   blogs?: Array<{ id: number }>;
   applications: AppRow[];
@@ -30,16 +33,52 @@ interface Props {
   onNavigate: (tab: string) => void;
 }
 
-export default function AdminDashboard({ events = [], team = [], blogs = [], applications, stats, onNavigate }: Props) {
+export default function AdminDashboard({
+  events = [],
+  team = [],
+  blogs = [],
+  applications,
+  stats,
+  onNavigate,
+}: Props) {
   const pending = applications.filter((a) => (a.status || 'Pending') === 'Pending').length;
   const accepted = applications.filter((a) => a.status === 'Accepted').length;
   const shortlisted = applications.filter((a) => a.status === 'Shortlisted').length;
+  const rejected = applications.filter((a) => a.status === 'Rejected').length;
 
   const kpis = [
-    { label: 'Applications', value: applications.length, icon: RiFileList3Line, tint: 'bg-[#0047FF] text-white border border-[#0A0E1A]' },
-    { label: 'Pending Review', value: pending, icon: RiTimeLine, tint: 'bg-[#CBFF2E] text-[#0A0E1A] border border-[#0A0E1A]' },
-    { label: 'Blog Articles', value: blogs.length, icon: RiArticleLine, tint: 'bg-[#CBFF2E] text-[#0A0E1A] border border-[#0A0E1A]' },
-    { label: 'Team Members', value: team.length || stats?.members?.value || 0, icon: RiTeamLine, tint: 'bg-[#0047FF] text-white border border-[#0A0E1A]' },
+    {
+      label: 'Total Applications',
+      value: applications.length,
+      icon: RiFileList3Line,
+      change: `${pending} pending review`,
+      iconBg: 'bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20',
+      actionTab: 'applications',
+    },
+    {
+      label: 'Awaiting Review',
+      value: pending,
+      icon: RiTimeLine,
+      change: applications.length ? `${Math.round((pending / applications.length) * 100)}% of candidate pool` : 'Queue clear',
+      iconBg: 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20',
+      actionTab: 'applications',
+    },
+    {
+      label: 'Active Team Roster',
+      value: team.length || stats?.members?.value || 0,
+      icon: RiTeamLine,
+      change: 'Core & executive members',
+      iconBg: 'bg-[#FF6600]/10 text-[#FF6600] border-[#FF6600]/20',
+      actionTab: 'team',
+    },
+    {
+      label: 'Published Articles',
+      value: blogs.length,
+      icon: RiArticleLine,
+      change: 'Insights & community blogs',
+      iconBg: 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20',
+      actionTab: 'blogs',
+    },
   ];
 
   // Department-wise breakdown
@@ -52,165 +91,300 @@ export default function AdminDashboard({ events = [], team = [], blogs = [], app
   const maxDept = deptEntries[0]?.[1] || 1;
 
   const pipeline = [
-    { label: 'Pending', value: pending, cls: 'bg-[#ffefda] text-[#b3661d]' },
-    { label: 'Shortlisted', value: shortlisted, cls: 'bg-[#e2f0ff] text-[#1d6fb3]' },
-    { label: 'Accepted', value: accepted, cls: 'bg-[#e4f6df] text-[#2f7a1d]' },
+    {
+      label: 'Pending',
+      value: pending,
+      barCls: 'bg-amber-500',
+      badgeCls: 'bg-amber-50 dark:bg-amber-950/40 text-amber-700 dark:text-amber-300 border-amber-200 dark:border-amber-800/60',
+    },
+    {
+      label: 'Shortlisted',
+      value: shortlisted,
+      barCls: 'bg-blue-500',
+      badgeCls: 'bg-blue-50 dark:bg-blue-950/40 text-blue-700 dark:text-blue-300 border-blue-200 dark:border-blue-800/60',
+    },
+    {
+      label: 'Accepted',
+      value: accepted,
+      barCls: 'bg-emerald-500',
+      badgeCls: 'bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800/60',
+    },
+    {
+      label: 'Rejected',
+      value: rejected,
+      barCls: 'bg-rose-500',
+      badgeCls: 'bg-rose-50 dark:bg-rose-950/40 text-rose-700 dark:text-rose-300 border-rose-200 dark:border-rose-800/60',
+    },
   ];
 
   const upcoming = events
-    .filter((e) => e.status === 'upcoming')
+    .filter((e) => (e.status || 'upcoming').toLowerCase() === 'upcoming')
     .sort((a, b) => (a.date > b.date ? 1 : -1))
     .slice(0, 3);
 
   return (
-    <div>
-      <div className="flex items-center justify-between gap-4 flex-wrap mb-6">
+    <div className="space-y-6">
+      {/* Overview Top bar */}
+      <div className="flex items-center justify-between gap-4 flex-wrap pb-4 border-b border-zinc-200/80 dark:border-zinc-800/80">
         <div>
-          <h1 className="font-sans font-bold text-[28px] leading-tight tracking-tight text-[#0A0E1A]">
-            Overview &amp; Analytics
+          <h1 className="font-sans font-bold text-2xl sm:text-3xl text-zinc-950 dark:text-white tracking-tight">
+            Executive Overview
           </h1>
-          <p className="text-sm text-[#3A4A7A] mt-1 font-medium">
-            Real-time portal activity and recruitment pipeline.
+          <p className="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 mt-1">
+            Real-time telemetry, recruitment funnel analytics, and quick managerial shortcuts.
           </p>
         </div>
+
         {pending > 0 && (
           <button
             type="button"
             onClick={() => onNavigate('applications')}
-            className="text-xs font-bold text-[#0A0E1A] bg-[#CBFF2E] py-2 px-4 rounded-full border-2 border-[#0A0E1A] shadow-[2px_2px_0px_#0047FF] hover:translate-x-0.5 hover:translate-y-0.5 transition-all cursor-pointer"
+            className="inline-flex items-center gap-2 text-xs font-semibold text-[#FF6600] bg-[#FF6600]/10 hover:bg-[#FF6600]/15 border border-[#FF6600]/30 py-2 px-3.5 rounded-lg transition-all cursor-pointer"
           >
-            {pending} awaiting review
+            <span className="w-2 h-2 rounded-full bg-[#FF6600] animate-pulse" />
+            <span>{pending} candidates awaiting review</span>
+            <RiArrowRightLine size={14} />
           </button>
         )}
       </div>
 
-      {/* KPI cards */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-5">
+      {/* Modern KPI Cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {kpis.map((k) => {
           const Icon = k.icon;
           return (
             <div
               key={k.label}
-              className="bg-[#F4F6FF] border-2 border-[#C0CCFF] hover:border-[#0047FF] rounded-panel p-5 flex flex-col gap-3 shadow-[4px_4px_0px_#0A0E1A] transition-all"
+              onClick={() => onNavigate(k.actionTab)}
+              className={`${adminCard} p-5 flex flex-col justify-between hover:border-zinc-300 dark:hover:border-zinc-700 hover:shadow-md cursor-pointer group`}
             >
-              <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${k.tint}`}>
-                <Icon size={20} />
+              <div className="flex items-center justify-between mb-4">
+                <span className="text-xs font-mono font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
+                  {k.label}
+                </span>
+                <div className={`w-9 h-9 rounded-lg flex items-center justify-center border ${k.iconBg}`}>
+                  <Icon size={18} />
+                </div>
               </div>
+
               <div>
-                <div className="font-sans font-bold text-[36px] leading-none tracking-tight text-[#0A0E1A] [font-variant-numeric:tabular-nums]">
+                <div className="font-sans font-bold text-3xl sm:text-4xl text-zinc-950 dark:text-white tracking-tight [font-variant-numeric:tabular-nums]">
                   {k.value}
                 </div>
-                <div className="text-[13px] font-semibold text-[#475569] mt-2">{k.label}</div>
+                <div className="text-xs text-zinc-500 dark:text-zinc-400 mt-2 flex items-center justify-between">
+                  <span>{k.change}</span>
+                  <RiArrowRightLine
+                    size={14}
+                    className="opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all text-[#FF6600]"
+                  />
+                </div>
               </div>
             </div>
           );
         })}
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-5 gap-5 mb-5">
-        {/* Recruitment pipeline + upcoming */}
-        <div className="bg-[#F4F6FF] border-2 border-[#C0CCFF] rounded-panel p-6 lg:col-span-2 shadow-[4px_4px_0px_#0A0E1A]">
-          <h2 className="font-sans font-bold text-base tracking-tight text-[#0A0E1A] mb-4">
-            Recruitment Pipeline
-          </h2>
-          <div className="flex flex-col gap-3.5">
-            {pipeline.map((p) => (
-              <div key={p.label} className="flex items-center gap-2.5">
-                <span className={`py-0.5 px-2.5 rounded-full text-[11px] font-bold ${p.cls} w-[84px] text-center`}>
-                  {p.label}
-                </span>
-                <div className="flex-1 h-2 bg-white border border-[#C0CCFF] rounded-full overflow-hidden">
-                  <div
-                    className="h-full bg-[#0047FF] rounded-full transition-all duration-700"
-                    style={{ width: `${applications.length ? (p.value / applications.length) * 100 : 0}%` }}
-                  />
-                </div>
-                <span className="text-xs font-bold text-[#0A0E1A] w-6 text-right [font-variant-numeric:tabular-nums]">
-                  {p.value}
-                </span>
+      {/* Grid: Recruitment Pipeline & Upcoming Events */}
+      <div className="grid grid-cols-1 lg:grid-cols-5 gap-5">
+        {/* Recruitment pipeline */}
+        <div className={`${adminCard} p-6 lg:col-span-2 flex flex-col justify-between`}>
+          <div>
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-2">
+                <RiCheckDoubleLine className="text-[#FF6600]" size={18} />
+                <h2 className="font-sans font-bold text-base text-zinc-900 dark:text-zinc-100 tracking-tight">
+                  Recruitment Funnel
+                </h2>
               </div>
-            ))}
+              <span className="text-xs font-mono text-zinc-400">{applications.length} Total</span>
+            </div>
+
+            <div className="space-y-4">
+              {pipeline.map((p) => {
+                const percent = applications.length ? Math.round((p.value / applications.length) * 100) : 0;
+                return (
+                  <div key={p.label} className="space-y-1.5">
+                    <div className="flex items-center justify-between text-xs">
+                      <span className={`px-2 py-0.5 rounded-md font-mono font-semibold border ${p.badgeCls}`}>
+                        {p.label}
+                      </span>
+                      <div className="flex items-center gap-2 font-mono">
+                        <span className="font-bold text-zinc-900 dark:text-zinc-100">{p.value}</span>
+                        <span className="text-zinc-400">({percent}%)</span>
+                      </div>
+                    </div>
+                    <div className="w-full h-2 bg-zinc-100 dark:bg-zinc-800/80 rounded-full overflow-hidden">
+                      <div
+                        className={`h-full ${p.barCls} rounded-full transition-all duration-700`}
+                        style={{ width: `${percent}%` }}
+                      />
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
           </div>
 
-          <div className="mt-5 pt-5 border-t border-[#C0CCFF]">
-            <h3 className="font-sans font-bold text-xs uppercase tracking-wider text-[#0047FF] mb-3">
-              Upcoming Events
-            </h3>
+          {/* Upcoming Events Box */}
+          <div className="mt-6 pt-5 border-t border-zinc-100 dark:border-zinc-800/80">
+            <div className="flex items-center justify-between mb-3">
+              <div className="flex items-center gap-1.5 text-xs font-mono font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
+                <RiCalendarEventLine size={14} className="text-[#FF6600]" />
+                <span>Upcoming Milestones</span>
+              </div>
+              <button
+                type="button"
+                onClick={() => onNavigate('events')}
+                className="text-[11px] font-semibold text-[#FF6600] hover:underline cursor-pointer"
+              >
+                Manage
+              </button>
+            </div>
+
             {upcoming.length > 0 ? (
-              <ul className="flex flex-col gap-2.5">
+              <div className="space-y-2">
                 {upcoming.map((e) => (
-                  <li key={e.id} className="flex items-center justify-between gap-2 text-[13px]">
-                    <span className="text-[#0A0E1A] font-bold truncate">{e.title}</span>
-                    <span className="text-[#475569] whitespace-nowrap text-xs font-medium">{e.date}</span>
-                  </li>
+                  <div
+                    key={e.id}
+                    className="p-2.5 rounded-lg bg-zinc-50 dark:bg-[#141720] border border-zinc-200/60 dark:border-zinc-800/60 flex items-center justify-between gap-3 text-xs"
+                  >
+                    <div className="truncate">
+                      <div className="font-semibold text-zinc-900 dark:text-zinc-100 truncate">{e.title}</div>
+                      <div className="text-[11px] text-zinc-500 dark:text-zinc-400">{e.date}</div>
+                    </div>
+                    {e.mode && (
+                      <span className="shrink-0 px-2 py-0.5 rounded bg-zinc-200/60 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 text-[10px] font-mono">
+                        {e.mode}
+                      </span>
+                    )}
+                  </div>
                 ))}
-              </ul>
+              </div>
             ) : (
-              <p className="text-[13px] text-[#475569]">No upcoming events scheduled.</p>
+              <p className="text-xs text-zinc-500 dark:text-zinc-400 py-2">No upcoming events scheduled.</p>
             )}
           </div>
         </div>
 
-        {/* Applications by department */}
-        <div className="bg-[#F4F6FF] border-2 border-[#C0CCFF] rounded-panel p-6 lg:col-span-3 shadow-[4px_4px_0px_#0A0E1A]">
-          <h2 className="font-sans font-bold text-base tracking-tight text-[#0A0E1A] mb-4">
-            Applications by Department
-          </h2>
-          {deptEntries.length > 0 ? (
-            <div className="flex flex-col gap-3">
-              {deptEntries.map(([dept, count]) => (
-                <div key={dept} className="flex items-center gap-2.5">
-                  <span className="text-xs font-bold text-[#0A0E1A] w-36 shrink-0 truncate">{dept}</span>
-                  <div className="flex-1 h-2 bg-white border border-[#C0CCFF] rounded-full overflow-hidden">
-                    <div
-                      className="h-full bg-[#0047FF] rounded-full transition-all duration-700 min-w-[8px]"
-                      style={{ width: `${(count / maxDept) * 100}%` }}
-                    />
-                  </div>
-                  <span className="text-xs font-bold text-[#0A0E1A] w-6 text-right [font-variant-numeric:tabular-nums]">
-                    {count}
-                  </span>
-                </div>
-              ))}
+        {/* Applications by Department */}
+        <div className={`${adminCard} p-6 lg:col-span-3 flex flex-col justify-between`}>
+          <div>
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-2">
+                <RiPieChartLine className="text-[#FF6600]" size={18} />
+                <h2 className="font-sans font-bold text-base text-zinc-900 dark:text-zinc-100 tracking-tight">
+                  Application Department Breakdown
+                </h2>
+              </div>
+              <span className="text-xs font-mono text-zinc-400">{deptEntries.length} Divisions</span>
             </div>
-          ) : (
-            <EmptyState text="No application data yet — department analytics appear after the first submission." />
-          )}
+
+            {deptEntries.length > 0 ? (
+              <div className="space-y-3.5">
+                {deptEntries.map(([dept, count]) => {
+                  const percent = Math.round((count / (applications.length || 1)) * 100);
+                  const barWidth = Math.round((count / maxDept) * 100);
+                  return (
+                    <div key={dept} className="space-y-1">
+                      <div className="flex items-center justify-between text-xs">
+                        <span className="font-medium text-zinc-800 dark:text-zinc-200 truncate max-w-[200px] sm:max-w-xs">
+                          {dept}
+                        </span>
+                        <div className="flex items-center gap-2 font-mono text-xs">
+                          <span className="font-bold text-zinc-900 dark:text-zinc-100">{count}</span>
+                          <span className="text-zinc-400">({percent}%)</span>
+                        </div>
+                      </div>
+                      <div className="w-full h-2 bg-zinc-100 dark:bg-zinc-800/80 rounded-full overflow-hidden">
+                        <div
+                          className="h-full bg-[#FF6600] rounded-full transition-all duration-700 min-w-[6px]"
+                          style={{ width: `${barWidth}%` }}
+                        />
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            ) : (
+              <div className="py-8">
+                <EmptyState text="No applications submitted yet. Candidate breakdown will appear once candidates apply." />
+              </div>
+            )}
+          </div>
+
+          <div className="mt-6 pt-4 border-t border-zinc-100 dark:border-zinc-800/80 flex items-center justify-between text-xs text-zinc-500">
+            <span>Aggregated across all active application cycles</span>
+            <button
+              type="button"
+              onClick={() => onNavigate('applications')}
+              className="font-semibold text-[#FF6600] hover:underline cursor-pointer"
+            >
+              Export CSV →
+            </button>
+          </div>
         </div>
       </div>
 
-      {/* Recent applications */}
-      <div className="bg-[#F4F6FF] border-2 border-[#C0CCFF] rounded-panel shadow-[4px_4px_0px_#0A0E1A] overflow-hidden">
-        <div className="px-6 py-4 border-b border-[#C0CCFF] flex items-center justify-between">
-          <h2 className="font-sans font-bold text-base tracking-tight text-[#0A0E1A]">Recent Applications</h2>
+      {/* Recent Applications Table */}
+      <div className={`${adminCard} overflow-hidden`}>
+        <div className="px-6 py-4 border-b border-zinc-200/80 dark:border-zinc-800/80 flex items-center justify-between">
+          <div>
+            <h2 className="font-sans font-bold text-base text-zinc-950 dark:text-white tracking-tight">
+              Recent Application Intake
+            </h2>
+            <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">
+              Latest candidate submissions across campus departments.
+            </p>
+          </div>
           <button
             type="button"
             onClick={() => onNavigate('applications')}
-            className="text-xs font-bold text-[#0047FF] border-2 border-[#0047FF] py-1.5 px-4 rounded-full hover:bg-[#0047FF] hover:text-white transition-all cursor-pointer"
+            className="inline-flex items-center gap-1.5 text-xs font-semibold text-zinc-700 dark:text-zinc-200 hover:text-[#FF6600] dark:hover:text-[#FF6600] py-1.5 px-3 rounded-lg bg-zinc-100 dark:bg-zinc-800/80 hover:bg-zinc-200 dark:hover:bg-zinc-700/80 transition-colors cursor-pointer"
           >
-            View all →
+            <span>View All ({applications.length})</span>
+            <RiArrowRightLine size={13} />
           </button>
         </div>
+
         {applications.length > 0 ? (
           <div className="overflow-x-auto">
             <table className="w-full border-collapse">
               <thead>
                 <tr>
-                  <th className={adminTh}>Name</th>
-                  <th className={adminTh}>Department</th>
+                  <th className={adminTh}>Candidate</th>
+                  <th className={adminTh}>Target Department</th>
                   <th className={adminTh}>Branch &amp; Year</th>
                   <th className={adminTh}>Status</th>
                 </tr>
               </thead>
               <tbody>
                 {applications.slice(0, 5).map((app) => (
-                  <tr key={app.id} className="transition-colors duration-150 hover:bg-[#EEF2FF]">
+                  <tr
+                    key={app.id}
+                    onClick={() => onNavigate('applications')}
+                    className="transition-colors duration-150 hover:bg-zinc-50 dark:hover:bg-zinc-800/50 cursor-pointer"
+                  >
                     <td className={adminTd}>
-                      <div className="font-bold text-[#0A0E1A]">{app.name}</div>
-                      <div className="text-[11px] text-[#475569]">{app.email}</div>
+                      <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 rounded-full bg-[#FF6600]/10 text-[#FF6600] font-mono font-bold text-xs flex items-center justify-center shrink-0 border border-[#FF6600]/20">
+                          {app.name.charAt(0).toUpperCase()}
+                        </div>
+                        <div>
+                          <div className="font-semibold text-zinc-900 dark:text-zinc-100">{app.name}</div>
+                          <div className="text-xs text-zinc-500 dark:text-zinc-400">{app.email}</div>
+                        </div>
+                      </div>
                     </td>
-                    <td className={adminTd}>{app.deptInterest || app.deptinterest}</td>
-                    <td className={adminTd}>{app.branchYear || app.branchyear}</td>
+                    <td className={adminTd}>
+                      <span className="text-xs font-medium text-zinc-700 dark:text-zinc-300">
+                        {app.deptInterest || app.deptinterest || 'General'}
+                      </span>
+                    </td>
+                    <td className={adminTd}>
+                      <span className="text-xs text-zinc-600 dark:text-zinc-400">
+                        {app.branchYear || app.branchyear || '—'}
+                      </span>
+                    </td>
                     <td className={adminTd}>
                       <StatusBadge status={app.status || 'Pending'} />
                     </td>

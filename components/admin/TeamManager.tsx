@@ -253,34 +253,42 @@ export default function TeamManager({
               </thead>
               <tbody>
                 {filtered.map((m) => (
-                  <tr key={m.id}>
+                  <tr key={m.id} className="hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors">
                     <td className={adminTd}>
                       <div className="flex items-center gap-3">
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img
-                          src={m.photo || `https://ui-avatars.com/api/?name=${encodeURIComponent(m.name)}&background=1b1d1e&color=fff&size=64`}
+                          src={m.photo || `https://ui-avatars.com/api/?name=${encodeURIComponent(m.name)}&background=181C26&color=ff6600&size=64`}
                           alt={m.name}
-                          className="w-9 h-9 rounded-full object-cover bg-soft"
+                          className="w-9 h-9 rounded-full object-cover bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700"
                         />
-                        <span className="font-medium text-ink">{m.name}</span>
+                        <span className="font-semibold text-zinc-900 dark:text-zinc-100">{m.name}</span>
                       </div>
                     </td>
-                    <td className={adminTd}>{m.role}</td>
-                    <td className={adminTd}>{m.department}</td>
-                    <td className={adminTd}>{m.year || '—'}</td>
                     <td className={adminTd}>
-                      <div className="flex gap-2">
+                      <span className="text-xs text-zinc-700 dark:text-zinc-300">{m.role}</span>
+                    </td>
+                    <td className={adminTd}>
+                      <span className="inline-block bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700 text-xs font-medium px-2.5 py-0.5 rounded-md">
+                        {m.department}
+                      </span>
+                    </td>
+                    <td className={adminTd}>
+                      <span className="text-xs text-zinc-500 dark:text-zinc-400">{m.year || '—'}</span>
+                    </td>
+                    <td className={adminTd}>
+                      <div className="flex items-center gap-1.5">
                         <button
                           type="button"
                           onClick={() => openEdit(m)}
-                          className="text-[13px] font-medium text-ink underline underline-offset-2 decoration-[rgba(27,29,30,0.3)] hover:decoration-ink"
+                          className="px-2.5 py-1 text-xs font-semibold rounded-md bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 text-zinc-700 dark:text-zinc-300 transition-colors cursor-pointer"
                         >
                           Edit
                         </button>
                         <button
                           type="button"
                           onClick={() => handleDelete(m.id)}
-                          className="text-[13px] font-medium text-[#c74a62] underline underline-offset-2 decoration-[#f4889a]/50 hover:decoration-[#c74a62]"
+                          className="px-2.5 py-1 text-xs font-semibold rounded-md bg-rose-500/10 hover:bg-rose-500/20 text-rose-600 dark:text-rose-400 transition-colors cursor-pointer"
                         >
                           Remove
                         </button>

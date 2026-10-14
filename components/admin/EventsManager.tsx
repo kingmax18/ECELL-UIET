@@ -242,31 +242,37 @@ export default function EventsManager({
               </thead>
               <tbody>
                 {events.map((ev) => (
-                  <tr key={ev.id}>
+                  <tr key={ev.id} className="hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors">
                     <td className={adminTd}>
-                      <div className="font-medium text-ink">{ev.title}</div>
-                      {ev.tagline && <div className="text-xs text-muted">{ev.tagline}</div>}
+                      <div className="font-semibold text-zinc-900 dark:text-zinc-100">{ev.title}</div>
+                      {ev.tagline && <div className="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">{ev.tagline}</div>}
                     </td>
-                    <td className={adminTd}>{formatDate(ev.date)}</td>
-                    <td className={adminTd}>{ev.mode}</td>
                     <td className={adminTd}>
-                      <button type="button" onClick={() => toggleStatus(ev)} title="Toggle status">
+                      <span className="text-xs text-zinc-700 dark:text-zinc-300">{formatDate(ev.date)}</span>
+                    </td>
+                    <td className={adminTd}>
+                      <span className="inline-block bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700 text-xs font-medium px-2 py-0.5 rounded-md">
+                        {ev.mode}
+                      </span>
+                    </td>
+                    <td className={adminTd}>
+                      <button type="button" onClick={() => toggleStatus(ev)} title="Click to toggle status" className="cursor-pointer">
                         <StatusBadge status={ev.status || 'upcoming'} />
                       </button>
                     </td>
                     <td className={adminTd}>
-                      <div className="flex gap-2">
+                      <div className="flex items-center gap-1.5">
                         <button
                           type="button"
                           onClick={() => openEdit(ev)}
-                          className="text-[13px] font-medium text-ink underline underline-offset-2 decoration-[rgba(27,29,30,0.3)] hover:decoration-ink"
+                          className="px-2.5 py-1 text-xs font-semibold rounded-md bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 text-zinc-700 dark:text-zinc-300 transition-colors cursor-pointer"
                         >
                           Edit
                         </button>
                         <button
                           type="button"
                           onClick={() => handleDelete(ev.id)}
-                          className="text-[13px] font-medium text-[#c74a62] underline underline-offset-2 decoration-[#f4889a]/50 hover:decoration-[#c74a62]"
+                          className="px-2.5 py-1 text-xs font-semibold rounded-md bg-rose-500/10 hover:bg-rose-500/20 text-rose-600 dark:text-rose-400 transition-colors cursor-pointer"
                         >
                           Delete
                         </button>

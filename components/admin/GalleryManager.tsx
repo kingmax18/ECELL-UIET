@@ -156,21 +156,25 @@ export default function GalleryManager({
               </thead>
               <tbody>
                 {gallery.map((g) => (
-                  <tr key={g.id}>
+                  <tr key={g.id} className="hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors">
                     <td className={adminTd}>
                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src={g.image} alt={g.title} className="w-16 h-11 rounded-sm2 object-cover bg-soft" />
+                      <img src={g.image} alt={g.title} className="w-16 h-11 rounded-lg object-cover bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700" />
                     </td>
                     <td className={adminTd}>
-                      <div className="font-medium text-ink">{g.title}</div>
-                      {g.description && <div className="text-xs text-muted truncate max-w-xs">{g.description}</div>}
+                      <div className="font-semibold text-zinc-900 dark:text-zinc-100">{g.title}</div>
+                      {g.description && <div className="text-xs text-zinc-500 dark:text-zinc-400 truncate max-w-xs mt-0.5">{g.description}</div>}
                     </td>
-                    <td className={adminTd}>{g.category}</td>
+                    <td className={adminTd}>
+                      <span className="inline-block bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700 text-xs font-medium px-2.5 py-0.5 rounded-md">
+                        {g.category}
+                      </span>
+                    </td>
                     <td className={adminTd}>
                       <button
                         type="button"
                         onClick={() => handleDelete(g.id)}
-                        className="text-[13px] font-medium text-[#c74a62] underline underline-offset-2 decoration-[#f4889a]/50 hover:decoration-[#c74a62]"
+                        className="px-2.5 py-1 text-xs font-semibold rounded-md bg-rose-500/10 hover:bg-rose-500/20 text-rose-600 dark:text-rose-400 transition-colors cursor-pointer"
                       >
                         Remove
                       </button>

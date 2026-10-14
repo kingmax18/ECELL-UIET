@@ -232,10 +232,10 @@ export default function BlogsManager({
             <Link
               href="/blog"
               target="_blank"
-              className="inline-flex items-center gap-1.5 text-xs font-bold text-[#CBFF2E] hover:underline px-3 py-2 rounded-lg border border-[#CBFF2E]/30 bg-[#CBFF2E]/10"
+              className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#FF6600] hover:text-[#ff771a] px-3 py-2 rounded-lg border border-[#FF6600]/30 bg-[#FF6600]/10 transition-colors"
             >
               <RiExternalLinkLine size={15} />
-              <span>Live Blog Page</span>
+              <span>Live Blog</span>
             </Link>
             <Button onClick={openCreate} variant="primary" size="sm" arrow>
               Write New Blog
@@ -246,46 +246,46 @@ export default function BlogsManager({
 
       {/* Stats Quick Ribbon */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
-        <div className="bg-[#F4F6FF] border border-[#C0CCFF] rounded-card p-3.5 flex items-center justify-between">
+        <div className={`${adminCard} p-3.5 flex items-center justify-between`}>
           <div>
-            <div className="text-[11px] font-bold text-[#475569] uppercase tracking-wider">Total Articles</div>
-            <div className="text-xl font-extrabold text-[#0A0E1A] mt-0.5">{blogs.length}</div>
+            <div className="text-[11px] font-mono font-bold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">Total Articles</div>
+            <div className="text-xl font-bold text-zinc-950 dark:text-white mt-0.5">{blogs.length}</div>
           </div>
-          <div className="w-8 h-8 rounded-lg bg-[#EEF2FF] text-[#0047FF] flex items-center justify-center">
+          <div className="w-8 h-8 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 flex items-center justify-center">
             <RiArticleLine size={18} />
           </div>
         </div>
 
-        <div className="bg-[#F4F6FF] border border-[#C0CCFF] rounded-card p-3.5 flex items-center justify-between">
+        <div className={`${adminCard} p-3.5 flex items-center justify-between`}>
           <div>
-            <div className="text-[11px] font-bold text-[#475569] uppercase tracking-wider">Featured</div>
-            <div className="text-xl font-extrabold text-[#0047FF] mt-0.5">
+            <div className="text-[11px] font-mono font-bold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">Featured</div>
+            <div className="text-xl font-bold text-amber-500 mt-0.5">
               {blogs.filter((b) => b.featured).length}
             </div>
           </div>
-          <div className="w-8 h-8 rounded-lg bg-[#CBFF2E]/20 text-[#0047FF] flex items-center justify-center">
+          <div className="w-8 h-8 rounded-lg bg-amber-500/10 text-amber-500 flex items-center justify-center">
             <RiStarFill size={18} />
           </div>
         </div>
 
-        <div className="bg-[#F4F6FF] border border-[#C0CCFF] rounded-card p-3.5 flex items-center justify-between">
+        <div className={`${adminCard} p-3.5 flex items-center justify-between`}>
           <div>
-            <div className="text-[11px] font-bold text-[#475569] uppercase tracking-wider">Categories</div>
-            <div className="text-xl font-extrabold text-[#0A0E1A] mt-0.5">
+            <div className="text-[11px] font-mono font-bold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">Categories</div>
+            <div className="text-xl font-bold text-zinc-950 dark:text-white mt-0.5">
               {new Set(blogs.map((b) => b.category)).size}
             </div>
           </div>
-          <div className="w-8 h-8 rounded-lg bg-[#EEF2FF] text-[#0047FF] flex items-center justify-center">
+          <div className="w-8 h-8 rounded-lg bg-[#FF6600]/10 text-[#FF6600] flex items-center justify-center">
             <RiArticleLine size={18} />
           </div>
         </div>
 
-        <div className="bg-[#F4F6FF] border border-[#C0CCFF] rounded-card p-3.5 flex items-center justify-between">
+        <div className={`${adminCard} p-3.5 flex items-center justify-between`}>
           <div>
-            <div className="text-[11px] font-bold text-[#475569] uppercase tracking-wider">Filtered View</div>
-            <div className="text-xl font-extrabold text-[#0A0E1A] mt-0.5">{filtered.length}</div>
+            <div className="text-[11px] font-mono font-bold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">Filtered View</div>
+            <div className="text-xl font-bold text-zinc-950 dark:text-white mt-0.5">{filtered.length}</div>
           </div>
-          <div className="w-8 h-8 rounded-lg bg-[#EEF2FF] text-[#0047FF] flex items-center justify-center">
+          <div className="w-8 h-8 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 flex items-center justify-center">
             <RiSearchLine size={18} />
           </div>
         </div>
@@ -300,14 +300,14 @@ export default function BlogsManager({
             placeholder="Search by title, author, or tag…"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full bg-[#F4F6FF] border border-[#0047FF]/40 rounded-card pl-9 pr-4 py-2 text-sm text-[#0A0E1A] placeholder:text-[#475569]/60 focus:outline-hidden focus:border-[#0047FF] transition-all"
+            className="w-full bg-white dark:bg-[#14161D] border border-zinc-200 dark:border-zinc-700/80 rounded-lg pl-9 pr-4 py-2 text-xs text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 focus:outline-hidden focus:border-[#FF6600] focus:ring-2 focus:ring-[#FF6600]/15 transition-all"
           />
-          <RiSearchLine className="absolute left-3 top-1/2 -translate-y-1/2 text-[#0047FF] text-base" />
+          <RiSearchLine className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400 text-base" />
           {searchQuery && (
             <button
               type="button"
               onClick={() => setSearchQuery('')}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-[#475569] hover:text-[#0A0E1A]"
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 cursor-pointer"
             >
               Clear
             </button>
@@ -323,10 +323,10 @@ export default function BlogsManager({
                 key={cat}
                 type="button"
                 onClick={() => setSelectedCategory(cat)}
-                className={`text-xs font-bold px-3 py-1.5 rounded-full border transition-all whitespace-nowrap cursor-pointer ${
+                className={`text-xs font-medium px-3 py-1.5 rounded-lg border transition-all whitespace-nowrap cursor-pointer ${
                   isActive
-                    ? 'bg-[#CBFF2E] text-[#0A0E1A] border-[#0A0E1A] shadow-[2px_2px_0px_#0047FF]'
-                    : 'bg-[#F4F6FF] text-[#0A0E1A] border-[#C0CCFF] hover:bg-[#EEF2FF] hover:border-[#0047FF]'
+                    ? 'bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 border-zinc-900 dark:border-white shadow-xs font-semibold'
+                    : 'bg-white dark:bg-[#14161D] text-zinc-600 dark:text-zinc-400 border-zinc-200 dark:border-zinc-800 hover:text-zinc-950 dark:hover:text-white'
                 }`}
               >
                 {cat}
@@ -340,7 +340,7 @@ export default function BlogsManager({
       {filtered.length === 0 ? (
         <EmptyState text="No blog posts found matching your search or category." />
       ) : (
-        <div className={`${adminCard} overflow-hidden shadow-sm`}>
+        <div className={`${adminCard} overflow-hidden shadow-xs`}>
           <div className="overflow-x-auto">
             <table className="w-full border-collapse">
               <thead>
@@ -355,11 +355,11 @@ export default function BlogsManager({
               </thead>
               <tbody>
                 {filtered.map((post) => (
-                  <tr key={post.id} className="hover:bg-[#EEF2FF] transition-colors">
+                  <tr key={post.id} className="hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors">
                     {/* Post Title & Thumbnail */}
                     <td className={adminTd}>
                       <div className="flex items-center gap-3 max-w-[340px]">
-                        <div className="relative w-14 h-11 rounded-lg overflow-hidden shrink-0 bg-white border border-[#C0CCFF]">
+                        <div className="relative w-14 h-11 rounded-lg overflow-hidden shrink-0 bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700">
                           {post.coverImage ? (
                             <Image
                               src={post.coverImage}
@@ -369,7 +369,7 @@ export default function BlogsManager({
                               unoptimized={post.coverImage.startsWith('http')}
                             />
                           ) : (
-                            <div className="w-full h-full flex items-center justify-center text-xs text-[#475569]/60">
+                            <div className="w-full h-full flex items-center justify-center text-[10px] text-zinc-400">
                               No pic
                             </div>
                           )}
@@ -378,12 +378,12 @@ export default function BlogsManager({
                           <Link
                             href={`/blog/${post.slug}`}
                             target="_blank"
-                            className="font-bold text-sm text-[#0A0E1A] hover:text-[#0047FF] transition-colors line-clamp-1 block"
+                            className="font-semibold text-xs sm:text-sm text-zinc-900 dark:text-zinc-100 hover:text-[#FF6600] dark:hover:text-[#FF6600] transition-colors line-clamp-1 block"
                             title={post.title}
                           >
                             {post.title}
                           </Link>
-                          <div className="text-xs text-[#475569] line-clamp-1 mt-0.5">
+                          <div className="text-[11px] text-zinc-500 dark:text-zinc-400 line-clamp-1 mt-0.5">
                             {post.excerpt || post.slug}
                           </div>
                         </div>
@@ -392,7 +392,7 @@ export default function BlogsManager({
 
                     {/* Category */}
                     <td className={adminTd}>
-                      <span className="inline-block bg-[#EEF2FF] text-[#0047FF] border border-[#0047FF]/30 text-xs font-semibold px-2.5 py-1 rounded-full whitespace-nowrap">
+                      <span className="inline-block bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700 text-xs font-medium px-2.5 py-0.5 rounded-md whitespace-nowrap">
                         {post.category}
                       </span>
                     </td>
@@ -401,7 +401,7 @@ export default function BlogsManager({
                     <td className={adminTd}>
                       <div className="flex items-center gap-2">
                         {post.author?.avatar ? (
-                          <div className="relative w-6 h-6 rounded-full overflow-hidden shrink-0 border border-[#0047FF]/40">
+                          <div className="relative w-6 h-6 rounded-full overflow-hidden shrink-0 border border-zinc-300 dark:border-zinc-700">
                             <Image
                               src={post.author.avatar}
                               alt={post.author.name}
@@ -410,15 +410,15 @@ export default function BlogsManager({
                             />
                           </div>
                         ) : (
-                          <div className="w-6 h-6 rounded-full bg-[#0047FF]/20 flex items-center justify-center text-[10px] text-[#0047FF] font-bold">
+                          <div className="w-6 h-6 rounded-full bg-[#FF6600]/10 text-[#FF6600] flex items-center justify-center text-[10px] font-bold">
                             <RiUserLine />
                           </div>
                         )}
                         <div className="text-xs">
-                          <div className="font-semibold text-[#0A0E1A] whitespace-nowrap">
+                          <div className="font-semibold text-zinc-900 dark:text-zinc-100 whitespace-nowrap">
                             {post.author?.name || 'UIET Team'}
                           </div>
-                          <div className="text-[10px] text-[#475569] truncate max-w-[120px]">
+                          <div className="text-[10px] text-zinc-500 dark:text-zinc-400 truncate max-w-[120px]">
                             {post.author?.role}
                           </div>
                         </div>
@@ -427,11 +427,11 @@ export default function BlogsManager({
 
                     {/* Read Time & Date */}
                     <td className={adminTd}>
-                      <div className="text-xs text-[#0A0E1A] flex items-center gap-1">
-                        <RiTimeLine className="text-[#0047FF]" />
+                      <div className="text-xs text-zinc-800 dark:text-zinc-200 flex items-center gap-1">
+                        <RiTimeLine className="text-zinc-400" />
                         <span>{post.readTime || '5 min read'}</span>
                       </div>
-                      <div className="text-[11px] text-[#475569] mt-0.5 whitespace-nowrap">
+                      <div className="text-[11px] text-zinc-500 dark:text-zinc-400 mt-0.5 whitespace-nowrap">
                         {post.publishedAt}
                       </div>
                     </td>
@@ -443,8 +443,8 @@ export default function BlogsManager({
                         onClick={() => toggleFeatured(post)}
                         className={`p-1.5 rounded-lg border transition-all cursor-pointer ${
                           post.featured
-                            ? 'bg-[#CBFF2E]/30 border-[#0A0E1A] text-[#0A0E1A]'
-                            : 'bg-white border-[#C0CCFF] text-[#475569] hover:text-[#0047FF]'
+                            ? 'bg-amber-500/10 border-amber-500/30 text-amber-500'
+                            : 'bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700 text-zinc-400 hover:text-amber-500'
                         }`}
                         title={post.featured ? 'Featured on Blog Hero (click to remove)' : 'Set as Featured'}
                       >
@@ -458,26 +458,26 @@ export default function BlogsManager({
                         <Link
                           href={`/blog/${post.slug}`}
                           target="_blank"
-                          className="p-1.5 rounded-lg bg-white border border-[#C0CCFF] text-[#0A0E1A] hover:text-[#0047FF] hover:border-[#0047FF] transition-colors"
+                          className="p-1.5 rounded-lg bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 text-zinc-700 dark:text-zinc-300 transition-colors"
                           title="View live post"
                         >
-                          <RiExternalLinkLine size={15} />
+                          <RiExternalLinkLine size={14} />
                         </Link>
                         <button
                           type="button"
                           onClick={() => openEdit(post)}
-                          className="p-1.5 rounded-lg bg-white border border-[#C0CCFF] text-[#0A0E1A] hover:text-[#0047FF] hover:border-[#0047FF] transition-colors cursor-pointer"
+                          className="p-1.5 rounded-lg bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 text-zinc-700 dark:text-zinc-300 transition-colors cursor-pointer"
                           title="Edit post"
                         >
-                          <RiEditLine size={15} />
+                          <RiEditLine size={14} />
                         </button>
                         <button
                           type="button"
                           onClick={() => handleDelete(post.id)}
-                          className="p-1.5 rounded-lg bg-white border border-[#C0CCFF] text-[#0A0E1A] hover:text-red-600 hover:border-red-600 transition-colors cursor-pointer"
+                          className="p-1.5 rounded-lg bg-rose-500/10 hover:bg-rose-500/20 text-rose-600 dark:text-rose-400 transition-colors cursor-pointer"
                           title="Delete post"
                         >
-                          <RiDeleteBinLine size={15} />
+                          <RiDeleteBinLine size={14} />
                         </button>
                       </div>
                     </td>
@@ -580,14 +580,14 @@ export default function BlogsManager({
               placeholder="Leave empty for NO PHOTO, or paste image URL..."
               className={adminInput}
             />
-            <p className="text-[11px] text-[#475569]/70 mt-1">
+            <p className="text-[11px] text-zinc-500 dark:text-zinc-400 mt-1">
               {form.coverImage
                 ? 'Photo is currently attached. Click "Remove Photo" above if you want this blog to have no photo.'
                 : 'No photo will be shown. The blog will appear as a clean essay without any image.'}
             </p>
             {/* Quick preset selector */}
             <div className="mt-2.5">
-              <div className="text-[11px] text-[#0047FF] font-medium mb-1">Optional: pick a campus photo preset or leave blank:</div>
+              <div className="text-[11px] text-zinc-500 dark:text-zinc-400 font-medium mb-1">Optional: pick a campus photo preset or leave blank:</div>
               <div className="flex items-center gap-2 overflow-x-auto pb-1 no-scrollbar">
                 {PRESET_GALLERY_IMAGES.map((img) => (
                   <button
@@ -595,7 +595,7 @@ export default function BlogsManager({
                     type="button"
                     onClick={() => setForm({ ...form, coverImage: img })}
                     className={`relative w-12 h-9 rounded-md overflow-hidden shrink-0 border-2 transition-all cursor-pointer ${
-                      form.coverImage === img ? 'border-[#0047FF] scale-105 ring-2 ring-[#0047FF]/30' : 'border-[#C0CCFF] opacity-60 hover:opacity-100'
+                      form.coverImage === img ? 'border-[#FF6600] scale-105 ring-2 ring-[#FF6600]/30' : 'border-zinc-300 dark:border-zinc-700 opacity-60 hover:opacity-100'
                     }`}
                   >
                     <Image src={img} alt="preset" fill className="object-cover" unoptimized />
@@ -630,8 +630,8 @@ export default function BlogsManager({
           </div>
 
           {/* Author Details */}
-          <div className="p-3.5 rounded-card bg-white border border-[#C0CCFF]">
-            <div className="text-xs font-bold text-[#0047FF] uppercase tracking-wider mb-2.5">
+          <div className="p-3.5 rounded-xl bg-zinc-50 dark:bg-zinc-900/60 border border-zinc-200 dark:border-zinc-800">
+            <div className="text-xs font-mono font-bold text-zinc-600 dark:text-zinc-400 uppercase tracking-wider mb-2.5">
               Author Information
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
@@ -697,16 +697,16 @@ export default function BlogsManager({
           </div>
 
           {/* Featured Checkbox */}
-          <div className="flex items-center gap-2 p-3 rounded-card bg-white border border-[#C0CCFF]">
+          <div className="flex items-center gap-2.5 p-3 rounded-xl bg-zinc-50 dark:bg-zinc-900/60 border border-zinc-200 dark:border-zinc-800">
             <input
               type="checkbox"
               id="blog-featured"
               checked={form.featured}
               onChange={(e) => setForm({ ...form, featured: e.target.checked })}
-              className="w-4 h-4 rounded text-[#0047FF] bg-[#F4F6FF] border-[#0047FF] focus:ring-[#0047FF] cursor-pointer"
+              className="w-4 h-4 rounded text-[#FF6600] bg-white dark:bg-zinc-800 border-zinc-300 dark:border-zinc-700 focus:ring-[#FF6600] cursor-pointer"
             />
-            <label htmlFor="blog-featured" className="text-sm font-semibold text-[#0A0E1A] cursor-pointer select-none">
-              Featured Article <span className="text-xs text-[#475569] font-normal">(Hero showcase at top of blog)</span>
+            <label htmlFor="blog-featured" className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 cursor-pointer select-none">
+              Featured Article <span className="text-xs text-zinc-400 font-normal">(Hero showcase at top of blog)</span>
             </label>
           </div>
 
@@ -714,7 +714,7 @@ export default function BlogsManager({
           <div>
             <div className="flex items-center justify-between mb-1.5">
               <label className={adminLabel}>Full Content (Markdown Supported) *</label>
-              <span className="text-[11px] text-[#475569]">## Heading, **bold**, &gt; quote, - list</span>
+              <span className="text-[11px] text-zinc-400">## Heading, **bold**, &gt; quote, - list</span>
             </div>
             <textarea
               rows={8}
@@ -727,11 +727,11 @@ export default function BlogsManager({
           </div>
 
           {/* Action Buttons */}
-          <div className="flex items-center justify-end gap-3 pt-3 border-t border-[#C0CCFF]">
+          <div className="flex items-center justify-end gap-3 pt-3 border-t border-zinc-100 dark:border-zinc-800">
             <button
               type="button"
               onClick={() => setModalOpen(false)}
-              className="text-xs font-semibold text-[#475569] hover:text-[#0A0E1A] px-4 py-2 cursor-pointer"
+              className="text-xs font-semibold text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-200 px-4 py-2 cursor-pointer"
             >
               Cancel
             </button>

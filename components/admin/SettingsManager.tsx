@@ -143,31 +143,31 @@ export default function SettingsManager({
             />
           </div>
 
-          <label className="flex items-center justify-between gap-4 bg-soft border border-bordersubtle rounded-card px-4 py-3.5 cursor-pointer">
+          <label className="flex items-center justify-between gap-4 bg-zinc-50 dark:bg-zinc-900/60 border border-zinc-200 dark:border-zinc-800 rounded-xl px-4 py-3.5 cursor-pointer">
             <div>
-              <div className="text-sm font-medium text-ink">Show banner on site</div>
-              <div className="text-xs text-muted mt-0.5">Displays a recruitment banner above the homepage</div>
+              <div className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Show banner on site</div>
+              <div className="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">Displays a recruitment banner above the homepage</div>
             </div>
             <button
               type="button"
               role="switch"
               aria-checked={form.bannerEnabled}
               onClick={() => setForm({ ...form, bannerEnabled: !form.bannerEnabled })}
-              className={`relative w-11 h-6 rounded-pill transition-colors duration-200 shrink-0 ${
-                form.bannerEnabled ? 'bg-ink' : 'bg-[rgba(27,29,30,0.2)]'
+              className={`relative w-11 h-6 rounded-full transition-colors duration-200 shrink-0 cursor-pointer ${
+                form.bannerEnabled ? 'bg-[#FF6600]' : 'bg-zinc-300 dark:bg-zinc-700'
               }`}
             >
               <span
-                className={`absolute top-[3px] w-[18px] h-[18px] rounded-full bg-white transition-all duration-200 ${
+                className={`absolute top-[3px] w-[18px] h-[18px] rounded-full bg-white transition-all duration-200 shadow-xs ${
                   form.bannerEnabled ? 'left-[24px]' : 'left-[3px]'
                 }`}
               />
             </button>
           </label>
 
-          <div className="bg-[linear-gradient(71deg,rgba(217,243,252,0.5)_11%,rgba(235,248,253,0.6)_45.7%,rgba(255,255,255,0.6)_64.5%,rgba(253,241,211,0.7)_100%)] border border-border rounded-card px-5 py-4 text-center">
-            <div className="text-xs font-medium uppercase tracking-[0.06em] text-muted mb-1">Preview</div>
-            <div className="text-sm font-medium text-ink">
+          <div className="bg-[#FF6600]/5 border border-[#FF6600]/20 rounded-xl px-5 py-4 text-center">
+            <div className="text-[11px] font-mono font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-1">Preview</div>
+            <div className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
               {form.bannerEnabled ? form.bannerText : 'Banner hidden'}
             </div>
           </div>
@@ -181,20 +181,20 @@ export default function SettingsManager({
       {/* Data Backup & Reset Card */}
       <div className={`${adminCard} p-6 md:p-8 mt-6 flex flex-col gap-6`}>
         <div>
-          <h2 className="font-sans font-medium text-lg tracking-[-0.015em] text-ink">
+          <h2 className="font-sans font-bold text-lg text-zinc-950 dark:text-white tracking-tight">
             Data Backup &amp; Synchronization
           </h2>
-          <p className="text-sm text-secondary mt-1">
-            All edits you make in the Admin panel are automatically saved and synced to your browser storage. You can also download a complete JSON backup to transfer data to other devices or restore the site.
+          <p className="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 mt-1">
+            All edits you make in the Admin panel are automatically saved and synced to your database and local storage. You can also export a complete JSON snapshot to archive or restore.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {/* Export JSON */}
-          <div className="bg-soft border border-border rounded-card p-5 flex flex-col justify-between gap-4">
+          <div className="bg-zinc-50 dark:bg-zinc-900/60 border border-zinc-200/80 dark:border-zinc-800 rounded-xl p-5 flex flex-col justify-between gap-4">
             <div>
-              <div className="font-semibold text-sm text-ink mb-1">Export JSON Backup</div>
-              <p className="text-xs text-secondary leading-relaxed">
+              <div className="font-semibold text-sm text-zinc-900 dark:text-zinc-100 mb-1">Export JSON Backup</div>
+              <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
                 Download a complete snapshot of all events, team members, gallery, and settings.
               </p>
             </div>
@@ -225,21 +225,21 @@ export default function SettingsManager({
                   showToast('Export failed', 'error');
                 }
               }}
-              className="w-full py-2 px-3 text-xs font-medium text-white bg-ink rounded-pill hover:bg-black transition-colors cursor-pointer"
+              className="w-full py-2 px-3 text-xs font-semibold text-white bg-zinc-900 dark:bg-zinc-800 hover:bg-zinc-800 dark:hover:bg-zinc-700 rounded-lg transition-colors cursor-pointer"
             >
               Download Backup (.json)
             </button>
           </div>
 
           {/* Import JSON */}
-          <div className="bg-soft border border-border rounded-card p-5 flex flex-col justify-between gap-4">
+          <div className="bg-zinc-50 dark:bg-zinc-900/60 border border-zinc-200/80 dark:border-zinc-800 rounded-xl p-5 flex flex-col justify-between gap-4">
             <div>
-              <div className="font-semibold text-sm text-ink mb-1">Import JSON Backup</div>
-              <p className="text-xs text-secondary leading-relaxed">
+              <div className="font-semibold text-sm text-zinc-900 dark:text-zinc-100 mb-1">Import JSON Backup</div>
+              <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
                 Restore data from a previously downloaded .json backup file.
               </p>
             </div>
-            <label className="w-full py-2 px-3 text-xs font-bold text-[#0047FF] bg-white border-2 border-[#0047FF] rounded-full hover:bg-[#0047FF] hover:text-white text-center transition-colors cursor-pointer">
+            <label className="w-full py-2 px-3 text-xs font-semibold text-[#FF6600] bg-[#FF6600]/10 border border-[#FF6600]/30 rounded-lg hover:bg-[#FF6600]/15 text-center transition-colors cursor-pointer">
               <span>Choose Backup File</span>
               <input
                 type="file"
@@ -272,10 +272,10 @@ export default function SettingsManager({
           </div>
 
           {/* Reset to Defaults */}
-          <div className="bg-white border border-[#ff4d6d]/30 rounded-card p-5 flex flex-col justify-between gap-4">
+          <div className="bg-zinc-50 dark:bg-zinc-900/60 border border-rose-500/20 rounded-xl p-5 flex flex-col justify-between gap-4">
             <div>
-              <div className="font-bold text-sm text-[#ff4d6d] mb-1">Reset to Defaults</div>
-              <p className="text-xs text-[#3A4A7A] leading-relaxed">
+              <div className="font-bold text-sm text-rose-600 dark:text-rose-400 mb-1">Reset to Defaults</div>
+              <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
                 Clear all custom edits and restore the official seed content for all pages.
               </p>
             </div>
@@ -299,7 +299,7 @@ export default function SettingsManager({
                   setTimeout(() => window.location.reload(), 800);
                 }
               }}
-              className="w-full py-2 px-3 text-xs font-bold text-[#ff4d6d] bg-[#F4F6FF] border border-[#ff4d6d]/40 rounded-full hover:bg-[#ff4d6d]/20 transition-colors cursor-pointer"
+              className="w-full py-2 px-3 text-xs font-semibold text-rose-600 dark:text-rose-400 bg-rose-500/10 border border-rose-500/30 rounded-lg hover:bg-rose-500/20 transition-colors cursor-pointer"
             >
               Reset All to Defaults
             </button>

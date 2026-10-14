@@ -200,43 +200,48 @@ export default function PartnersManager({
               </thead>
               <tbody>
                 {sponsors.map((s) => (
-                  <tr key={s.id}>
+                  <tr key={s.id} className="hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors">
                     <td className={adminTd}>
                       <span
-                        className="inline-flex items-center justify-center w-9 h-9 rounded-card text-xs font-semibold text-white"
+                        className="inline-flex items-center justify-center w-9 h-9 rounded-lg text-xs font-bold text-white shadow-xs"
                         style={{ backgroundColor: s.color || '#1b1d1e' }}
                       >
                         {s.initials || s.name.slice(0, 2).toUpperCase()}
                       </span>
                     </td>
-                    <td className={`${adminTd} font-medium`}>{s.name}</td>
+                    <td className={`${adminTd} font-semibold text-zinc-900 dark:text-zinc-100`}>{s.name}</td>
                     <td className={adminTd}>
-                      <span className="inline-flex py-1 px-2.5 rounded-pill text-xs font-medium bg-soft text-secondary capitalize">
+                      <span className="inline-flex py-0.5 px-2.5 rounded-md text-xs font-medium bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700 capitalize">
                         {s.tier}
                       </span>
                     </td>
                     <td className={adminTd}>
                       {s.url && s.url !== '#' ? (
-                        <a href={s.url} target="_blank" rel="noopener noreferrer" className="text-ink underline underline-offset-2 text-[13px]">
-                          Visit
+                        <a
+                          href={s.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-[#FF6600] font-semibold hover:underline text-xs"
+                        >
+                          Visit ↗
                         </a>
                       ) : (
-                        <span className="text-muted text-[13px]">—</span>
+                        <span className="text-zinc-400 text-xs">—</span>
                       )}
                     </td>
                     <td className={adminTd}>
-                      <div className="flex gap-2">
+                      <div className="flex items-center gap-1.5">
                         <button
                           type="button"
                           onClick={() => openEdit(s)}
-                          className="text-[13px] font-medium text-ink underline underline-offset-2 decoration-[rgba(27,29,30,0.3)] hover:decoration-ink"
+                          className="px-2.5 py-1 text-xs font-semibold rounded-md bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 text-zinc-700 dark:text-zinc-300 transition-colors cursor-pointer"
                         >
                           Edit
                         </button>
                         <button
                           type="button"
                           onClick={() => handleDelete(s.id)}
-                          className="text-[13px] font-medium text-[#c74a62] underline underline-offset-2 decoration-[#f4889a]/50 hover:decoration-[#c74a62]"
+                          className="px-2.5 py-1 text-xs font-semibold rounded-md bg-rose-500/10 hover:bg-rose-500/20 text-rose-600 dark:text-rose-400 transition-colors cursor-pointer"
                         >
                           Remove
                         </button>
