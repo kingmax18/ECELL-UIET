@@ -12,7 +12,6 @@ import {
   RiMapPinLine,
   RiArrowUpLine,
   RiLockLine,
-  RiSparklingFill,
   RiExternalLinkLine,
 } from 'react-icons/ri';
 import { useData } from '@/context/DataProvider';
@@ -50,10 +49,6 @@ export default function Footer() {
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
             <div className="max-w-2xl">
-              <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-[#FF6600]/10 border border-[#FF6600]/25 text-[#FF6600] text-[11px] font-mono font-semibold uppercase tracking-wider mb-3">
-                <RiSparklingFill size={13} className="animate-pulse" />
-                <span>Student Innovation Hub</span>
-              </div>
               <h3 className="font-serif text-2xl sm:text-3xl text-zinc-950 dark:text-white font-normal tracking-tight">
                 Building campus ventures. Empowering student founders.
               </h3>
