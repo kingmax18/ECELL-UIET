@@ -135,11 +135,6 @@ export default function Footer() {
                 </span>
               </div>
             </div>
-
-            <div className="mt-5 inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-[11px] font-mono">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-              <span>Campus Cohort 2026-27 Active</span>
-            </div>
           </div>
 
           {/* Links Column 1: Ecosystem */}

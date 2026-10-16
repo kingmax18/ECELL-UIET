@@ -1,42 +1,108 @@
-'use client';
-
-import React, { use, useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import type { Metadata } from 'next';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import CTABanner from '@/components/home/CTABanner';
 import BlogCard from '@/components/blog/BlogCard';
+import ShareButton from '@/components/blog/ShareButton';
+import ScrollRevealEffect from '@/components/ui/ScrollRevealEffect';
 import { blogs as defaultBlogs } from '@/data/blogs';
-import { useData } from '@/context/DataProvider';
-import { useScrollReveal } from '@/hooks/useScrollReveal';
+import { prisma } from '@/lib/prisma';
+import type { BlogPost } from '@/lib/types';
 
-export default function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
-  const resolvedParams = use(params);
-  const slug = resolvedParams.slug;
-  const { blogs } = useData();
-  const allBlogs = blogs && blogs.length > 0 ? blogs : defaultBlogs;
-  const post = allBlogs.find((b) => b.slug === slug);
-  const [copied, setCopied] = useState(false);
-  useScrollReveal();
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
+async function getBlogPost(rawSlug: string): Promise<{ post: BlogPost | null; allPosts: BlogPost[] }> {
+  const decodedSlug = decodeURIComponent(rawSlug).trim();
+  const lowerSlug = decodedSlug.toLowerCase();
+
+  let dbBlogs: BlogPost[] = [];
+  try {
+    const rawDbBlogs = await prisma.blog.findMany({
+      orderBy: { createdAt: 'desc' },
+    });
+
+    dbBlogs = rawDbBlogs.map((b) => ({
+      ...b,
+      author: {
+        name: b.authorName,
+        role: b.authorRole,
+        avatar: b.authorAvatar || undefined,
+      },
+      tags: b.tags ? b.tags.split(',').map((t) => t.trim()) : [],
+    }));
+  } catch (error) {
+    console.warn('[BlogPostPage] Database query fallback:', error);
+  }
+
+  // Merge dbBlogs and defaultBlogs without duplicates
+  const allPosts = [...dbBlogs];
+  defaultBlogs.forEach((def) => {
+    if (!allPosts.some((b) => b.slug.toLowerCase() === def.slug.toLowerCase() || b.id === def.id)) {
+      allPosts.push(def);
+    }
+  });
+
+  // Find post by raw slug, decoded slug, or case-insensitive slug
+  const post =
+    allPosts.find(
+      (b) =>
+        b.slug === rawSlug ||
+        b.slug === decodedSlug ||
+        b.slug.toLowerCase().trim() === lowerSlug ||
+        b.slug.toLowerCase().trim() === rawSlug.toLowerCase().trim()
+    ) || null;
+
+  return { post, allPosts };
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const { post } = await getBlogPost(slug);
+
+  if (!post) {
+    return {
+      title: 'Article Not Found | E-Cell UIET MDU',
+      description: 'The requested article could not be found.',
+    };
+  }
+
+  return {
+    title: `${post.title} | E-Cell UIET MDU`,
+    description: post.excerpt,
+    openGraph: {
+      title: post.title,
+      description: post.excerpt,
+      images: post.coverImage ? [post.coverImage] : [],
+    },
+  };
+}
+
+export default async function BlogPostPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const { post, allPosts } = await getBlogPost(slug);
 
   if (!post) {
     notFound();
   }
 
-  const relatedPosts = allBlogs.filter((b) => b.id !== post.id).slice(0, 3);
-
-  const handleCopyLink = () => {
-    if (typeof window !== 'undefined') {
-      navigator.clipboard.writeText(window.location.href);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    }
-  };
+  const relatedPosts = allPosts.filter((b) => b.id !== post.id && b.slug !== post.slug).slice(0, 3);
 
   return (
     <>
       <Navbar />
+      <ScrollRevealEffect />
       <main className="bg-white dark:bg-[#0B0C0E] min-h-screen text-zinc-900 dark:text-zinc-100">
         {/* Article Header & Hero */}
         <article className="pt-12 pb-16">
@@ -74,7 +140,7 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
               {post.excerpt}
             </p>
 
-            {/* Author Byline */}
+            {/* Author Byline & Share Button */}
             <div className="flex items-center justify-between py-4 border-y border-zinc-200 dark:border-zinc-800 gap-4 flex-wrap">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full bg-zinc-100 dark:bg-zinc-800 text-[#FF6600] border border-zinc-200 dark:border-zinc-700 font-bold flex items-center justify-center text-sm">
@@ -87,17 +153,7 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
               </div>
 
               {/* Share Controls */}
-              <button
-                type="button"
-                onClick={handleCopyLink}
-                className="inline-flex items-center gap-1.5 py-1.5 px-3 rounded-md border border-zinc-200 dark:border-zinc-700 hover:border-zinc-400 text-xs font-mono text-zinc-700 dark:text-zinc-300 transition-colors cursor-pointer"
-              >
-                <svg className="w-3.5 h-3.5 text-[#FF6600]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
-                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
-                </svg>
-                <span>{copied ? 'Link Copied' : 'Share'}</span>
-              </button>
+              <ShareButton />
             </div>
 
             {/* Cover Image Banner (only if image URL is provided) */}
@@ -113,9 +169,8 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
             )}
           </div>
 
-
           {/* Article Body Content */}
-          <div className="max-w-[760px] mx-auto px-4 sm:px-6">
+          <div className="max-w-[760px] mx-auto px-4 sm:px-6 mt-8">
             <div className="prose prose-zinc dark:prose-invert max-w-none text-zinc-700 dark:text-zinc-300 font-normal leading-[1.8] space-y-6 text-[16px] sm:text-[17px]">
               {post.content.split('\n\n').map((paragraph, index) => {
                 const trimmed = paragraph.trim();
@@ -160,8 +215,8 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
                   );
                 }
 
-                // Bullet List
-                if (trimmed.startsWith('- ') || trimmed.startsWith('1. ')) {
+                // Bullet or Numbered List
+                if (trimmed.startsWith('- ') || trimmed.startsWith('1. ') || trimmed.startsWith('* ')) {
                   const items = trimmed.split('\n');
                   return (
                     <ul key={index} className="space-y-2 my-4 pl-5 list-disc text-zinc-700 dark:text-zinc-300 marker:text-[#FF6600]">
@@ -170,7 +225,7 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
                           <span
                             dangerouslySetInnerHTML={{
                               __html: it
-                                .replace(/^(\d+\.|\-)\s*/, '')
+                                .replace(/^(\d+\.|\-|\*)\s*/, '')
                                 .replace(/\*\*(.*?)\*\*/g, '<strong class="text-zinc-950 dark:text-white font-semibold">$1</strong>')
                                 .replace(/\*(.*?)\*/g, '<em class="text-[#FF6600]">$1</em>'),
                             }}

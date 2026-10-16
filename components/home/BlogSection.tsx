@@ -8,7 +8,15 @@ import { useData } from '@/context/DataProvider';
 
 export default function BlogSection() {
   const { blogs } = useData();
-  const allBlogs = blogs && blogs.length > 0 ? blogs : defaultBlogs;
+  const allBlogs = React.useMemo(() => {
+    const list = [...(blogs || [])];
+    defaultBlogs.forEach((def) => {
+      if (!list.some((b) => b.slug.toLowerCase() === def.slug.toLowerCase() || b.id === def.id)) {
+        list.push(def);
+      }
+    });
+    return list.length > 0 ? list : defaultBlogs;
+  }, [blogs]);
   const recentPosts = allBlogs.slice(0, 3);
 
   return (

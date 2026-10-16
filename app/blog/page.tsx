@@ -12,7 +12,15 @@ import { useScrollReveal } from '@/hooks/useScrollReveal';
 
 export default function BlogPage() {
   const { blogs } = useData();
-  const allBlogs = blogs && blogs.length > 0 ? blogs : defaultBlogs;
+  const allBlogs = useMemo(() => {
+    const list = [...(blogs || [])];
+    defaultBlogs.forEach((def) => {
+      if (!list.some((b) => b.slug.toLowerCase() === def.slug.toLowerCase() || b.id === def.id)) {
+        list.push(def);
+      }
+    });
+    return list.length > 0 ? list : defaultBlogs;
+  }, [blogs]);
 
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [searchQuery, setSearchQuery] = useState('');

@@ -138,7 +138,13 @@ export function DataProvider({ children }: { children: ReactNode }) {
         try {
           const parsed = JSON.parse(savedBlogs);
           if (Array.isArray(parsed) && parsed.length > 0) {
-            setBlogs(parsed);
+            const merged = [...parsed];
+            defaultBlogs.forEach((def) => {
+              if (!merged.some((b) => b.slug.toLowerCase() === def.slug.toLowerCase() || b.id === def.id)) {
+                merged.push(def);
+              }
+            });
+            setBlogs(merged);
           }
         } catch {
           setBlogs(defaultBlogs);
@@ -187,8 +193,15 @@ export function DataProvider({ children }: { children: ReactNode }) {
       if (eventsRes.status === 'fulfilled' && eventsRes.value?.success && eventsRes.value.data?.length > 0) {
         setEvents(eventsRes.value.data);
       }
-      if (blogsRes.status === 'fulfilled' && blogsRes.value?.success && blogsRes.value.data?.length > 0) {
-        setBlogs(blogsRes.value.data);
+      if (blogsRes.status === 'fulfilled' && blogsRes.value?.success && Array.isArray(blogsRes.value.data) && blogsRes.value.data.length > 0) {
+        const liveBlogs = blogsRes.value.data;
+        const merged = [...liveBlogs];
+        defaultBlogs.forEach((def) => {
+          if (!merged.some((b) => b.slug.toLowerCase() === def.slug.toLowerCase() || b.id === def.id)) {
+            merged.push(def);
+          }
+        });
+        setBlogs(merged);
       }
       if (teamRes.status === 'fulfilled' && teamRes.value?.success) {
         if (teamRes.value.data?.team?.length > 0) setTeam(teamRes.value.data.team);

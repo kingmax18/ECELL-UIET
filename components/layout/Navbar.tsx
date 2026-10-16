@@ -75,7 +75,8 @@ export default function Navbar() {
             className="hidden lg:flex items-center gap-1 xl:gap-1.5 bg-white dark:bg-[#16181F] px-5 sm:px-6 py-2 rounded-full border border-black/[0.06] dark:border-white/[0.08] shadow-[0_2px_10px_rgba(0,0,0,0.03)]"
           >
             {NAV_ITEMS.map((item) => {
-              const isActive = pathname === item.href;
+              const isActive =
+                pathname === item.href || (item.href !== '/' && pathname?.startsWith(`${item.href}/`));
               return (
                 <Link
                   key={item.href}

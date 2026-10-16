@@ -93,7 +93,7 @@ export default function AdminLogin() {
                 id="admin-email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="ecelluietfs@gmail.com"
+                autoComplete="off"
                 className="w-full bg-[#181C26] border border-zinc-700/80 rounded-xl pl-10 pr-4 py-2.5 text-sm text-zinc-100 placeholder:text-zinc-500 focus:outline-hidden focus:border-[#FF6600] focus:ring-2 focus:ring-[#FF6600]/20 transition-all"
                 required
               />

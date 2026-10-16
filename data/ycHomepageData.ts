@@ -414,7 +414,7 @@ export const KNOWLEDGE_THUMBNAILS: KnowledgeThumb[] = [
     linkText: 'Read guide',
   },
   {
-    href: '/blog',
+    href: '/blog/angel-decks-10-slides-pre-seed-student-founders',
     image: '/gallery/page_43.jpg',
     alt: 'Deconstructing the 10-Slide Pitch Deck for Student Founders',
     title: 'Deconstructing the 10-Slide Pitch Deck for Student Founders',

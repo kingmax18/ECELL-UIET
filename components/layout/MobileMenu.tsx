@@ -62,7 +62,8 @@ export default function MobileMenu({ isOpen, onClose, links = NAV_LINKS, current
         <nav aria-label="Mobile Navigation">
           <div className="flex flex-col gap-1.5">
             {links.map((link) => {
-              const isActive = activePath === link.href;
+              const isActive =
+                activePath === link.href || (link.href !== '/' && activePath?.startsWith(`${link.href}/`));
               return (
                 <Link
                   key={link.href}
