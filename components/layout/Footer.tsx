@@ -38,55 +38,23 @@ export default function Footer() {
   return (
     <footer
       aria-labelledby="footer-heading"
-      className="relative bg-[#FAFAF8] dark:bg-[#07080A] text-zinc-900 dark:text-[#FDFCF7] border-t border-black/[0.08] dark:border-white/[0.08] transition-colors duration-200"
+      className="relative bg-[#FAFAF8] dark:bg-[#07080A] text-zinc-900 dark:text-zinc-100 border-t border-black/[0.08] dark:border-white/[0.08] transition-colors"
     >
       <h2 id="footer-heading" className="sr-only">
         E-Cell UIET Footer
       </h2>
 
-      {/* Top Banner / Call-to-Action Strip */}
-      <div className="border-b border-black/[0.06] dark:border-white/[0.06] bg-black/[0.02] dark:bg-white/[0.015]">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
-          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
-            <div className="max-w-2xl">
-              <h3 className="font-serif text-2xl sm:text-3xl text-zinc-950 dark:text-white font-normal tracking-tight">
-                Building campus ventures. Empowering student founders.
-              </h3>
-              <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400 font-sans leading-relaxed">
-                Whether you have a pitch deck, want to join our organizing cohort, or seek mentorship from alumni founders, our doors at UIET MDU are always open.
-              </p>
-            </div>
-
-            <div className="flex flex-wrap items-center gap-3 shrink-0">
-              <Link
-                href="/apply"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-[#FF6600] hover:bg-[#E65C00] text-white font-medium text-sm px-6 py-3 transition-transform duration-150 hover:scale-[1.02] shadow-sm whitespace-nowrap cursor-pointer"
-              >
-                <span>Join E-Cell Cohort</span>
-                <span aria-hidden="true">→</span>
-              </Link>
-              <Link
-                href="/contact"
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-black/10 dark:border-white/15 bg-white dark:bg-[#14161C] hover:bg-black/5 dark:hover:bg-white/5 text-zinc-900 dark:text-white font-medium text-sm px-5 py-3 transition-colors shadow-xs whitespace-nowrap cursor-pointer"
-              >
-                <span>Pitch or Connect</span>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Main Footer Links & Information */}
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+      {/* Main Footer Content */}
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12">
-          {/* Brand Info & Address */}
+          {/* Col 1: Brand, Mission & Contact Info (4 cols) */}
           <div className="lg:col-span-4 flex flex-col items-start">
             <Link
               href="/"
               title="E-Cell UIET MDU"
               className="flex items-center gap-3 group shrink-0 no-underline"
             >
-              <div className="relative w-10 h-10 rounded-xl bg-white dark:bg-white/10 border border-black/10 dark:border-white/10 flex items-center justify-center p-1.5 transition-transform group-hover:scale-105 shadow-sm">
+              <div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-white dark:bg-white/[0.08] border border-black/[0.08] dark:border-white/[0.1] flex items-center justify-center p-1.5 transition-transform duration-200 group-hover:scale-105 shadow-2xs">
                 <Image
                   src="/logo.png"
                   alt="UIET E-Cell Logo"
@@ -105,19 +73,16 @@ export default function Footer() {
               </div>
             </Link>
 
-            <blockquote className="mt-4 font-serif italic text-base text-zinc-800 dark:text-zinc-200">
-              &ldquo;Make something people want.&rdquo;
-            </blockquote>
-
-            <p className="mt-2.5 text-xs text-zinc-600 dark:text-zinc-400 font-sans leading-relaxed max-w-sm">
-              Entrepreneurship Cell of University Institute of Engineering &amp; Technology, Maharshi Dayanand University. Fostering deep-tech research, grassroots innovation, and venture incubation.
+            <p className="mt-4 text-xs sm:text-[13px] text-zinc-600 dark:text-zinc-400 font-sans leading-relaxed max-w-sm">
+              Official Entrepreneurship Cell of University Institute of Engineering &amp; Technology, Maharshi Dayanand University. Fostering campus builders, early-stage validation, and student venture incubation.
             </p>
 
+            {/* Quick Contact Lines */}
             <div className="mt-5 flex flex-col gap-2.5 text-xs text-zinc-600 dark:text-zinc-400 font-mono">
               <a
                 href={`mailto:${siteInfo.email || 'ecelluietfs@gmail.com'}`}
                 className="inline-flex items-center gap-2 hover:text-[#FF6600] transition-colors"
-                title="Send official email"
+                title="Official Email"
               >
                 <RiMailLine size={15} className="text-[#FF6600] shrink-0" />
                 <span className="truncate">{siteInfo.email || 'ecelluietfs@gmail.com'}</span>
@@ -130,20 +95,80 @@ export default function Footer() {
                 </span>
               </div>
             </div>
+
+            {/* Social Links Row */}
+            <div className="mt-6 flex items-center gap-2">
+              {siteInfo.linkedin && (
+                <a
+                  href={siteInfo.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-8 h-8 rounded-full border border-black/[0.08] dark:border-white/[0.1] bg-white dark:bg-[#13151A] hover:bg-[#FF6600] hover:text-white hover:border-[#FF6600] text-zinc-600 dark:text-zinc-400 flex items-center justify-center transition-all duration-150 shadow-2xs"
+                  aria-label="LinkedIn"
+                  title="LinkedIn"
+                >
+                  <RiLinkedinFill size={15} />
+                </a>
+              )}
+              {siteInfo.instagram && (
+                <a
+                  href={siteInfo.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-8 h-8 rounded-full border border-black/[0.08] dark:border-white/[0.1] bg-white dark:bg-[#13151A] hover:bg-[#FF6600] hover:text-white hover:border-[#FF6600] text-zinc-600 dark:text-zinc-400 flex items-center justify-center transition-all duration-150 shadow-2xs"
+                  aria-label="Instagram"
+                  title="Instagram"
+                >
+                  <RiInstagramLine size={15} />
+                </a>
+              )}
+              {siteInfo.twitter && (
+                <a
+                  href={siteInfo.twitter}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-8 h-8 rounded-full border border-black/[0.08] dark:border-white/[0.1] bg-white dark:bg-[#13151A] hover:bg-[#FF6600] hover:text-white hover:border-[#FF6600] text-zinc-600 dark:text-zinc-400 flex items-center justify-center transition-all duration-150 shadow-2xs"
+                  aria-label="Twitter / X"
+                  title="Twitter / X"
+                >
+                  <RiTwitterXFill size={14} />
+                </a>
+              )}
+              {siteInfo.youtube && (
+                <a
+                  href={siteInfo.youtube}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-8 h-8 rounded-full border border-black/[0.08] dark:border-white/[0.1] bg-white dark:bg-[#13151A] hover:bg-[#FF6600] hover:text-white hover:border-[#FF6600] text-zinc-600 dark:text-zinc-400 flex items-center justify-center transition-all duration-150 shadow-2xs"
+                  aria-label="YouTube"
+                  title="YouTube"
+                >
+                  <RiYoutubeFill size={15} />
+                </a>
+              )}
+            </div>
           </div>
 
-          {/* Links Column 1: Ecosystem */}
-          <div className="lg:col-span-3">
-            <h4 className="text-xs font-mono font-bold uppercase tracking-widest text-[#FF6600] mb-4">
-              Ecosystem &amp; Programs
+          {/* Col 2: Navigation (2 cols) */}
+          <div className="lg:col-span-2">
+            <h4 className="text-[11px] font-mono font-semibold uppercase tracking-wider text-zinc-950 dark:text-white mb-4">
+              Explore
             </h4>
-            <ul className="space-y-2.5 text-sm">
+            <ul className="space-y-2.5 text-xs sm:text-[13.5px]">
+              <li>
+                <Link
+                  href="/"
+                  className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors"
+                >
+                  Home
+                </Link>
+              </li>
               <li>
                 <Link
                   href="/about"
                   className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors"
                 >
-                  Incubation &amp; Guidance
+                  About Us
                 </Link>
               </li>
               <li>
@@ -151,59 +176,108 @@ export default function Footer() {
                   href="/events"
                   className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors"
                 >
-                  Workshops &amp; Masterclasses
+                  Events &amp; Summits
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/events"
+                  href="/team"
                   className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors"
                 >
-                  Hackathons &amp; Ideathons
+                  Team &amp; Council
                 </Link>
               </li>
-              <li>
-                <Link
-                  href="/events"
-                  className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors"
-                >
-                  Campus Demo Days
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/apply"
-                  className="inline-flex items-center gap-1.5 text-zinc-950 dark:text-white font-medium hover:text-[#FF6600] transition-colors"
-                >
-                  <span>Student Application Portal</span>
-                  <span className="text-[10px] bg-[#FF6600]/10 text-[#FF6600] px-1.5 py-0.5 rounded font-mono font-bold">
-                    OPEN
-                  </span>
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Links Column 2: Resources & Media */}
-          <div className="lg:col-span-3">
-            <h4 className="text-xs font-mono font-bold uppercase tracking-widest text-[#FF6600] mb-4">
-              Insights &amp; Resources
-            </h4>
-            <ul className="space-y-2.5 text-sm">
               <li>
                 <Link
                   href="/blog"
                   className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors"
                 >
-                  Founder Library &amp; Articles
+                  Founder Library
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/about"
+                  href="/contact"
                   className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors"
                 >
-                  Mission &amp; Core Pillars
+                  Contact Us
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Col 3: Flagship Gatherings (2 cols) */}
+          <div className="lg:col-span-2">
+            <h4 className="text-[11px] font-mono font-semibold uppercase tracking-wider text-zinc-950 dark:text-white mb-4">
+              Flagship
+            </h4>
+            <ul className="space-y-2.5 text-xs sm:text-[13.5px]">
+              <li>
+                <Link
+                  href="/events"
+                  className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors"
+                >
+                  Eureka Pitch Showcase
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/events"
+                  className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors"
+                >
+                  Campus Ideathons
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/events"
+                  className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors"
+                >
+                  Skill Masterclasses
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/events"
+                  className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors"
+                >
+                  Founders Talk Series
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/events"
+                  className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors"
+                >
+                  Annual E-Summit
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Col 4: Community & Resources (2 cols) */}
+          <div className="lg:col-span-2">
+            <h4 className="text-[11px] font-mono font-semibold uppercase tracking-wider text-zinc-950 dark:text-white mb-4">
+              Community
+            </h4>
+            <ul className="space-y-2.5 text-xs sm:text-[13.5px]">
+              <li>
+                <Link
+                  href="/apply"
+                  className="inline-flex items-center gap-1.5 text-zinc-900 dark:text-white font-medium hover:text-[#FF6600] transition-colors"
+                >
+                  <span>Join E-Cell</span>
+                  <span className="text-[9.5px] bg-[#FF6600]/10 border border-[#FF6600]/25 text-[#FF6600] px-1.5 py-0.5 rounded font-mono font-semibold">
+                    OPEN
+                  </span>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/blog"
+                  className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors"
+                >
+                  Playbooks &amp; Guides
                 </Link>
               </li>
               <li>
@@ -219,7 +293,7 @@ export default function Footer() {
                   href="/faq"
                   className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors"
                 >
-                  Frequently Asked Questions
+                  FAQs
                 </Link>
               </li>
               <li>
@@ -229,43 +303,19 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1 text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors"
                 >
-                  <span>MDU Official Website</span>
-                  <RiExternalLinkLine size={13} className="text-zinc-400" />
+                  <span>MDU Rohtak</span>
+                  <RiExternalLinkLine size={12} className="text-zinc-400" />
                 </a>
               </li>
             </ul>
           </div>
 
-          {/* Links Column 3: Team & Administration */}
+          {/* Col 5: Governance & Portal (2 cols) */}
           <div className="lg:col-span-2">
-            <h4 className="text-xs font-mono font-bold uppercase tracking-widest text-[#FF6600] mb-4">
-              Organization
+            <h4 className="text-[11px] font-mono font-semibold uppercase tracking-wider text-zinc-950 dark:text-white mb-4">
+              Portal
             </h4>
-            <ul className="space-y-2.5 text-sm">
-              <li>
-                <Link
-                  href="/team"
-                  className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors"
-                >
-                  Executive Leadership
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/team"
-                  className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors"
-                >
-                  Founders &amp; Pioneers
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/contact"
-                  className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors"
-                >
-                  Contact &amp; Grievance
-                </Link>
-              </li>
+            <ul className="space-y-2.5 text-xs sm:text-[13.5px]">
               <li>
                 <Link
                   href="/privacy"
@@ -279,13 +329,13 @@ export default function Footer() {
                   href="/terms"
                   className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors"
                 >
-                  Terms &amp; Guidelines
+                  Terms &amp; Code
                 </Link>
               </li>
               <li className="pt-2">
                 <Link
                   href="/admin"
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 hover:bg-[#FF6600] hover:text-white hover:border-[#FF6600] text-zinc-700 dark:text-zinc-300 text-xs font-mono transition-colors"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-black/[0.08] dark:border-white/[0.1] bg-white dark:bg-[#13151A] hover:bg-[#FF6600] hover:text-white hover:border-[#FF6600] text-zinc-700 dark:text-zinc-300 text-xs font-mono transition-colors shadow-2xs"
                   title="Admin Portal Login"
                 >
                   <RiLockLine size={12} />
@@ -296,91 +346,33 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Divider & Bottom Bar */}
-        <div className="mt-12 pt-8 border-t border-black/[0.08] dark:border-white/[0.08] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
+        {/* Divider & Bottom Sub-footer Bar */}
+        <div className="mt-12 pt-8 border-t border-black/[0.06] dark:border-white/[0.06] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div className="flex flex-col gap-1 text-xs text-zinc-500 dark:text-zinc-400 font-sans">
             <p>
               &copy; {currentYear} Entrepreneurship Cell, UIET MDU Rohtak. All rights reserved.
             </p>
             <p className="text-[11px] font-mono text-zinc-400 dark:text-zinc-500">
-              Affiliated with Maharshi Dayanand University (NAAC A+ Grade State University) · Rohtak, Haryana
+              Maharshi Dayanand University (NAAC A+ Grade State University) · Rohtak, Haryana
             </p>
           </div>
 
-          <div className="flex items-center gap-3">
-            {/* Social Links */}
-            {siteInfo.linkedin && (
-              <a
-                href={siteInfo.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full border border-black/10 dark:border-white/10 bg-white dark:bg-[#14161C] hover:bg-[#FF6600] hover:text-white hover:border-[#FF6600] text-zinc-700 dark:text-zinc-300 flex items-center justify-center transition-colors shadow-xs"
-                aria-label="E-Cell UIET LinkedIn"
-                title="LinkedIn"
-              >
-                <RiLinkedinFill size={16} />
-              </a>
-            )}
-
-            {siteInfo.instagram && (
-              <a
-                href={siteInfo.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full border border-black/10 dark:border-white/10 bg-white dark:bg-[#14161C] hover:bg-[#FF6600] hover:text-white hover:border-[#FF6600] text-zinc-700 dark:text-zinc-300 flex items-center justify-center transition-colors shadow-xs"
-                aria-label="E-Cell UIET Instagram"
-                title="Instagram"
-              >
-                <RiInstagramLine size={16} />
-              </a>
-            )}
-
-            {siteInfo.twitter && (
-              <a
-                href={siteInfo.twitter}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full border border-black/10 dark:border-white/10 bg-white dark:bg-[#14161C] hover:bg-[#FF6600] hover:text-white hover:border-[#FF6600] text-zinc-700 dark:text-zinc-300 flex items-center justify-center transition-colors shadow-xs"
-                aria-label="E-Cell UIET Twitter / X"
-                title="Twitter / X"
-              >
-                <RiTwitterXFill size={15} />
-              </a>
-            )}
-
-            {siteInfo.youtube && (
-              <a
-                href={siteInfo.youtube}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full border border-black/10 dark:border-white/10 bg-white dark:bg-[#14161C] hover:bg-[#FF6600] hover:text-white hover:border-[#FF6600] text-zinc-700 dark:text-zinc-300 flex items-center justify-center transition-colors shadow-xs"
-                aria-label="E-Cell UIET YouTube"
-                title="YouTube"
-              >
-                <RiYoutubeFill size={16} />
-              </a>
-            )}
-
-            {siteInfo.email && (
-              <a
-                href={`mailto:${siteInfo.email}`}
-                className="w-9 h-9 rounded-full border border-black/10 dark:border-white/10 bg-white dark:bg-[#14161C] hover:bg-[#FF6600] hover:text-white hover:border-[#FF6600] text-zinc-700 dark:text-zinc-300 flex items-center justify-center transition-colors shadow-xs"
-                aria-label="Email E-Cell UIET"
-                title="Email Us"
-              >
-                <RiMailLine size={16} />
-              </a>
-            )}
+          <div className="flex items-center gap-3 self-start sm:self-auto">
+            {/* Live Status Indicator */}
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-[11px] font-mono">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+              <span>Campus Innovation Cohort</span>
+            </div>
 
             {/* Back to top button */}
             <button
               type="button"
               onClick={scrollToTop}
-              className="ml-2 w-9 h-9 rounded-full border border-black/10 dark:border-white/10 bg-white dark:bg-[#14161C] hover:bg-black/5 dark:hover:bg-white/10 text-zinc-700 dark:text-zinc-300 flex items-center justify-center transition-colors shadow-xs cursor-pointer"
+              className="w-8 h-8 rounded-full border border-black/[0.08] dark:border-white/[0.1] bg-white dark:bg-[#13151A] hover:bg-[#FF6600] hover:text-white hover:border-[#FF6600] text-zinc-600 dark:text-zinc-400 flex items-center justify-center transition-all duration-150 shadow-2xs cursor-pointer"
               title="Back to top"
               aria-label="Scroll back to top"
             >
-              <RiArrowUpLine size={16} />
+              <RiArrowUpLine size={15} />
             </button>
           </div>
         </div>
