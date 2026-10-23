@@ -140,7 +140,7 @@ export default function TeamManager({
                 type="text"
                 value={form.name}
                 onChange={(e) => setForm({ ...form, name: e.target.value })}
-                placeholder="e.g. Ananya Sharma"
+                placeholder="e.g. Shubhkamna"
                 className={adminInput}
                 required
               />

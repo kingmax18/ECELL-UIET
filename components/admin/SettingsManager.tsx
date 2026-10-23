@@ -22,9 +22,9 @@ export default function SettingsManager({
   const { showToast } = useToast();
   const [form, setForm] = useState({
     web3formsKey: settings?.web3formsKey || '',
-    email: settings?.siteInfo?.email || 'ecelluietfs@gmail.com',
-    phone: settings?.siteInfo?.phone || '+91 9812345678',
-    address: settings?.siteInfo?.address || 'MDU Campus, UIET Building, Rohtak, Haryana',
+    email: settings?.siteInfo?.email || 'ecellmdu@gmail.com',
+    phone: settings?.siteInfo?.phone || '+91 7206897203',
+    address: settings?.siteInfo?.address || '',
     bannerText: settings?.announcementBanner?.text || 'Applications Open for Batch 2026-27',
     bannerEnabled: settings?.announcementBanner?.enabled ?? true,
   });
@@ -90,7 +90,7 @@ export default function SettingsManager({
               placeholder="ca0b970d-2396-4be4-96d0-f4f2697acddc"
             />
             <p className="text-xs text-muted mt-1.5">
-              Used for unlimited free forwarding to ecelluietfs@gmail.com
+              Used for unlimited free forwarding to ecellmdu@gmail.com
             </p>
           </div>
 

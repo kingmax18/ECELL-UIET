@@ -14,9 +14,10 @@ export async function POST(request: Request) {
       'ecell@admin2026',
     ].filter(Boolean);
 
-    const match = cleanEmail === 'ecelluietfs@gmail.com' && validPasswords.includes(password)
+    const isAllowedEmail = cleanEmail === 'ecellmdu@gmail.com' || cleanEmail === 'ecelluietfs@gmail.com';
+    const match = isAllowedEmail && validPasswords.includes(password)
       ? {
-          email: 'ecelluietfs@gmail.com',
+          email: cleanEmail,
           name: 'Lakshay',
           role: 'Super Admin',
         }

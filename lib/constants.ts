@@ -4,9 +4,10 @@ export const SITE = {
   tagline: 'Ideas Into Impact',
   vision: 'Inspiring a Generation of Changemakers',
   mission: 'Learn. Collaborate. Showcase.',
-  email: 'ecelluietfs@gmail.com',
+  email: 'ecellmdu@gmail.com',
+  phone: '+91 7206897203',
   url: 'https://ecellmdu.in',
-  address: 'MDU Campus, UIET Building, Rohtak, Haryana - 124001',
+  address: '',
 };
 
 import type { NavLink, Pillar, CoreValue, FAQItem } from './types';
@@ -54,10 +55,10 @@ export const CORE_VALUES: CoreValue[] = [
 ];
 
 export const FAQ_ITEMS: FAQItem[] = [
-  { question: 'What is E-Cell?', answer: 'E-Cell is the official Entrepreneurship Cell of UIET, Maharshi Dayanand University, Rohtak. We foster student startups, innovation workshops, ideathons, and mentorship programs.' },
+  { question: 'What is E-Cell?', answer: 'E-Cell is the student-led Entrepreneurship Cell of UIET, Maharshi Dayanand University, Rohtak. We provide a platform for students to pitch innovative ideas, collaborate across departments, and receive faculty guidance.' },
   { question: 'Who can join E-Cell?', answer: 'Any student enrolled at MDU Rohtak across any department — engineering, management, commerce, science — can apply to join. We welcome diverse backgrounds.' },
   { question: 'How do I apply to become a member?', answer: 'Visit our Join Us page and fill out the membership application form. The E-Cell executive board reviews applications within 5-7 days.' },
   { question: 'What departments can I join?', answer: 'We have 5 core departments: Social Media, Design & Tech, Research & Content, Event Management, and Documentation. Choose the one that matches your skills and interests.' },
   { question: 'Are there any fees to join?', answer: 'No, E-Cell membership is completely free. We are a student-run initiative supported by the university.' },
-  { question: 'How often do you organize events?', answer: 'We organize events and workshops throughout the academic year — typically 1-2 per month, plus our annual E-Summit flagship event.' },
+  { question: 'How often do you organize events?', answer: 'We organize campus pitching competitions and presentations, including our flagship Eureka event, engaging students across UIET and MDU.' },
 ];

@@ -34,7 +34,7 @@ export default function DarkFeatureSection() {
             </h2>
 
             <p className="text-[clamp(15px,1.8vw,18px)] font-medium leading-[1.6] text-[#3A4A7A] mb-8 max-w-xl">
-              E-Cell organizes state-recognized entrepreneurship summits, 24-hour ideathons, and investor pitching competitions across Maharshi Dayanand University.
+              E-Cell UIET fosters student entrepreneurship at Maharshi Dayanand University through our flagship Eureka Pitching Competition and hands-on faculty mentorship.
             </p>
 
             <ul className="flex flex-col gap-4 w-full mb-8">
@@ -43,9 +43,9 @@ export default function DarkFeatureSection() {
                   🎯
                 </span>
                 <div>
-                  <strong className="block text-base font-extrabold text-[#0A0E1A]">Eureka Pitching Competition</strong>
+                  <strong className="block text-base font-extrabold text-[#0A0E1A]">Eureka Pitching Competition 2026</strong>
                   <span className="text-xs text-[#3A4A7A] font-medium">
-                    Live pitch showcases before venture capitalists, angel mentors, and university evaluators with cash awards.
+                    Organized by the new council in August. Student innovators presented ideas and prototypes to faculty judges.
                   </span>
                 </div>
               </li>
@@ -55,21 +55,21 @@ export default function DarkFeatureSection() {
                   ⚡
                 </span>
                 <div>
-                  <strong className="block text-base font-extrabold text-[#0A0E1A]">24-Hour Campus Ideathon</strong>
+                  <strong className="block text-base font-extrabold text-[#0A0E1A]">Eureka (Senior Edition - 15th Sept)</strong>
                   <span className="text-xs text-[#3A4A7A] font-medium">
-                    Rapid prototype sprints tackling real campus, healthcare, and education problems with mentorship clinics.
+                    The foundational campus pitch competition hosted by our seniors on September 15th, inspiring our current council.
                   </span>
                 </div>
               </li>
 
               <li className="flex items-start gap-4 p-4 rounded-2xl bg-white border-2 border-[#0047FF] shadow-[3px_3px_0px_#D0D8FF] hover:border-[#0A0E1A] transition-colors">
                 <span className="w-10 h-10 rounded-xl bg-[#CBFF2E] text-[#0A0E1A] border-2 border-[#0A0E1A] flex items-center justify-center font-black text-lg shrink-0">
-                  🔥
+                  🤝
                 </span>
                 <div>
-                  <strong className="block text-base font-extrabold text-[#0A0E1A]">Annual E-Summit Conclave</strong>
+                  <strong className="block text-base font-extrabold text-[#0A0E1A]">Faculty Mentorship &amp; Guidance</strong>
                   <span className="text-xs text-[#3A4A7A] font-medium">
-                    Over 600+ student attendees, keynote speaker discussions, and networking with prominent industry leaders.
+                    Direct academic and strategic mentorship from faculty advisor Er. Anil Sangwan to guide student project builders.
                   </span>
                 </div>
               </li>
@@ -79,7 +79,7 @@ export default function DarkFeatureSection() {
               href="/events"
               className="neo-btn-primary text-xs uppercase tracking-wider py-3.5 px-6"
             >
-              <span>Explore All Events &amp; Summits →</span>
+              <span>Explore Our Events →</span>
             </Link>
           </div>
 

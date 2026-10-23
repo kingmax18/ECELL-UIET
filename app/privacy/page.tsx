@@ -64,8 +64,8 @@ export default function PrivacyPage() {
               <p className={textClass}>
                 If you have questions regarding this Privacy Policy or wish to request removal of your
                 submitted data, please contact the Tech Team at{' '}
-                <a href="mailto:ecelluietfs@gmail.com" className="text-ink font-medium hover:underline">
-                  ecelluietfs@gmail.com
+                <a href="mailto:ecellmdu@gmail.com" className="text-ink font-medium hover:underline">
+                  ecellmdu@gmail.com
                 </a>
                 .
               </p>

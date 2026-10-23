@@ -4,6 +4,8 @@ import React from 'react';
 import { IN_THE_ROOM } from '@/data/ycHomepageData';
 
 export default function InTheRoomSection() {
+  if (!IN_THE_ROOM || IN_THE_ROOM.length === 0) return null;
+
   return (
     <section
       id="in-the-room-photos"

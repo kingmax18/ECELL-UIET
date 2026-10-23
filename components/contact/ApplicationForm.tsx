@@ -176,7 +176,7 @@ export default function ApplicationForm({ settings }: { settings?: AppSettings }
               name="fullName"
               value={formData.fullName}
               onChange={handleChange}
-              placeholder="e.g. Ananya Sharma"
+              placeholder="e.g. Rahul Verma"
               className={inputClass}
               required
             />

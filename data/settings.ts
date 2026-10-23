@@ -9,9 +9,9 @@ export const settings: SiteSettings = {
   },
   web3formsKey: process.env.NEXT_PUBLIC_WEB3FORMS_KEY || 'ca0b970d-2396-4be4-96d0-f4f2697acddc',
   siteInfo: {
-    email: 'ecelluietfs@gmail.com',
-    phone: '+91 9812345678',
-    address: 'MDU Campus, UIET Building, Rohtak, Haryana - 124001',
+    email: 'ecellmdu@gmail.com',
+    phone: '+91 7206897203',
+    address: '',
     instagram: 'https://instagram.com/ecell_mdu',
     linkedin: 'https://linkedin.com/company/mdu-ecell',
     twitter: 'https://x.com/ecell_mdu',

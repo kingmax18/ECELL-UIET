@@ -1,10 +1,10 @@
 import type { Faculty } from '@/lib/types';
 
 export const faculty: Faculty = {
-  name: 'Dr. Rajesh Kumar',
+  name: 'Er. Anil Sangwan',
   role: 'Faculty Advisor, E-Cell',
-  designation: 'Associate Professor, Dept. of Management Studies',
-  email: 'ecelluietfs@gmail.com',
-  photo: '/gallery/page_28.jpg',
-  bio: 'Dr. Rajesh Kumar provides academic guidance to E-Cell, supporting student-led initiatives, workshops, and campus events to cultivate innovation and leadership at MDU.',
+  designation: 'Faculty Advisor, UIET, Maharshi Dayanand University',
+  email: null,
+  photo: null,
+  bio: 'Er. Anil Sangwan provides academic and institutional guidance to E-Cell, supporting student-led innovation, entrepreneurship initiatives, and campus events at UIET MDU.',
 };

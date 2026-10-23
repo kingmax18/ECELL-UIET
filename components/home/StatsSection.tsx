@@ -72,31 +72,31 @@ export default function StatsSection({ stats: propsStats }: StatsSectionProps) {
 
   const statList: StatItem[] = [
     {
-      value: 1500,
+      value: currentStats?.members?.value || 250,
       suffix: '+',
-      label: 'Students Reached',
-      description: 'Active participants across technical workshops, ideathons, and summits.',
+      label: 'Students Engaged',
+      description: 'Participants and attendees across UIET engineering & biotech departments.',
       icon: Users,
     },
     {
-      value: currentStats?.events?.value || 15,
-      suffix: '+',
-      label: 'Events & Workshops',
-      description: 'Hands-on bootcamps, guest lectures, and networking conclaves.',
+      value: currentStats?.events?.value || 2,
+      suffix: '',
+      label: 'Eureka Editions',
+      description: 'Campus pitching events: Senior Edition on 15th Sept & current council showcase.',
       icon: Calendar,
     },
     {
-      value: currentStats?.startups?.value || 10,
+      value: currentStats?.startups?.value || 20,
       suffix: '+',
-      label: 'Student Startups',
-      description: 'Campus ventures and student-led projects nurtured from idea to prototype.',
+      label: 'Pitch Submissions',
+      description: 'Student project ideas and technical solutions presented before faculty judges.',
       icon: Rocket,
     },
     {
       value: 5,
       suffix: '',
       label: 'Core Departments',
-      description: 'Social Media, Design & Tech, Research & Content, Events, and Documentation.',
+      description: 'Tech & Design, Social Media, Event Management, Research & Content, Documentation.',
       icon: Layers,
     },
   ];
@@ -116,7 +116,7 @@ export default function StatsSection({ stats: propsStats }: StatsSectionProps) {
             </h2>
           </div>
           <p className="text-sm sm:text-base text-zinc-600 dark:text-zinc-400 max-w-md leading-relaxed">
-            Connecting students across departments to learn practical skills, collaborate on ideas, and gain mentorship.
+            Fostering student entrepreneurship at UIET MDU — from campus pitch presentations to peer collaboration.
           </p>
         </div>
 

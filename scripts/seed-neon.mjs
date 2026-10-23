@@ -15,11 +15,11 @@ async function main() {
       bannerText: '',
       bannerLinkText: '',
       bannerLinkUrl: '',
-      email: 'ecelluietfs@gmail.com',
-      phone: '+91 99999 99999',
-      address: 'UIET, Maharshi Dayanand University, Rohtak, Haryana 124001',
-      instagram: 'https://instagram.com/ecell_uiet_mdu',
-      linkedin: 'https://linkedin.com/company/ecell-uiet-mdu',
+      email: 'ecellmdu@gmail.com',
+      phone: '+91 7206897203',
+      address: '',
+      instagram: 'https://instagram.com/ecell_mdu',
+      linkedin: 'https://linkedin.com/company/mdu-ecell',
       statMembers: 30,
       statEvents: 12,
       statStartups: 5,
@@ -84,26 +84,19 @@ async function main() {
   if (teamCount === 0) {
     await prisma.teamMember.createMany({
       data: [
-        { name: 'Ananya Sharma', role: 'President', department: 'Leadership', year: '4th Year, B.Tech CSE', linkedin: '#', email: 'ecelluietfs@gmail.com', photo: '/gallery/page_10.jpg', order: 1 },
-        { name: 'Rohan Mehta', role: 'Vice President', department: 'Leadership', year: '3rd Year, MBA', linkedin: '#', email: 'ecelluietfs@gmail.com', photo: '/gallery/page_12.jpg', order: 2 },
-        { name: 'Lakshay', role: 'Tech Lead', department: 'Design and Tech', year: '3rd Year, B.Tech CSE', linkedin: '#', email: 'ecelluietfs@gmail.com', photo: '/gallery/page_20.jpg', order: 1 },
-        { name: 'Divya Singh', role: 'Frontend Developer', department: 'Design and Tech', year: '2nd Year, B.Tech CSE', linkedin: '#', email: null, photo: null, order: 2 },
-        { name: 'Harsh Yadav', role: 'Backend Developer', department: 'Design and Tech', year: '3rd Year, B.Tech CSE', linkedin: '#', email: null, photo: null, order: 3 },
+        { name: 'Shubhkamna', role: 'President', department: 'Leadership', year: '2nd Year, B.Tech ECE', linkedin: '#', email: 'ecellmdu@gmail.com', photo: null, order: 1 },
+        { name: 'Saloni Jha', role: 'Vice President', department: 'Leadership', year: '2nd Year, B.Tech ECE', linkedin: '#', email: 'ecellmdu@gmail.com', photo: null, order: 2 },
+        { name: 'Lakshay', role: 'General Secretary', department: 'Leadership', year: '2nd Year, B.Tech ECE', linkedin: '#', email: 'ecellmdu@gmail.com', photo: null, order: 3 },
+        { name: 'Rimpi', role: 'Joint Secretary', department: 'Leadership', year: '2nd Year, B.Tech Biotech', linkedin: '#', email: 'ecellmdu@gmail.com', photo: null, order: 4 },
+        { name: 'Muskan', role: 'Treasurer', department: 'Leadership', year: '2nd Year, B.Tech ECE', linkedin: '#', email: 'ecellmdu@gmail.com', photo: null, order: 5 },
+        { name: 'Lakshay', role: 'Tech & Design Lead', department: 'Design and Tech', year: '2nd Year, B.Tech ECE', linkedin: '#', email: 'ecellmdu@gmail.com', photo: null, order: 1 },
+        { name: 'Saloni Jha', role: 'Social Media Lead', department: 'Social Media', year: '2nd Year, B.Tech ECE', linkedin: '#', email: 'ecellmdu@gmail.com', photo: null, order: 1 },
+        { name: 'Shubhkamna', role: 'Event Management Lead', department: 'Event Management', year: '2nd Year, B.Tech ECE', linkedin: '#', email: 'ecellmdu@gmail.com', photo: null, order: 1 },
+        { name: 'Muskan', role: 'Research & Content Lead', department: 'Research and Content', year: '2nd Year, B.Tech ECE', linkedin: '#', email: 'ecellmdu@gmail.com', photo: null, order: 1 },
+        { name: 'Rimpi', role: 'Documentation Lead', department: 'Documentation', year: '2nd Year, B.Tech Biotech', linkedin: '#', email: 'ecellmdu@gmail.com', photo: null, order: 1 },
       ],
     });
     console.log('Team members seeded.');
-  }
-
-  // 4. Founders
-  const foundersCount = await prisma.founder.count();
-  if (foundersCount === 0) {
-    await prisma.founder.createMany({
-      data: [
-        { name: 'Vikram Choudhary', role: 'Founding President (2022-23)', batch: 'CSE 2023', contribution: 'Established the official student cell at UIET MDU and led the first campus Ideathon.', linkedin: '#', photo: '/gallery/page_1.jpg', badge: 'Founder' },
-        { name: 'Neha Sehgal', role: 'Co-Founder & VP (2022-23)', batch: 'ECE 2023', contribution: 'Built initial mentor networks and secured 3 incubation partnerships across NCR.', linkedin: '#', photo: '/gallery/page_3.jpg', badge: 'Ecosystem Lead' },
-      ],
-    });
-    console.log('Founders seeded.');
   }
 
   // 5. Blogs
@@ -116,7 +109,7 @@ async function main() {
           title: 'How to Validate Your Startup Idea on a College Campus in 7 Days',
           excerpt: 'A practical, zero-budget playbook for student founders looking to test customer demand before building.',
           content: '## Step 1: Define the One Problem\\n\\nMost student startups fail not because they build badly, but because they build something nobody wants.\\n\\n> Talk to 30 students in the campus library and canteen before writing a single line of code.\\n\\n## Step 2: Create a Smoke Test\\n\\nLaunch a simple landing page or Google Form to measure click-through intent.',
-          authorName: 'Ananya Sharma',
+          authorName: 'Shubhkamna',
           authorRole: 'President, UIET E-Cell',
           authorAvatar: '/gallery/page_10.jpg',
           category: 'Guides & Playbooks',
@@ -132,7 +125,7 @@ async function main() {
           excerpt: 'Key takeaways from 25+ team pitches at the UIET annual flagship showcase and how winners stood out.',
           content: '## Traction Beats Slides Every Time\\n\\nThe pitch decks that won Eureka had one thing in common: actual user evidence.\\n\\n- Show customer quote snippets\\n- Detail unit economics\\n- Demonstrate why your team is uniquely qualified to execute',
           authorName: 'Lakshay',
-          authorRole: 'Tech Lead, UIET E-Cell',
+          authorRole: 'General Secretary & Tech Lead, UIET E-Cell',
           authorAvatar: '/gallery/page_20.jpg',
           category: 'Startup Stories',
           publishedAt: 'September 28, 2026',

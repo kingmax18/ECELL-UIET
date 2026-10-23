@@ -13,62 +13,7 @@ interface Startup {
   accent: string;
 }
 
-const STARTUPS: Startup[] = [
-  {
-    name: 'BytePulse AI',
-    batch: 'Class of 2024',
-    category: 'AI & DevTools',
-    description: 'Autonomous synthetic data generation and fine-tuning pipelines for enterprise vision models.',
-    status: 'Active Campus MVP',
-    founders: 'Aman Sharma & Ritik Rao (CSE 2024)',
-    accent: '#FF6600',
-  },
-  {
-    name: 'CampuzFlow',
-    batch: 'Class of 2024',
-    category: 'SaaS & Productivity',
-    description: 'Unified administrative, fee remittance, and student document workflow engine adopted by 6 universities.',
-    status: '12,000+ Active Users',
-    founders: 'Sneha Patel & Vikas Gill (ECE 2025)',
-    accent: '#2563EB',
-  },
-  {
-    name: 'AeroLink Drones',
-    batch: 'Class of 2023',
-    category: 'Hardware & Robotics',
-    description: 'Autonomous crop-monitoring and thermal inspection drones built specifically for Indian agricultural belts.',
-    status: '2 Utility Patents Filed',
-    founders: 'Vikram Malhotra & Gaurav (ME 2023)',
-    accent: '#059669',
-  },
-  {
-    name: 'PayNest',
-    batch: 'Class of 2025',
-    category: 'FinTech & Commerce',
-    description: 'Micro-escrow and instant settlement SDK for student freelance talent and university club sponsorships.',
-    status: 'Processed ₹18L Volume',
-    founders: 'Harsh Vardhan (CSE 2025)',
-    accent: '#7C3AED',
-  },
-  {
-    name: 'SkillForge XR',
-    batch: 'Class of 2025',
-    category: 'EdTech & Career',
-    description: 'WebXR simulations and spatial CAD modules for vocational engineering and mechanical lab training.',
-    status: 'Innovation Finalist',
-    founders: 'Ananya Gupta & Rohit S. (IT 2026)',
-    accent: '#DB2777',
-  },
-  {
-    name: 'EcoGrid Dynamics',
-    batch: 'Class of 2024',
-    category: 'CleanTech & Energy',
-    description: 'Smart campus energy auditing sensors reducing institutional electricity waste by 22%.',
-    status: 'Campus Pilot Active',
-    founders: 'Kavita Singh (EE 2024)',
-    accent: '#D97706',
-  },
-];
+const STARTUPS: Startup[] = [];
 
 const CATEGORIES = [
   'All Sectors',
@@ -80,6 +25,8 @@ const CATEGORIES = [
 ];
 
 export default function StartupDirectorySection() {
+  if (STARTUPS.length === 0) return null;
+
   const [selectedCat, setSelectedCat] = useState('All Sectors');
 
   const filtered =

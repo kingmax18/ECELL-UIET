@@ -41,98 +41,7 @@ export interface NewsItem {
   href: string;
 }
 
-export const YC_COMPANIES: BeforeVsNowCompany[] = [
-  {
-    name: 'BharatAgri Telemetry',
-    key: 'bharatagri',
-    images: ['/gallery/page_20.jpg', '/gallery/page_3.jpg'],
-    descriptions: {
-      young: 'Started as a 3rd year CSE project exploring soil nitrogen sensor telemetry for Haryana wheat farmers.',
-      now: 'Awarded 1st prize at Eureka Pitch 2025 and selected for incubation mentorship at the university innovation centre.',
-    },
-  },
-  {
-    name: 'Campus Fix',
-    key: 'campusfix',
-    images: ['/gallery/page_6.jpg', '/gallery/page_25.jpg'],
-    descriptions: {
-      young: 'Launched by UIET undergraduates during the 24-hr Ideathon to solve hostel repair micro-logistics.',
-      now: 'Grew to 450+ daily active student users across MDU campus hostels with 98% resolution satisfaction.',
-    },
-  },
-  {
-    name: 'Kavach CyberSec',
-    key: 'kavach',
-    images: ['/gallery/page_12.jpg', '/gallery/page_10.jpg'],
-    descriptions: {
-      young: 'Formed by 4 students in the UIET lab conducting automated vulnerability audits for local MSMEs.',
-      now: 'Selected for national innovation showcase at IIT Roorkee and incubated under MDU Centre for Innovation.',
-    },
-  },
-  {
-    name: 'NeuroMed Diagnostics',
-    key: 'neuromed',
-    images: ['/gallery/page_1.jpg', '/gallery/page_4.jpg'],
-    descriptions: {
-      young: 'Pioneered by interdisciplinary Biotech and CSE students analyzing early diagnostic scan telemetry.',
-      now: 'Presented at national healthcare innovation symposiums, receiving faculty citation and dedicated project mentorship.',
-    },
-  },
-  {
-    name: 'Edunova Learning',
-    key: 'edunova',
-    images: ['/gallery/page_14.jpg', '/gallery/page_43.jpg'],
-    descriptions: {
-      young: 'Started in campus dorms as an open peer-tutoring repository ahead of mid-term examinations.',
-      now: 'Empowered 1,200+ engineering undergraduates with verified peer notes, question banks, and coding sprints.',
-    },
-  },
-  {
-    name: 'EcoLoop Systems',
-    key: 'ecoloop',
-    images: ['/gallery/page_13.jpg', '/gallery/page_32.jpg'],
-    descriptions: {
-      young: 'Mechanical engineering student team innovating low-cost campus plastic recycling shredders.',
-      now: 'Recognized as state finalist in Haryana Innovation Challenge with campus pilot deployment.',
-    },
-  },
-  {
-    name: 'DormDash Logistics',
-    key: 'dormdash',
-    images: ['/gallery/page_15.jpg', '/gallery/page_2.jpg'],
-    descriptions: {
-      young: 'Validated via WhatsApp smoke test groups during late-night exam prep weeks in boys and girls hostels.',
-      now: 'Handled over 3,000 late-night cafeteria deliveries with an entirely student-managed peer courier network.',
-    },
-  },
-  {
-    name: 'CodeCraft Labs',
-    key: 'codecraft',
-    images: ['/gallery/page_11.jpg', '/gallery/page_20.jpg'],
-    descriptions: {
-      young: 'Student developers building open-source developer toolkits in the campus computer centre.',
-      now: 'Community of 80+ campus contributors maintaining open-source packages with alumni across top tech firms.',
-    },
-  },
-  {
-    name: 'SkillBridge Connect',
-    key: 'skillbridge',
-    images: ['/gallery/page_10.jpg', '/gallery/page_12.jpg'],
-    descriptions: {
-      young: 'Created to bridge the gap between Tier-2 college graduates and verified tech internship openings.',
-      now: 'Placed 45+ UIET students into summer internship roles at high-growth startups across Gurugram and Delhi-NCR.',
-    },
-  },
-  {
-    name: 'GreenGrid Solar IoT',
-    key: 'greengrid',
-    images: ['/gallery/page_28.jpg', '/gallery/page_3.jpg'],
-    descriptions: {
-      young: 'ECE students developing an ultra-low-power telemetry module for rooftop photovoltaic efficiency.',
-      now: 'Won UIET Innovation Expo and filed provisional patent application with university research support.',
-    },
-  },
-];
+export const YC_COMPANIES: BeforeVsNowCompany[] = [];
 
 export const YC_LOGOS = [
   { name: 'UIET MDU', logo: 'https://upload.wikimedia.org/wikipedia/en/thumb/8/80/Maharshi_Dayanand_University_logo.png/220px-Maharshi_Dayanand_University_logo.png', url: '/about' },
@@ -161,194 +70,76 @@ export const YC_LOGOS = [
   { name: 'Rohtak Chamber of Tech', logo: 'https://mdu.ac.in/images/mdu-logo.png', url: '/about' },
 ];
 
-export const IN_THE_ROOM: InTheRoomItem[] = [
-  {
-    name: 'Dr. Rajesh Kumar',
-    title: 'Faculty Advisor, E-Cell',
-    video: 'https://bookface-static.ycombinator.com/assets/ycdc/intheroomwith/brian-chesky-video-compressed-7ea6a6ca9593fabb400850744540405287fe91ae08ddfbf4824ab95d5f632875.mp4',
-    poster: '/gallery/page_28.jpg',
-    startTime: 0,
-  },
-  {
-    name: 'Ananya Sharma',
-    title: 'President, E-Cell',
-    video: 'https://bookface-static.ycombinator.com/assets/ycdc/intheroomwith/sam-altman-video-compressed-6e99f4927d081ecef3e4430e36b6ec23ac595e8da186216f30b7d7dc5129dc4a.mp4',
-    poster: '/gallery/page_10.jpg',
-    startTime: 0,
-  },
-  {
-    name: 'Rohan Mehta',
-    title: 'Vice President, E-Cell',
-    video: 'https://bookface-static.ycombinator.com/assets/ycdc/intheroomwith/greg-brockman-video-compressed-cb96007824e30f1ad95d2f0baa819b9ca35a8df56d38373c15f0e9e24c23e4b1.mp4',
-    poster: '/gallery/page_12.jpg',
-    startTime: 0,
-  },
-  {
-    name: 'Lakshay',
-    title: 'Tech & Product Lead',
-    video: 'https://bookface-static.ycombinator.com/assets/ycdc/intheroomwith/michael-truell-video-compressed-523ea9b5330b3d117b97e9404e3b017f2a126bea2e096518c276520521bf8c11.mp4',
-    poster: '/gallery/page_20.jpg',
-    startTime: 0,
-  },
-  {
-    name: 'Nitigya',
-    title: 'Founding Member, E-Cell',
-    video: 'https://bookface-static.ycombinator.com/assets/ycdc/intheroomwith/paul-graham-video-compressed-147746c0944f23ac3ba13f41a213a63fe773fb3e1b261ea824d0784e0c0242e4.mp4',
-    poster: '/gallery/page_3.jpg',
-    startTime: 0,
-  },
-  {
-    name: 'Shashwat Thakur',
-    title: 'Founding Member, E-Cell',
-    video: 'https://bookface-static.ycombinator.com/assets/ycdc/intheroomwith/guillermo-rauch-video-compressed-66c9a0d2ddcc5eb02e84b0714c70b1332f37ffff031ad759cc4dbb2d0f78991d.mp4',
-    poster: '/gallery/page_6.jpg',
-    startTime: 0,
-  },
-  {
-    name: 'Priya Verma',
-    title: 'Secretary, E-Cell',
-    video: 'https://bookface-static.ycombinator.com/assets/ycdc/intheroomwith/dylan-field-video-compressed-7541fe3e6c730507b8b8789c18f6139465733285eeff9330423158d5cd315b38.mp4',
-    poster: '/gallery/page_25.jpg',
-    startTime: 0,
-  },
-  {
-    name: 'Deepanshu',
-    title: 'Founding Member, E-Cell',
-    video: 'https://bookface-static.ycombinator.com/assets/ycdc/intheroomwith/emmett-shear-video-compressed-e639d24c15750fb7ac160f77b63504bafef74929c23f8bb4b82112a84900bb97.mp4',
-    poster: '/gallery/page_4.jpg',
-    startTime: 0,
-  },
-  {
-    name: 'Karan Malik',
-    title: 'Events Head, E-Cell',
-    video: 'https://bookface-static.ycombinator.com/assets/ycdc/intheroomwith/tony-xu-video-compressed-cfaffb21fca0c9e88fb50f8057d669c84b98d71695c3c943f86b2cc2b6d33d8d.mp4',
-    poster: '/gallery/page_43.jpg',
-    startTime: 0,
-  },
-];
+export const IN_THE_ROOM: InTheRoomItem[] = [];
 
 export const YC_PARTNERS: PartnerItem[] = [
   {
-    name: 'Dr. Rajesh Kumar',
+    name: 'Er. Anil Sangwan',
     url: '/team',
     title: 'Faculty Advisor',
-    batchTitle: 'Associate Professor, Management Studies',
+    batchTitle: 'Faculty Advisor, UIET MDU',
     photo: '/gallery/page_28.jpg',
     batchPhoto: '/gallery/page_4.jpg',
-    bio: 'Provides academic stewardship and institutional support to E-Cell. Mentors student ventures in business model validation and prototype development.',
+    bio: 'Provides academic stewardship and institutional guidance to E-Cell, supporting student-led innovation and campus initiatives.',
   },
   {
-    name: 'Ananya Sharma',
+    name: 'Shubhkamna',
     url: '/team',
     title: 'President',
-    batchTitle: '4th Year, B.Tech CSE',
+    batchTitle: '2nd Year, B.Tech ECE',
     photo: '/gallery/page_10.jpg',
     batchPhoto: '/gallery/page_3.jpg',
-    bio: 'Leads student executive operations and flagship summits. Spearheaded Eureka Pitching Competition bringing 35+ campus innovations to life.',
+    bio: 'Leads student executive operations, organizing the flagship Eureka pitching competition and student innovation on campus.',
   },
   {
-    name: 'Rohan Mehta',
+    name: 'Saloni Jha',
     url: '/team',
     title: 'Vice President',
-    batchTitle: '3rd Year, MBA',
+    batchTitle: '2nd Year, B.Tech ECE',
     photo: '/gallery/page_12.jpg',
     batchPhoto: '/gallery/page_20.jpg',
-    bio: 'Oversees inter-department outreach, ecosystem partnerships, and corporate sponsorship pipelines across Haryana and Delhi-NCR.',
-  },
-  {
-    name: 'Nitigya',
-    url: '/team',
-    title: 'Founding Pioneer',
-    batchTitle: 'Founding Member, UIET MDU',
-    photo: '/gallery/page_3.jpg',
-    batchPhoto: '/gallery/page_6.jpg',
-    bio: 'Co-founded E-Cell, establishing the core organizational framework, student constitution, and inaugural campus ideathons.',
+    bio: 'Oversees inter-department outreach, social media campaigns, and campus student engagement.',
   },
   {
     name: 'Lakshay',
     url: '/team',
-    title: 'Tech & Product Lead',
-    batchTitle: '3rd Year, B.Tech CSE',
+    title: 'General Secretary & Tech Lead',
+    batchTitle: '2nd Year, B.Tech ECE',
     photo: '/gallery/page_20.jpg',
     batchPhoto: '/gallery/page_12.jpg',
-    bio: 'Full-stack builder architecting the digital infrastructure of E-Cell. Guides student teams on zero-cost MVP validation and tech roadmaps.',
+    bio: 'Drives technical infrastructure and student developer initiatives across the university ecosystem.',
   },
   {
-    name: 'Shashwat Thakur',
+    name: 'Rimpi',
     url: '/team',
-    title: 'Founding Pioneer',
-    batchTitle: 'Founding Member, UIET MDU',
+    title: 'Joint Secretary & Documentation Lead',
+    batchTitle: '2nd Year, B.Tech Biotech',
     photo: '/gallery/page_6.jpg',
-    batchPhoto: '/gallery/page_10.jpg',
-    bio: 'Co-founded E-Cell, driving strategic execution, speaker invitations, and national delegation representations.',
-  },
-  {
-    name: 'Priya Verma',
-    url: '/team',
-    title: 'Secretary',
-    batchTitle: '3rd Year, B.Com (Hons)',
-    photo: '/gallery/page_25.jpg',
     batchPhoto: '/gallery/page_1.jpg',
-    bio: 'Directs governance, internal communications, financial allocations, and documentation for university and national accreditation.',
+    bio: 'Directs official documentation, inter-department coordination, and university reporting.',
   },
   {
-    name: 'Deepanshu',
+    name: 'Muskan',
     url: '/team',
-    title: 'Founding Pioneer',
-    batchTitle: 'Founding Member, UIET MDU',
-    photo: '/gallery/page_4.jpg',
-    batchPhoto: '/gallery/page_28.jpg',
-    bio: 'Co-founded E-Cell, building grassroots student community networks and establishing ties with university alumni.',
-  },
-  {
-    name: 'Karan Malik',
-    url: '/team',
-    title: 'Events Head',
-    batchTitle: '3rd Year, B.Tech ECE',
-    photo: '/gallery/page_43.jpg',
-    batchPhoto: '/gallery/page_25.jpg',
-    bio: 'Leads logistics and stage management for E-Summit, Eureka, and 24-hr campus ideathons with over 600 student attendees.',
-  },
-  {
-    name: 'Sahil Arora',
-    url: '/team',
-    title: 'Social Media Lead',
-    batchTitle: '3rd Year, MBA',
-    photo: '/gallery/page_14.jpg',
-    batchPhoto: '/gallery/page_20.jpg',
-    bio: 'Heads digital storytelling, campaign design, and community engagement, growing E-Cell’s footprint across student channels.',
-  },
-  {
-    name: 'Tushar Garg',
-    url: '/team',
-    title: 'Research Lead',
-    batchTitle: '4th Year, B.Com (Hons)',
-    photo: '/gallery/page_11.jpg',
-    batchPhoto: '/gallery/page_12.jpg',
-    bio: 'Researches student innovation frameworks, ecosystem policies, and university initiatives to guide campus builders through early discovery.',
-  },
-  {
-    name: 'Azriel',
-    url: '/team',
-    title: 'Founding Pioneer',
-    batchTitle: 'Founding Member, UIET MDU',
-    photo: '/gallery/page_2.jpg',
-    batchPhoto: '/gallery/page_3.jpg',
-    bio: 'Co-founded E-Cell, pioneering event operations and setting the high-conviction culture that defines the organization today.',
+    title: 'Treasurer & Research Lead',
+    batchTitle: '2nd Year, B.Tech ECE',
+    photo: '/gallery/page_25.jpg',
+    batchPhoto: '/gallery/page_4.jpg',
+    bio: 'Manages treasury allocations, budget planning, and student research frameworks.',
   },
 ];
 
 export const FOUNDER_WORDS = [
   {
     quote: 'E-Cell compresses months of hesitation into days of pure execution.',
-    author: 'Ananya Sharma',
+    author: 'Shubhkamna',
     company: 'President',
     batch: '2026',
     avatar: '/gallery/page_10.jpg',
   },
   {
-    quote: 'The energy at Eureka Pitch showed us that tier-2 campus founders can build tier-1 tech products.',
-    author: 'Rohan Mehta',
+    quote: 'Campus is the best sandbox to build, test ideas, and learn by shipping.',
+    author: 'Saloni Jha',
     company: 'Vice President',
     batch: '2026',
     avatar: '/gallery/page_12.jpg',
@@ -356,30 +147,23 @@ export const FOUNDER_WORDS = [
   {
     quote: 'It’s a community of relentless student builders that you simply can’t find anywhere else on campus.',
     author: 'Lakshay',
-    company: 'Tech Lead',
+    company: 'General Secretary',
     batch: '2026',
     avatar: '/gallery/page_20.jpg',
   },
   {
-    quote: 'Having faculty advisors and peers in your corner resets how big you believe you can build.',
-    author: 'Nitigya',
-    company: 'Founding Pioneer',
-    batch: 'Founders',
-    avatar: '/gallery/page_3.jpg',
+    quote: 'Connecting ideas across engineering, biotech, and management creates truly unique solutions.',
+    author: 'Rimpi',
+    company: 'Joint Secretary',
+    batch: '2026',
+    avatar: '/gallery/page_6.jpg',
   },
   {
-    quote: 'Validating real hypotheses through customer interviews taught me more than any textbook.',
-    author: 'Priya Verma',
-    company: 'Secretary',
+    quote: 'Surrounding yourself with motivated peers completely resets how big you dare to dream.',
+    author: 'Muskan',
+    company: 'Treasurer',
     batch: '2026',
     avatar: '/gallery/page_25.jpg',
-  },
-  {
-    quote: 'You leave every workshop with a completely renewed sense of how fast you can turn ideas into reality.',
-    author: 'Karan Malik',
-    company: 'Events Head',
-    batch: '2026',
-    avatar: '/gallery/page_43.jpg',
   },
 ];
 
@@ -393,8 +177,8 @@ export const EDITORIAL_STRIP_IMAGES = [
 
 export const FEATURED_QUOTE = {
   text: 'The best founders don’t wait for graduation to start building. E-Cell is where campus innovators turn raw ambition into viable enterprises and solve real-world problems.',
-  author: 'Dr. Rajesh Kumar',
-  role: 'Faculty Advisor, E-Cell & Associate Professor, MDU Rohtak',
+  author: 'Er. Anil Sangwan',
+  role: 'Faculty Advisor, E-Cell & Faculty Member, UIET MDU',
   avatar: '/gallery/page_28.jpg',
 };
 
@@ -432,24 +216,20 @@ export const KNOWLEDGE_MAIN_FEATURE = {
 
 export const STARTUP_NEWS: NewsItem[] = [
   {
-    title: 'Eureka Pitch 2026 Celebrates Campus Finalists with Merit Recognition and Incubation Mentorship',
+    title: 'Eureka Pitching Competition 2026 Celebrates Campus Finalists with Merit Recognition',
     href: '/blog/how-we-built-largest-student-pitch-showcase-eureka-2026',
   },
   {
-    title: 'UIET AgriTech Venture BharatAgri Selected for State Incubation Fast-Track',
-    href: '/blog',
-  },
-  {
-    title: 'Over 600 Undergraduates Attend UIET Annual E-Summit Keynote Session at MDU',
+    title: 'Senior Edition Eureka on 15th September Inspires New Student Council Relaunch',
     href: '/events',
   },
   {
-    title: 'Campus Fix Wins 1st Prize Trophy at Inter-College Innovation Hackathon 2025',
-    href: '/blog',
+    title: 'UIET Engineering and Biotech Students Present Prototypes at Eureka Pitching Event',
+    href: '/events',
   },
   {
-    title: 'Startup India DPIIT Recognition Fast-Track Clinic Launched for MDU Innovators',
-    href: '/blog/navigating-government-grants-startup-india-haryana',
+    title: 'Faculty Advisor Er. Anil Sangwan Commends Student Conviction at Campus Showcase',
+    href: '/blog/how-we-built-largest-student-pitch-showcase-eureka-2026',
   },
 ];
 

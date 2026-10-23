@@ -10,28 +10,28 @@ interface FacultyMember {
 export default function TestimonialSection({ faculty }: { faculty?: FacultyMember }) {
   const testimonials = [
     {
-      name: faculty?.name || 'Dr. Rajesh Kumar',
+      name: faculty?.name || 'Er. Anil Sangwan',
       role: faculty?.designation || 'Faculty Advisor, E-Cell',
       batch: 'Advisory Board',
       image: '/gallery/page_10.jpg',
       quote:
-        'E-Cell has eliminated the disconnect between engineering coursework and real-world commercial execution. Students learn how to build defensible businesses before graduating.',
+        'E-Cell bridges classroom engineering concepts with hands-on execution. Students learn how to build, prototype, and collaborate effectively before graduating.',
     },
     {
-      name: 'Ritik Rao',
-      role: 'Co-Founder, BytePulse AI',
-      batch: 'UIET Alumni (2024)',
+      name: 'Shubhkamna',
+      role: 'President, E-Cell',
+      batch: 'UIET B.Tech ECE',
       image: '/gallery/page_12.jpg',
       quote:
-        'The weekly office hours forced us to confront our lack of user interviews. Instead of writing more backend code, we closed 15 enterprise pilots within two months.',
+        'Our Eureka pitching competition pushes student builders out of hesitation into execution. It is an unmatched environment to find teammates and present real ideas.',
     },
     {
-      name: 'Sneha Patel',
-      role: 'Founder, CampuzFlow',
-      batch: 'UIET Student (2025)',
+      name: 'Saloni Jha',
+      role: 'Vice President, E-Cell',
+      batch: 'UIET B.Tech ECE',
       image: '/gallery/page_20.jpg',
       quote:
-        'The hands-on technical guidance, pitch feedback, and community support gave us the clarity to validate our prototype with real campus users.',
+        'The hands-on faculty guidance, pitch feedback, and community support give students the clarity to turn curiosity into action.',
     },
   ];
 
@@ -40,13 +40,13 @@ export default function TestimonialSection({ faculty }: { faculty?: FacultyMembe
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6">
         <div className="max-w-3xl mb-14">
           <div className="text-[11px] font-mono uppercase tracking-widest text-[#FF6600] font-bold mb-2">
-            FOUNDER VOICES
+            STUDENT LEADERSHIP VOICES
           </div>
           <h2 className="font-serif font-normal text-3xl sm:text-4xl text-zinc-900 dark:text-white mb-2">
-            What builders say about the incubator.
+            Voices from the student innovation cell.
           </h2>
           <p className="text-zinc-600 dark:text-zinc-400 text-sm">
-            Unvarnished reflections from founders who built products and raised capital through E-Cell.
+            Reflections from student leaders and faculty mentors driving campus entrepreneurship.
           </p>
         </div>
 

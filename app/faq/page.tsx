@@ -30,15 +30,15 @@ const FAQS: { category: string; items: FAQItem[] }[] = [
     ],
   },
   {
-    category: 'Mentorship & Campus Incubation',
+    category: 'Mentorship & Project Guidance',
     items: [
       {
         q: 'How does E-Cell support student projects and founders?',
-        a: 'We provide 1-on-1 guidance from faculty advisors and experienced alumni, access to campus labs and compute resources, peer collaboration, pitch feedback sessions, and opportunities to showcase projects at events like Eureka.',
+        a: 'We provide guidance from faculty advisor Er. Anil Sangwan, peer collaboration across departments, pitch feedback sessions, and opportunities to showcase projects at events like Eureka.',
       },
       {
         q: 'What is the Campus Showcase / Demo Day?',
-        a: 'Demo Day is a campus exhibition where student innovators present functional prototypes and projects to mentors, faculty evaluators, and alumni entrepreneurs.',
+        a: 'Demo Day is a campus pitch forum where student innovators present functional prototypes and projects to faculty evaluators and student peers.',
       },
     ],
   },
@@ -47,7 +47,7 @@ const FAQS: { category: string; items: FAQItem[] }[] = [
     items: [
       {
         q: 'Does E-Cell provide seed funding or grants?',
-        a: 'No, E-Cell is a student-run entrepreneurship cell and does not provide financial grants or seed funding. We provide intensive mentorship, hands-on workshops, ideathons, campus prototyping resources, and peer community support.',
+        a: 'No, E-Cell is a student-run entrepreneurship cell and does not provide financial grants or seed funding. We provide faculty mentorship, pitch guidance through Eureka, and peer community support.',
       },
       {
         q: 'Does E-Cell take equity in student ventures?',
@@ -130,14 +130,14 @@ export default function FAQPage() {
               Still have questions?
             </h3>
             <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400 font-['Outfit',sans-serif] max-w-md mx-auto">
-              Our partner team and student mentors are happy to help you with your application.
+              Our student coordinators and mentors are happy to help answer your questions.
             </p>
             <div className="mt-5 flex justify-center gap-4">
               <Link
                 href="/contact"
                 className="px-6 py-2.5 rounded-full bg-[#16140f] dark:bg-white text-white dark:text-black font-['Outfit',sans-serif] text-sm font-medium hover:opacity-85 transition-opacity"
               >
-                Contact Admissions
+                Contact E-Cell Team
               </Link>
               <Link
                 href="/apply"

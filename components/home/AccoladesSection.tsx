@@ -4,20 +4,20 @@ import React from 'react';
 
 const awards = [
   {
-    title: 'E-Summit Innovation Excellence Award',
-    desc: 'Awarded by university leadership for pioneering 100% student-run founder incubation, mentorship, and pitch forums.',
+    title: 'Eureka Pitching Innovation Recognition',
+    desc: 'Commended by university faculty and mentors for organizing student-run pitch forums and encouraging campus innovators.',
     year: '2026',
-    badge: 'MDU Innovation',
+    badge: 'UIET MDU',
   },
   {
-    title: 'State Startup Hub Recognition',
-    desc: 'Recognized by state innovation authorities for fostering high-density university patents and B2B SaaS solutions.',
+    title: 'Student Innovation Initiative',
+    desc: 'Recognized on campus for fostering cross-departmental collaboration between engineering and biotechnology students.',
     year: '2025',
-    badge: 'Ecosystem Partner',
+    badge: 'Campus Chapter',
   },
   {
-    title: 'Best University Chapter Initiative',
-    desc: 'Honored for highest collegiate engagement, technical workshop execution, and founder retention across North India.',
+    title: 'Youth Leadership & Event Execution',
+    desc: 'Honored for carrying forward the flagship Eureka pitching tradition initiated by senior student leaders.',
     year: '2024',
     badge: 'Youth Leadership',
   },
@@ -29,13 +29,13 @@ export default function AccoladesSection() {
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6">
         <div className="max-w-3xl mb-12">
           <div className="text-[11px] font-mono uppercase tracking-widest text-[#FF6600] font-bold mb-2">
-            INSTITUTIONAL HONORS
+            CAMPUS RECOGNITION
           </div>
           <h2 className="font-serif font-normal text-3xl sm:text-4xl text-zinc-900 dark:text-white mb-2">
-            Recognized by state and national ecosystems.
+            Recognized by faculty and student innovators.
           </h2>
           <p className="text-zinc-600 dark:text-zinc-400 text-sm">
-            Our incubator framework has been commended for creating tangible startup velocity on university grounds.
+            E-Cell UIET is committed to giving every student a platform to pitch, learn, and turn creative ideas into real prototypes.
           </p>
         </div>
 

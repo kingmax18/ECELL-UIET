@@ -5,6 +5,8 @@ import Link from 'next/link';
 import { YC_COMPANIES, YC_LOGOS, BeforeVsNowCompany } from '@/data/ycHomepageData';
 
 export default function HeroBeforeVsNow() {
+  if (!YC_COMPANIES || YC_COMPANIES.length === 0) return null;
+
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const [isValuationSelected, setIsValuationSelected] = useState<boolean>(false);
   const [mobileStates, setMobileStates] = useState<Record<number, 'young' | 'now'>>({});
@@ -74,7 +76,7 @@ export default function HeroBeforeVsNow() {
             “A formidable student builder is one who seems like they’ll bring their venture to life, regardless of whatever obstacles are in the way.”
           </p>
           <cite className="block pr-2 text-right font-['Source_Serif_4',serif] text-sm font-normal text-[#16140f]/75 dark:text-zinc-400">
-            — Dr. Rajesh Kumar & Paul Graham
+            — Er. Anil Sangwan &amp; E-Cell Advisory
           </cite>
         </div>
       </div>
@@ -160,7 +162,7 @@ export default function HeroBeforeVsNow() {
                 }`}
               >
                 <span className="block font-sans font-extrabold text-[2.2rem] xl:text-[2.8rem] leading-none">
-                  1,500+
+                  250+
                 </span>
                 <span className="block font-sans text-sm xl:text-base font-semibold tracking-normal mt-1 text-[#FF6600]">
                   students empowered

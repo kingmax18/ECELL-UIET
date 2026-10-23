@@ -103,39 +103,47 @@ export default function EditorialMissionSection() {
               </button>
             </div>
 
-            {/* Quote 5 & 6 */}
+            {/* Quote 5 & Optional 6 */}
             <div className="relative">
-              <span
-                onMouseEnter={() => setActiveQuote(4)}
-                onMouseLeave={() => setActiveQuote(null)}
-                className="inline py-1 underline underline-offset-4 decoration-[#FF6600]/30 hover:decoration-[#FF6600] cursor-pointer transition-all"
-              >
-                {FOUNDER_WORDS[4].quote}
-              </span>
-              <button
-                type="button"
-                onClick={() => setActiveQuote(activeQuote === 4 ? null : 4)}
-                className="mx-2 inline-flex h-7 w-7 shrink-0 align-middle items-center justify-center rounded-full bg-orange-100 dark:bg-orange-950/50 text-[10px] font-mono font-bold text-[#FF6600] border border-[#FF6600]/30 cursor-pointer"
-                title={`${FOUNDER_WORDS[4].author} (${FOUNDER_WORDS[4].company})`}
-              >
-                {getInitials(FOUNDER_WORDS[4].author)}
-              </button>
+              {FOUNDER_WORDS[4] && (
+                <>
+                  <span
+                    onMouseEnter={() => setActiveQuote(4)}
+                    onMouseLeave={() => setActiveQuote(null)}
+                    className="inline py-1 underline underline-offset-4 decoration-[#FF6600]/30 hover:decoration-[#FF6600] cursor-pointer transition-all"
+                  >
+                    {FOUNDER_WORDS[4].quote}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => setActiveQuote(activeQuote === 4 ? null : 4)}
+                    className="mx-2 inline-flex h-7 w-7 shrink-0 align-middle items-center justify-center rounded-full bg-orange-100 dark:bg-orange-950/50 text-[10px] font-mono font-bold text-[#FF6600] border border-[#FF6600]/30 cursor-pointer"
+                    title={`${FOUNDER_WORDS[4].author} (${FOUNDER_WORDS[4].company})`}
+                  >
+                    {getInitials(FOUNDER_WORDS[4].author)}
+                  </button>
+                </>
+              )}
 
-              <span
-                onMouseEnter={() => setActiveQuote(5)}
-                onMouseLeave={() => setActiveQuote(null)}
-                className="inline py-1 underline underline-offset-4 decoration-[#FF6600]/30 hover:decoration-[#FF6600] cursor-pointer transition-all"
-              >
-                {FOUNDER_WORDS[5].quote}
-              </span>
-              <button
-                type="button"
-                onClick={() => setActiveQuote(activeQuote === 5 ? null : 5)}
-                className="mx-2 inline-flex h-7 w-7 shrink-0 align-middle items-center justify-center rounded-full bg-orange-100 dark:bg-orange-950/50 text-[10px] font-mono font-bold text-[#FF6600] border border-[#FF6600]/30 cursor-pointer"
-                title={`${FOUNDER_WORDS[5].author} (${FOUNDER_WORDS[5].company})`}
-              >
-                {getInitials(FOUNDER_WORDS[5].author)}
-              </button>
+              {FOUNDER_WORDS[5] && (
+                <>
+                  <span
+                    onMouseEnter={() => setActiveQuote(5)}
+                    onMouseLeave={() => setActiveQuote(null)}
+                    className="inline py-1 underline underline-offset-4 decoration-[#FF6600]/30 hover:decoration-[#FF6600] cursor-pointer transition-all"
+                  >
+                    {FOUNDER_WORDS[5].quote}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => setActiveQuote(activeQuote === 5 ? null : 5)}
+                    className="mx-2 inline-flex h-7 w-7 shrink-0 align-middle items-center justify-center rounded-full bg-orange-100 dark:bg-orange-950/50 text-[10px] font-mono font-bold text-[#FF6600] border border-[#FF6600]/30 cursor-pointer"
+                    title={`${FOUNDER_WORDS[5].author} (${FOUNDER_WORDS[5].company})`}
+                  >
+                    {getInitials(FOUNDER_WORDS[5].author)}
+                  </button>
+                </>
+              )}
             </div>
           </div>
 

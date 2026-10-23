@@ -18,7 +18,7 @@ export default function OurStory() {
               It started with a simple belief on our campus — that UIET MDU has no shortage of brilliant, driven students, but needed a dedicated student-run ecosystem to turn technical curiosity into enduring, scalable ventures.
             </p>
             <p>
-              Established in 2024 at UIET, E-Cell has rapidly grown into an institutional powerhouse. We organize hands-on product sprints, 24-hour campus ideathons, 1-on-1 advisory clinics with exited founders, and angel pitch delegations that bridge university researchers with the broader Indian venture ecosystem.
+              Taking over the leadership in August, our current student council relaunched E-Cell to create an active, accessible platform for campus innovators. Building on the foundation laid by our seniors who organized Eureka on 15th September, we host the flagship Eureka pitching competition where students showcase working prototypes, receive direct faculty guidance, and collaborate across engineering and biotechnology departments.
             </p>
           </div>
         </div>

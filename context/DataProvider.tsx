@@ -92,23 +92,53 @@ export function DataProvider({ children }: { children: ReactNode }) {
   const [isLoading, setIsLoading] = useState(false);
   const [initialized, setInitialized] = useState(false);
 
-  // 1. Initial load: Load from localStorage first, then sync with Neon database via API
+  // 1. Initial load: Invalidate stale cache versions, then load from localStorage / defaults
   useEffect(() => {
     try {
+      const DATA_CACHE_VERSION = 'v4_eureka_2026_accurate';
+      const storedVersion = localStorage.getItem('ECELL_CACHE_VERSION');
+
+      if (storedVersion !== DATA_CACHE_VERSION) {
+        // Clear outdated cache keys from previous runs
+        localStorage.removeItem('ECELL_EVENTS');
+        localStorage.removeItem('ECELL_STATS');
+        localStorage.removeItem('ECELL_TEAM');
+        localStorage.removeItem('ECELL_FOUNDERS');
+        localStorage.removeItem('ECELL_FACULTY');
+        localStorage.removeItem('ECELL_SETTINGS');
+        localStorage.setItem('ECELL_CACHE_VERSION', DATA_CACHE_VERSION);
+      }
+
       const savedEvents = localStorage.getItem('ECELL_EVENTS');
-      if (savedEvents) setEvents(JSON.parse(savedEvents));
+      if (savedEvents) {
+        setEvents(JSON.parse(savedEvents));
+      } else {
+        setEvents(defaultEvents);
+      }
 
       const savedTeam = localStorage.getItem('ECELL_TEAM');
-      if (savedTeam) setTeam(JSON.parse(savedTeam));
+      if (savedTeam) {
+        setTeam(JSON.parse(savedTeam));
+      } else {
+        setTeam(defaultTeam);
+      }
 
       const savedFounders = localStorage.getItem('ECELL_FOUNDERS');
-      if (savedFounders) setFounders(JSON.parse(savedFounders));
+      if (savedFounders) {
+        setFounders(JSON.parse(savedFounders));
+      } else {
+        setFounders(defaultFounders);
+      }
 
       const savedSponsors = localStorage.getItem('ECELL_SPONSORS');
       if (savedSponsors) setSponsors(JSON.parse(savedSponsors));
 
       const savedStats = localStorage.getItem('ECELL_STATS');
-      if (savedStats) setStats(JSON.parse(savedStats));
+      if (savedStats) {
+        setStats(JSON.parse(savedStats));
+      } else {
+        setStats(defaultStats);
+      }
 
       const savedGallery = localStorage.getItem('ECELL_GALLERY');
       if (savedGallery) {
@@ -125,10 +155,18 @@ export function DataProvider({ children }: { children: ReactNode }) {
       }
 
       const savedFaculty = localStorage.getItem('ECELL_FACULTY');
-      if (savedFaculty) setFaculty(JSON.parse(savedFaculty));
+      if (savedFaculty) {
+        setFaculty(JSON.parse(savedFaculty));
+      } else {
+        setFaculty(defaultFaculty);
+      }
 
       const savedSettings = localStorage.getItem('ECELL_SETTINGS');
-      if (savedSettings) setSettings(JSON.parse(savedSettings));
+      if (savedSettings) {
+        setSettings(JSON.parse(savedSettings));
+      } else {
+        setSettings(defaultSettings);
+      }
 
       const savedApps = localStorage.getItem('ECELL_APPLICATIONS');
       if (savedApps) setApplications(JSON.parse(savedApps));
@@ -234,10 +272,10 @@ export function DataProvider({ children }: { children: ReactNode }) {
           },
         }));
         setStats({
-          members: { value: s.statMembers ?? 30, label: 'Active Student Members', suffix: '+' },
-          events: { value: s.statEvents ?? 12, label: 'Events & Workshops', suffix: '+' },
-          startups: { value: s.statStartups ?? 5, label: 'Student Startups', suffix: '+' },
-          years: { value: s.statYears ?? 3, label: 'Years of Activity', suffix: '+' },
+          members: { value: s.statMembers ?? 250, label: 'Students Engaged', suffix: '+' },
+          events: { value: s.statEvents ?? 2, label: 'Eureka Editions', suffix: '' },
+          startups: { value: s.statStartups ?? 20, label: 'Pitch Submissions', suffix: '+' },
+          years: { value: 5, label: 'Core Departments', suffix: '' },
         });
       }
       if (appsRes.status === 'fulfilled' && appsRes.value?.success && appsRes.value.data) {

@@ -5,6 +5,8 @@ import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import HeroSection from '@/components/home/HeroSection';
 import StatsSection from '@/components/home/StatsSection';
+import FeaturedQuoteSection from '@/components/home/FeaturedQuoteSection';
+import TeamPreview from '@/components/home/TeamPreview';
 import EventsPreview from '@/components/home/EventsPreview';
 import BlogSection from '@/components/home/BlogSection';
 import CTABanner from '@/components/home/CTABanner';
@@ -22,6 +24,12 @@ export default function HomePage() {
 
         {/* Track Record & Impact Numbers */}
         <StatsSection />
+
+        {/* Faculty Advisor Insight */}
+        <FeaturedQuoteSection />
+
+        {/* Student Leadership Preview */}
+        <TeamPreview />
 
         {/* Flagship Gatherings, Demo Days & Hackathons */}
         <EventsPreview />

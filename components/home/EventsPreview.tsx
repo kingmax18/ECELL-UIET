@@ -7,7 +7,7 @@ const showcaseEvents = [
   {
     id: 1,
     title: 'Eureka Pitching Competition 2026',
-    tagline: 'Flagship pitching conclave with certificates, mentor judges, and campus incubator recognition.',
+    tagline: 'Flagship student pitching competition organized by the new E-Cell council with faculty judges and certificates.',
     category: 'Pitch Competition',
     date: '27 Aug 2026',
     venue: 'UIET MDU Main Auditorium',
@@ -16,31 +16,11 @@ const showcaseEvents = [
   },
   {
     id: 2,
-    title: 'Digital Marketing & Content Masterclass',
-    tagline: 'Hands-on live SEO, growth marketing, and social media brand-building workshop.',
-    category: 'Skill Workshop',
-    date: '20 May 2025',
-    venue: 'Google Meet',
-    status: 'Concluded',
-    isOpen: false,
-  },
-  {
-    id: 3,
-    title: 'Ideathon 2025 — Solutions for Campus',
-    tagline: '24-hour collaborative sprint building high-impact tech solutions for university problems.',
-    category: '24-hr Hackathon',
-    date: '10 Mar 2025',
-    venue: 'MDU Innovation Hub',
-    status: 'Concluded',
-    isOpen: false,
-  },
-  {
-    id: 4,
-    title: 'Annual E-Summit 2024',
-    tagline: 'University entrepreneurship conclave uniting 600+ students, founder keynotes, and VC panels.',
-    category: 'Flagship Summit',
-    date: '25 Nov 2024',
-    venue: 'MDU Main Campus',
+    title: 'Eureka Pitching Competition (Senior Edition)',
+    tagline: 'Campus pitch competition hosted by our seniors on 15th September, inspiring the current council.',
+    category: 'Pitch Competition',
+    date: '15 Sept 2025',
+    venue: 'UIET MDU Campus',
     status: 'Concluded',
     isOpen: false,
   },
@@ -57,10 +37,10 @@ export default function EventsPreview() {
               Campus Initiatives
             </div>
             <h2 className="font-sans font-extrabold text-3xl sm:text-4xl text-zinc-900 dark:text-white mb-2 tracking-tight">
-              Flagship events and summits<span className="text-[#FF6600]">.</span>
+              Campus pitching events<span className="text-[#FF6600]">.</span>
             </h2>
             <p className="text-zinc-600 dark:text-zinc-400 text-sm max-w-lg leading-relaxed">
-              A look back at our hands-on workshops, ideathons, and pitch challenges hosted at UIET MDU.
+              A look back at our flagship Eureka pitching events hosted on campus at UIET MDU.
             </p>
           </div>
 

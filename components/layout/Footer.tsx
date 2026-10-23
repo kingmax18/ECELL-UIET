@@ -20,11 +20,11 @@ export default function Footer() {
   const { settings } = useData();
 
   const siteInfo = settings?.siteInfo || {
-    email: 'ecelluietfs@gmail.com',
-    phone: '+91 9812345678',
-    address: 'UIET Building, Maharshi Dayanand University, Rohtak, Haryana 124001',
-    instagram: 'https://instagram.com/ecell_uiet_mdu',
-    linkedin: 'https://linkedin.com/company/ecell-uiet-mdu',
+    email: 'ecellmdu@gmail.com',
+    phone: '+91 7206897203',
+    address: '',
+    instagram: 'https://instagram.com/ecell_mdu',
+    linkedin: 'https://linkedin.com/company/mdu-ecell',
     twitter: 'https://x.com/ecell_mdu',
     youtube: 'https://youtube.com/@ecellmdu',
   };
@@ -74,26 +74,39 @@ export default function Footer() {
             </Link>
 
             <p className="mt-4 text-xs sm:text-[13px] text-zinc-600 dark:text-zinc-400 font-sans leading-relaxed max-w-sm">
-              Official Entrepreneurship Cell of University Institute of Engineering &amp; Technology, Maharshi Dayanand University. Fostering campus builders, early-stage validation, and student venture incubation.
+              Official Entrepreneurship Cell of University Institute of Engineering &amp; Technology, Maharshi Dayanand University. Fostering campus builders, early-stage validation, and student innovation through pitch competitions like Eureka.
             </p>
 
             {/* Quick Contact Lines */}
             <div className="mt-5 flex flex-col gap-2.5 text-xs text-zinc-600 dark:text-zinc-400 font-mono">
               <a
-                href={`mailto:${siteInfo.email || 'ecelluietfs@gmail.com'}`}
+                href={`mailto:${siteInfo.email || 'ecellmdu@gmail.com'}`}
                 className="inline-flex items-center gap-2 hover:text-[#FF6600] transition-colors"
                 title="Official Email"
               >
                 <RiMailLine size={15} className="text-[#FF6600] shrink-0" />
-                <span className="truncate">{siteInfo.email || 'ecelluietfs@gmail.com'}</span>
+                <span className="truncate">{siteInfo.email || 'ecellmdu@gmail.com'}</span>
               </a>
 
-              <div className="inline-flex items-start gap-2">
-                <RiMapPinLine size={15} className="text-[#FF6600] shrink-0 mt-0.5" />
-                <span className="leading-snug">
-                  {siteInfo.address || 'UIET Building, MDU Rohtak, Haryana 124001'}
-                </span>
-              </div>
+              {siteInfo.phone && (
+                <a
+                  href={`tel:${siteInfo.phone.replace(/\s+/g, '')}`}
+                  className="inline-flex items-center gap-2 hover:text-[#FF6600] transition-colors"
+                  title="Phone"
+                >
+                  <span className="text-[#FF6600] font-bold shrink-0">TEL:</span>
+                  <span>{siteInfo.phone}</span>
+                </a>
+              )}
+
+              {siteInfo.address ? (
+                <div className="inline-flex items-start gap-2">
+                  <RiMapPinLine size={15} className="text-[#FF6600] shrink-0 mt-0.5" />
+                  <span className="leading-snug">
+                    {siteInfo.address}
+                  </span>
+                </div>
+              ) : null}
             </div>
 
             {/* Social Links Row */}
@@ -176,7 +189,7 @@ export default function Footer() {
                   href="/events"
                   className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors"
                 >
-                  Events &amp; Summits
+                  Events &amp; Competitions
                 </Link>
               </li>
               <li>
@@ -206,10 +219,10 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Col 3: Flagship Gatherings (2 cols) */}
+          {/* Col 3: Flagship Competitions (2 cols) */}
           <div className="lg:col-span-2">
             <h4 className="text-[11px] font-mono font-semibold uppercase tracking-wider text-zinc-950 dark:text-white mb-4">
-              Flagship
+              Competitions
             </h4>
             <ul className="space-y-2.5 text-xs sm:text-[13.5px]">
               <li>
@@ -217,7 +230,7 @@ export default function Footer() {
                   href="/events"
                   className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors"
                 >
-                  Eureka Pitch Showcase
+                  Eureka 2026 Showcase
                 </Link>
               </li>
               <li>
@@ -225,7 +238,7 @@ export default function Footer() {
                   href="/events"
                   className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors"
                 >
-                  Campus Ideathons
+                  Eureka (Senior Edition)
                 </Link>
               </li>
               <li>
@@ -233,23 +246,15 @@ export default function Footer() {
                   href="/events"
                   className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors"
                 >
-                  Skill Masterclasses
+                  Project Presentations
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/events"
+                  href="/about"
                   className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors"
                 >
-                  Founders Talk Series
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/events"
-                  className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors"
-                >
-                  Annual E-Summit
+                  Faculty Advisory
                 </Link>
               </li>
             </ul>
@@ -361,7 +366,7 @@ export default function Footer() {
             {/* Live Status Indicator */}
             <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-[11px] font-mono">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-              <span>Campus Innovation Cohort</span>
+              <span>Student Innovation Cell</span>
             </div>
 
             {/* Back to top button */}

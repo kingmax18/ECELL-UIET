@@ -52,10 +52,10 @@ export const gallery: GalleryItem[] = [
   },
   {
     id: 8,
-    title: 'Student Delegation at IIT Roorkee',
+    title: 'Student Innovation Delegation',
     category: 'Team',
     image: '/gallery/page_10.jpg',
-    description: 'E-Cell women student leaders representing MDU at national summit.',
+    description: 'E-Cell student leaders representing MDU at inter-college student innovation meets.',
   },
   {
     id: 9,
@@ -73,10 +73,10 @@ export const gallery: GalleryItem[] = [
   },
   {
     id: 11,
-    title: 'Annual E-Summit Keynote Conclave',
+    title: 'Eureka Pitching Keynote & Jury Conclave',
     category: 'Events',
     image: '/gallery/page_11.jpg',
-    description: 'Guest speaker keynote session on building scalable technology ventures from university campuses.',
+    description: 'Faculty advisors and judges addressing student innovators during the Eureka pitching showcase.',
   },
   {
     id: 12,
@@ -108,10 +108,10 @@ export const gallery: GalleryItem[] = [
   },
   {
     id: 16,
-    title: 'Flagship Summit Panel Discussion',
+    title: 'Eureka Pitch Evaluation & Feedback',
     category: 'Events',
     image: '/gallery/page_32.jpg',
-    description: 'Cross-industry panel discussing the rise of student-founded startups and venture incubation.',
+    description: 'Faculty panel reviewing student project presentations and providing technical feedback.',
   },
 ];
 

@@ -60,10 +60,10 @@ export default function TermsPage() {
               <h2 className={sectionClass}>5. Contact &amp; Grievances</h2>
               <p className={textClass}>
                 For official correspondence, please email{' '}
-                <a href="mailto:ecelluietfs@gmail.com" className="text-ink font-medium hover:underline">
-                  ecelluietfs@gmail.com
-                </a>{' '}
-                or visit the UIET E-Cell room on the MDU Rohtak campus.
+                <a href="mailto:ecellmdu@gmail.com" className="text-ink font-medium hover:underline">
+                  ecellmdu@gmail.com
+                </a>
+                .
               </p>
             </section>
           </div>

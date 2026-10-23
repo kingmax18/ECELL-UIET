@@ -4,10 +4,11 @@ import React from 'react';
 import Link from 'next/link';
 
 const teamMembers = [
-  { id: 1, name: 'Ananya Sharma', role: 'President', year: '4th Year, B.Tech CSE', image: '/gallery/page_10.jpg', tag: 'Executive Board' },
-  { id: 2, name: 'Rohan Mehta', role: 'Vice President', year: '3rd Year, MBA', image: '/gallery/page_12.jpg', tag: 'Executive Board' },
-  { id: 3, name: 'Lakshay', role: 'Tech & Product Lead', year: '3rd Year, B.Tech CSE', image: '/gallery/page_20.jpg', tag: 'Engineering' },
-  { id: 4, name: 'Priya Verma', role: 'Secretary', year: '3rd Year, B.Com (Hons)', image: '/gallery/page_6.jpg', tag: 'Operations' },
+  { id: 1, name: 'Shubhkamna', role: 'President', year: '2nd Year, B.Tech ECE', image: null, tag: 'Executive Board' },
+  { id: 2, name: 'Saloni Jha', role: 'Vice President', year: '2nd Year, B.Tech ECE', image: null, tag: 'Executive Board' },
+  { id: 3, name: 'Lakshay', role: 'General Secretary', year: '2nd Year, B.Tech ECE', image: null, tag: 'Engineering & Tech' },
+  { id: 4, name: 'Rimpi', role: 'Joint Secretary', year: '2nd Year, B.Tech Biotech', image: null, tag: 'Operations' },
+  { id: 5, name: 'Muskan', role: 'Treasurer', year: '2nd Year, B.Tech ECE', image: null, tag: 'Finance & Research' },
 ];
 
 export default function TeamPreview() {
@@ -24,7 +25,7 @@ export default function TeamPreview() {
               Run by student builders, for student founders.
             </h2>
             <p className="text-zinc-600 dark:text-zinc-400 text-sm max-w-xl">
-              Our executive board manages workshop logistics, ideathons, speaker sessions, and campus venture relationships.
+              Our student executive board drives campus outreach, organizes the flagship Eureka Pitching Competition, and fosters peer collaboration across UIET.
             </p>
           </div>
 
@@ -32,12 +33,12 @@ export default function TeamPreview() {
             href="/team"
             className="yc-btn-secondary text-xs self-start sm:self-auto"
           >
-            Meet Full 30+ Core Board →
+            Meet Full Team →
           </Link>
         </div>
 
-        {/* 4 Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* 5 Cards Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5">
           {teamMembers.map((m) => (
             <div
               key={m.id}
