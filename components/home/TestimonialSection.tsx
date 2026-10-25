@@ -11,7 +11,6 @@ export default function TestimonialSection({ faculty }: { faculty?: FacultyMembe
     <section className="py-[clamp(56px,7vw,80px)]">
       <div className="max-w-[1272px] mx-auto px-6">
         <SectionHeader
-          badge="Guidance & Voices"
           title="What our mentors & student founders say"
           italicTitle="about us"
           subtitle="Hear from our faculty advisors and student innovators who have grown, built, and led with UIET E-Cell."

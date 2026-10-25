@@ -50,7 +50,6 @@ export default function EventsPreview() {
     <section className="py-[clamp(56px,7vw,80px)]">
       <div className="max-w-[1272px] mx-auto px-6">
         <SectionHeader
-          badge="Upcoming Activities"
           title="See our flagship work in"
           italicTitle="campus action"
           subtitle="From campus pitch competitions and 24-hour ideathons to interactive masterclasses and industry summits."

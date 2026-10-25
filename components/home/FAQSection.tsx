@@ -8,7 +8,6 @@ export default function FAQSection() {
     <section className="py-[clamp(56px,7vw,80px)]">
       <div className="max-w-[1272px] mx-auto px-6">
         <SectionHeader
-          badge="Frequently Asked"
           title="Got questions? We've got"
           italicTitle="answers"
           subtitle="Everything you need to know about joining, participating, and getting involved with UIET E-Cell."

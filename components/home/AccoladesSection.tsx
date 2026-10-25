@@ -27,7 +27,6 @@ export default function AccoladesSection() {
     <section className="py-[clamp(56px,7vw,80px)]" id="award">
       <div className="max-w-[1272px] mx-auto px-6">
         <SectionHeader
-          badge="Recognition & Milestones"
           title="Accolades and achievements celebrating our"
           italicTitle="excellence"
           subtitle="Recognized by university leaders and startup ecosystems for fostering innovation and execution across Haryana."

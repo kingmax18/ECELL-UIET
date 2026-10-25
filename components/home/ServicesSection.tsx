@@ -50,7 +50,6 @@ export default function ServicesSection() {
     <section className="py-[clamp(56px,7vw,80px)]">
       <div className="max-w-[1272px] mx-auto px-6">
         <SectionHeader
-          badge="UIET E-Cell® Overview"
           title="Where student ideas meet"
           italicTitle="thoughtful execution"
           subtitle="Discover how we cultivate an entrepreneurial mindset, organize technical workshops, and support student founders across MDU Rohtak."

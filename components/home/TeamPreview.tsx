@@ -27,10 +27,9 @@ export default function TeamPreview() {
     <section className="py-[clamp(56px,7vw,80px)]">
       <div className="max-w-[1272px] mx-auto px-6">
         <SectionHeader
-          badge="Leadership & Pioneers"
           title="Meet the creative minds behind"
           italicTitle="our success"
-          subtitle="A dedicated group of student leaders, developers, and founding pioneers driving entrepreneurship across MDU."
+          subtitle="A dedicated group of student leaders, developers, and operators driving entrepreneurship across MDU."
         />
 
         {/* Big photo cards — reference: large portrait imagery */}
@@ -60,28 +59,9 @@ export default function TeamPreview() {
           ))}
         </div>
 
-        {/* Founding Pioneers — clean recognition strip */}
-        <div className="reveal bg-soft border border-bordersubtle rounded-card py-4 px-6 mb-10">
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-x-6 gap-y-3 flex-wrap">
-            <span className="text-[13px] font-medium text-ink uppercase tracking-[0.04em]">
-              Founding Pioneers of UIET E-Cell
-            </span>
-            <div className="flex gap-2.5 flex-wrap justify-center">
-              {FOUNDERS.map((name) => (
-                <span
-                  key={name}
-                  className="text-[13px] font-medium text-ink bg-white py-1 px-3 rounded-pill border border-border"
-                >
-                  {name}
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
-
         <div className="reveal text-center">
           <Button href="/team" variant="outline" size="lg" arrow>
-            Meet the Full Team &amp; Founders
+            Meet the Full Team
           </Button>
         </div>
       </div>
