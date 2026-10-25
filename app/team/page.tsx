@@ -31,42 +31,35 @@ export default function TeamPage() {
           </div>
           <div className="relative max-w-[1272px] mx-auto px-6 pt-[160px] pb-[72px] text-center">
             <div className="inline-flex py-1.5 px-4 bg-white border border-border rounded-pill text-xs font-medium uppercase tracking-[0.08em] text-secondary mb-5">
-              UIET E-Cell · Team &amp; Founders
+              UIET E-Cell · Leadership Team
             </div>
             <h1 className="font-sans font-medium text-[clamp(36px,5.5vw,64px)] leading-[1.08] tracking-[-0.04em] text-ink mb-5 [text-wrap:balance]">
               The drivers behind{' '}
               <span className="font-serif italic font-normal text-[1.05em]">our ecosystem</span>
             </h1>
             <p className="text-[clamp(16px,1.8vw,18px)] leading-[1.6] text-secondary max-w-[720px] mx-auto">
-              Meet the student leaders, department heads, and founding pioneers building UIET E-Cell at MDU
-              Rohtak.
+              Meet the student leaders and department heads building UIET E-Cell at MDU Rohtak.
             </p>
           </div>
         </section>
 
-        {/* Founding Members Section */}
-        <section className="py-[clamp(56px,7vw,80px)]">
-          <div className="max-w-[1272px] mx-auto px-6">
-            <SectionHeader
-              badge="Founding Pioneers"
-              title="Honoring the architects of"
-              italicTitle="UIET E-Cell"
-              subtitle="The visionaries who founded the Entrepreneurship Cell and laid the foundations of student-led innovation."
-            />
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {founders.map((f) => (
-                <FounderCard key={f.id} founder={f} />
-              ))}
+        {/* Founding Members Section (if available) */}
+        {founders && founders.length > 0 && (
+          <section className="py-[clamp(56px,7vw,80px)]">
+            <div className="max-w-[1272px] mx-auto px-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                {founders.map((f) => (
+                  <FounderCard key={f.id} founder={f} />
+                ))}
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
+        )}
 
         {/* Core Team by Department */}
         <section className="py-[clamp(56px,7vw,80px)]">
           <div className="max-w-[1272px] mx-auto px-6">
             <SectionHeader
-              badge="Current Executive Board"
               title="Active student leadership by"
               italicTitle="department"
               subtitle="Organized across 6 core functional areas to deliver campus-wide impact."
