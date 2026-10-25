@@ -1,385 +1,128 @@
-'use client';
-
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import {
-  RiInstagramLine,
-  RiLinkedinFill,
-  RiTwitterXFill,
-  RiYoutubeFill,
-  RiMailLine,
-  RiMapPinLine,
-  RiArrowUpLine,
-  RiLockLine,
-  RiExternalLinkLine,
-} from 'react-icons/ri';
-import { useData } from '@/context/DataProvider';
+import { SITE, NAV_LINKS } from '@/lib/constants';
 
 export default function Footer() {
-  const { settings } = useData();
-
-  const siteInfo = settings?.siteInfo || {
-    email: 'ecellmdu@gmail.com',
-    phone: '+91 7206897203',
-    address: '',
-    instagram: 'https://instagram.com/ecell_mdu',
-    linkedin: 'https://linkedin.com/company/mdu-ecell',
-    twitter: 'https://x.com/ecell_mdu',
-    youtube: 'https://youtube.com/@ecellmdu',
-  };
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const currentYear = new Date().getFullYear();
-
   return (
-    <footer
-      aria-labelledby="footer-heading"
-      className="relative bg-[#FAFAF8] dark:bg-[#07080A] text-zinc-900 dark:text-zinc-100 border-t border-black/[0.08] dark:border-white/[0.08] transition-colors"
-    >
-      <h2 id="footer-heading" className="sr-only">
-        E-Cell UIET Footer
-      </h2>
-
-      {/* Main Footer Content */}
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12">
-          {/* Col 1: Brand, Mission & Contact Info (4 cols) */}
-          <div className="lg:col-span-4 flex flex-col items-start">
-            <Link
-              href="/"
-              title="E-Cell UIET MDU"
-              className="flex items-center gap-3 group shrink-0 no-underline"
-            >
-              <div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-white dark:bg-white/[0.08] border border-black/[0.08] dark:border-white/[0.1] flex items-center justify-center p-1.5 transition-transform duration-200 group-hover:scale-105 shadow-2xs">
-                <Image
-                  src="/logo.png"
-                  alt="UIET E-Cell Logo"
-                  width={34}
-                  height={34}
-                  className="w-full h-full object-contain dark:brightness-110"
-                />
-              </div>
-              <div className="flex flex-col leading-tight">
-                <span className="font-sans font-bold text-lg text-zinc-950 dark:text-white tracking-tight">
-                  E-Cell
-                </span>
-                <span className="text-[10px] font-mono uppercase tracking-wider text-[#FF6600] font-semibold">
-                  UIET MDU Rohtak
-                </span>
-              </div>
+    <footer className="bg-white pt-20 pb-10 border-t border-border">
+      <div className="max-w-[1272px] mx-auto px-[clamp(16px,4vw,24px)]">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1.5fr] gap-8 md:gap-16 mb-16">
+          {/* Col 1: Brand */}
+          <div className="flex flex-col gap-4">
+            <Link href="/" className="flex items-center gap-2.5 no-underline">
+              <Image src="/logo.png" alt="UIET E-Cell Logo" width={36} height={36} className="rounded-lg" />
+              <span className="font-sans font-semibold text-base tracking-[-0.02em] text-ink uppercase">
+                {SITE.name}
+              </span>
             </Link>
-
-            <p className="mt-4 text-xs sm:text-[13px] text-zinc-600 dark:text-zinc-400 font-sans leading-relaxed max-w-sm">
-              Official Entrepreneurship Cell of University Institute of Engineering &amp; Technology, Maharshi Dayanand University. Fostering campus builders, early-stage validation, and student innovation through pitch competitions like Eureka.
+            <p className="text-sm leading-[1.6] text-secondary max-w-[360px]">
+              Empowering student innovation and leadership at Maharshi Dayanand University, Rohtak — part
+              of the E-Cell initiative by E-Cell IIT Bombay.
             </p>
-
-            {/* Quick Contact Lines */}
-            <div className="mt-5 flex flex-col gap-2.5 text-xs text-zinc-600 dark:text-zinc-400 font-mono">
+            <div className="flex items-center gap-2.5 mt-2">
               <a
-                href={`mailto:${siteInfo.email || 'ecellmdu@gmail.com'}`}
-                className="inline-flex items-center gap-2 hover:text-[#FF6600] transition-colors"
-                title="Official Email"
+                href="https://linkedin.com/company/mdu-ecell"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center w-9 h-9 rounded-full border border-border bg-transparent text-secondary transition-all duration-200 hover:bg-ink hover:border-ink hover:text-white"
+                aria-label="LinkedIn"
               >
-                <RiMailLine size={15} className="text-[#FF6600] shrink-0" />
-                <span className="truncate">{siteInfo.email || 'ecellmdu@gmail.com'}</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.63-1.4 1.4-1.4s1.4.63 1.4 1.4v4.93h2.79m-13.26-7.66c.92 0 1.67.75 1.67 1.67s-.75 1.67-1.67 1.67-1.67-.75-1.67-1.67.75-1.67 1.67-1.67M6.8 18.5h2.79V10.13H6.8V18.5Z" />
+                </svg>
               </a>
-
-              {siteInfo.phone && (
-                <a
-                  href={`tel:${siteInfo.phone.replace(/\s+/g, '')}`}
-                  className="inline-flex items-center gap-2 hover:text-[#FF6600] transition-colors"
-                  title="Phone"
-                >
-                  <span className="text-[#FF6600] font-bold shrink-0">TEL:</span>
-                  <span>{siteInfo.phone}</span>
-                </a>
-              )}
-
-              {siteInfo.address ? (
-                <div className="inline-flex items-start gap-2">
-                  <RiMapPinLine size={15} className="text-[#FF6600] shrink-0 mt-0.5" />
-                  <span className="leading-snug">
-                    {siteInfo.address}
-                  </span>
-                </div>
-              ) : null}
-            </div>
-
-            {/* Social Links Row */}
-            <div className="mt-6 flex items-center gap-2">
-              {siteInfo.linkedin && (
-                <a
-                  href={siteInfo.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-8 h-8 rounded-full border border-black/[0.08] dark:border-white/[0.1] bg-white dark:bg-[#13151A] hover:bg-[#FF6600] hover:text-white hover:border-[#FF6600] text-zinc-600 dark:text-zinc-400 flex items-center justify-center transition-all duration-150 shadow-2xs"
-                  aria-label="LinkedIn"
-                  title="LinkedIn"
-                >
-                  <RiLinkedinFill size={15} />
-                </a>
-              )}
-              {siteInfo.instagram && (
-                <a
-                  href={siteInfo.instagram}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-8 h-8 rounded-full border border-black/[0.08] dark:border-white/[0.1] bg-white dark:bg-[#13151A] hover:bg-[#FF6600] hover:text-white hover:border-[#FF6600] text-zinc-600 dark:text-zinc-400 flex items-center justify-center transition-all duration-150 shadow-2xs"
-                  aria-label="Instagram"
-                  title="Instagram"
-                >
-                  <RiInstagramLine size={15} />
-                </a>
-              )}
-              {siteInfo.twitter && (
-                <a
-                  href={siteInfo.twitter}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-8 h-8 rounded-full border border-black/[0.08] dark:border-white/[0.1] bg-white dark:bg-[#13151A] hover:bg-[#FF6600] hover:text-white hover:border-[#FF6600] text-zinc-600 dark:text-zinc-400 flex items-center justify-center transition-all duration-150 shadow-2xs"
-                  aria-label="Twitter / X"
-                  title="Twitter / X"
-                >
-                  <RiTwitterXFill size={14} />
-                </a>
-              )}
-              {siteInfo.youtube && (
-                <a
-                  href={siteInfo.youtube}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-8 h-8 rounded-full border border-black/[0.08] dark:border-white/[0.1] bg-white dark:bg-[#13151A] hover:bg-[#FF6600] hover:text-white hover:border-[#FF6600] text-zinc-600 dark:text-zinc-400 flex items-center justify-center transition-all duration-150 shadow-2xs"
-                  aria-label="YouTube"
-                  title="YouTube"
-                >
-                  <RiYoutubeFill size={15} />
-                </a>
-              )}
+              <a
+                href="https://instagram.com/ecell_mdu"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center w-9 h-9 rounded-full border border-border bg-transparent text-secondary transition-all duration-200 hover:bg-ink hover:border-ink hover:text-white"
+                aria-label="Instagram"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                </svg>
+              </a>
+              <a
+                href={`mailto:${SITE.email}`}
+                className="flex items-center justify-center w-9 h-9 rounded-full border border-border bg-transparent text-secondary transition-all duration-200 hover:bg-ink hover:border-ink hover:text-white"
+                aria-label="Email"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                  <polyline points="22,6 12,13 2,6" />
+                </svg>
+              </a>
             </div>
           </div>
 
-          {/* Col 2: Navigation (2 cols) */}
-          <div className="lg:col-span-2">
-            <h4 className="text-[11px] font-mono font-semibold uppercase tracking-wider text-zinc-950 dark:text-white mb-4">
-              Explore
-            </h4>
-            <ul className="space-y-2.5 text-xs sm:text-[13.5px]">
-              <li>
-                <Link
-                  href="/"
-                  className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors"
-                >
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/about"
-                  className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors"
-                >
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/events"
-                  className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors"
-                >
-                  Events &amp; Competitions
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/team"
-                  className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors"
-                >
-                  Team &amp; Council
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/blog"
-                  className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors"
-                >
-                  Founder Library
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/contact"
-                  className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors"
-                >
-                  Contact Us
-                </Link>
-              </li>
+          {/* Col 2: Navigation */}
+          <div className="flex flex-col gap-4">
+            <h4 className="font-sans text-sm font-semibold text-ink tracking-[-0.01em]">Sitemap</h4>
+            <ul className="flex flex-col gap-2.5">
+              {NAV_LINKS.map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} className="text-sm text-secondary no-underline transition-colors duration-200 hover:text-ink">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Col 3: Flagship Competitions (2 cols) */}
-          <div className="lg:col-span-2">
-            <h4 className="text-[11px] font-mono font-semibold uppercase tracking-wider text-zinc-950 dark:text-white mb-4">
-              Competitions
-            </h4>
-            <ul className="space-y-2.5 text-xs sm:text-[13.5px]">
+          {/* Col 3: Resources */}
+          <div className="flex flex-col gap-4">
+            <h4 className="font-sans text-sm font-semibold text-ink tracking-[-0.01em]">Resources</h4>
+            <ul className="flex flex-col gap-2.5">
               <li>
-                <Link
-                  href="/events"
-                  className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors"
-                >
-                  Eureka 2026 Showcase
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/events"
-                  className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors"
-                >
-                  Eureka (Senior Edition)
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/events"
-                  className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors"
-                >
-                  Project Presentations
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/about"
-                  className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors"
-                >
-                  Faculty Advisory
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Col 4: Community & Resources (2 cols) */}
-          <div className="lg:col-span-2">
-            <h4 className="text-[11px] font-mono font-semibold uppercase tracking-wider text-zinc-950 dark:text-white mb-4">
-              Community
-            </h4>
-            <ul className="space-y-2.5 text-xs sm:text-[13.5px]">
-              <li>
-                <Link
-                  href="/apply"
-                  className="inline-flex items-center gap-1.5 text-zinc-900 dark:text-white font-medium hover:text-[#FF6600] transition-colors"
-                >
-                  <span>Join E-Cell</span>
-                  <span className="text-[9.5px] bg-[#FF6600]/10 border border-[#FF6600]/25 text-[#FF6600] px-1.5 py-0.5 rounded font-mono font-semibold">
-                    OPEN
-                  </span>
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/blog"
-                  className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors"
-                >
-                  Playbooks &amp; Guides
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/about"
-                  className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors"
-                >
-                  Campus Life &amp; Gallery
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/faq"
-                  className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors"
-                >
-                  FAQs
-                </Link>
-              </li>
-              <li>
-                <a
-                  href="https://mdu.ac.in"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors"
-                >
-                  <span>MDU Rohtak</span>
-                  <RiExternalLinkLine size={12} className="text-zinc-400" />
+                <a href="https://startupindia.gov.in" target="_blank" rel="noopener noreferrer" className="text-sm text-secondary no-underline transition-colors duration-200 hover:text-ink">
+                  Startup India
                 </a>
               </li>
-            </ul>
-          </div>
-
-          {/* Col 5: Governance & Portal (2 cols) */}
-          <div className="lg:col-span-2">
-            <h4 className="text-[11px] font-mono font-semibold uppercase tracking-wider text-zinc-950 dark:text-white mb-4">
-              Portal
-            </h4>
-            <ul className="space-y-2.5 text-xs sm:text-[13.5px]">
               <li>
-                <Link
-                  href="/privacy"
-                  className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors"
-                >
+                <a href="https://mdu.ac.in" target="_blank" rel="noopener noreferrer" className="text-sm text-secondary no-underline transition-colors duration-200 hover:text-ink">
+                  MDU Rohtak
+                </a>
+              </li>
+              <li>
+                <Link href="/privacy" className="text-sm text-secondary no-underline transition-colors duration-200 hover:text-ink">
                   Privacy Policy
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/terms"
-                  className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors"
-                >
-                  Terms &amp; Code
+                <Link href="/terms" className="text-sm text-secondary no-underline transition-colors duration-200 hover:text-ink">
+                  Terms &amp; Conditions
                 </Link>
               </li>
-              <li className="pt-2">
-                <Link
-                  href="/admin"
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-black/[0.08] dark:border-white/[0.1] bg-white dark:bg-[#13151A] hover:bg-[#FF6600] hover:text-white hover:border-[#FF6600] text-zinc-700 dark:text-zinc-300 text-xs font-mono transition-colors shadow-2xs"
-                  title="Admin Portal Login"
-                >
-                  <RiLockLine size={12} />
-                  <span>Admin Portal</span>
+              <li>
+                <Link href="/admin" className="text-sm text-secondary no-underline transition-colors duration-200 hover:text-ink">
+                  Admin Panel
                 </Link>
               </li>
             </ul>
           </div>
+
+          {/* Col 4: Contact */}
+          <div className="flex flex-col gap-4">
+            <h4 className="font-sans text-sm font-semibold text-ink tracking-[-0.01em]">Contact Details</h4>
+            <div className="flex flex-col gap-2 text-sm text-secondary leading-[1.5]">
+              <p>{SITE.address}</p>
+              <p>
+                <a href={`mailto:${SITE.email}`} className="text-ink font-medium no-underline hover:underline">
+                  {SITE.email}
+                </a>
+              </p>
+              <p>{SITE.phone}</p>
+            </div>
+          </div>
         </div>
 
-        {/* Divider & Bottom Sub-footer Bar */}
-        <div className="mt-12 pt-8 border-t border-black/[0.06] dark:border-white/[0.06] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-          <div className="flex flex-col gap-1 text-xs text-zinc-500 dark:text-zinc-400 font-sans">
-            <p>
-              &copy; {currentYear} Entrepreneurship Cell, UIET MDU Rohtak. All rights reserved.
-            </p>
-            <p className="text-[11px] font-mono text-zinc-400 dark:text-zinc-500">
-              Maharshi Dayanand University (NAAC A+ Grade State University) · Rohtak, Haryana
-            </p>
-          </div>
-
-          <div className="flex items-center gap-3 self-start sm:self-auto">
-            {/* Live Status Indicator */}
-            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-[11px] font-mono">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-              <span>Student Innovation Cell</span>
-            </div>
-
-            {/* Back to top button */}
-            <button
-              type="button"
-              onClick={scrollToTop}
-              className="w-8 h-8 rounded-full border border-black/[0.08] dark:border-white/[0.1] bg-white dark:bg-[#13151A] hover:bg-[#FF6600] hover:text-white hover:border-[#FF6600] text-zinc-600 dark:text-zinc-400 flex items-center justify-center transition-all duration-150 shadow-2xs cursor-pointer"
-              title="Back to top"
-              aria-label="Scroll back to top"
-            >
-              <RiArrowUpLine size={15} />
-            </button>
-          </div>
+        {/* Bottom Bar */}
+        <div className="pt-8 border-t border-border flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between text-[13px] text-muted">
+          <p>© {new Date().getFullYear()} UIET E-Cell, Maharshi Dayanand University. All rights reserved.</p>
+          <p>Built by Tech Team E-Cell</p>
         </div>
       </div>
     </footer>

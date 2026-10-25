@@ -7,7 +7,7 @@ type TabKey = 'upcoming' | 'past' | 'all';
 
 export default function EventsTabs({ events = [] }: { events?: EventData[] }) {
   const hasUpcoming = events.some((e) => e.status === 'upcoming');
-  const [activeTab, setActiveTab] = useState<TabKey>(hasUpcoming ? 'upcoming' : 'past');
+  const [activeTab, setActiveTab] = useState<TabKey>(hasUpcoming ? 'upcoming' : 'all');
 
   const filteredEvents = events.filter((ev) => {
     if (activeTab === 'all') return true;
@@ -15,24 +15,24 @@ export default function EventsTabs({ events = [] }: { events?: EventData[] }) {
   });
 
   const tabs: { key: TabKey; label: string }[] = [
-    { key: 'upcoming', label: `Upcoming (${events.filter((e) => e.status === 'upcoming').length})` },
+    { key: 'upcoming', label: `Upcoming Events (${events.filter((e) => e.status === 'upcoming').length})` },
     { key: 'past', label: `Past Events (${events.filter((e) => e.status === 'past').length})` },
     { key: 'all', label: `All (${events.length})` },
   ];
 
   return (
     <div>
-      {/* Clean Tabs Pill Bar */}
-      <div className="flex items-center gap-1.5 bg-zinc-100 dark:bg-zinc-800/80 p-1 rounded-md w-fit mx-auto mb-10 border border-zinc-200 dark:border-zinc-700">
+      {/* Tabs pill */}
+      <div className="flex items-center gap-1 bg-[rgba(27,29,30,0.06)] rounded-cta p-[5px] w-fit mx-auto mb-10">
         {tabs.map((tab) => (
           <button
             key={tab.key}
             type="button"
-            className={`py-1.5 px-3.5 text-xs font-medium rounded transition-colors cursor-pointer ${
+            className={`py-2 px-4 md:px-[18px] text-[13px] md:text-sm font-medium rounded-cta whitespace-nowrap transition-all duration-200 ${
               activeTab === tab.key
-                ? 'bg-white dark:bg-[#14161C] text-zinc-950 dark:text-white font-semibold shadow-2xs'
-                : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white'
-            }`}
+                ? 'bg-white text-ink'
+                : 'text-secondary hover:text-ink hover:bg-white/55'
+            } ${tab.key === 'all' ? 'hidden sm:inline-flex' : ''}`}
             onClick={() => setActiveTab(tab.key)}
           >
             {tab.label}
@@ -48,8 +48,8 @@ export default function EventsTabs({ events = [] }: { events?: EventData[] }) {
           ))}
         </div>
       ) : (
-        <div className="bg-[#FAFAF8] dark:bg-[#14161C] border border-zinc-200 dark:border-zinc-800 rounded-lg py-16 px-6 text-center">
-          <p className="text-zinc-500 text-sm">No {activeTab} events scheduled at the moment.</p>
+        <div className="bg-soft border border-bordersubtle rounded-card py-16 px-6 text-center">
+          <p className="text-secondary">No {activeTab} events scheduled at the moment.</p>
         </div>
       )}
     </div>

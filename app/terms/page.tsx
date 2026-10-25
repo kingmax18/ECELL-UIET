@@ -43,7 +43,7 @@ export default function TermsPage() {
             <section>
               <h2 className={sectionClass}>3. Event Participation &amp; Certificates</h2>
               <p className={textClass}>
-                Certificates of participation, merit awards, and competition prizes are awarded based on attendance
+                Certificates of participation, merit awards, and seed grants are awarded based on attendance
                 and faculty jury evaluations. The decisions of the judging panel and executive board are final.
               </p>
             </section>
@@ -60,10 +60,10 @@ export default function TermsPage() {
               <h2 className={sectionClass}>5. Contact &amp; Grievances</h2>
               <p className={textClass}>
                 For official correspondence, please email{' '}
-                <a href="mailto:ecellmdu@gmail.com" className="text-ink font-medium hover:underline">
-                  ecellmdu@gmail.com
-                </a>
-                .
+                <a href="mailto:ecelluietfs@gmail.com" className="text-ink font-medium hover:underline">
+                  ecelluietfs@gmail.com
+                </a>{' '}
+                or visit the UIET E-Cell room on the MDU Rohtak campus.
               </p>
             </section>
           </div>

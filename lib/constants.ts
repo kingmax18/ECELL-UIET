@@ -1,24 +1,23 @@
 export const SITE = {
-  name: 'E-Cell',
+  name: 'UIET E-Cell',
   fullName: 'Entrepreneurship Cell, UIET, Maharshi Dayanand University',
   tagline: 'Ideas Into Impact',
   vision: 'Inspiring a Generation of Changemakers',
   mission: 'Learn. Collaborate. Showcase.',
   email: 'ecellmdu@gmail.com',
   phone: '+91 7206897203',
-  url: 'https://ecellmdu.in',
-  address: '',
+  url: 'https://ecellmdu.online',
+  address: 'UIET Building, MDU Campus, Rohtak, Haryana - 124001',
 };
 
 import type { NavLink, Pillar, CoreValue, FAQItem } from './types';
 
 export const NAV_LINKS: NavLink[] = [
-  { href: '/', label: 'Home' },
   { href: '/about', label: 'About' },
   { href: '/events', label: 'Events' },
   { href: '/team', label: 'Team' },
   { href: '/blog', label: 'Blog' },
-  { href: '/apply', label: 'Apply' },
+  { href: '/contact', label: 'Contact' },
 ];
 
 export const PILLARS: Pillar[] = [

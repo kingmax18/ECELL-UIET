@@ -54,7 +54,7 @@ export default function PrivacyPage() {
             <section>
               <h2 className={sectionClass}>4. Data Security &amp; Storage</h2>
               <p className={textClass}>
-                Student data is stored securely using encrypted cloud databases (PostgreSQL / Neon). Access is
+                Student data is stored securely using encrypted cloud databases (Supabase). Access is
                 restricted strictly to authorized members of the E-Cell Executive Board and Faculty Advisors.
               </p>
             </section>
@@ -64,8 +64,8 @@ export default function PrivacyPage() {
               <p className={textClass}>
                 If you have questions regarding this Privacy Policy or wish to request removal of your
                 submitted data, please contact the Tech Team at{' '}
-                <a href="mailto:ecellmdu@gmail.com" className="text-ink font-medium hover:underline">
-                  ecellmdu@gmail.com
+                <a href="mailto:ecelluietfs@gmail.com" className="text-ink font-medium hover:underline">
+                  ecelluietfs@gmail.com
                 </a>
                 .
               </p>

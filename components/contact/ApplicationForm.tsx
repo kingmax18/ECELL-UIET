@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Button from '@/components/ui/Button';
 import { useToast } from '@/context/ToastProvider';
 
 interface AppSettings {
@@ -20,9 +21,9 @@ interface FormData {
 }
 
 const inputClass =
-  'w-full bg-white dark:bg-[#0D0E12] border border-zinc-200 dark:border-zinc-700 rounded-md px-3.5 py-2.5 text-sm text-zinc-900 dark:text-white placeholder:text-zinc-400 outline-none transition-colors focus:border-[#FF6600] focus:ring-1 focus:ring-[#FF6600]';
+  'w-full bg-white border border-border rounded-card px-4 py-3 text-[15px] text-ink placeholder:text-muted outline-none transition-colors duration-200 focus:border-ink';
 
-const labelClass = 'block text-xs font-mono uppercase tracking-wider text-zinc-700 dark:text-zinc-300 font-semibold mb-1.5';
+const labelClass = 'block text-sm font-medium text-ink mb-2';
 
 export default function ApplicationForm({ settings }: { settings?: AppSettings }) {
   const { showToast } = useToast();
@@ -77,24 +78,35 @@ export default function ApplicationForm({ settings }: { settings?: AppSettings }
       const branchYear = `${formData.year}, ${formData.branch}`;
       const submittedOn = new Date().toISOString();
 
-      // 1. Persist to API
+      const newApp = {
+        id: Date.now(),
+        name: formData.fullName,
+        enrollment: formData.enrollment,
+        branchYear: branchYear,
+        branchyear: branchYear,
+        deptInterest: formData.department,
+        deptinterest: formData.department,
+        email: formData.email,
+        phone: formData.phone,
+        whyJoin: formData.whyJoin,
+        whyjoin: formData.whyJoin,
+        linkedin: formData.linkedin || null,
+        submittedOn: submittedOn,
+        submittedon: submittedOn,
+        status: 'Pending',
+        notes: '',
+        history: [{ status: 'Pending', by: 'System (Public Form)', date: submittedOn }],
+      };
+
+      // 1. Submit application to backend
       try {
         await fetch('/api/applications', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            name: formData.fullName,
-            enrollment: formData.enrollment,
-            branchYear: branchYear,
-            deptInterest: formData.department,
-            email: formData.email,
-            phone: formData.phone,
-            whyJoin: formData.whyJoin,
-            linkedin: formData.linkedin || null,
-          }),
+          body: JSON.stringify(newApp),
         });
       } catch (dbErr) {
-        console.warn('[Application] API submission warning:', dbErr);
+        console.warn('[Application] API insert warning:', dbErr);
       }
 
       // 2. Web3Forms email forwarding
@@ -102,7 +114,7 @@ export default function ApplicationForm({ settings }: { settings?: AppSettings }
         const web3Key = settings?.web3formsKey || process.env.NEXT_PUBLIC_WEB3FORMS_KEY || 'ca0b970d-2396-4be4-96d0-f4f2697acddc';
         const web3Body = new FormData();
         web3Body.append('access_key', web3Key);
-        web3Body.append('subject', `New E-Cell Application: ${formData.fullName} (${formData.department})`);
+        web3Body.append('subject', `New UIET E-Cell Application: ${formData.fullName} (${formData.department})`);
         web3Body.append('name', formData.fullName);
         web3Body.append('email', formData.email);
         web3Body.append('phone', formData.phone);
@@ -119,6 +131,26 @@ export default function ApplicationForm({ settings }: { settings?: AppSettings }
         });
       } catch (w3Err) {
         console.warn('[Application] Web3Forms forward warning:', w3Err);
+      }
+
+      // 3. EmailJS auto-confirmation
+      if (typeof window !== 'undefined' && process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID) {
+        try {
+          const emailjs = await import('@emailjs/browser');
+          emailjs.init({ publicKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY! });
+          await emailjs.send(
+            process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+            process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+            {
+              to_email: formData.email,
+              applicant_name: formData.fullName,
+              department: formData.department,
+              ecell_email: 'ecelluietfs@gmail.com',
+            }
+          );
+        } catch (eJsErr) {
+          console.warn('[Application] EmailJS confirmation warning:', eJsErr);
+        }
       }
 
       setIsSuccess(true);
@@ -144,31 +176,23 @@ export default function ApplicationForm({ settings }: { settings?: AppSettings }
   };
 
   return (
-    <div className="bg-white dark:bg-[#14161C] border border-zinc-200 dark:border-zinc-800 rounded-lg p-6 sm:p-10 max-w-[840px] mx-auto shadow-sm">
+    <div className="bg-white border border-border rounded-panel p-6 md:p-10 max-w-[900px] mx-auto">
       {isSuccess && (
-        <div className="bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800/60 rounded-md p-5 mb-8 text-emerald-900 dark:text-emerald-100">
-          <h3 className="font-sans font-bold text-base mb-1">Application Received</h3>
-          <p className="text-xs sm:text-sm text-emerald-800 dark:text-emerald-200 leading-relaxed">
-            Thank you for applying to E-Cell. Applications are reviewed on a rolling basis. Our executive board will reach out via email within 5-7 business days.
+        <div className="bg-pgreenbg border border-pgreen/40 rounded-card p-6 mb-8">
+          <h3 className="font-sans font-medium text-lg text-ink mb-1">Application Received!</h3>
+          <p className="text-[15px] leading-[1.6] text-secondary">
+            Thank you for applying to UIET E-Cell. Our leadership board reviews applications on a rolling
+            basis and will reach out to you via email within 5-7 days.
           </p>
         </div>
       )}
 
-      <div className="mb-8 pb-5 border-b border-zinc-100 dark:border-zinc-800">
-        <h2 className="font-serif font-normal text-2xl text-zinc-950 dark:text-white mb-1.5">
-          Founder &amp; Operator Intake Form
-        </h2>
-        <p className="text-xs text-zinc-500 dark:text-zinc-400">
-          We evaluate candidates based on drive, execution capability, and passion for building companies.
-        </p>
-      </div>
-
-      <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-5">
+      <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-6">
         {/* Row 1: Name & Enrollment */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <label className={labelClass} htmlFor="fullName">
-              Full Name <span className="text-[#FF6600]">*</span>
+              Full Name <span className="text-ink">*</span>
             </label>
             <input
               type="text"
@@ -176,7 +200,7 @@ export default function ApplicationForm({ settings }: { settings?: AppSettings }
               name="fullName"
               value={formData.fullName}
               onChange={handleChange}
-              placeholder="e.g. Rahul Verma"
+              placeholder="e.g. Ananya Sharma"
               className={inputClass}
               required
             />
@@ -184,7 +208,7 @@ export default function ApplicationForm({ settings }: { settings?: AppSettings }
 
           <div>
             <label className={labelClass} htmlFor="enrollment">
-              Enrollment Number <span className="text-[#FF6600]">*</span>
+              Enrollment Number <span className="text-ink">*</span>
             </label>
             <input
               type="text"
@@ -200,10 +224,10 @@ export default function ApplicationForm({ settings }: { settings?: AppSettings }
         </div>
 
         {/* Row 2: Email & Phone */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <label className={labelClass} htmlFor="email">
-              Email Address <span className="text-[#FF6600]">*</span>
+              Email Address <span className="text-ink">*</span>
             </label>
             <input
               type="email"
@@ -219,7 +243,7 @@ export default function ApplicationForm({ settings }: { settings?: AppSettings }
 
           <div>
             <label className={labelClass} htmlFor="phone">
-              Phone Number <span className="text-[#FF6600]">*</span>
+              Phone Number <span className="text-ink">*</span>
             </label>
             <input
               type="tel"
@@ -235,10 +259,10 @@ export default function ApplicationForm({ settings }: { settings?: AppSettings }
         </div>
 
         {/* Row 3: Branch & Year */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <label className={labelClass} htmlFor="branch">
-              Branch &amp; Course <span className="text-[#FF6600]">*</span>
+              Branch &amp; Course <span className="text-ink">*</span>
             </label>
             <input
               type="text"
@@ -254,14 +278,14 @@ export default function ApplicationForm({ settings }: { settings?: AppSettings }
 
           <div>
             <label className={labelClass} htmlFor="year">
-              Year of Study <span className="text-[#FF6600]">*</span>
+              Year of Study <span className="text-ink">*</span>
             </label>
             <select
               id="year"
               name="year"
               value={formData.year}
               onChange={handleChange}
-              className={`${inputClass} ${!formData.year ? 'text-zinc-400' : 'text-zinc-900 dark:text-white'}`}
+              className={`${inputClass} ${!formData.year ? 'text-muted' : ''}`}
               required
             >
               <option value="" disabled>Select Year</option>
@@ -276,29 +300,29 @@ export default function ApplicationForm({ settings }: { settings?: AppSettings }
         {/* Row 4: Preferred Department */}
         <div>
           <label className={labelClass} htmlFor="department">
-            Functional Department <span className="text-[#FF6600]">*</span>
+            Preferred Department <span className="text-ink">*</span>
           </label>
           <select
             id="department"
             name="department"
             value={formData.department}
             onChange={handleChange}
-            className={`${inputClass} ${!formData.department ? 'text-zinc-400' : 'text-zinc-900 dark:text-white'}`}
+            className={`${inputClass} ${!formData.department ? 'text-muted' : ''}`}
             required
           >
             <option value="" disabled>Select Department</option>
-            <option value="Social Media">Social Media &amp; Brand Outreach</option>
-            <option value="Design and Tech">Design &amp; Engineering (Web, UI/UX, Fullstack)</option>
-            <option value="Research and Content">Research &amp; Venture Content</option>
-            <option value="Event Management">Event Management &amp; Demo Day Operations</option>
-            <option value="Documentation">Documentation &amp; Reporting</option>
+            <option value="Social Media">Social Media Team (Content, Reels, Posts, Brand)</option>
+            <option value="Design and Tech">Design &amp; Tech Team (Web, UI/UX, Graphics)</option>
+            <option value="Research and Content">Research &amp; Content Team (Startup Trends, Write-ups)</option>
+            <option value="Event Management">Event Management Team (Planning, Logistics)</option>
+            <option value="Documentation">Documentation Team (Photos, Videos, Reports)</option>
           </select>
         </div>
 
         {/* Row 5: LinkedIn URL */}
         <div>
           <label className={labelClass} htmlFor="linkedin">
-            LinkedIn Profile or GitHub URL (Optional)
+            LinkedIn Profile URL (Optional)
           </label>
           <input
             type="url"
@@ -314,33 +338,33 @@ export default function ApplicationForm({ settings }: { settings?: AppSettings }
         {/* Row 6: Statement of Purpose */}
         <div>
           <label className={labelClass} htmlFor="whyJoin">
-            Why do you want to build with E-Cell? <span className="text-[#FF6600]">*</span>
+            Why do you want to join UIET E-Cell? <span className="text-ink">*</span>
           </label>
           <textarea
             id="whyJoin"
             name="whyJoin"
             value={formData.whyJoin}
             onChange={handleChange}
-            placeholder="Tell us what project, idea, or domain excites you and what technical or operational skills you bring (max 300 characters)..."
+            placeholder="Tell us what excites you about entrepreneurship and what skills you bring to the team (max 300 characters)..."
             rows={4}
             className={`${inputClass} resize-none`}
             required
           />
-          <div className="text-right text-[11px] font-mono text-zinc-400 mt-1">
+          <div className="text-right text-xs text-muted mt-1.5">
             {charCount} / {MAX_CHARS}
           </div>
         </div>
 
-        {/* Action Button */}
-        <div className="pt-3">
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className="yc-btn-primary w-full sm:w-auto text-sm py-2.5 px-6 font-semibold cursor-pointer disabled:opacity-50"
-          >
-            {isSubmitting ? 'Submitting Application...' : 'Submit Application →'}
-          </button>
-        </div>
+        <Button
+          type="submit"
+          variant="primary"
+          size="lg"
+          arrow
+          disabled={isSubmitting}
+          className="w-fit"
+        >
+          {isSubmitting ? 'Submitting Application...' : 'Submit Application'}
+        </Button>
       </form>
     </div>
   );

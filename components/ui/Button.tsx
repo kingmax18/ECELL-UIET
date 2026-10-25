@@ -22,56 +22,58 @@ interface ButtonProps {
 
 const VARIANT_CLASSES: Record<ButtonVariant, { base: string; icon: string }> = {
   primary: {
-    base: 'bg-[#FF6600] text-white border-transparent hover:bg-[#E65C00] font-semibold shadow-xs',
-    icon: 'bg-white/20 text-white group-hover:bg-white group-hover:text-[#FF6600]',
+    base: 'bg-ink text-white border-ink hover:bg-black hover:border-black',
+    icon: 'bg-white text-ink',
   },
   blue: {
-    base: 'bg-[#111827] text-white border-transparent hover:bg-[#1F2937] font-semibold shadow-xs',
-    icon: 'bg-white/20 text-white group-hover:bg-[#FF6600] group-hover:text-white',
+    base: 'bg-violet text-white border-violet hover:bg-white hover:text-ink',
+    icon: 'bg-white text-violet group-hover:bg-violet group-hover:text-white',
   },
   outline: {
-    base: 'bg-white text-[#111827] border-[#D1D5DB] hover:border-[#111827] hover:bg-[#F9FAFB] font-medium shadow-2xs',
-    icon: 'bg-black/5 text-[#111827] group-hover:bg-[#111827] group-hover:text-white',
+    base: 'bg-transparent text-ink border-border hover:bg-ink hover:text-white hover:border-ink',
+    icon: 'bg-soft text-ink group-hover:bg-white group-hover:text-ink',
   },
   white: {
-    base: 'bg-white text-[#111827] border-[#E5E7EB] hover:bg-[#F9FAFB] hover:border-[#D1D5DB] font-medium shadow-2xs',
-    icon: 'bg-[#FF6600] text-white',
+    base: 'bg-white text-ink border-[rgba(27,29,30,0.08)] hover:bg-[#f4f4f5] hover:border-[rgba(27,29,30,0.12)]',
+    icon: 'bg-ink text-white',
   },
   ghost: {
-    base: 'bg-transparent text-[#111827] border-transparent hover:text-[#FF6600] hover:bg-black/5 font-medium',
-    icon: 'bg-[#FF6600]/10 text-[#FF6600] group-hover:bg-[#FF6600] group-hover:text-white',
+    base: 'bg-transparent text-secondary border-transparent hover:text-ink hover:bg-soft',
+    icon: 'bg-soft text-ink group-hover:bg-white group-hover:text-ink',
   },
 };
 
 const OUTLINE_ON_DARK = {
-  base: 'bg-transparent text-white border-white/30 hover:bg-white hover:text-[#111827] hover:border-white font-medium',
-  icon: 'bg-white/20 text-white group-hover:bg-[#111827] group-hover:text-white',
+  base: 'bg-transparent text-white border-white/40 hover:bg-white hover:text-ink hover:border-white',
+  icon: 'bg-white/15 text-white group-hover:bg-ink group-hover:text-white',
 };
 
+/* Reference padding: rest = roomy label side / tight circle side;
+   hover mirrors it so the circle hugs the LEFT edge tightly. */
 const SIZE_CLASSES: Record<
   ButtonSize,
   { base: string; icon: string; svg: string; padRest: string; padHover: string }
 > = {
   sm: {
-    base: 'py-1.5 text-xs rounded-md',
-    icon: 'h-5 w-5',
+    base: 'py-[5px] text-[13px]',
+    icon: 'h-[26px] w-[26px]',
     svg: 'h-3 w-3',
-    padRest: 'pl-3.5 pr-1.5',
-    padHover: 'pl-1.5 pr-3.5',
+    padRest: 'pl-4 pr-[6px]',
+    padHover: 'pl-[6px] pr-4',
   },
   md: {
-    base: 'py-2 text-sm rounded-md',
-    icon: 'h-6 w-6',
-    svg: 'h-3.5 w-3.5',
-    padRest: 'pl-4 pr-2',
-    padHover: 'pl-2 pr-4',
+    base: 'py-[7px] text-sm',
+    icon: 'h-8 w-8',
+    svg: 'h-[15px] w-[15px]',
+    padRest: 'pl-[18px] pr-[7px]',
+    padHover: 'pl-[7px] pr-[18px]',
   },
   lg: {
-    base: 'py-2.5 text-sm sm:text-base rounded-md',
-    icon: 'h-7 w-7',
-    svg: 'h-4 w-4',
-    padRest: 'pl-5 pr-2.5',
-    padHover: 'pl-2.5 pr-5',
+    base: 'py-[9px] text-[15px]',
+    icon: 'h-[38px] w-[38px]',
+    svg: 'h-[17px] w-[17px]',
+    padRest: 'pl-[22px] pr-[9px]',
+    padHover: 'pl-[9px] pr-[22px]',
   },
 };
 
@@ -114,7 +116,7 @@ export default function Button({
   const s = SIZE_CLASSES[size];
 
   const rootClass = [
-    'group inline-flex items-center border select-none tracking-normal whitespace-nowrap cursor-pointer transition-all duration-200',
+    'group inline-flex items-center rounded-pill border font-medium tracking-[-0.01em] whitespace-nowrap cursor-pointer transition-colors duration-300 select-none',
     v.base,
     s.base,
     disabled ? 'opacity-50 pointer-events-none' : '',
@@ -122,28 +124,34 @@ export default function Button({
   ].join(' ');
 
   const swapEase =
-    'transition-all duration-[300ms] [transition-timing-function:cubic-bezier(0.16,1,0.3,1)]';
+    'transition-all duration-[350ms] [transition-timing-function:cubic-bezier(0.16,1,0.3,1)]';
 
   const circleClass = `inline-flex items-center justify-center rounded-full shrink-0 ${v.icon} ${s.icon}`;
-  const childEase = 'transition-transform duration-[300ms] [transition-timing-function:cubic-bezier(0.16,1,0.3,1)]';
+  const childEase = 'transition-transform duration-[350ms] [transition-timing-function:cubic-bezier(0.16,1,0.3,1)]';
 
   const content = arrow ? (
-    <span className="relative inline-flex items-center">
-      <span className={`flex items-center gap-2.5 opacity-100 ${s.padRest} ${swapEase} group-hover:opacity-0`}>
-        <span className={`${childEase} group-hover:translate-x-4`}>{children}</span>
-        <span className={`${circleClass} ${childEase} group-hover:-translate-x-4`}>
+    /* Reference swap: text travels RIGHT, arrow circle travels LEFT —
+       two mirrored layers crossfade while their children glide in
+       opposite directions. Identical widths, so the button never
+       moves or resizes. */
+    <span className="relative inline-flex">
+      {/* Rest layer: text left (roomy), circle right (tight) */}
+      <span className={`flex items-center gap-3 opacity-100 ${s.padRest} ${swapEase} group-hover:opacity-0`}>
+        <span className={`${childEase} group-hover:translate-x-5`}>{children}</span>
+        <span className={`${circleClass} ${childEase} group-hover:-translate-x-5`}>
           <ArrowIcon className={s.svg} />
         </span>
       </span>
 
+      {/* Hover layer: circle left (tight), text right (roomy) — mirrored */}
       <span
         aria-hidden="true"
-        className={`absolute inset-0 flex items-center gap-2.5 opacity-0 pointer-events-none ${s.padHover} ${swapEase} group-hover:opacity-100`}
+        className={`absolute inset-0 flex items-center gap-3 opacity-0 pointer-events-none ${s.padHover} ${swapEase} group-hover:opacity-100`}
       >
-        <span className={`${circleClass} ${childEase} translate-x-4 group-hover:translate-x-0`}>
+        <span className={`${circleClass} ${childEase} translate-x-5 group-hover:translate-x-0`}>
           <ArrowIcon className={s.svg} />
         </span>
-        <span className={`${childEase} -translate-x-4 group-hover:translate-x-0`}>{children}</span>
+        <span className={`${childEase} -translate-x-5 group-hover:translate-x-0`}>{children}</span>
       </span>
     </span>
   ) : (

@@ -1,111 +1,106 @@
-'use client';
-
 import React from 'react';
-import Link from 'next/link';
+import SectionHeader from '@/components/ui/SectionHeader';
+import Button from '@/components/ui/Button';
 
 const showcaseEvents = [
   {
     id: 1,
     title: 'Eureka Pitching Competition 2026',
-    tagline: 'Flagship student pitching competition organized by the new E-Cell council with faculty judges and certificates.',
-    category: 'Pitch Competition',
-    date: '27 Aug 2026',
+    tagline: 'Present Your Idea. Pitch to Win.',
+    tags: ['Pitching', 'Competition', 'Startup'],
+    image: '/gallery/page_3.jpg',
+    date: 'Aug 27, 2026',
     venue: 'UIET MDU Main Auditorium',
-    status: 'Concluded',
-    isOpen: false,
+    isUpcoming: true,
   },
   {
     id: 2,
-    title: 'Eureka Pitching Competition (Senior Edition)',
-    tagline: 'Campus pitch competition hosted by our seniors on 15th September, inspiring the current council.',
-    category: 'Pitch Competition',
-    date: '15 Sept 2025',
-    venue: 'UIET MDU Campus',
-    status: 'Concluded',
-    isOpen: false,
+    title: 'Ideathon 2025 — Solutions for Campus',
+    tagline: '24-hour campus innovation hackathon.',
+    tags: ['Ideathon', 'Innovation', 'Hackathon'],
+    image: '/gallery/page_25.jpg',
+    date: 'Mar 10, 2025',
+    venue: 'MDU Innovation Hub',
+    isUpcoming: false,
+  },
+  {
+    id: 3,
+    title: 'Digital Marketing & Content Masterclass',
+    tagline: 'SEO basics, brand growth, & live demos.',
+    tags: ['Workshop', 'Marketing', 'Skill'],
+    image: '/gallery/page_43.jpg',
+    date: 'May 20, 2025',
+    venue: 'Online / UIET Seminar Hall',
+    isUpcoming: false,
+  },
+  {
+    id: 4,
+    title: 'Annual E-Summit & Founders Gathering',
+    tagline: 'Student team showcases and keynote talks.',
+    tags: ['Summit', 'Networking', 'Flagship'],
+    image: '/gallery/page_12.jpg',
+    date: 'Nov 25, 2024',
+    venue: 'MDU Main Campus',
+    isUpcoming: false,
   },
 ];
 
 export default function EventsPreview() {
   return (
-    <section className="py-20 sm:py-24 bg-[#FAFAF8] dark:bg-[#0D0E12] border-b border-zinc-200 dark:border-zinc-800">
-      <div className="max-w-[1280px] mx-auto px-4 sm:px-6">
-        {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12 pb-6 border-b border-zinc-200 dark:border-zinc-800">
-          <div>
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-orange-500/10 dark:bg-orange-500/20 border border-orange-500/20 text-[#FF6600] text-xs font-bold uppercase tracking-wider mb-2">
-              Campus Initiatives
-            </div>
-            <h2 className="font-sans font-extrabold text-3xl sm:text-4xl text-zinc-900 dark:text-white mb-2 tracking-tight">
-              Campus pitching events<span className="text-[#FF6600]">.</span>
-            </h2>
-            <p className="text-zinc-600 dark:text-zinc-400 text-sm max-w-lg leading-relaxed">
-              A look back at our flagship Eureka pitching events hosted on campus at UIET MDU.
-            </p>
-          </div>
+    <section className="py-[clamp(56px,7vw,80px)]">
+      <div className="max-w-[1272px] mx-auto px-6">
+        <SectionHeader
+          badge="Upcoming Activities"
+          title="See our flagship work in"
+          italicTitle="campus action"
+          subtitle="From campus pitch competitions and 24-hour ideathons to interactive masterclasses and industry summits."
+        />
 
-          <Link
-            href="/events"
-            className="yc-btn-secondary text-xs self-start sm:self-auto"
-          >
-            Browse All Events →
-          </Link>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+          {showcaseEvents.map((item) => (
+            <article
+              key={item.id}
+              className="reveal flex flex-col bg-white border border-border rounded-panel overflow-hidden transition-all duration-200 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:border-borderstrong"
+            >
+              <div className="relative w-full h-[clamp(280px,30vw,380px)] overflow-hidden bg-[#f8fafc]">
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="w-full h-full object-cover object-center transition-transform duration-400 group-hover:scale-[1.04] hover:scale-[1.04]"
+                />
+                {item.isUpcoming && (
+                  <span className="absolute top-4 right-4 bg-pgreen text-[#0E3B09] text-[11px] font-semibold py-[5px] px-3 rounded-pill uppercase tracking-[0.05em]">
+                    Upcoming Event
+                  </span>
+                )}
+              </div>
+
+              <div className="p-6 flex flex-col gap-2 flex-1">
+                <div className="flex items-center gap-2 text-xs font-medium text-secondary uppercase tracking-[0.05em]">
+                  <span>{item.date}</span>
+                  <span className="text-muted">•</span>
+                  <span className="text-muted font-medium normal-case tracking-normal">{item.venue}</span>
+                </div>
+                <h3 className="font-sans font-medium text-[clamp(20px,2.2vw,26px)] leading-[1.25] tracking-[-0.02em] text-ink">
+                  {item.title}
+                </h3>
+                <p className="text-[15px] text-secondary leading-[1.55]">{item.tagline}</p>
+                <div className="flex gap-2 flex-wrap mt-2">
+                  {item.tags.map((t, idx) => (
+                    <span key={idx} className="text-xs font-medium text-secondary bg-soft py-1 px-3 rounded-pill">
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </article>
+          ))}
         </div>
 
-        {/* Schedule List Format - Clean Aesthetic */}
-        <div className="space-y-4">
-          {showcaseEvents.map((item) => (
-            <div
-              key={item.id}
-              className="bg-white dark:bg-[#14161C] border border-zinc-200 dark:border-zinc-800 rounded-lg p-5 sm:p-6 flex flex-col md:flex-row md:items-center justify-between gap-6 hover:border-zinc-400 dark:hover:border-zinc-600 transition-all shadow-2xs group"
-            >
-              <div className="flex flex-col sm:flex-row sm:items-center gap-5">
-                {/* Date Box */}
-                <div className="w-24 h-16 rounded bg-zinc-50 dark:bg-zinc-800/60 border border-zinc-200 dark:border-zinc-700/60 flex flex-col items-center justify-center shrink-0">
-                  <span className="font-sans text-[10px] font-bold uppercase tracking-wider text-zinc-400">
-                    DATE
-                  </span>
-                  <span className="font-semibold text-xs text-zinc-900 dark:text-white mt-0.5 text-center px-1">
-                    {item.date}
-                  </span>
-                </div>
-
-                {/* Details */}
-                <div>
-                  <div className="flex items-center gap-2 mb-1.5 flex-wrap">
-                    <span className="text-[11px] font-sans font-semibold text-[#FF6600] bg-orange-50 dark:bg-orange-950/40 px-2 py-0.5 rounded border border-orange-200 dark:border-orange-900/60">
-                      {item.category}
-                    </span>
-                    <span className="text-xs text-zinc-400">·</span>
-                    <span className="text-xs text-zinc-500 dark:text-zinc-400 font-sans">
-                      {item.venue}
-                    </span>
-                  </div>
-
-                  <h3 className="font-sans font-bold text-lg sm:text-xl text-zinc-900 dark:text-white group-hover:text-[#FF6600] transition-colors">
-                    {item.title}
-                  </h3>
-
-                  <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-1 leading-relaxed">
-                    {item.tagline}
-                  </p>
-                </div>
-              </div>
-
-              {/* Action & Status */}
-              <div className="flex items-center gap-3 shrink-0 self-start md:self-center">
-                <span className="text-xs font-sans font-semibold text-zinc-600 dark:text-zinc-400 bg-zinc-100 dark:bg-zinc-800/80 px-2.5 py-1 rounded-full border border-zinc-200/80 dark:border-zinc-700/60">
-                  {item.status}
-                </span>
-                <Link
-                  href="/events"
-                  className="yc-btn-secondary text-xs py-1.5 px-3 rounded"
-                >
-                  Details →
-                </Link>
-              </div>
-            </div>
-          ))}
+        <div className="reveal text-center">
+          <Button href="/events" variant="outline" size="lg" arrow>
+            View All Flagship Events
+          </Button>
         </div>
       </div>
     </section>

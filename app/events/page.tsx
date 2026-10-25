@@ -15,28 +15,34 @@ export default function EventsPage() {
   return (
     <>
       <Navbar />
-      <main className="bg-white dark:bg-[#0B0C0E] min-h-screen text-zinc-900 dark:text-zinc-100">
-        {/* Page Hero - YC Editorial Style */}
-        <section className="relative overflow-hidden bg-[#FAFAF8] dark:bg-[#0E1015] border-b border-zinc-200 dark:border-zinc-800 py-16 sm:py-22">
-          <div className="relative max-w-[1280px] mx-auto px-4 sm:px-6">
-            <div className="max-w-3xl">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-orange-500/10 dark:bg-orange-500/20 border border-orange-500/20 text-[#FF6600] text-xs font-bold uppercase tracking-wider mb-3">
-                Competitions &amp; Showcases
-              </div>
-              <h1 className="font-sans font-extrabold text-3xl sm:text-5xl text-zinc-950 dark:text-white mb-4 [text-wrap:balance] tracking-tight">
-                Student innovation &amp;{' '}
-                <span className="italic text-[#FF6600]">pitch competitions.</span>
-              </h1>
-              <p className="text-zinc-600 dark:text-zinc-400 text-sm sm:text-base leading-relaxed">
-                Explore the Eureka pitching showcase and student innovation presentations organized at UIET, Maharshi Dayanand University.
-              </p>
+      <main>
+        {/* Page Hero */}
+        <section className="relative overflow-hidden bg-white">
+          <div className="absolute inset-0 pointer-events-none overflow-hidden bg-[linear-gradient(71deg,rgba(217,243,252,0.38)_11%,rgba(235,248,253,0.45)_45.7%,rgba(255,255,255,0.54)_64.5%,rgba(253,241,211,0.66)_100%)] [mask-image:linear-gradient(to_bottom,black_55%,transparent_92%)] [-webkit-mask-image:linear-gradient(to_bottom,black_55%,transparent_92%)]">
+            <img
+              src="/assets/images/ntUDPbezGATca4W8ayYcVbeQbM.svg"
+              alt=""
+              className="w-full h-full object-cover opacity-90"
+            />
+          </div>
+          <div className="relative max-w-[1272px] mx-auto px-6 pt-[160px] pb-[72px] text-center">
+            <div className="inline-flex py-1.5 px-4 bg-white border border-border rounded-pill text-xs font-medium uppercase tracking-[0.08em] text-secondary mb-5">
+              UIET E-Cell · Events &amp; Summits
             </div>
+            <h1 className="font-sans font-medium text-[clamp(36px,5.5vw,64px)] leading-[1.08] tracking-[-0.04em] text-ink mb-5 [text-wrap:balance]">
+              Where student innovators{' '}
+              <span className="font-serif italic font-normal text-[1.05em]">take center stage</span>
+            </h1>
+            <p className="text-[clamp(16px,1.8vw,18px)] leading-[1.6] text-secondary max-w-[720px] mx-auto">
+              Explore upcoming pitching competitions, technical masterclasses, speaker sessions, and annual
+              entrepreneurship summits at MDU Rohtak.
+            </p>
           </div>
         </section>
 
-        {/* Events Tabs Section */}
-        <section className="py-16 sm:py-22">
-          <div className="max-w-[1280px] mx-auto px-4 sm:px-6">
+        {/* Events Tabs */}
+        <section className="py-[clamp(56px,7vw,80px)]">
+          <div className="max-w-[1272px] mx-auto px-6">
             <EventsTabs events={events} />
           </div>
         </section>

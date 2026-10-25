@@ -6,11 +6,11 @@ import { ToastProvider } from '@/context/ToastProvider';
 
 export const metadata: Metadata = {
   title: {
-    default: 'E-Cell | Entrepreneurship Cell, UIET MDU',
-    template: '%s | E-Cell',
+    default: 'UIET E-Cell | Entrepreneurship Cell, MDU Rohtak',
+    template: '%s | UIET E-Cell',
   },
   description:
-    'Official Entrepreneurship Cell of Maharshi Dayanand University (MDU), Rohtak. Fostering student startups, innovation workshops, ideathons, and mentorship.',
+    'Official Entrepreneurship Cell of Maharshi Dayanand University (MDU), Rohtak. Fostering student startups, innovation workshops, seed grants, and mentorship.',
   keywords: ['E-Cell', 'UIET', 'MDU', 'Rohtak', 'Entrepreneurship', 'Startups', 'Innovation'],
   icons: {
     icon: '/favicon.png',
@@ -24,31 +24,13 @@ export const viewport: Viewport = {
   viewportFit: 'cover',
 };
 
-import { ThemeProvider } from '@/context/ThemeProvider';
-
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <head>
-        <meta name="referrer" content="strict-origin-when-cross-origin" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
-          rel="stylesheet"
-        />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(){try{var t=localStorage.getItem('ecell_theme');if(t==='dark'){document.documentElement.classList.add('dark');}else{document.documentElement.classList.remove('dark');}}catch(e){}})();`,
-          }}
-        />
-      </head>
+    <html lang="en">
       <body>
-        <ThemeProvider>
-          <DataProvider>
-            <ToastProvider>{children}</ToastProvider>
-          </DataProvider>
-        </ThemeProvider>
+        <DataProvider>
+          <ToastProvider>{children}</ToastProvider>
+        </DataProvider>
       </body>
     </html>
   );
