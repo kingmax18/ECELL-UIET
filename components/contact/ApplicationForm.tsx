@@ -22,7 +22,7 @@ interface FormData {
 }
 
 const inputClass =
-  'w-full bg-white border border-border rounded-card px-4 py-3 text-[15px] text-ink placeholder:text-muted outline-none transition-colors duration-200 focus:border-ink';
+  'w-full bg-white border border-border rounded-card px-4 py-3 text-base md:text-[15px] text-ink placeholder:text-muted outline-none transition-colors duration-200 focus:border-ink';
 
 const labelClass = 'block text-sm font-medium text-ink mb-2';
 

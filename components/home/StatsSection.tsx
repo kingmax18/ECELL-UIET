@@ -69,21 +69,21 @@ export default function StatsSection({ stats }: StatsSectionProps) {
   ];
 
   return (
-    <section className="py-[clamp(72px,8vw,110px)] px-[5vw]" id="about">
+    <section className="py-[clamp(56px,7vw,110px)] px-5 sm:px-[5vw]" id="about">
       <div className="max-w-[1272px] mx-auto">
-        <p className="big rv mb-16">
+        <p className="big rv mb-10 sm:mb-16 text-[clamp(20px,3vw,40px)]">
           Entrepreneurship isn’t a department.{' '}
           <span>It’s a way of looking at problems, and it belongs to every student, whatever they study.</span>
         </p>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 pt-10 border-t border-[var(--line)]">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 pt-8 sm:pt-10 border-t border-[var(--line)]">
           {statList.map((stat, idx) => (
-            <div key={idx} className="reveal">
-              <div className="font-['Space_Grotesk'] font-bold text-[clamp(48px,6vw,84px)] leading-none tracking-[-0.03em] text-[var(--ink)] mb-3 [font-variant-numeric:tabular-nums]">
+            <div key={idx} className="reveal p-1 sm:p-0">
+              <div className="font-['Space_Grotesk'] font-bold text-[clamp(34px,6.5vw,84px)] leading-none tracking-[-0.03em] text-[var(--ink)] mb-2 sm:mb-3 [font-variant-numeric:tabular-nums]">
                 <CountUp value={stat.value} />
                 {stat.suffix && <span className="text-[var(--orange)] ml-0.5">{stat.suffix}</span>}
               </div>
-              <div className="font-['Space_Grotesk'] text-sm sm:text-base font-medium text-[var(--mute)]">
+              <div className="font-['Space_Grotesk'] text-xs sm:text-base font-medium text-[var(--mute)]">
                 {stat.label}
               </div>
             </div>

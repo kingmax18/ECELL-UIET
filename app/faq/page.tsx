@@ -69,7 +69,7 @@ export default function FAQPage() {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen bg-[#FDFCF7] dark:bg-[#0B0C0E] text-[#16140f] dark:text-zinc-100 py-12 md:py-20 transition-colors">
+      <main className="min-h-screen bg-[#FDFCF7] dark:bg-[#0B0C0E] text-[#16140f] dark:text-zinc-100 pt-[125px] sm:pt-[160px] pb-16 sm:pb-20 transition-colors">
         <div className="max-w-[800px] mx-auto px-6">
           {/* Header */}
           <div className="text-center mb-14">

@@ -106,7 +106,7 @@ export default async function BlogPostPage({
       <ScrollRevealEffect />
       <main className="bg-white min-h-screen text-ink">
         {/* Article Header & Ambient Hero */}
-        <header className="relative overflow-hidden bg-white pt-[140px] pb-10 border-b border-border">
+        <header className="relative overflow-hidden bg-white pt-[120px] sm:pt-[140px] pb-8 sm:pb-10 border-b border-border">
           <div className="absolute inset-0 pointer-events-none overflow-hidden bg-[linear-gradient(71deg,rgba(115,165,202,0.18)_11%,rgba(255,233,169,0.3)_45.7%,rgba(255,255,255,0.6)_64.5%,rgba(255,147,62,0.18)_100%)] [mask-image:linear-gradient(to_bottom,black_60%,transparent_96%)] [-webkit-mask-image:linear-gradient(to_bottom,black_60%,transparent_96%)]">
             <img
               src="/assets/images/ntUDPbezGATca4W8ayYcVbeQbM.svg"
@@ -115,7 +115,7 @@ export default async function BlogPostPage({
             />
           </div>
 
-          <div className="relative max-w-[820px] mx-auto px-6">
+          <div className="relative max-w-[820px] mx-auto px-5 sm:px-6">
             {/* Breadcrumbs */}
             <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs font-mono text-muted mb-6">
               <Link href="/" className="hover:text-ink transition-colors no-underline">
@@ -180,8 +180,8 @@ export default async function BlogPostPage({
         </header>
 
         {/* Article Body Content */}
-        <article className="py-12 sm:py-16">
-          <div className="max-w-[820px] mx-auto px-6">
+        <article className="py-10 sm:py-16">
+          <div className="max-w-[820px] mx-auto px-5 sm:px-6">
             <div className="prose max-w-none text-[#2d3134] font-normal leading-[1.8] space-y-7 text-[17px] sm:text-[18px]">
               {post.content.split('\n\n').map((paragraph, index) => {
                 const trimmed = paragraph.trim();

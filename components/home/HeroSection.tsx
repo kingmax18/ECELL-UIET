@@ -75,7 +75,7 @@ export default function HeroSection() {
     <section
       ref={containerRef}
       id="top"
-      className="hero relative block w-full overflow-hidden bg-[var(--bg)] min-h-[90vh] flex flex-col justify-center px-[5vw] pt-[150px] pb-[80px]"
+      className="hero relative block w-full overflow-hidden bg-[var(--bg)] min-h-[85vh] sm:min-h-[90vh] flex flex-col justify-center px-5 sm:px-[5vw] pt-[125px] sm:pt-[150px] pb-[60px] sm:pb-[80px]"
     >
       {/* Floating geometric shapes */}
       <div className="sh a" aria-hidden="true" />
@@ -86,7 +86,7 @@ export default function HeroSection() {
         {/* Archivo Black display headline with orange emphasis */}
         <h1
           data-hero="headline"
-          className="d text-[clamp(46px,9vw,130px)] text-[var(--ink)] mb-[24px] tracking-[-0.02em] leading-[0.92]"
+          className="d text-[clamp(42px,9vw,130px)] text-[var(--ink)] mb-5 sm:mb-[24px] tracking-[-0.02em] leading-[0.98] sm:leading-[0.92]"
         >
           Start from<br />
           an <em>idea.</em>
@@ -95,18 +95,18 @@ export default function HeroSection() {
         {/* Subtitle */}
         <p
           data-hero="subtitle"
-          className="text-[clamp(16px,2vw,19px)] font-normal leading-[1.6] text-[var(--mute)] max-w-[540px] mb-[36px]"
+          className="text-[clamp(15px,2vw,19px)] font-normal leading-[1.6] text-[var(--mute)] max-w-[540px] mb-7 sm:mb-[36px]"
         >
           The entrepreneurship cell of UIET, Maharshi Dayanand University. Open to every student,
           every branch, every college on campus.
         </p>
 
         {/* Action CTAs */}
-        <div data-hero="actions" className="cta flex items-center gap-3.5 flex-wrap">
-          <Link href="/contact" className="btn">
+        <div data-hero="actions" className="cta flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-3.5 w-full sm:w-auto">
+          <Link href="/contact" className="btn w-full sm:w-auto text-center justify-center py-3.5 sm:py-3">
             Become a member
           </Link>
-          <Link href="/events" className="btn o">
+          <Link href="/events" className="btn o w-full sm:w-auto text-center justify-center py-3.5 sm:py-3">
             See Eureka 2026
           </Link>
         </div>

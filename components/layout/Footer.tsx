@@ -7,9 +7,9 @@ import { SITE, NAV_LINKS } from '@/lib/constants';
 
 export default function Footer() {
   return (
-    <footer className="bg-[var(--surface)] pt-20 pb-12 border-t border-[var(--line)]">
-      <div className="max-w-[1272px] mx-auto px-[clamp(16px,4vw,24px)]">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1.5fr] gap-8 md:gap-16 mb-16">
+    <footer className="bg-[var(--surface)] pt-14 sm:pt-20 pb-10 sm:pb-12 border-t border-[var(--line)]">
+      <div className="max-w-[1272px] mx-auto px-5 sm:px-[clamp(16px,4vw,24px)]">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1.5fr] gap-8 md:gap-12 lg:gap-16 mb-12 sm:mb-16">
           {/* Col 1: Brand */}
           <div className="flex flex-col gap-4">
             <Link href="/" className="logo flex items-center gap-2.5 no-underline">
@@ -22,12 +22,12 @@ export default function Footer() {
               The entrepreneurship cell of UIET, Maharshi Dayanand University. Empowering student innovators,
               founders, and makers across campus.
             </p>
-            <div className="flex items-center gap-2.5 mt-2">
+            <div className="flex items-center gap-3 mt-2">
               <a
                 href="https://linkedin.com/company/mdu-ecell"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center w-9 h-9 rounded-full border border-[var(--line)] bg-transparent text-[var(--mute)] transition-all duration-200 hover:bg-[var(--orange)] hover:border-[var(--orange)] hover:text-white"
+                className="flex items-center justify-center w-10 h-10 rounded-full border border-[var(--line)] bg-white text-[var(--mute)] transition-all duration-200 hover:bg-[var(--orange)] hover:border-[var(--orange)] hover:text-white shadow-2xs"
                 aria-label="LinkedIn"
               >
                 <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
@@ -38,7 +38,7 @@ export default function Footer() {
                 href="https://instagram.com/ecell_mdu"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center w-9 h-9 rounded-full border border-[var(--line)] bg-transparent text-[var(--mute)] transition-all duration-200 hover:bg-[var(--orange)] hover:border-[var(--orange)] hover:text-white"
+                className="flex items-center justify-center w-10 h-10 rounded-full border border-[var(--line)] bg-white text-[var(--mute)] transition-all duration-200 hover:bg-[var(--orange)] hover:border-[var(--orange)] hover:text-white shadow-2xs"
                 aria-label="Instagram"
               >
                 <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -49,7 +49,7 @@ export default function Footer() {
               </a>
               <a
                 href={`mailto:${SITE.email}`}
-                className="flex items-center justify-center w-9 h-9 rounded-full border border-[var(--line)] bg-transparent text-[var(--mute)] transition-all duration-200 hover:bg-[var(--orange)] hover:border-[var(--orange)] hover:text-white"
+                className="flex items-center justify-center w-10 h-10 rounded-full border border-[var(--line)] bg-white text-[var(--mute)] transition-all duration-200 hover:bg-[var(--orange)] hover:border-[var(--orange)] hover:text-white shadow-2xs"
                 aria-label="Email"
               >
                 <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -60,84 +60,87 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Col 2: Sitemap */}
-          <div className="flex flex-col gap-4">
-            <h4 className="font-['Space_Grotesk'] text-sm font-bold text-[var(--ink)] tracking-wider uppercase">
-              Sitemap
-            </h4>
-            <ul className="flex flex-col gap-2.5 list-none p-0 m-0">
-              {NAV_LINKS.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-[var(--mute)] no-underline transition-colors duration-200 hover:text-[var(--orange)] font-medium font-['Space_Grotesk']"
+          {/* Links Wrapper: 2 cols on mobile, separate on desktop */}
+          <div className="grid grid-cols-2 gap-8 md:contents">
+            {/* Col 2: Sitemap */}
+            <div className="flex flex-col gap-3.5">
+              <h4 className="font-['Space_Grotesk'] text-xs font-bold text-[var(--ink)] tracking-wider uppercase">
+                Sitemap
+              </h4>
+              <ul className="flex flex-col gap-2.5 list-none p-0 m-0">
+                {NAV_LINKS.map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      className="text-sm text-[var(--mute)] no-underline transition-colors duration-200 hover:text-[var(--orange)] font-medium font-['Space_Grotesk'] inline-block py-0.5"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Col 3: Resources */}
+            <div className="flex flex-col gap-3.5">
+              <h4 className="font-['Space_Grotesk'] text-xs font-bold text-[var(--ink)] tracking-wider uppercase">
+                Resources
+              </h4>
+              <ul className="flex flex-col gap-2.5 list-none p-0 m-0 font-['Space_Grotesk']">
+                <li>
+                  <a
+                    href="https://startupindia.gov.in"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-[var(--mute)] no-underline transition-colors duration-200 hover:text-[var(--orange)] inline-block py-0.5"
                   >
-                    {link.label}
+                    Startup India
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://mdu.ac.in"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-[var(--mute)] no-underline transition-colors duration-200 hover:text-[var(--orange)] inline-block py-0.5"
+                  >
+                    MDU Rohtak
+                  </a>
+                </li>
+                <li>
+                  <Link
+                    href="/privacy"
+                    className="text-sm text-[var(--mute)] no-underline transition-colors duration-200 hover:text-[var(--orange)] inline-block py-0.5"
+                  >
+                    Privacy Policy
                   </Link>
                 </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Col 3: Resources */}
-          <div className="flex flex-col gap-4">
-            <h4 className="font-['Space_Grotesk'] text-sm font-bold text-[var(--ink)] tracking-wider uppercase">
-              Resources
-            </h4>
-            <ul className="flex flex-col gap-2.5 list-none p-0 m-0 font-['Space_Grotesk']">
-              <li>
-                <a
-                  href="https://startupindia.gov.in"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm text-[var(--mute)] no-underline transition-colors duration-200 hover:text-[var(--orange)]"
-                >
-                  Startup India
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://mdu.ac.in"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm text-[var(--mute)] no-underline transition-colors duration-200 hover:text-[var(--orange)]"
-                >
-                  MDU Rohtak
-                </a>
-              </li>
-              <li>
-                <Link
-                  href="/privacy"
-                  className="text-sm text-[var(--mute)] no-underline transition-colors duration-200 hover:text-[var(--orange)]"
-                >
-                  Privacy Policy
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/terms"
-                  className="text-sm text-[var(--mute)] no-underline transition-colors duration-200 hover:text-[var(--orange)]"
-                >
-                  Terms &amp; Conditions
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/admin"
-                  className="text-sm text-[var(--mute)] no-underline transition-colors duration-200 hover:text-[var(--orange)]"
-                >
-                  Admin Panel
-                </Link>
-              </li>
-            </ul>
+                <li>
+                  <Link
+                    href="/terms"
+                    className="text-sm text-[var(--mute)] no-underline transition-colors duration-200 hover:text-[var(--orange)] inline-block py-0.5"
+                  >
+                    Terms
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/admin"
+                    className="text-sm text-[var(--mute)] no-underline transition-colors duration-200 hover:text-[var(--orange)] inline-block py-0.5"
+                  >
+                    Admin Panel
+                  </Link>
+                </li>
+              </ul>
+            </div>
           </div>
 
           {/* Col 4: Contact Details */}
-          <div className="flex flex-col gap-4 font-['Space_Grotesk']">
-            <h4 className="text-sm font-bold text-[var(--ink)] tracking-wider uppercase">
+          <div className="flex flex-col gap-3.5 font-['Space_Grotesk'] pt-4 md:pt-0 border-t border-[var(--line)] md:border-t-0">
+            <h4 className="text-xs font-bold text-[var(--ink)] tracking-wider uppercase">
               Contact Details
             </h4>
-            <div className="flex flex-col gap-2 text-sm text-[var(--mute)] leading-[1.5]">
+            <div className="flex flex-col gap-2.5 text-sm text-[var(--mute)] leading-[1.5]">
               <p className="m-0">UIET Building, MDU Campus, Rohtak, Haryana - 124001</p>
               <p className="m-0">
                 <a href={`mailto:${SITE.email}`} className="text-[var(--ink)] font-semibold no-underline hover:text-[var(--orange)]">
@@ -150,7 +153,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-[var(--line)] flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between text-[13px] text-[var(--mute)] font-['Space_Grotesk']">
+        <div className="pt-8 border-t border-[var(--line)] flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between text-xs text-[var(--mute)] font-['Space_Grotesk'] text-center sm:text-left">
           <p className="m-0">© {new Date().getFullYear()} E-Cell UIET, Maharshi Dayanand University. All rights reserved.</p>
           <p className="m-0">Built by Tech Team E-Cell</p>
         </div>

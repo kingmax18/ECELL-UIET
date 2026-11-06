@@ -29,7 +29,7 @@ export default function TeamPage() {
               className="w-full h-full object-cover opacity-90"
             />
           </div>
-          <div className="relative max-w-[1272px] mx-auto px-6 pt-[160px] pb-[72px] text-center">
+          <div className="relative max-w-[1272px] mx-auto px-5 sm:px-6 pt-[125px] sm:pt-[160px] pb-12 sm:pb-[72px] text-center">
             <h1 className="font-sans font-medium text-[clamp(36px,5.5vw,64px)] leading-[1.08] tracking-[-0.04em] text-ink mb-5 [text-wrap:balance]">
               The drivers behind{' '}
               <span className="font-serif italic font-normal text-[1.05em]">our ecosystem</span>

@@ -51,30 +51,29 @@ export default function CTABanner() {
   };
 
   return (
-    <section className="end" id="join">
+    <section className="end py-16 sm:py-28 px-5 sm:px-[5vw]" id="join">
       <div className="max-w-[1000px] mx-auto">
-        <h2 className="d rv text-[clamp(40px,9vw,130px)] leading-[0.92] text-[#F3F1EA] mb-6">
+        <h2 className="d rv text-[clamp(34px,8vw,120px)] leading-[0.98] sm:leading-[0.92] text-[#F3F1EA] mb-5 sm:mb-6">
           Let’s start<br />from <em>nothin’</em>
         </h2>
 
-        <p className="font-['Space_Grotesk'] text-[clamp(16px,2vw,20px)] text-[#9aa0b8] max-w-[580px] mx-auto mb-10">
+        <p className="font-['Space_Grotesk'] text-[clamp(15px,2vw,20px)] text-[#9aa0b8] max-w-[580px] mx-auto mb-8 sm:mb-10 leading-[1.6]">
           Open to every student across UIET and MDU. Bring your boldest ideas, build real prototypes, and lead on campus.
         </p>
 
         {submitted ? (
-          <div className="rv" style={{ maxWidth: '480px', margin: '30px auto 0', padding: '30px', background: 'rgba(255,255,255,0.08)', borderRadius: '24px', border: '1px solid var(--orange)' }}>
-            <div style={{ color: 'var(--orange)', fontSize: '32px', marginBottom: '12px' }}>✓</div>
-            <h3 className="s" style={{ fontSize: '22px', fontWeight: 700, margin: '0 0 8px', color: '#fff' }}>
+          <div className="rv max-w-[480px] mx-auto my-6 p-6 sm:p-8 bg-white/10 rounded-2xl sm:rounded-3xl border border-[var(--orange)]">
+            <div className="text-[var(--orange)] text-3xl mb-3">✓</div>
+            <h3 className="s text-xl font-bold mb-2 text-white">
               Welcome aboard!
             </h3>
-            <p style={{ color: 'var(--mute)', fontSize: '15px', margin: 0 }}>
+            <p className="text-[var(--mute)] text-sm m-0">
               Your application has been received. Our team will get in touch with you shortly.
             </p>
             <button
               type="button"
-              className="btn o"
+              className="btn o mt-5 text-white border-white/30 hover:bg-white/10 w-full sm:w-auto"
               onClick={() => setSubmitted(false)}
-              style={{ marginTop: '20px', color: '#fff', borderColor: 'rgba(255,255,255,0.3)' }}
             >
               Submit another response
             </button>
@@ -88,6 +87,7 @@ export default function CTABanner() {
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 required
+                className="text-base"
               />
             </div>
             <div>
@@ -97,6 +97,7 @@ export default function CTABanner() {
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 required
+                className="text-base"
               />
             </div>
             <div>
@@ -105,12 +106,14 @@ export default function CTABanner() {
                 placeholder="Branch / Department (e.g. CSE, ECE)"
                 value={formData.branch}
                 onChange={(e) => setFormData({ ...formData, branch: e.target.value })}
+                className="text-base"
               />
             </div>
             <div>
               <select
                 value={formData.year}
                 onChange={(e) => setFormData({ ...formData, year: e.target.value })}
+                className="text-base"
               >
                 <option value="1st Year">1st Year</option>
                 <option value="2nd Year">2nd Year</option>
@@ -126,7 +129,7 @@ export default function CTABanner() {
               </div>
             )}
 
-            <button type="submit" className="btn" disabled={submitting}>
+            <button type="submit" className="btn w-full py-4 text-sm font-bold" disabled={submitting}>
               {submitting ? 'Submitting…' : 'Join E-Cell'}
             </button>
           </form>

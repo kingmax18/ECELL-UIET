@@ -213,6 +213,26 @@ a {
   clip-path: polygon(50% 0, 100% 100%, 0 100%);
 }
 
+@media (max-width: 768px) {
+  .sh {
+    opacity: 0.2;
+    filter: blur(28px);
+  }
+  .sh.a {
+    right: -12vw;
+    top: 6vh;
+    width: 140px;
+  }
+  .sh.b {
+    right: -8vw;
+    bottom: 4vh;
+    width: 110px;
+  }
+  .sh.c {
+    display: none;
+  }
+}
+
 /* ── MARQUEE ────────────────────────────────────────────────── */
 .mq {
   border-block: 1px solid var(--color-border);
@@ -263,6 +283,16 @@ a {
   transition: background 0.3s ease;
 }
 
+@media (max-width: 640px) {
+  .card {
+    padding: 24px 20px;
+    min-height: auto;
+  }
+  .card h3 {
+    font-size: 20px;
+  }
+}
+
 .card:hover {
   background: var(--color-soft);
 }
@@ -302,6 +332,16 @@ a {
   flex-direction: column;
   justify-content: space-between;
   transition: background 0.3s ease;
+}
+
+@media (max-width: 640px) {
+  .team-card {
+    padding: 22px 20px;
+    min-height: auto;
+  }
+  .team-card h3 {
+    font-size: 18px;
+  }
 }
 
 .team-card:hover {
@@ -427,6 +467,14 @@ a {
   position: relative;
   overflow: hidden;
   box-shadow: 0 24px 60px rgba(10, 14, 26, 0.2);
+}
+
+@media (max-width: 640px) {
+  .poster {
+    padding: 24px 20px;
+    aspect-ratio: 16/11;
+    min-height: 220px;
+  }
 }
 
 .poster::after {

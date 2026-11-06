@@ -77,13 +77,14 @@ export default function Navbar() {
 
               <button
                 type="button"
-                className="md:hidden flex flex-col justify-center gap-1.5 w-10 h-10 p-2 rounded-full bg-[rgba(10,14,26,0.06)] border-none cursor-pointer"
+                className="md:hidden flex flex-col justify-center items-center gap-1.5 w-10 h-10 rounded-full bg-zinc-100 hover:bg-zinc-200 active:bg-zinc-300 border-none cursor-pointer transition-colors"
                 onClick={() => setIsMobileOpen(!isMobileOpen)}
                 aria-label="Toggle menu"
                 aria-expanded={isMobileOpen}
               >
-                <span className={`w-full h-0.5 bg-[var(--ink)] rounded-sm transition-transform duration-200 ${isMobileOpen ? 'translate-y-1 rotate-45' : ''}`} />
-                <span className={`w-full h-0.5 bg-[var(--ink)] rounded-sm transition-transform duration-200 ${isMobileOpen ? '-translate-y-1 -rotate-45' : ''}`} />
+                <span className={`w-4 h-0.5 bg-[var(--ink)] rounded-full transition-all duration-200 origin-center ${isMobileOpen ? 'translate-y-2 rotate-45' : ''}`} />
+                <span className={`w-4 h-0.5 bg-[var(--ink)] rounded-full transition-all duration-200 ${isMobileOpen ? 'opacity-0 scale-0' : ''}`} />
+                <span className={`w-4 h-0.5 bg-[var(--ink)] rounded-full transition-all duration-200 origin-center ${isMobileOpen ? '-translate-y-2 -rotate-45' : ''}`} />
               </button>
             </div>
           </nav>

@@ -63,7 +63,7 @@ export default function ApplyPage() {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen bg-[#FDFCF7] dark:bg-[#0B0C0E] text-[#16140f] dark:text-zinc-100 py-12 md:py-20 transition-colors">
+      <main className="min-h-screen bg-[#FDFCF7] dark:bg-[#0B0C0E] text-[#16140f] dark:text-zinc-100 pt-[125px] sm:pt-[160px] pb-16 sm:pb-20 transition-colors">
         <div className="max-w-[840px] mx-auto px-6">
           {/* Header */}
           <div className="text-center mb-12">
@@ -147,7 +147,7 @@ export default function ApplyPage() {
                         value={formData.founderName}
                         onChange={handleChange}
                         placeholder="e.g. Alex Sharma"
-                        className="w-full px-4 py-2.5 rounded-lg border border-zinc-200 dark:border-zinc-700 bg-[#FDFCF7] dark:bg-[#0B0C0E] text-[#16140f] dark:text-white focus:outline-none focus:border-[#FF933E] font-['Outfit',sans-serif] text-sm transition-colors"
+                        className="w-full px-4 py-2.5 rounded-lg border border-zinc-200 dark:border-zinc-700 bg-[#FDFCF7] dark:bg-[#0B0C0E] text-[#16140f] dark:text-white focus:outline-none focus:border-[#FF933E] font-['Outfit',sans-serif] text-base sm:text-sm transition-colors"
                       />
                     </div>
                     <div>
@@ -161,7 +161,7 @@ export default function ApplyPage() {
                         value={formData.email}
                         onChange={handleChange}
                         placeholder="founder@example.com"
-                        className="w-full px-4 py-2.5 rounded-lg border border-zinc-200 dark:border-zinc-700 bg-[#FDFCF7] dark:bg-[#0B0C0E] text-[#16140f] dark:text-white focus:outline-none focus:border-[#FF933E] font-['Outfit',sans-serif] text-sm transition-colors"
+                        className="w-full px-4 py-2.5 rounded-lg border border-zinc-200 dark:border-zinc-700 bg-[#FDFCF7] dark:bg-[#0B0C0E] text-[#16140f] dark:text-white focus:outline-none focus:border-[#FF933E] font-['Outfit',sans-serif] text-base sm:text-sm transition-colors"
                       />
                     </div>
                   </div>
@@ -187,7 +187,7 @@ export default function ApplyPage() {
                         value={formData.companyName}
                         onChange={handleChange}
                         placeholder="e.g. HyperScale AI"
-                        className="w-full px-4 py-2.5 rounded-lg border border-zinc-200 dark:border-zinc-700 bg-[#FDFCF7] dark:bg-[#0B0C0E] text-[#16140f] dark:text-white focus:outline-none focus:border-[#FF933E] font-['Outfit',sans-serif] text-sm transition-colors"
+                        className="w-full px-4 py-2.5 rounded-lg border border-zinc-200 dark:border-zinc-700 bg-[#FDFCF7] dark:bg-[#0B0C0E] text-[#16140f] dark:text-white focus:outline-none focus:border-[#FF933E] font-['Outfit',sans-serif] text-base sm:text-sm transition-colors"
                       />
                     </div>
                     <div>
@@ -198,7 +198,7 @@ export default function ApplyPage() {
                         name="stage"
                         value={formData.stage}
                         onChange={handleChange}
-                        className="w-full px-4 py-2.5 rounded-lg border border-zinc-200 dark:border-zinc-700 bg-[#FDFCF7] dark:bg-[#0B0C0E] text-[#16140f] dark:text-white focus:outline-none focus:border-[#FF933E] font-['Outfit',sans-serif] text-sm transition-colors"
+                        className="w-full px-4 py-2.5 rounded-lg border border-zinc-200 dark:border-zinc-700 bg-[#FDFCF7] dark:bg-[#0B0C0E] text-[#16140f] dark:text-white focus:outline-none focus:border-[#FF933E] font-['Outfit',sans-serif] text-base sm:text-sm transition-colors"
                       >
                         <option>Idea stage / Concept</option>
                         <option>Prototype / MVP in development</option>
@@ -218,7 +218,7 @@ export default function ApplyPage() {
                       value={formData.website}
                       onChange={handleChange}
                       placeholder="https://yourstartup.com or github repo"
-                      className="w-full px-4 py-2.5 rounded-lg border border-zinc-200 dark:border-zinc-700 bg-[#FDFCF7] dark:bg-[#0B0C0E] text-[#16140f] dark:text-white focus:outline-none focus:border-[#FF933E] font-['Outfit',sans-serif] text-sm transition-colors"
+                      className="w-full px-4 py-2.5 rounded-lg border border-zinc-200 dark:border-zinc-700 bg-[#FDFCF7] dark:bg-[#0B0C0E] text-[#16140f] dark:text-white focus:outline-none focus:border-[#FF933E] font-['Outfit',sans-serif] text-base sm:text-sm transition-colors"
                     />
                   </div>
 
@@ -233,7 +233,7 @@ export default function ApplyPage() {
                       value={formData.description}
                       onChange={handleChange}
                       placeholder="In 1-2 clear sentences: What problem are you solving and how? (Avoid jargon)"
-                      className="w-full px-4 py-2.5 rounded-lg border border-zinc-200 dark:border-zinc-700 bg-[#FDFCF7] dark:bg-[#0B0C0E] text-[#16140f] dark:text-white focus:outline-none focus:border-[#FF933E] font-['Outfit',sans-serif] text-sm transition-colors"
+                      className="w-full px-4 py-2.5 rounded-lg border border-zinc-200 dark:border-zinc-700 bg-[#FDFCF7] dark:bg-[#0B0C0E] text-[#16140f] dark:text-white focus:outline-none focus:border-[#FF933E] font-['Outfit',sans-serif] text-base sm:text-sm transition-colors"
                     />
                   </div>
 
@@ -248,7 +248,7 @@ export default function ApplyPage() {
                       value={formData.whyYou}
                       onChange={handleChange}
                       placeholder="Share a unique insight, unfair advantage, or prior obsession with this problem."
-                      className="w-full px-4 py-2.5 rounded-lg border border-zinc-200 dark:border-zinc-700 bg-[#FDFCF7] dark:bg-[#0B0C0E] text-[#16140f] dark:text-white focus:outline-none focus:border-[#FF933E] font-['Outfit',sans-serif] text-sm transition-colors"
+                      className="w-full px-4 py-2.5 rounded-lg border border-zinc-200 dark:border-zinc-700 bg-[#FDFCF7] dark:bg-[#0B0C0E] text-[#16140f] dark:text-white focus:outline-none focus:border-[#FF933E] font-['Outfit',sans-serif] text-base sm:text-sm transition-colors"
                     />
                   </div>
                 </div>

@@ -27,15 +27,15 @@ const pillars = [
 
 export default function ServicesSection() {
   return (
-    <section className="py-[clamp(72px,8vw,110px)] px-[5vw]" id="pillars">
+    <section className="py-[clamp(56px,7vw,110px)] px-5 sm:px-[5vw]" id="pillars">
       <div className="max-w-[1272px] mx-auto">
-        <h2 className="d rv text-[clamp(34px,6vw,84px)] mb-10 text-[var(--ink)]">
+        <h2 className="d rv text-[clamp(32px,6vw,84px)] mb-8 sm:mb-10 text-[var(--ink)]">
           What we build
         </h2>
 
-        <div className="pillars-grid rv">
+        <div className="pillars-grid rv rounded-2xl overflow-hidden shadow-xs">
           {pillars.map((item, idx) => (
-            <div key={idx} className="card">
+            <div key={idx} className="card p-6 sm:p-8">
               <span className="n">{item.num}</span>
               <div>
                 <h3>{item.title}</h3>
