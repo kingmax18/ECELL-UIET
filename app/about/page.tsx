@@ -6,13 +6,10 @@ import Footer from '@/components/layout/Footer';
 import VisionMission from '@/components/about/VisionMission';
 import OurStory from '@/components/about/OurStory';
 import CoreValues from '@/components/about/CoreValues';
-import GalleryGrid from '@/components/about/GalleryGrid';
 import CTABanner from '@/components/home/CTABanner';
-import { useData } from '@/context/DataProvider';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 
 export default function AboutPage() {
-  const { gallery } = useData();
   useScrollReveal();
 
   return (
@@ -29,9 +26,7 @@ export default function AboutPage() {
             />
           </div>
           <div className="relative max-w-[1272px] mx-auto px-6 pt-[160px] pb-[72px] text-center">
-            <div className="inline-flex py-1.5 px-4 bg-white border border-border rounded-pill text-xs font-medium uppercase tracking-[0.08em] text-secondary mb-5">
-              UIET E-Cell · Overview
-            </div>
+           
             <h1 className="font-sans font-medium text-[clamp(36px,5.5vw,64px)] leading-[1.08] tracking-[-0.04em] text-ink mb-5 [text-wrap:balance]">
               Inspiring a generation of{' '}
               <span className="font-serif italic font-normal text-[1.05em]">changemakers</span>
@@ -46,7 +41,6 @@ export default function AboutPage() {
         <VisionMission />
         <OurStory />
         <CoreValues />
-        <GalleryGrid gallery={gallery} />
         <CTABanner />
       </main>
       <Footer />

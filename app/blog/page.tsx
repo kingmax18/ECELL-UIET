@@ -153,7 +153,7 @@ export default function BlogPage() {
                     setSelectedCategory('All');
                     setSearchQuery('');
                   }}
-                  className="yc-btn-secondary text-xs"
+                  className="inline-flex items-center gap-1.5 bg-[#1b1d1e] text-white text-xs font-semibold py-2 px-4 rounded-full hover:bg-[#4928fd] transition-colors cursor-pointer"
                 >
                   Reset Filters
                 </button>

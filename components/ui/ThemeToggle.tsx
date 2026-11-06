@@ -38,7 +38,7 @@ export function ThemeToggle({ className = '', showLabel = false }: ThemeTogglePr
       {isDark ? (
         /* Sun Icon */
         <svg
-          className="w-4 h-4 transition-transform duration-300 group-hover:rotate-45 text-[#FF6600]"
+          className="w-4 h-4 transition-transform duration-300 group-hover:rotate-45 text-[#FF933E]"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"

@@ -1,9 +1,10 @@
 'use client';
 
 import React, { useState } from 'react';
-import { RiSearchLine, RiFileDownloadLine, RiCloseLine, RiCheckLine, RiCloseCircleLine, RiTimeLine } from 'react-icons/ri';
+import { RiSearchLine, RiFileDownloadLine, RiRefreshLine, RiCloseLine, RiCheckLine, RiCloseCircleLine, RiTimeLine } from 'react-icons/ri';
 import Button from '@/components/ui/Button';
 import { useToast } from '@/context/ToastProvider';
+import { useData } from '@/context/DataProvider';
 import { PageHeader, StatusBadge, EmptyState, FilterPills, adminCard, adminTd, adminTh } from './ui';
 import { adminFetch } from '@/lib/adminApi';
 import type { Application } from '@/lib/types';
@@ -19,6 +20,7 @@ export default function ApplicationsManager({
   setApplications?: Dispatch<SetStateAction<Application[]>>;
 }) {
   const { showToast } = useToast();
+  const { fetchApplications } = useData();
   const [filter, setFilter] = useState('All');
   const [query, setQuery] = useState('');
   const [selectedId, setSelectedId] = useState<string | number | null>(null);
@@ -78,14 +80,27 @@ export default function ApplicationsManager({
         title="Recruitment Intake & Review"
         subtitle="Evaluate prospective members, filter by department, and track applicant decisions."
         action={
-          <button
-            type="button"
-            onClick={exportCSV}
-            className="inline-flex items-center gap-2 py-2 px-3.5 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#141720] text-zinc-800 dark:text-zinc-200 hover:border-[#FF6600]/50 hover:text-[#FF6600] text-xs font-semibold shadow-xs transition-all cursor-pointer"
-          >
-            <RiFileDownloadLine size={15} />
-            <span>Export CSV</span>
-          </button>
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={async () => {
+                await fetchApplications();
+                showToast('Applications refreshed from database', 'info');
+              }}
+              className="inline-flex items-center gap-1.5 py-2 px-3 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#141720] text-zinc-800 dark:text-zinc-200 hover:border-[#FF6600]/50 hover:text-[#FF6600] text-xs font-semibold shadow-xs transition-all cursor-pointer"
+            >
+              <RiRefreshLine size={15} />
+              <span>Refresh</span>
+            </button>
+            <button
+              type="button"
+              onClick={exportCSV}
+              className="inline-flex items-center gap-2 py-2 px-3.5 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#141720] text-zinc-800 dark:text-zinc-200 hover:border-[#FF6600]/50 hover:text-[#FF6600] text-xs font-semibold shadow-xs transition-all cursor-pointer"
+            >
+              <RiFileDownloadLine size={15} />
+              <span>Export CSV</span>
+            </button>
+          </div>
         }
       />
 

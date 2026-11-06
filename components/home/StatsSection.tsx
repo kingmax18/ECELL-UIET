@@ -2,39 +2,6 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 
-const ROTATING_WORDS = ['Creativity.', 'Innovation.', 'Strategy.'];
-
-function RotatingWord() {
-  const [index, setIndex] = useState(0);
-  const [leaving, setLeaving] = useState(false);
-
-  useEffect(() => {
-    let timer: ReturnType<typeof setTimeout>;
-    const cycle = setInterval(() => {
-      setLeaving(true);
-      timer = setTimeout(() => {
-        setIndex((i) => (i + 1) % ROTATING_WORDS.length);
-        setLeaving(false);
-      }, 450);
-    }, 2600);
-
-    return () => {
-      clearInterval(cycle);
-      clearTimeout(timer);
-    };
-  }, []);
-
-  return (
-    <span className="inline-block relative whitespace-nowrap">
-      <span
-        className={`inline-block font-serif italic font-normal tracking-[-0.01em] text-ink ${leaving ? 'word-out' : 'word-in'}`}
-      >
-        {ROTATING_WORDS[index]}
-      </span>
-    </span>
-  );
-}
-
 function CountUp({ value }: { value: number }) {
   const ref = useRef<HTMLSpanElement>(null);
   const [display, setDisplay] = useState(0);
@@ -86,37 +53,39 @@ function CountUp({ value }: { value: number }) {
 
 interface StatsSectionProps {
   stats?: {
-    members?: { value?: number };
-    events?: { value?: number };
-    startups?: { value?: number };
-    years?: { value?: number };
+    members?: { value?: number; label?: string };
+    events?: { value?: number; label?: string };
+    startups?: { value?: number; label?: string };
+    years?: { value?: number; label?: string };
   };
 }
 
 export default function StatsSection({ stats }: StatsSectionProps) {
   const statList = [
-    { value: stats?.members?.value || 250, label: stats?.members?.label || 'Students Engaged' },
-    { value: stats?.events?.value || 2, label: stats?.events?.label || 'Eureka Editions' },
-    { value: stats?.startups?.value || 20, label: stats?.startups?.label || 'Pitch Submissions' },
-    { value: stats?.years?.value || 5, label: stats?.years?.label || 'Core Departments' },
+    { value: stats?.members?.value || 250, label: stats?.members?.label || 'Students Engaged', suffix: '+' },
+    { value: stats?.events?.value || 2, label: stats?.events?.label || 'Eureka Editions', suffix: '' },
+    { value: stats?.startups?.value || 20, label: stats?.startups?.label || 'Pitch Submissions', suffix: '+' },
+    { value: stats?.years?.value || 6, label: stats?.years?.label || 'Active Departments', suffix: '' },
   ];
 
   return (
-    <section className="py-[clamp(56px,7vw,80px)]">
-      <div className="max-w-[1272px] mx-auto px-6">
-        <h2 className="reveal font-sans font-medium text-[clamp(28px,4vw,44px)] leading-[1.2] tracking-[-0.035em] text-ink text-center max-w-[960px] mx-auto mb-[72px] [text-wrap:balance]">
-          <span className="block">Fostering an ecosystem of creative thinkers, builders,</span>
-          <span className="block">and student entrepreneurs with <RotatingWord /></span>
-        </h2>
+    <section className="py-[clamp(72px,8vw,110px)] px-[5vw]" id="about">
+      <div className="max-w-[1272px] mx-auto">
+        <p className="big rv mb-16">
+          Entrepreneurship isn’t a department.{' '}
+          <span>It’s a way of looking at problems, and it belongs to every student, whatever they study.</span>
+        </p>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-12">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 pt-10 border-t border-[var(--line)]">
           {statList.map((stat, idx) => (
-            <div key={idx} className="reveal text-center">
-              <div className="flex items-start justify-center font-sans font-medium text-[clamp(64px,8vw,112px)] leading-none tracking-[-0.045em] text-ink mb-4 [font-variant-numeric:tabular-nums]">
-                <span className="text-[0.5em] leading-[1.5] mt-[5px] mr-1.5 font-medium text-ink">+</span>
+            <div key={idx} className="reveal">
+              <div className="font-['Space_Grotesk'] font-bold text-[clamp(48px,6vw,84px)] leading-none tracking-[-0.03em] text-[var(--ink)] mb-3 [font-variant-numeric:tabular-nums]">
                 <CountUp value={stat.value} />
+                {stat.suffix && <span className="text-[var(--orange)] ml-0.5">{stat.suffix}</span>}
               </div>
-              <div className="text-base font-medium leading-[1.4] text-secondary">{stat.label}</div>
+              <div className="font-['Space_Grotesk'] text-sm sm:text-base font-medium text-[var(--mute)]">
+                {stat.label}
+              </div>
             </div>
           ))}
         </div>

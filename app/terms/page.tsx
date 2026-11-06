@@ -26,7 +26,7 @@ export default function TermsPage() {
             <section>
               <h2 className={sectionClass}>1. Acceptance of Terms</h2>
               <p className={textClass}>
-                By accessing or using the UIET E-Cell website (ecellmdu.in) and participating in our
+                By accessing or using the UIET E-Cell website (ecellmdu.online) and participating in our
                 competitions, workshops, and membership programs, you agree to comply with these terms.
               </p>
             </section>

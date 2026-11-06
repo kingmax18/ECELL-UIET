@@ -1,6 +1,6 @@
 import React from 'react';
 
-type BadgeColor = 'orange' | 'blue' | 'pink' | 'green' | 'lilac' | 'purple';
+type BadgeColor = 'orange' | 'blue' | 'yellow' | 'cream' | 'pink' | 'green' | 'lilac' | 'purple';
 
 interface CategoryBadgeProps {
   children: React.ReactNode;
@@ -9,12 +9,14 @@ interface CategoryBadgeProps {
 }
 
 const COLORS: Record<BadgeColor, string> = {
-  orange: 'bg-porangebg text-porangedeep',
-  blue: 'bg-pbluebg text-pbluedeep',
-  pink: 'bg-ppinkbg text-ppinkdeep',
-  green: 'bg-pgreenbg text-pgreendeep',
-  lilac: 'bg-plilacbg text-plilacdeep',
-  purple: 'bg-plilacbg text-plilacdeep',
+  orange: 'bg-porangebg text-porangedeep border border-[#ff933e]/20',
+  blue: 'bg-pbluebg text-pbluedeep border border-[#73a5ca]/25',
+  yellow: 'bg-pyellowbg text-pyellowdeep border border-[#ffcb56]/30',
+  cream: 'bg-pcreambg text-porangedeep border border-[#ffe9a9]/40',
+  pink: 'bg-porangebg text-porangedeep border border-[#ff933e]/20',
+  green: 'bg-pgreenbg text-pgreendeep border border-pgreen/30',
+  lilac: 'bg-pbluebg text-pbluedeep border border-[#73a5ca]/25',
+  purple: 'bg-pbluebg text-pbluedeep border border-[#73a5ca]/25',
 };
 
 export default function CategoryBadge({ children, color = 'purple', className = '' }: CategoryBadgeProps) {

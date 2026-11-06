@@ -73,11 +73,13 @@ export async function POST(request: Request) {
     }
 
     const body = await request.json();
-    const { name, email, phone, enrollment, branchYear, deptInterest, whyJoin, linkedin } = body;
+    const { name, email, phone, enrollment, branchYear, deptInterest, whyJoin, linkedin, branch, year } = body;
 
-    if (!name || !email || !phone || !branchYear || !deptInterest || !whyJoin) {
+    const resolvedBranchYear = (branchYear || `${branch || ''} ${year || ''}`).trim();
+
+    if (!name || !email) {
       return NextResponse.json(
-        { success: false, error: 'Please provide all required fields' },
+        { success: false, error: 'Please provide your name and email address' },
         { status: 400 }
       );
     }
@@ -95,11 +97,11 @@ export async function POST(request: Request) {
       data: {
         name: name.trim(),
         email: email.trim().toLowerCase(),
-        phone: phone.trim(),
+        phone: phone ? phone.trim() : 'N/A',
         enrollment: enrollment ? enrollment.trim() : null,
-        branchYear: branchYear.trim(),
-        deptInterest: deptInterest.trim(),
-        whyJoin: whyJoin.trim(),
+        branchYear: resolvedBranchYear || 'Student',
+        deptInterest: deptInterest ? deptInterest.trim() : 'General',
+        whyJoin: whyJoin ? whyJoin.trim() : 'Joined via homepage form',
         linkedin: linkedin ? linkedin.trim() : null,
         status: 'Pending',
       },

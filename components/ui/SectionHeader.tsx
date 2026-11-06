@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 
 interface SectionHeaderProps {
@@ -24,22 +26,22 @@ export default function SectionHeader({
       className={`reveal mb-10 md:mb-14 ${centered ? 'text-center mx-auto max-w-3xl' : 'text-left max-w-2xl'} ${className}`}
     >
       {badge && (
-        <div className="inline-flex items-center gap-1.5 bg-white border border-border rounded-pill px-4 py-1.5 text-xs font-medium uppercase tracking-[0.08em] text-secondary mb-4">
-          {badge}
+        <div className="lab mb-3">
+          ( {badge} )
         </div>
       )}
 
-      <h2 className="font-sans font-medium text-[clamp(30px,4.4vw,48px)] leading-[1.1] tracking-[-0.04em] text-ink mb-4">
+      <h2 className="d text-[clamp(32px,5vw,56px)] leading-[1.02] tracking-[-0.02em] text-[var(--ink)] mb-4">
         {title}{' '}
         {italicTitle && (
-          <span className="font-serif italic font-normal tracking-[-0.01em] text-ink text-[1.05em]">
+          <em className="text-[var(--orange)]" style={{ fontStyle: 'normal' }}>
             {italicTitle}
-          </span>
+          </em>
         )}
       </h2>
 
       {subtitle && (
-        <p className="text-[clamp(15px,1.8vw,17px)] font-normal leading-[1.6] text-secondary">
+        <p className="font-['Space_Grotesk'] text-[clamp(15px,1.8vw,18px)] font-normal leading-[1.6] text-[var(--mute)]">
           {subtitle}
         </p>
       )}

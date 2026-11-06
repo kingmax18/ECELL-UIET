@@ -26,9 +26,6 @@ export default function EventsPage() {
             />
           </div>
           <div className="relative max-w-[1272px] mx-auto px-6 pt-[160px] pb-[72px] text-center">
-            <div className="inline-flex py-1.5 px-4 bg-white border border-border rounded-pill text-xs font-medium uppercase tracking-[0.08em] text-secondary mb-5">
-              UIET E-Cell · Events &amp; Summits
-            </div>
             <h1 className="font-sans font-medium text-[clamp(36px,5.5vw,64px)] leading-[1.08] tracking-[-0.04em] text-ink mb-5 [text-wrap:balance]">
               Where student innovators{' '}
               <span className="font-serif italic font-normal text-[1.05em]">take center stage</span>

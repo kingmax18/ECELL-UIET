@@ -4,8 +4,13 @@ import { useEffect } from 'react';
 
 export function useScrollReveal() {
   useEffect(() => {
-    if (typeof window === 'undefined' || !('IntersectionObserver' in window)) {
-      document.querySelectorAll('.reveal').forEach((el) => el.classList.add('visible'));
+    if (typeof window === 'undefined') return;
+
+    // Immediately reveal all elements initially so nothing is stuck invisible
+    const elements = document.querySelectorAll('.reveal, .rv');
+    
+    if (!('IntersectionObserver' in window)) {
+      elements.forEach((el) => el.classList.add('visible'));
       return;
     }
 
@@ -19,15 +24,20 @@ export function useScrollReveal() {
         });
       },
       {
-        rootMargin: '0px 0px -40px 0px',
+        rootMargin: '0px 0px -20px 0px',
         threshold: 0.05,
       }
     );
 
-    const elements = document.querySelectorAll('.reveal');
     elements.forEach((el) => observer.observe(el));
 
+    // Safety fallback: reveal all elements after 800ms to guarantee nothing stays blank
+    const timer = setTimeout(() => {
+      document.querySelectorAll('.reveal, .rv').forEach((el) => el.classList.add('visible'));
+    }, 800);
+
     return () => {
+      clearTimeout(timer);
       elements.forEach((el) => observer.unobserve(el));
     };
   }, []);

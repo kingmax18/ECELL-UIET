@@ -7,6 +7,7 @@ import Footer from '@/components/layout/Footer';
 import CTABanner from '@/components/home/CTABanner';
 import BlogCard from '@/components/blog/BlogCard';
 import ShareButton from '@/components/blog/ShareButton';
+import Button from '@/components/ui/Button';
 import ScrollRevealEffect from '@/components/ui/ScrollRevealEffect';
 import { blogs as defaultBlogs } from '@/data/blogs';
 import { prisma } from '@/lib/prisma';
@@ -103,52 +104,60 @@ export default async function BlogPostPage({
     <>
       <Navbar />
       <ScrollRevealEffect />
-      <main className="bg-white dark:bg-[#0B0C0E] min-h-screen text-zinc-900 dark:text-zinc-100">
-        {/* Article Header & Hero */}
-        <article className="pt-12 pb-16">
-          <div className="max-w-[760px] mx-auto px-4 sm:px-6">
+      <main className="bg-white min-h-screen text-ink">
+        {/* Article Header & Ambient Hero */}
+        <header className="relative overflow-hidden bg-white pt-[140px] pb-10 border-b border-border">
+          <div className="absolute inset-0 pointer-events-none overflow-hidden bg-[linear-gradient(71deg,rgba(115,165,202,0.18)_11%,rgba(255,233,169,0.3)_45.7%,rgba(255,255,255,0.6)_64.5%,rgba(255,147,62,0.18)_100%)] [mask-image:linear-gradient(to_bottom,black_60%,transparent_96%)] [-webkit-mask-image:linear-gradient(to_bottom,black_60%,transparent_96%)]">
+            <img
+              src="/assets/images/ntUDPbezGATca4W8ayYcVbeQbM.svg"
+              alt=""
+              className="w-full h-full object-cover opacity-90"
+            />
+          </div>
+
+          <div className="relative max-w-[820px] mx-auto px-6">
             {/* Breadcrumbs */}
-            <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs font-mono text-zinc-400 mb-6">
-              <Link href="/" className="hover:text-zinc-900 dark:hover:text-white transition-colors no-underline">
+            <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs font-mono text-muted mb-6">
+              <Link href="/" className="hover:text-ink transition-colors no-underline">
                 Home
               </Link>
               <span>/</span>
-              <Link href="/blog" className="hover:text-zinc-900 dark:hover:text-white transition-colors no-underline">
+              <Link href="/blog" className="hover:text-ink transition-colors no-underline">
                 Library
               </Link>
               <span>/</span>
-              <span className="text-[#FF6600] truncate max-w-[200px]">{post.category}</span>
+              <span className="text-[#FF933E] font-medium truncate max-w-[200px]">{post.category}</span>
             </nav>
 
             {/* Category & Read Time */}
-            <div className="flex flex-wrap items-center gap-2.5 mb-4">
-              <span className="text-[11px] font-mono font-medium text-[#FF6600] bg-orange-50 dark:bg-orange-950/40 px-2 py-0.5 rounded border border-orange-200 dark:border-orange-900/60 uppercase">
+            <div className="flex flex-wrap items-center gap-3 mb-5">
+              <span className="text-[11px] font-mono font-medium text-[#B85507] bg-[#FFF3EA] py-1 px-3 rounded-pill border border-[#FFCB56]/40 uppercase tracking-wider">
                 {post.category}
               </span>
-              <span className="text-xs font-mono text-zinc-400">
+              <span className="text-xs font-mono text-muted">
                 {post.publishedAt} · {post.readTime}
               </span>
             </div>
 
             {/* Article Headline */}
-            <h1 className="font-serif font-normal text-[clamp(28px,4.5vw,48px)] leading-[1.15] tracking-tight text-zinc-950 dark:text-white mb-5 [text-wrap:balance]">
+            <h1 className="font-sans font-medium text-[clamp(32px,5vw,52px)] leading-[1.12] tracking-[-0.04em] text-ink mb-6 [text-wrap:balance]">
               {post.title}
             </h1>
 
             {/* Excerpt Lead */}
-            <p className="text-[clamp(16px,1.8vw,19px)] leading-relaxed text-zinc-600 dark:text-zinc-350 font-normal mb-8">
+            <p className="text-[clamp(17px,2vw,20px)] leading-[1.6] text-secondary font-normal mb-8 max-w-[760px]">
               {post.excerpt}
             </p>
 
             {/* Author Byline & Share Button */}
-            <div className="flex items-center justify-between py-4 border-y border-zinc-200 dark:border-zinc-800 gap-4 flex-wrap">
+            <div className="flex items-center justify-between py-4 border-t border-border gap-4 flex-wrap">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-zinc-100 dark:bg-zinc-800 text-[#FF6600] border border-zinc-200 dark:border-zinc-700 font-bold flex items-center justify-center text-sm">
+                <div className="w-10 h-10 rounded-full bg-[#EBF3F8] text-[#2C5E83] border border-[#73A5CA]/25 font-bold flex items-center justify-center text-sm">
                   {post.author.name.charAt(0)}
                 </div>
                 <div>
-                  <div className="font-semibold text-sm text-zinc-900 dark:text-white">{post.author.name}</div>
-                  <div className="text-xs text-zinc-500 dark:text-zinc-400">{post.author.role}</div>
+                  <div className="font-sans font-semibold text-sm text-ink">{post.author.name}</div>
+                  <div className="text-xs text-secondary">{post.author.role}</div>
                 </div>
               </div>
 
@@ -158,20 +167,22 @@ export default async function BlogPostPage({
 
             {/* Cover Image Banner (only if image URL is provided) */}
             {post.coverImage && post.coverImage.trim() !== '' && (
-              <div className="mt-8 rounded-xl overflow-hidden border border-zinc-200 dark:border-zinc-800 shadow-sm bg-zinc-100 dark:bg-zinc-900">
+              <div className="mt-8 rounded-panel overflow-hidden border border-border shadow-[0_4px_24px_rgba(27,29,30,0.06)] bg-[#f8fafc]">
                 <img
                   src={post.coverImage}
                   alt={post.title}
-                  className="w-full h-auto max-h-[460px] object-cover"
+                  className="w-full h-auto max-h-[480px] object-cover"
                   loading="lazy"
                 />
               </div>
             )}
           </div>
+        </header>
 
-          {/* Article Body Content */}
-          <div className="max-w-[760px] mx-auto px-4 sm:px-6 mt-8">
-            <div className="prose prose-zinc dark:prose-invert max-w-none text-zinc-700 dark:text-zinc-300 font-normal leading-[1.8] space-y-6 text-[16px] sm:text-[17px]">
+        {/* Article Body Content */}
+        <article className="py-12 sm:py-16">
+          <div className="max-w-[820px] mx-auto px-6">
+            <div className="prose max-w-none text-[#2d3134] font-normal leading-[1.8] space-y-7 text-[17px] sm:text-[18px]">
               {post.content.split('\n\n').map((paragraph, index) => {
                 const trimmed = paragraph.trim();
 
@@ -180,7 +191,7 @@ export default async function BlogPostPage({
                   return (
                     <h2
                       key={index}
-                      className="font-serif font-normal text-2xl sm:text-3xl text-zinc-950 dark:text-white pt-6 pb-2 border-b border-zinc-200 dark:border-zinc-800"
+                      className="font-sans font-medium text-2xl sm:text-3xl text-ink pt-8 pb-3 border-b border-border tracking-[-0.02em]"
                     >
                       {trimmed.replace('## ', '')}
                     </h2>
@@ -192,8 +203,9 @@ export default async function BlogPostPage({
                   return (
                     <h3
                       key={index}
-                      className="font-sans font-bold text-lg sm:text-xl text-[#FF6600] pt-3"
+                      className="font-sans font-semibold text-lg sm:text-xl text-ink pt-4 tracking-[-0.015em]"
                     >
+                      <span className="text-[#FF933E] mr-1.5">•</span>
                       {trimmed.replace('### ', '')}
                     </h3>
                   );
@@ -208,7 +220,7 @@ export default async function BlogPostPage({
                   return (
                     <blockquote
                       key={index}
-                      className="border-l-2 border-[#FF6600] py-3 pl-5 text-lg font-serif italic text-zinc-900 dark:text-zinc-100 my-6 bg-orange-50/30 dark:bg-orange-950/20 rounded-r"
+                      className="border-l-4 border-[#FF933E] bg-[#FFF8E8] py-4 px-6 rounded-r-card text-[18px] sm:text-[19px] font-serif italic text-ink my-8 shadow-xs"
                     >
                       {quoteLines}
                     </blockquote>
@@ -219,15 +231,15 @@ export default async function BlogPostPage({
                 if (trimmed.startsWith('- ') || trimmed.startsWith('1. ') || trimmed.startsWith('* ')) {
                   const items = trimmed.split('\n');
                   return (
-                    <ul key={index} className="space-y-2 my-4 pl-5 list-disc text-zinc-700 dark:text-zinc-300 marker:text-[#FF6600]">
+                    <ul key={index} className="space-y-2.5 my-5 pl-6 list-disc text-[#2d3134] marker:text-[#FF933E]">
                       {items.map((it, idx) => (
                         <li key={idx} className="leading-relaxed">
                           <span
                             dangerouslySetInnerHTML={{
                               __html: it
                                 .replace(/^(\d+\.|\-|\*)\s*/, '')
-                                .replace(/\*\*(.*?)\*\*/g, '<strong class="text-zinc-950 dark:text-white font-semibold">$1</strong>')
-                                .replace(/\*(.*?)\*/g, '<em class="text-[#FF6600]">$1</em>'),
+                                .replace(/\*\*(.*?)\*\*/g, '<strong class="text-ink font-semibold">$1</strong>')
+                                .replace(/\*(.*?)\*/g, '<em class="italic text-[#B85507]">$1</em>'),
                             }}
                           />
                         </li>
@@ -238,18 +250,18 @@ export default async function BlogPostPage({
 
                 // Horizontal Rule
                 if (trimmed === '---') {
-                  return <hr key={index} className="my-8 border-zinc-200 dark:border-zinc-800" />;
+                  return <hr key={index} className="my-10 border-border" />;
                 }
 
                 // Standard Paragraph
                 return (
                   <p
                     key={index}
-                    className="leading-relaxed text-zinc-700 dark:text-zinc-300"
+                    className="leading-[1.8] text-[#2d3134]"
                     dangerouslySetInnerHTML={{
                       __html: trimmed
-                        .replace(/\*\*(.*?)\*\*/g, '<strong class="text-zinc-950 dark:text-white font-semibold">$1</strong>')
-                        .replace(/\*(.*?)\*/g, '<em class="italic text-[#FF6600]">$1</em>'),
+                        .replace(/\*\*(.*?)\*\*/g, '<strong class="text-ink font-semibold">$1</strong>')
+                        .replace(/\*(.*?)\*/g, '<em class="italic text-[#B85507]">$1</em>'),
                     }}
                   />
                 );
@@ -258,14 +270,14 @@ export default async function BlogPostPage({
 
             {/* Tags Strip */}
             {post.tags && post.tags.length > 0 && (
-              <div className="mt-12 pt-6 border-t border-zinc-200 dark:border-zinc-800 flex flex-wrap items-center gap-2">
-                <span className="text-xs font-mono text-zinc-400 uppercase mr-2">
+              <div className="mt-12 pt-6 border-t border-border flex flex-wrap items-center gap-2">
+                <span className="text-xs font-mono text-muted uppercase mr-2">
                   Tagged in:
                 </span>
                 {post.tags.map((t) => (
                   <span
                     key={t}
-                    className="bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 text-xs font-mono py-1 px-2.5 rounded border border-zinc-200 dark:border-zinc-700"
+                    className="bg-soft text-secondary text-xs font-mono py-1 px-3 rounded-pill border border-border"
                   >
                     #{t}
                   </span>
@@ -274,49 +286,43 @@ export default async function BlogPostPage({
             )}
 
             {/* Author Box Bio Card */}
-            <div className="mt-10 bg-[#FAFAF8] dark:bg-[#14161C] border border-zinc-200 dark:border-zinc-800 rounded-lg p-6 flex flex-col sm:flex-row gap-5 items-start sm:items-center justify-between">
+            <div className="mt-12 bg-[#fafaf9] border border-border rounded-panel p-6 sm:p-8 flex flex-col sm:flex-row gap-5 items-start sm:items-center justify-between shadow-xs">
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-zinc-200 dark:bg-zinc-700 text-[#FF6600] font-bold flex items-center justify-center shrink-0 text-base">
+                <div className="w-14 h-14 rounded-full bg-[#EBF3F8] text-[#2C5E83] border border-[#73A5CA]/25 font-bold flex items-center justify-center shrink-0 text-lg">
                   {post.author.name.charAt(0)}
                 </div>
                 <div>
-                  <div className="font-semibold text-sm text-zinc-950 dark:text-white">{post.author.name}</div>
-                  <div className="text-xs font-mono text-[#FF6600] mb-0.5">{post.author.role}</div>
-                  <div className="text-xs text-zinc-500">
-                    E-Cell Incubator Network · UIET MDU
+                  <div className="font-sans font-semibold text-base text-ink">{post.author.name}</div>
+                  <div className="text-xs font-mono text-[#B85507] mb-1">{post.author.role}</div>
+                  <div className="text-xs text-muted">
+                    E-Cell Incubator Network · UIET MDU Rohtak
                   </div>
                 </div>
               </div>
 
-              <Link
-                href="/contact"
-                className="yc-btn-secondary text-xs shrink-0 py-1.5 px-3"
-              >
+              <Button href="/contact" variant="blue" size="sm" arrow>
                 Connect with Author
-              </Link>
+              </Button>
             </div>
           </div>
         </article>
 
         {/* Related Articles Section */}
         {relatedPosts.length > 0 && (
-          <section className="py-16 bg-[#FAFAF8] dark:bg-[#0E1015] border-t border-zinc-200 dark:border-zinc-800">
-            <div className="max-w-[1280px] mx-auto px-4 sm:px-6">
-              <div className="flex items-center justify-between mb-8 pb-4 border-b border-zinc-200 dark:border-zinc-800">
+          <section className="py-16 bg-[#fafaf9] border-t border-border">
+            <div className="max-w-[1272px] mx-auto px-6">
+              <div className="flex items-center justify-between mb-8 pb-4 border-b border-border flex-wrap gap-4">
                 <div>
-                  <div className="text-[11px] font-mono uppercase tracking-widest text-[#FF6600] font-bold mb-1">
-                    MORE ESSAYS
+                  <div className="text-[11px] font-mono uppercase tracking-widest text-[#B85507] font-semibold mb-1">
+                    More Essays
                   </div>
-                  <h2 className="font-serif font-normal text-2xl text-zinc-950 dark:text-white">
-                    Continue reading from the incubator.
+                  <h2 className="font-sans font-medium text-2xl sm:text-3xl text-ink tracking-[-0.02em]">
+                    Continue reading from the incubator
                   </h2>
                 </div>
-                <Link
-                  href="/blog"
-                  className="yc-btn-secondary text-xs"
-                >
-                  View All Essays →
-                </Link>
+                <Button href="/blog" variant="white" size="sm" arrow>
+                  View All Essays
+                </Button>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

@@ -7,7 +7,6 @@ export default function CoreValues() {
     <section className="py-[clamp(56px,7vw,80px)]">
       <div className="max-w-[1272px] mx-auto px-6">
         <SectionHeader
-          badge="Guiding Principles"
           title="The core values that shape"
           italicTitle="our culture"
           subtitle="How we collaborate, execute, and build high-impact programs for the university."

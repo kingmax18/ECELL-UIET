@@ -41,6 +41,7 @@ interface DataContextValue {
   setSettings: Dispatch<SetStateAction<SiteSettings>>;
   applications: Application[];
   setApplications: Dispatch<SetStateAction<Application[]>>;
+  fetchApplications: () => Promise<void>;
   blogs: BlogPost[];
   setBlogs: Dispatch<SetStateAction<BlogPost[]>>;
   isLoading: boolean;
@@ -69,6 +70,7 @@ const DataContext = createContext<DataContextValue>({
   setSettings: () => {},
   applications: [],
   setApplications: () => {},
+  fetchApplications: async () => {},
   blogs: defaultBlogs,
   setBlogs: () => {},
   isLoading: false,
@@ -214,18 +216,30 @@ export function DataProvider({ children }: { children: ReactNode }) {
     }
   }, [events, team, founders, sponsors, stats, gallery, faculty, settings, applications, blogs, initialized]);
 
+  const fetchApplications = async () => {
+    try {
+      const { adminFetch } = await import('@/lib/adminApi');
+      const res = await adminFetch('/api/applications');
+      const json = await res.json();
+      if (res.ok && json.success && Array.isArray(json.data)) {
+        setApplications(json.data);
+      }
+    } catch (err) {
+      console.warn('[DataProvider] Applications fetch warning:', err);
+    }
+  };
+
   const fetchLiveAPI = async () => {
     try {
       setIsLoading(true);
 
-      const [eventsRes, blogsRes, teamRes, sponsorsRes, galleryRes, settingsRes, appsRes] = await Promise.allSettled([
+      const [eventsRes, blogsRes, teamRes, sponsorsRes, galleryRes, settingsRes] = await Promise.allSettled([
         fetch('/api/events', { cache: 'no-store' }).then((r) => r.json()),
         fetch('/api/blogs', { cache: 'no-store' }).then((r) => r.json()),
         fetch('/api/team', { cache: 'no-store' }).then((r) => r.json()),
         fetch('/api/sponsors', { cache: 'no-store' }).then((r) => r.json()),
         fetch('/api/gallery', { cache: 'no-store' }).then((r) => r.json()),
         fetch('/api/settings', { cache: 'no-store' }).then((r) => r.json()),
-        fetch('/api/applications', { cache: 'no-store' }).then((r) => r.json()),
       ]);
 
       if (eventsRes.status === 'fulfilled' && eventsRes.value?.success && eventsRes.value.data?.length > 0) {
@@ -277,9 +291,6 @@ export function DataProvider({ children }: { children: ReactNode }) {
           startups: { value: s.statStartups ?? 20, label: 'Pitch Submissions', suffix: '+' },
           years: { value: 5, label: 'Core Departments', suffix: '' },
         });
-      }
-      if (appsRes.status === 'fulfilled' && appsRes.value?.success && appsRes.value.data) {
-        setApplications(appsRes.value.data);
       }
     } catch (err) {
       console.warn('[DataProvider] Neon API fetch note:', err);
@@ -381,6 +392,7 @@ export function DataProvider({ children }: { children: ReactNode }) {
         setSettings,
         applications,
         setApplications,
+        fetchApplications,
         blogs,
         setBlogs,
         isLoading,

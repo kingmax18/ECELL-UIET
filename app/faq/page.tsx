@@ -3,7 +3,6 @@
 import React, { useState } from 'react';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
-import TopBanner from '@/components/layout/TopBanner';
 import Link from 'next/link';
 
 interface FAQItem {
@@ -69,7 +68,6 @@ export default function FAQPage() {
 
   return (
     <>
-      <TopBanner />
       <Navbar />
       <main className="min-h-screen bg-[#FDFCF7] dark:bg-[#0B0C0E] text-[#16140f] dark:text-zinc-100 py-12 md:py-20 transition-colors">
         <div className="max-w-[800px] mx-auto px-6">

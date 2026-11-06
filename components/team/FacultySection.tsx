@@ -10,17 +10,16 @@ export default function FacultySection({ faculty }: { faculty: Faculty }) {
     <section className="py-[clamp(56px,7vw,80px)]">
       <div className="max-w-[1272px] mx-auto px-6">
         <div className="reveal bg-white border border-border rounded-panel p-8 md:p-10 flex flex-col md:flex-row items-center md:items-start gap-8">
-          <div className="w-40 h-40 rounded-panel overflow-hidden shrink-0 bg-[#f8fafc]">
+          <div className="w-32 h-32 sm:w-40 sm:h-40 rounded-panel overflow-hidden shrink-0 border border-border bg-soft relative">
             <Image
               src={faculty.photo || '/gallery/page_28.jpg'}
               alt={faculty.name}
-              width={160}
-              height={160}
-              className="w-full h-full object-cover object-center"
+              fill
+              className="object-cover object-center"
             />
           </div>
 
-          <div className="flex flex-col items-center md:items-start gap-2 text-center md:text-left">
+          <div className="flex flex-col items-center md:items-start gap-2 text-center md:text-left flex-1">
             <span className="text-[13px] font-medium text-secondary bg-soft py-1 px-3 rounded-pill">
               Faculty Advisor
             </span>

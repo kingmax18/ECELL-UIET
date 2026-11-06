@@ -7,15 +7,10 @@ export async function POST(request: Request) {
 
     const cleanEmail = email?.trim().toLowerCase();
 
-    // Official E-Cell administrative credentials
-    const validPasswords = [
-      process.env.ADMIN_PASSWORD,
-      'LSSecelluiet@admin',
-      'ecell@admin2026',
-    ].filter(Boolean);
-
+    // Official E-Cell administrative credentials from environment
+    const adminPassword = process.env.ADMIN_PASSWORD || 'LSSecelluiet@admin';
     const isAllowedEmail = cleanEmail === 'ecellmdu@gmail.com' || cleanEmail === 'ecelluietfs@gmail.com';
-    const match = isAllowedEmail && validPasswords.includes(password)
+    const match = isAllowedEmail && (password === adminPassword || password === 'LSSecelluiet@admin')
       ? {
           email: cleanEmail,
           name: 'Lakshay',

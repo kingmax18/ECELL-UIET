@@ -68,7 +68,7 @@ export function AdminAuthProvider({ children }: { children: ReactNode }) {
   const login = async (email: string, password: string): Promise<LoginResult> => {
     const cleanEmail = email.trim().toLowerCase();
 
-    // 1. Try our backend API route /api/auth/login
+    // Authenticate through the secure backend API route
     try {
       const res = await fetch('/api/auth/login', {
         method: 'POST',
@@ -88,37 +88,14 @@ export function AdminAuthProvider({ children }: { children: ReactNode }) {
         return { success: true };
       }
 
-      if (json.error) {
-        return { success: false, error: json.error };
-      }
-    } catch (err) {
-      console.warn('[AdminAuth] API call error, checking local fallback:', err);
-    }
-
-    // 2. Direct fallback authentication
-    const allowedAdmins = [
-      { email: 'ecellmdu@gmail.com', password: 'LSSecelluiet@admin', name: 'Lakshay', role: 'Super Admin' },
-      { email: 'ecellmdu@gmail.com', password: 'ecell@admin2026', name: 'Lakshay', role: 'Super Admin' },
-      { email: 'ecelluietfs@gmail.com', password: 'LSSecelluiet@admin', name: 'Lakshay', role: 'Super Admin' },
-      { email: 'ecelluietfs@gmail.com', password: 'ecell@admin2026', name: 'Lakshay', role: 'Super Admin' },
-    ];
-
-    const match = allowedAdmins.find(
-      (a) => a.email === cleanEmail && a.password === password
-    );
-
-    if (match) {
-      const authUser = {
-        email: match.email,
-        name: match.name,
-        role: match.role,
+      return {
+        success: false,
+        error: json.error || 'Invalid credentials. Please verify your email and password.',
       };
-      setUser(authUser);
-      sessionStorage.setItem('ECELL_ADMIN_SESSION', JSON.stringify(authUser));
-      return { success: true };
+    } catch (err) {
+      console.error('[AdminAuth] Login request error:', err);
+      return { success: false, error: 'Unable to connect to authentication server. Please try again.' };
     }
-
-    return { success: false, error: 'Invalid credentials. Please verify your email and password.' };
   };
 
   const logout = () => {

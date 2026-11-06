@@ -26,8 +26,8 @@ const VARIANT_CLASSES: Record<ButtonVariant, { base: string; icon: string }> = {
     icon: 'bg-white text-ink',
   },
   blue: {
-    base: 'bg-violet text-white border-violet hover:bg-white hover:text-ink',
-    icon: 'bg-white text-violet group-hover:bg-violet group-hover:text-white',
+    base: 'bg-violet text-white border-violet hover:bg-[#e87e2a] hover:border-[#e87e2a]',
+    icon: 'bg-white text-violet group-hover:bg-white group-hover:text-[#e87e2a]',
   },
   outline: {
     base: 'bg-transparent text-ink border-border hover:bg-ink hover:text-white hover:border-ink',

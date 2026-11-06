@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useAdminAuth } from '@/context/AdminAuthProvider';
 import { useData } from '@/context/DataProvider';
 import { useToast } from '@/context/ToastProvider';
@@ -34,6 +34,7 @@ export default function AdminPage() {
     setGallery,
     applications,
     setApplications,
+    fetchApplications,
     settings,
     setSettings,
     blogs,
@@ -43,6 +44,12 @@ export default function AdminPage() {
   const [activeTab, setActiveTab] = useState('dashboard');
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      fetchApplications();
+    }
+  }, [isAuthenticated]);
 
   if (!isAuthenticated) {
     return <AdminLogin />;
@@ -150,7 +157,7 @@ export default function AdminPage() {
               type="button"
               disabled={isSaving}
               onClick={handleSaveAll}
-              className="inline-flex items-center gap-2 bg-[#FF6600] hover:bg-[#E65C00] text-white font-medium text-xs uppercase tracking-wider px-4 sm:px-5 py-2.5 rounded-lg shadow-xs transition-all cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
+              className="inline-flex items-center gap-2 bg-[#FF933E] hover:bg-[#E87E2A] text-white font-medium text-xs uppercase tracking-wider px-4 sm:px-5 py-2.5 rounded-lg shadow-xs transition-all cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
               title="Save all changes and sync to Cloud Database"
             >
               {isSaving ? (

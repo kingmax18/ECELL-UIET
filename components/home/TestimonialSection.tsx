@@ -1,5 +1,6 @@
+'use client';
+
 import React from 'react';
-import SectionHeader from '@/components/ui/SectionHeader';
 
 interface FacultyMember {
   name?: string;
@@ -8,59 +9,51 @@ interface FacultyMember {
 
 export default function TestimonialSection({ faculty }: { faculty?: FacultyMember }) {
   return (
-    <section className="py-[clamp(56px,7vw,80px)]">
-      <div className="max-w-[1272px] mx-auto px-6">
-        <SectionHeader
-          title="What our mentors & student founders say"
-          italicTitle="about us"
-          subtitle="Hear from our faculty advisors and student innovators who have grown, built, and led with UIET E-Cell."
-        />
+    <section className="py-[clamp(72px,8vw,110px)] px-[5vw]">
+      <div className="max-w-[1272px] mx-auto">
+        <h2 className="d rv text-[clamp(34px,6vw,72px)] mb-10 text-[var(--ink)]">
+          What mentors & founders say
+        </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* Card 1: Faculty Advisor — white card */}
-          <div className="reveal bg-white border border-border rounded-card p-8 min-h-[460px] flex flex-col justify-between gap-6 transition-all duration-200 hover:-translate-y-1 hover:border-borderstrong">
-            <div className="w-14 h-14 rounded-full overflow-hidden shrink-0 bg-[#f8fafc]">
-              <img src="/gallery/page_28.jpg" alt="Faculty Advisor" className="w-full h-full object-cover object-center" />
-            </div>
-            <p className="text-[19px] font-medium leading-[1.45] tracking-[-0.015em] text-ink flex-1">
+          {/* Card 1: Faculty Advisor */}
+          <div className="reveal bg-[var(--surface)] border border-[var(--line)] rounded-[18px] p-8 min-h-[380px] flex flex-col justify-between gap-6 transition-all duration-200 hover:-translate-y-1">
+            <p className="font-['Space_Grotesk'] text-[18px] font-medium leading-[1.5] text-[var(--ink)] flex-1">
               &ldquo;UIET E-Cell provides a vital platform for students to learn real-world execution,
               collaborate across engineering and management disciplines, and cultivate innovation on campus.&rdquo;
             </p>
-            <div className="border-t border-border pt-4">
-              <div className="font-sans font-medium text-base tracking-[-0.01em] text-ink mb-0.5">
+            <div className="border-t border-[var(--line)] pt-4">
+              <div className="font-['Space_Grotesk'] font-bold text-base text-[var(--ink)]">
                 {faculty?.name || 'Er. Anil Sangwan'}
               </div>
-              <div className="text-sm text-secondary leading-[1.4]">
+              <div className="text-sm text-[var(--mute)]">
                 {faculty?.designation || 'Faculty Advisor, UIET E-Cell'}
               </div>
             </div>
           </div>
 
-          {/* Card 2: Signature warm-yellow metric card — reference #F6E683 */}
-          <div className="reveal bg-sun rounded-card p-8 min-h-[460px] flex flex-col justify-between gap-6 transition-transform duration-200 hover:-translate-y-1">
-            <div className="font-sans font-medium text-[clamp(64px,7.5vw,88px)] leading-none tracking-[-0.04em] text-ink">
+          {/* Card 2: Signature Orange Metric Card */}
+          <div className="reveal bg-[var(--orange)] rounded-[18px] p-8 min-h-[380px] flex flex-col justify-between gap-6 text-white transition-transform duration-200 hover:-translate-y-1 shadow-[0_16px_40px_rgba(255,107,0,0.2)]">
+            <div className="d text-[clamp(64px,7.5vw,88px)] leading-none text-white">
               100%
             </div>
-            <p className="text-[17px] font-medium leading-[1.45] tracking-[-0.01em] text-ink">
-              Student-led campus ecosystem offering free access to workshops, mentorship, and pitch
-              showcases for all MDU innovators.
+            <p className="font-['Space_Grotesk'] text-[18px] font-medium leading-[1.5] text-white">
+              Student-led campus ecosystem offering free access to workshops, mentorship, and pitch showcases for all MDU innovators.
             </p>
           </div>
 
-          {/* Card 3: Student winner — dark ink card (reference pattern) */}
-          <div className="reveal bg-ink rounded-card p-8 min-h-[460px] flex flex-col justify-between gap-6 transition-transform duration-200 hover:-translate-y-1">
-            <div className="w-14 h-14 rounded-full overflow-hidden shrink-0 bg-[#f8fafc]">
-              <img src="/gallery/page_3.jpg" alt="Student Founder" className="w-full h-full object-cover object-center" />
-            </div>
-            <p className="text-[19px] font-medium leading-[1.45] tracking-[-0.015em] text-white flex-1">
-              &ldquo;Participating in Eureka Pitching gave our team the initial validation, mentorship, and
-              confidence to take our prototype to state and national entrepreneurship forums.&rdquo;
+          {/* Card 3: Student Winner Dark Card */}
+          <div className="reveal bg-[#0A0E1A] rounded-[18px] p-8 min-h-[380px] flex flex-col justify-between gap-6 text-[#F3F1EA] transition-transform duration-200 hover:-translate-y-1 shadow-[0_16px_40px_rgba(10,14,26,0.18)]">
+            <p className="font-['Space_Grotesk'] text-[18px] font-medium leading-[1.5] text-[#F3F1EA] flex-1">
+              &ldquo;Participating in Eureka Pitching gave our team the initial validation, mentorship, and confidence to take our prototype to state and national entrepreneurship forums.&rdquo;
             </p>
             <div className="border-t border-white/15 pt-4">
-              <div className="font-sans font-medium text-base tracking-[-0.01em] text-white mb-0.5">
-                Eureka Pitch Winner
+              <div className="font-['Space_Grotesk'] font-bold text-base text-white">
+                Student Innovator
               </div>
-              <div className="text-sm text-white/60 leading-[1.4]">Student Founder · Batch 2025</div>
+              <div className="text-sm text-zinc-400">
+                Eureka Pitching Finalist
+              </div>
             </div>
           </div>
         </div>

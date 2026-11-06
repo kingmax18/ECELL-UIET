@@ -4,10 +4,10 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
-import TopBanner from '@/components/layout/TopBanner';
 
 export default function ApplyPage() {
   const [submitted, setSubmitted] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('');
   const [formData, setFormData] = useState({
     founderName: '',
     email: '',
@@ -29,8 +29,9 @@ export default function ApplyPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
+    setErrorMsg('');
     try {
-      await fetch('/api/applications', {
+      const res = await fetch('/api/applications', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -44,23 +45,29 @@ export default function ApplyPage() {
           linkedin: formData.website || null,
         }),
       });
-    } catch (err) {
-      console.warn('Submission network notice:', err);
+
+      const data = await res.json().catch(() => null);
+      if (!res.ok || !data?.success) {
+        throw new Error(data?.error || 'Failed to submit application. Please try again.');
+      }
+
+      setSubmitted(true);
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : 'Submission failed. Please check your connection.';
+      setErrorMsg(msg);
     } finally {
       setSubmitting(false);
-      setSubmitted(true);
     }
   };
 
   return (
     <>
-      <TopBanner />
       <Navbar />
       <main className="min-h-screen bg-[#FDFCF7] dark:bg-[#0B0C0E] text-[#16140f] dark:text-zinc-100 py-12 md:py-20 transition-colors">
         <div className="max-w-[840px] mx-auto px-6">
           {/* Header */}
           <div className="text-center mb-12">
-            <span className="inline-block font-['Outfit',sans-serif] text-xs uppercase tracking-widest font-semibold text-[#FF6600] mb-3">
+            <span className="inline-block font-['Outfit',sans-serif] text-xs uppercase tracking-widest font-semibold text-[#FF933E] mb-3">
               STUDENT INITIATIVES
             </span>
             <h1 className="font-['Source_Serif_4',serif] text-4xl sm:text-5xl md:text-6xl font-normal tracking-tight text-[#16140f] dark:text-white leading-[1.15]">
@@ -80,7 +87,7 @@ export default function ApplyPage() {
             </div>
             <div className="p-5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#13151A] shadow-xs">
               <span className="text-xs uppercase tracking-wider text-zinc-500 font-['Outfit',sans-serif]">Eligibility</span>
-              <p className="text-xl font-semibold mt-1 font-['Outfit',sans-serif] text-[#FF6600]">All Students</p>
+              <p className="text-xl font-semibold mt-1 font-['Outfit',sans-serif] text-[#FF933E]">All Students</p>
               <p className="text-xs text-zinc-500 mt-1">Open across all branches</p>
             </div>
             <div className="p-5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#13151A] shadow-xs">
@@ -94,7 +101,7 @@ export default function ApplyPage() {
           <div className="bg-white dark:bg-[#13151A] border border-zinc-200 dark:border-zinc-800 rounded-2xl p-6 sm:p-10 shadow-sm">
             {submitted ? (
               <div className="text-center py-12">
-                <div className="w-16 h-16 bg-[#FF6600]/10 text-[#FF6600] rounded-full flex items-center justify-center text-3xl mx-auto mb-4 font-bold">
+                <div className="w-16 h-16 bg-[#FF933E]/10 text-[#FF933E] rounded-full flex items-center justify-center text-3xl mx-auto mb-4 font-bold">
                   ✓
                 </div>
                 <h3 className="font-['Source_Serif_4',serif] text-3xl font-normal text-[#16140f] dark:text-white">
@@ -140,7 +147,7 @@ export default function ApplyPage() {
                         value={formData.founderName}
                         onChange={handleChange}
                         placeholder="e.g. Alex Sharma"
-                        className="w-full px-4 py-2.5 rounded-lg border border-zinc-200 dark:border-zinc-700 bg-[#FDFCF7] dark:bg-[#0B0C0E] text-[#16140f] dark:text-white focus:outline-none focus:border-[#FF6600] font-['Outfit',sans-serif] text-sm transition-colors"
+                        className="w-full px-4 py-2.5 rounded-lg border border-zinc-200 dark:border-zinc-700 bg-[#FDFCF7] dark:bg-[#0B0C0E] text-[#16140f] dark:text-white focus:outline-none focus:border-[#FF933E] font-['Outfit',sans-serif] text-sm transition-colors"
                       />
                     </div>
                     <div>
@@ -154,7 +161,7 @@ export default function ApplyPage() {
                         value={formData.email}
                         onChange={handleChange}
                         placeholder="founder@example.com"
-                        className="w-full px-4 py-2.5 rounded-lg border border-zinc-200 dark:border-zinc-700 bg-[#FDFCF7] dark:bg-[#0B0C0E] text-[#16140f] dark:text-white focus:outline-none focus:border-[#FF6600] font-['Outfit',sans-serif] text-sm transition-colors"
+                        className="w-full px-4 py-2.5 rounded-lg border border-zinc-200 dark:border-zinc-700 bg-[#FDFCF7] dark:bg-[#0B0C0E] text-[#16140f] dark:text-white focus:outline-none focus:border-[#FF933E] font-['Outfit',sans-serif] text-sm transition-colors"
                       />
                     </div>
                   </div>
@@ -180,7 +187,7 @@ export default function ApplyPage() {
                         value={formData.companyName}
                         onChange={handleChange}
                         placeholder="e.g. HyperScale AI"
-                        className="w-full px-4 py-2.5 rounded-lg border border-zinc-200 dark:border-zinc-700 bg-[#FDFCF7] dark:bg-[#0B0C0E] text-[#16140f] dark:text-white focus:outline-none focus:border-[#FF6600] font-['Outfit',sans-serif] text-sm transition-colors"
+                        className="w-full px-4 py-2.5 rounded-lg border border-zinc-200 dark:border-zinc-700 bg-[#FDFCF7] dark:bg-[#0B0C0E] text-[#16140f] dark:text-white focus:outline-none focus:border-[#FF933E] font-['Outfit',sans-serif] text-sm transition-colors"
                       />
                     </div>
                     <div>
@@ -191,7 +198,7 @@ export default function ApplyPage() {
                         name="stage"
                         value={formData.stage}
                         onChange={handleChange}
-                        className="w-full px-4 py-2.5 rounded-lg border border-zinc-200 dark:border-zinc-700 bg-[#FDFCF7] dark:bg-[#0B0C0E] text-[#16140f] dark:text-white focus:outline-none focus:border-[#FF6600] font-['Outfit',sans-serif] text-sm transition-colors"
+                        className="w-full px-4 py-2.5 rounded-lg border border-zinc-200 dark:border-zinc-700 bg-[#FDFCF7] dark:bg-[#0B0C0E] text-[#16140f] dark:text-white focus:outline-none focus:border-[#FF933E] font-['Outfit',sans-serif] text-sm transition-colors"
                       >
                         <option>Idea stage / Concept</option>
                         <option>Prototype / MVP in development</option>
@@ -211,7 +218,7 @@ export default function ApplyPage() {
                       value={formData.website}
                       onChange={handleChange}
                       placeholder="https://yourstartup.com or github repo"
-                      className="w-full px-4 py-2.5 rounded-lg border border-zinc-200 dark:border-zinc-700 bg-[#FDFCF7] dark:bg-[#0B0C0E] text-[#16140f] dark:text-white focus:outline-none focus:border-[#FF6600] font-['Outfit',sans-serif] text-sm transition-colors"
+                      className="w-full px-4 py-2.5 rounded-lg border border-zinc-200 dark:border-zinc-700 bg-[#FDFCF7] dark:bg-[#0B0C0E] text-[#16140f] dark:text-white focus:outline-none focus:border-[#FF933E] font-['Outfit',sans-serif] text-sm transition-colors"
                     />
                   </div>
 
@@ -226,7 +233,7 @@ export default function ApplyPage() {
                       value={formData.description}
                       onChange={handleChange}
                       placeholder="In 1-2 clear sentences: What problem are you solving and how? (Avoid jargon)"
-                      className="w-full px-4 py-2.5 rounded-lg border border-zinc-200 dark:border-zinc-700 bg-[#FDFCF7] dark:bg-[#0B0C0E] text-[#16140f] dark:text-white focus:outline-none focus:border-[#FF6600] font-['Outfit',sans-serif] text-sm transition-colors"
+                      className="w-full px-4 py-2.5 rounded-lg border border-zinc-200 dark:border-zinc-700 bg-[#FDFCF7] dark:bg-[#0B0C0E] text-[#16140f] dark:text-white focus:outline-none focus:border-[#FF933E] font-['Outfit',sans-serif] text-sm transition-colors"
                     />
                   </div>
 
@@ -241,10 +248,16 @@ export default function ApplyPage() {
                       value={formData.whyYou}
                       onChange={handleChange}
                       placeholder="Share a unique insight, unfair advantage, or prior obsession with this problem."
-                      className="w-full px-4 py-2.5 rounded-lg border border-zinc-200 dark:border-zinc-700 bg-[#FDFCF7] dark:bg-[#0B0C0E] text-[#16140f] dark:text-white focus:outline-none focus:border-[#FF6600] font-['Outfit',sans-serif] text-sm transition-colors"
+                      className="w-full px-4 py-2.5 rounded-lg border border-zinc-200 dark:border-zinc-700 bg-[#FDFCF7] dark:bg-[#0B0C0E] text-[#16140f] dark:text-white focus:outline-none focus:border-[#FF933E] font-['Outfit',sans-serif] text-sm transition-colors"
                     />
                   </div>
                 </div>
+
+                {errorMsg && (
+                  <div className="p-3 rounded-lg bg-rose-50 dark:bg-rose-950/30 border border-rose-200 dark:border-rose-900/50 text-rose-600 dark:text-rose-400 text-xs text-center font-['Outfit',sans-serif]">
+                    {errorMsg}
+                  </div>
+                )}
 
                 <div className="pt-6 border-t border-zinc-100 dark:border-zinc-800 flex flex-col sm:flex-row items-center justify-between gap-4">
                   <p className="text-xs text-zinc-500 font-['Outfit',sans-serif]">

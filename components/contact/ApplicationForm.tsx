@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import Button from '@/components/ui/Button';
 import { useToast } from '@/context/ToastProvider';
+import { SITE } from '@/lib/constants';
 
 interface AppSettings {
   web3formsKey?: string;
@@ -145,7 +146,7 @@ export default function ApplicationForm({ settings }: { settings?: AppSettings }
               to_email: formData.email,
               applicant_name: formData.fullName,
               department: formData.department,
-              ecell_email: 'ecelluietfs@gmail.com',
+              ecell_email: SITE.email,
             }
           );
         } catch (eJsErr) {
